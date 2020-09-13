@@ -1,0 +1,39 @@
+{
+  "name": "funless_man",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.11.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "global": "^4.4.0",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pug": "^3.0.0",
+    "sass": "^1.26.10",
+    "sequelize": "^6.3.5"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node ./src",
+    "dev:build": "webpack -w"
+  },
+  "devDependencies": {
+    "bcrypt": "^5.0.0",
+    "css-loader": "^4.2.2",
+    "dotenv": "^8.2.0",
+    "helmet": "^4.1.0",
+    "mariadb": "^2.4.2",
+    "mini-css-extract-plugin": "^0.11.0",
+    "morgan": "^1.10.0",
+    "sass-loader": "^10.0.1",
+    "scss-loader": "^0.0.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
