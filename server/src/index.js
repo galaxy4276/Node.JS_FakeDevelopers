@@ -8,6 +8,8 @@ import session from 'express-session';
 import passport from 'passport';
 import connectMaria from './lib/connectMaria';
 
+import testRouter from './routes/test.router';
+
 
 
 const app = express();
@@ -27,12 +29,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
-  secret: '',
+  secret: 'secret',
   resave: true,
   saveUninitialized: true,
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use('/test', testRouter);
+
 
 
 app.listen(app.get('port'), () => {
