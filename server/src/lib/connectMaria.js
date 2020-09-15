@@ -51,7 +51,7 @@ const initLog = {
       wstream.on('finish', () => console.log('로그를 기록했습니다.'));
     }
   }
-}
+};
 
 // 외부 DB서버에 연결을 수행하는 함수
 const connectMaria = async () => {
