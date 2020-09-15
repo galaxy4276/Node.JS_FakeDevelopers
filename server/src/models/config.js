@@ -13,7 +13,7 @@ export const development = {
   dialect: 'mariadb',
   port: env.MARIADB_PORT,
   dialectOptions: {
-    timezone: 'Etc/GMT+9',
+    timezone: 'Etc/GMT0',
   },
 };
 
@@ -24,15 +24,20 @@ export const production = {
   host: env.MARIADB_HOST,
   dialect: 'mariadb',
   port: env.MARIADB_PORT,
-  timezone: "Etc/GMT0",
+  dialectOptions: {
+    timezone: 'Etc/GMT0',
+  },
 };
 
 export const test = {
   username: env.MARIADB_USERNAME,
   password: env.MARIADB_PASSWORD,
-  database: env.MARIADB_DATABASE,
+  database: env.MARIADB_TEST_DATABASE,
   host: env.MARIADB_HOST,
   dialect: 'mariadb',
   port: env.MARIADB_PORT,
   timezone: "Etc/GMT0",
+  dialectOptions: {
+    timezone: 'Etc/GMT0',
+  },
 };
