@@ -32,10 +32,10 @@ const initLog = {
     'DB/BACKEND': {
       GITHUB: 'https://github.com/bs4biz6298'
     },
-    'SEXY/FRONTEND': {
+    'ENGINEER/FRONTEND': {
       GITHUB: 'https://github.com/bear-bear-bear'
     },
-    'KINGOF/FRONTEND': {
+    'DESIGNER/FRONTEND': {
       GITHUB: 'https://github.com/wscrg'
     },
   },
