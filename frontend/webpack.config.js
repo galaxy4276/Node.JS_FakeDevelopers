@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const MODE = "development";
+const webpack = require('webpack');
 const OUTPUT_DIR = path.resolve(__dirname, "build");
 
 // pug에서 html로 컴파일을 해주면 그 html에 스크립트 코드를 추가하는 함수
@@ -118,6 +119,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "css/style.css",
     }),
+    new webpack.ProgressPlugin(),
   ].concat(multipleHtmlPlugins), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력
 };
 

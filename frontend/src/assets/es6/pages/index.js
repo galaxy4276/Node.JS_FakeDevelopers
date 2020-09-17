@@ -6,3 +6,5 @@ import "../../../views/screen/index.pug";
 
 /* -- function -- */
 import "../function/function_AA/drawCircle";
+
+import { getUserOne } from './fetchUser.api';
