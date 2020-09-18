@@ -118,7 +118,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "css/style.css",
     }),
-  ].concat(multipleHtmlPlugins), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력
+  ],
+  //.concat(multipleHtmlPlugins), // ****** src/views/screen 에 파일 추가시에 실행 ******
+  // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력
 };
 
 // module.exports = (env, argv) => {
