@@ -1,29 +1,38 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require("path");
 const MODE = "development";
+const fs = require('fs');
 const OUTPUT_DIR = path.resolve(__dirname, "build");
 
 // pug에서 html로 컴파일을 해주면 그 html에 스크립트 코드를 추가하는 함수
 // 아래 html-webpack-plugin 플러그인에서 이 함수 사용
 let htmlPageNames = ["index", "foobar", "fooooo"]; // index는 따로 처리
-let multipleHtmlPlugins = htmlPageNames.map((name) => {
-  return new HtmlWebpackPlugin({
-    template: `${OUTPUT_DIR}/html/${name}.html`, // relative path to the HTML files
-    filename: `html/${name}.html`, // output HTML files
-    chunks: [`${name}`], // respective JS files
-    // html 파일별 요구하는 스크립트에 따라 청크를 분리하여 아웃풋에서 출력된 청크 이름을 chunks에 기입
+  let multipleHtmlPlugins = htmlPageNames.map((name) => {
+      return new HtmlWebpackPlugin({
+        template: `${OUTPUT_DIR}/html/${name}.html`, // relative path to the HTML files
+        filename: `html/${name}.html`, // output HTML files
+        chunks: [`${name}`], // respective JS files
+        // html 파일별 요구하는 스크립트에 따라 청크를 분리하여 아웃풋에서 출력된 청크 이름을 chunks에 기입
+      });
   });
-});
+
+let verifyFiles = () => {
+
+  const file = fs.existsSync(path.resolve(__dirname, 'build', 'html'));
+  (file)
+    ? console.log('HTML 파일이 존재합니다.\n 스크립트 태그를 삽입합니다.\n 태그 삽입 후 webpack.config 하단의 concat 함수를 주석처리 해주세요.')
+    : console.log('HTML 파일이 존재하지 않습니다.\n 새로 생성하여 빌드합니다.');
+  return file;
+}
 
 module.exports = {
   mode: MODE,
 
-  devServer: {
+  devServer: {  
     hot: true,
     inline: true,
-    open: true,
-    overlay: true,
     host: "localhost",
   },
 
@@ -115,10 +124,16 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [`${OUTPUT_DIR}/html/*.html`],
+    }),  
     new MiniCssExtractPlugin({
       filename: "css/style.css",
     }),
-  ].concat(multipleHtmlPlugins), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력
+  ]
+  // ].concat(verifyFiles() 
+  //           ? multipleHtmlPlugins
+  //           : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력
 };
 
 // module.exports = (env, argv) => {
