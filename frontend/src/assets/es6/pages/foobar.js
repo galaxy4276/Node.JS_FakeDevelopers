@@ -1,6 +1,5 @@
 /* -- defalut: styles, fonts, etc.. --*/
 import "../defaults/default";
-import "../defaults/default";
 
 /* -- pug --*/
 import "../../../views/screen/foobar.pug";
