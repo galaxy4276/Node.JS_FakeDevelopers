@@ -22,7 +22,7 @@ let verifyHtmlFiles = () => {
   const HTML_DIR = path.resolve(__dirname, "build", "html");
   const isHtmlDir = fs.existsSync(HTML_DIR); // 디렉터리가 있다면 True, 아니라면 False
 
-  if (!file) {
+  if (!isHtmlDir) {
     console.log(
       "\n =================================================================== \n" +
         "                                                                     \n" +
@@ -51,16 +51,19 @@ let verifyHtmlFiles = () => {
 const webpackConfig = {
   mode: MODE,
 
-  // devServer: {
-  //   hot: true,
-  //   inline: true,
-  //   host: "localhost",
-  // },
   devServer: {
     publicPath: "/",
     overlay: true,
     port: 8080,
+    hot: true,
+    inline: true,
+    open: true,
     stats: "errors-only",
+    host: "localhost",
+  },
+
+  watchOptions: {
+    ignored: [/node_modules/, `${OUTPUT_DIR}/html`],
   },
 
   devtool: "inline-source-map",
