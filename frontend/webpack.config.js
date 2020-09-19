@@ -1,6 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 const MODE = "development";
 const fs = require("fs");
@@ -61,10 +60,6 @@ const webpackConfig = {
     open: true,
     stats: "errors-only",
     host: "localhost",
-  },
-
-  watchOptions: {
-    ignored: [/node_modules/, `${OUTPUT_DIR}/html`],
   },
 
   devtool: "inline-source-map",
@@ -161,7 +156,7 @@ const webpackConfig = {
     new MiniCssExtractPlugin({
       filename: "css/style.css",
     }),
-  ], //.concat(verifyHtmlFiles() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
+  ].concat(verifyHtmlFiles() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
 
 module.exports = webpackConfig;
