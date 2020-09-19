@@ -8,3 +8,4 @@ import "../../../views/screen/index.pug";
 import "../function/function_AA/drawCircle";
 import "../function/function_BB/typingText";
 import { getUserOne } from "./fetchUser.api";
+console.log(getUserOne);
