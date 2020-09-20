@@ -2,7 +2,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const MODE = "development";
-const fs = require("fs");
+const webpack = require('webpack');
 const OUTPUT_DIR = path.resolve(__dirname, "build");
 
 // pug에서 html로 컴파일을 해주면 그 html에 스크립트 코드를 추가하는 함수
@@ -156,7 +156,12 @@ const webpackConfig = {
     new MiniCssExtractPlugin({
       filename: "css/style.css",
     }),
+<<<<<<< HEAD
   ].concat(verifyHtmlFiles() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
+=======
+    new webpack.ProgressPlugin(),
+  ].concat(multipleHtmlPlugins), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력
+>>>>>>> a3e364a1c21a0473f5485f9b7a817e7d3fad7a9e
 };
 
 module.exports = webpackConfig;
