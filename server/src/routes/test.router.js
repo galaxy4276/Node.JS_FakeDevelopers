@@ -1,6 +1,7 @@
 import { test } from '../models/config';
 import createBulkUsers from '../models/userQuery.test';
 import sequelize from '../models';
+import cors from 'cors';
 
 const { User } = sequelize;
 
@@ -18,11 +19,12 @@ testRouter.get('/create-bulk-users', (req, res) => {
 });
 
 testRouter.get('/user/:id', async (req, res) => {
-  const userId = req.params.userId;
-  const user = await User.findByPk(userId);
-  console.log(user);
+  const userId = req.params.id;
+  const { dataValues } = await User.findByPk(userId);
+  console.log(dataValues);
 
-  res.json(user);
+  res.json(dataValues);
+  res.end();
 })
 
 

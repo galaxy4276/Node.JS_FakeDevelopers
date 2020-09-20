@@ -6,6 +6,9 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import passport from 'passport';
+import cors from 'cors';
+
+
 import connectMaria from './lib/connectMaria';
 
 import testRouter from './routes/test.router';
@@ -22,6 +25,7 @@ app.set('port', process.env.PORT);
 app.set('views', path.resolve(__dirname, 'views'));
 
 
+app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.static(path.resolve(__dirname, 'public')));
@@ -35,6 +39,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 app.use('/test', testRouter);
 
