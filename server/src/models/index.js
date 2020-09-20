@@ -1,7 +1,6 @@
 import Sequelize from 'sequelize';
 import { development, test } from './config';
 import User from './User';
-import fs from 'fs';
 
 
 // const config = require(__dirname + '/../config/config.json')[env];
