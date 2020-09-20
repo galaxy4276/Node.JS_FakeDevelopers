@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const MODE = "development";
+const fs = require("fs");
 const webpack = require("webpack");
 const OUTPUT_DIR = path.resolve(__dirname, "build");
 
@@ -150,9 +151,6 @@ const webpackConfig = {
     ],
   },
   plugins: [
-    // new CleanWebpackPlugin({
-    //   cleanOnceBeforeBuildPatterns: [`${OUTPUT_DIR}/html/*.html`],
-    // }),
     new MiniCssExtractPlugin({
       filename: "css/style.css",
     }),
