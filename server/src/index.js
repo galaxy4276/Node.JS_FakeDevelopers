@@ -36,14 +36,18 @@ app.use(express.static(routes.forntImg));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true,
-}));
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use("/", globalRouter);
+app.use("/test", testRouter);
 
 app.use('/', globalRouter);
 app.use('/test', testRouter);

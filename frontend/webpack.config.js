@@ -2,12 +2,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const MODE = "development";
-const webpack = require('webpack');
+const fs = require("fs");
+const webpack = require("webpack");
 const OUTPUT_DIR = path.resolve(__dirname, "build");
 
 // pug에서 html로 컴파일을 해주면 그 html에 스크립트 코드를 추가하는 함수
 // 아래 html-webpack-plugin 플러그인에서 이 함수 사용
-let htmlPageNames = ["index", "foobar", "fooooo"]; // index는 따로 처리
+let htmlPageNames = ["index", "foobar", "fooooo"];
 let multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
     template: `${OUTPUT_DIR}/html/${name}.html`, // relative path to the HTML files
@@ -17,14 +18,48 @@ let multipleHtmlPlugins = htmlPageNames.map((name) => {
   });
 });
 
-module.exports = {
+let verifyHtmlFiles = () => {
+  const HTML_DIR = path.resolve(__dirname, "build", "html");
+  const isHtmlDir = fs.existsSync(HTML_DIR); // 디렉터리가 있다면 True, 아니라면 False
+
+  if (!isHtmlDir) {
+    console.log(
+      "\n =================================================================== \n" +
+        "                                                                     \n" +
+        "  pug 파일을 html로 컴파일하여 빌드합니다.                           \n" +
+        "  빌드를 한번 더 실행하면 html 파일 내에 스크립트 태그가 삽입됩니다. \n" +
+        "                                                                     \n" +
+        " =================================================================== \n"
+    );
+  } else {
+    console.log(
+      "\n ================================================================================================== \n" +
+        "                                                                                                    \n" +
+        " [ html-webpack-plugin ]                                                                            \n" +
+        "                                                                                                    \n" +
+        "  빌드되었던 HTML 파일에 스크립트 태그를 삽입합니다.                                                \n" +
+        "                                                                                                    \n" +
+        "  태그 삽입이 완료되면 작업 시작 전에 webpack.config 하단의 concat 함수를 반드시 주석처리 해주세요. \n" +
+        "  주석처리 하지 않을 시 스크립트 태그가 중복되어 쌓입니다.                                          \n" +
+        "                                                                                                    \n" +
+        " ================================================================================================== \n"
+    );
+  }
+  return isHtmlDir;
+};
+
+const webpackConfig = {
   mode: MODE,
 
   devServer: {
+    contentBase: `${OUTPUT_DIR}/html`,
+    publicPath: "/",
+    overlay: true,
+    port: 3000,
     hot: true,
     inline: true,
     open: true,
-    overlay: true,
+    stats: "errors-only",
     host: "localhost",
   },
 
@@ -119,9 +154,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "css/style.css",
     }),
-    new webpack.ProgressPlugin(),
-  ].concat(multipleHtmlPlugins), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력
+  ].concat(verifyHtmlFiles() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
+
+module.exports = webpackConfig;
 
 // module.exports = (env, argv) => {
 //   if (argv.mode === "development") {

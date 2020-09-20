@@ -1,22 +1,21 @@
 {
-  "name": "js-skeleton",
+  "name": "frontend",
   "version": "1.0.0",
   "description": "---",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --w",
-    "start": "webpack-dev-server",
+    "build": "webpack && webpack",
+    "start": "webpack-dev-server --progress",
     "server": "cd ../server && yarn start"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bear-bear-bear/learning-javascript.git"
+    "url": "git+https://github.com/galaxy4276/-Team-FakeDevelopers.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bear-bear-bear/learning-javascript/issues"
+    "url": "https://github.com/galaxy4276/-Team-FakeDevelopers/issues"
   },
   "homepage": "https://github.com/bear-bear-bear/learning-javascript#readme",
   "dependencies": {

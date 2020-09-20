@@ -6,5 +6,6 @@ import "../../../views/screen/index.pug";
 
 /* -- function -- */
 import "../function/function_AA/drawCircle";
-
-import { getUserOne } from './fetchUser.api';
+import "../function/function_BB/typingText";
+import { getUserOne } from "./fetchUser.api";
+console.log(getUserOne);
