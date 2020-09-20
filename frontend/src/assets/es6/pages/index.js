@@ -8,6 +8,3 @@ import "../../../views/screen/index.pug";
 import "../function/function_AA/drawCircle";
 
 import { getUserOne } from './fetchUser.api';
-
-console.log('Funcking');
-console.log('시발');
