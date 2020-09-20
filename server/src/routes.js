@@ -1,10 +1,13 @@
 import path from 'path';
 
 /* ---  프론트 경로   --- */
-const frontUrl = '../../../frontend';
+const frontUrl = path.join(__dirname, '..', '..', '/frontend');
 
 const FRONT_API = path.join(frontUrl, 'api');
-const FRONT_VIEW = path.join(frontUrl, 'src', 'views');
+const FRONT_VIEW = path.join(frontUrl, '/build', '/html');
+const FRONT_CSS = path.join(frontUrl, '/build', 'css');
+const FRONT_ES6 = path.join(frontUrl, '/build', 'es5');
+const FRONT_IMG = path.join(frontUrl, '/build', 'img');
 
 
 /* --- 전공 소개 카테고리   --- */
@@ -45,6 +48,9 @@ const ACHIVEMENT_PORTFOLIO = '/portfolio'; // 취업 포트폴리오
 const routes = {
   frontAPI: FRONT_API,
   frontView: FRONT_VIEW,
+  frontCss: FRONT_CSS,
+  frontEs6: FRONT_ES6,
+  forntImg: FRONT_IMG,
 
   intro: INTRO,
   introInfo: INTRO_INFO,
