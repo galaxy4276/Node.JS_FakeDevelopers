@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const MODE = "development";
 const fs = require("fs");
-const webpack = require("webpack");
 const OUTPUT_DIR = path.resolve(__dirname, "build");
 
 // pug에서 html로 컴파일을 해주면 그 html에 스크립트 코드를 추가하는 함수
@@ -70,23 +69,9 @@ const webpackConfig = {
   entry: {
     // 용도에 따라 js파일을 구분하고,
     // js 파일을 html 페이지에 별로 청크를 분리하여 작성
-    index: path.resolve(__dirname, "src", "assets", "es6", "pages", "index.js"),
-    foobar: path.resolve(
-      __dirname,
-      "src",
-      "assets",
-      "es6",
-      "pages",
-      "foobar.js"
-    ),
-    fooooo: path.resolve(
-      __dirname,
-      "src",
-      "assets",
-      "es6",
-      "pages",
-      "fooooo.js"
-    ),
+    index: path.resolve(__dirname, "src", "es6", "pages", "index.js"),
+    foobar: path.resolve(__dirname, "src", "es6", "pages", "foobar.js"),
+    fooooo: path.resolve(__dirname, "src", "es6", "pages", "fooooo.js"),
     // example1: [path.resolve(__dirname, "src", "assets", "es6", "ex1.js")
     // example2: path.resolve(__dirname, "src", "assets", "es6", "ex2.js"),
     // 각 호출 파일 내부에선 기능별 js를 import
@@ -152,7 +137,7 @@ const webpackConfig = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "css/style.css",
+      filename: "css/[name].css",
     }),
   ].concat(verifyHtmlFiles() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
