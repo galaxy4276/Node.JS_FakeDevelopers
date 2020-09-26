@@ -2,7 +2,7 @@
 // 폰트 추가시, 해당 폰트 파일 엔트리 js 파일에서 꼭 호출하기 < 안하면 폰트파일 아웃풋 폴더에 안 나타남
 
 @font-face {
-  font-family: "Open Sans";
+  font-family: "Noto Sans";
   src: local("../font/NotoSansKR-Regular.otf") format("otf"),
     local("../font/OpenSans-Regular.ttf") format("ttf");
 }

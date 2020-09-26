@@ -18,6 +18,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: green;
+  @extend %font-family;
 
   p {
     color: white;

@@ -54,7 +54,7 @@ const webpackConfig = {
     contentBase: `${OUTPUT_DIR}/html`,
     publicPath: "/",
     overlay: true,
-    port: 3000,
+    port: 8080,
     hot: true,
     inline: true,
     open: true,
@@ -139,7 +139,7 @@ const webpackConfig = {
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
-  ].concat(verifyHtmlFiles() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
+  ], //.concat(verifyHtmlFiles() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
 
 module.exports = webpackConfig;
