@@ -1,8 +1,11 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import "../../common/common.scss";
+
+/* -- templates -- */
+@import "../templates/bar.scss";
+
+/* -- components -- */
+
+// 아래는 테스트 코드입니다. 작업 시작시 지워주세요.
 
 body,
 html {
@@ -15,6 +18,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: green;
+  @extend %font-family;
 
   p {
     color: white;
@@ -30,13 +34,16 @@ body {
       height: 100%;
     }
     .image-test__first {
-      content: url("../img/testbigone.jpg");
+      content: url("../../../img/testbigone.jpg");
     }
     .image-test__second {
-      content: url("../img/testsmallone.png");
+      content: url("../../../img/testsmallone.png");
     }
     .image-test__third {
-      content: url("../img/testsmalltwo.png");
+      content: url("../../../img/testsmalltwo.png");
     }
+  }
+  a {
+    color: red;
   }
 }

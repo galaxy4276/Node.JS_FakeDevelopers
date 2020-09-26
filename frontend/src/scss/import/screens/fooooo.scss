@@ -1,0 +1,47 @@
+@import "../../common/common.scss";
+
+/* -- templates -- */
+@import "../templates/bar.scss";
+
+/* -- components -- */
+@import "../components/foo.scss";
+
+// 아래는 테스트 코드입니다. 작업 시작시 지워주세요.
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  @extend %font-family;
+
+  p {
+    color: white;
+  }
+
+  .image-test-wrapper {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+
+    * {
+      width: 100%;
+      height: 100%;
+    }
+    .image-test__first {
+      content: url("../../../img/testbigone.jpg");
+    }
+    .image-test__second {
+      content: url("../../../img/testsmallone.png");
+    }
+    .image-test__third {
+      content: url("../../../img/testsmalltwo.png");
+    }
+  }
+}
