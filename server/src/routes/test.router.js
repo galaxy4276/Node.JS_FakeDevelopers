@@ -1,7 +1,6 @@
 import { test } from '../models/config';
 import createBulkUsers from '../models/userQuery.test';
 import sequelize from '../models';
-import cors from 'cors';
 
 const { User } = sequelize;
 

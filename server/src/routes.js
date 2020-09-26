@@ -1,13 +1,14 @@
 import path from "path";
 
 /* ---  프론트 경로   --- */
-const frontUrl = path.join(__dirname, "..", "..", "/frontend");
+const frontUrl = path.join(__dirname, '..', '..', '/frontend');
 
-const FRONT_API = path.join(frontUrl, "api");
-const FRONT_VIEW = path.join(frontUrl, "/build", "/html");
-const FRONT_CSS = path.join(frontUrl, "/build", "css");
-const FRONT_ES6 = path.join(frontUrl, "/build", "es5");
-const FRONT_IMG = path.join(frontUrl, "/build", "img");
+const FRONT_API = path.join(frontUrl, 'api');
+const FRONT_VIEW = path.join(frontUrl, '/build', '/html');
+const FRONT_CSS = path.join(frontUrl, '/build', 'css');
+const FRONT_ES6 = path.join(frontUrl, '/build', 'es5');
+const FRONT_IMG = path.join(frontUrl, '/build', 'img');
+
 
 /* --- 전공 소개 카테고리   --- */
 const INTRO = "/intro"; // 전공 소개 루트 URL

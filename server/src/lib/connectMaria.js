@@ -1,6 +1,7 @@
 import { sequelize } from '../models';
 import { config } from 'dotenv';
 import fs from 'fs';
+import os from 'os';
 config();
 
 // TODO: 에러 로그에 대한 처리가 모자람
@@ -22,6 +23,14 @@ const initLog = {
     console.log(`연결된 사용자: ${process.env.MARIADB_USERNAME}`);
     console.log(`연결된 데이터베이스: ${process.env.MARIADB_STATUS}\n`);
     console.groupEnd('mariadb-connection');
+  },
+
+  showHost() {
+    console.group('HOSTINFO');
+    console.log(`USER: ${os.hostname()}`);
+    console.log(`PORT: ${process.env.PORT}`);
+    console.log(`Totally: http://localhost:${process.env.PORT}`);
+    console.groupEnd('HOSTEND');
   },
 
   // 팀 멤버의 역할/GITHUB주소 를 저장하는 객체
@@ -63,6 +72,8 @@ const connectMaria = async () => {
         initLog.mariadbStatusText();
       console.log('+========================== MEMBER ==========================+\n');
       console.table(initLog.introduce);
+      console.log('+=========================== HOST ===========================+\n');
+      initLog.showHost();
       })
       // DB 연결 실패 ( 로깅 )
     .catch(async (e) => { 
