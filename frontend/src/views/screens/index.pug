@@ -5,44 +5,44 @@ block title
 
 block content
   include ../templates/_header.pug
-  main.main
-    .main__background
+  main.index-main
+    .index-main__background
       span 학과소개
-    .main__content
-      .main__first
-        .main__pop-up.main__first-box
+    .index-main__content
+      .index-main__first
+        .index-main__pop-up.index-main__first-box
           span pop-up
-        .main__department-news.main__first-box
-          ul.main__department-news__list
+        .index-main__department-news.index-main__first-box
+          ul.index-main__department-news__list
             -for(let i = 0; i<3; i++)
               li= `dn ${i}`
-        .main__college-news.main__first-box
-          ul.main__college-news__list
+        .index-main__college-news.index-main__first-box
+          ul.index-main__college-news__list
             -for(let i = 0; i<3; i++)
               li= `cn ${i}`
-      .main__second
-        .main__academic-info.main__second-box
-          h1.main__second-title 학사정보
-          .main__second__cell-wrap
-            ul.main__academic-info__list
+      .index-main__second
+        .index-main__academic-info.index-main__second-box
+          h1.index-main__second-title 학사정보
+          .index-main__second__cell-wrap
+            ul.index-main__academic-info__list
               -for(let i = 0; i<3; i++)
                 li= `as ${i}`
-        .main__student-life.main__second-box
-          h1.main__second-title 학생생활
-          .main__second__cell-wrap
-            ul.main__student-life__list
+        .index-main__student-life.index-main__second-box
+          h1.index-main__second-title 학생생활
+          .index-main__second__cell-wrap
+            ul.index-main__student-life__list
               -for(let i = 0; i<3; i++)
                 li= `sl ${i}`
-      .main__third
-        .main__third-wrap
-          h1.main__third__quick-menu-title QUICK MENU
-          .main__quick-menu
-            .main__menu
-              ul.main__menu__list
+      .index-main__third
+        .index-main__third-wrap
+          h1.index-main__third__quick-menu-title QUICK MENU
+          .index-main__quick-menu
+            .index-main__menu
+              ul.index-main__menu__list
                 -for(let i=0; i<8; i++)
                   li= `menu ${i}`
-              .main__professor
+              .index-main__professor
                 span professor zone
-              .main__teaching-assistance
+              .index-main__teaching-assistance
                 span ta zone
   include ../templates/_footer.pug
