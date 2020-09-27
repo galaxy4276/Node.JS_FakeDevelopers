@@ -7,7 +7,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "build");
 
 // pug에서 html로 컴파일을 해주면 그 html에 스크립트 코드를 추가하는 함수
 // 아래 html-webpack-plugin 플러그인에서 이 함수 사용
-let htmlPageNames = ["index"];
+let htmlPageNames = ["__dev_wscrg", "__dev_bear", "index"];
 let multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
     template: `${OUTPUT_DIR}/pages/${name}/${name}.html`, // relative path to the HTML files
@@ -18,7 +18,7 @@ let multipleHtmlPlugins = htmlPageNames.map((name) => {
 });
 
 let verifyHtmlFiles = () => {
-  const HTML_DIR = path.resolve(__dirname, "build", "index");
+  const HTML_DIR = path.resolve(__dirname, "build", "pages", "index");
   const isHtmlDir = fs.existsSync(HTML_DIR); // 디렉터리가 있다면 True, 아니라면 False
 
   if (!isHtmlDir) {
@@ -94,7 +94,7 @@ const webpackConfig = {
     //  entry 에서 분리한 청크별로 다른 번들파일 출력
     path: OUTPUT_DIR,
     filename: "pages/[name]/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
-    publicPath: "./",
+    publicPath: "../../",
   },
 
   module: {
