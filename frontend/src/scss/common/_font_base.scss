@@ -1,6 +1,3 @@
-// 아웃풋 css 폴더 기준 폰트 파일이 들어 있는 디렉터리는 >> "./font/"   // 200928 웹팩 설정 기준
-// 폰트 추가시, 해당 폰트 파일 엔트리 js 파일에서 꼭 호출하기 < 안하면 폰트파일 아웃풋 폴더에 안 나타남
-
 // ------------------------------------------------------------
 //
 // 원하는 폰트 적용법
@@ -12,7 +9,7 @@
 //     ...
 //
 //
-//   [ scss/common/_font_base.scss ]
+//   [ 폰트 변경을 원하는 엘리먼트가 있는 scss 파일 최상단 ]
 //  @font-face {
 //    font-family: "폰트 이름 --폰트 두께";
 //    src: local("[아웃풋폴더]/font/[폰트파일명]") format("폰트 형식"),   // 이 폰트가 없다면
@@ -31,8 +28,11 @@
 //
 // ------------------------------------------------------------
 
+// 아웃풋 css 폴더 기준 폰트 파일이 들어 있는 디렉터리는 >> "../../font/"   // 200928 웹팩 설정 기준
+// ! 중요 - 번들되는 폰트파일의 경로 변경시ㄴ font 파일 경로 전부 수정하기
+
 @font-face {
   font-family: "Noto Sans --Regular";
-  src: local("./font/NotoSansKR-Regular.otf") format("otf"),
-    local("./font/OpenSans-Regular.ttf") format("ttf");
+  src: local("../../font/NotoSansKR-Regular.otf") format("otf"),
+    local("../../font/OpenSans-Regular.ttf") format("ttf");
 }
