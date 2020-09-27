@@ -51,8 +51,8 @@ const webpackConfig = {
   mode: MODE,
 
   devServer: {
-    contentBase: OUTPUT_DIR,
-    // contentBase: `${OUTPUT_DIR}/index`,
+    contentBase: `${OUTPUT_DIR}/pages`,
+    // contentBase: `${OUTPUT_DIR}/pages/index`,
     publicPath: "/",
     overlay: true,
     port: 8080,
