@@ -1,77 +1,48 @@
-extends ../templates/bar.pug
+extends ../templates/_base_template.pug
 
 block title
   title Index
 
 block content
-  .wrap
-    header.header
-      .header__logo-zone
-        span logo-zone
-      .header__menu
-        ul.header__menu__list
-          li 
-            a(href="#") 전공소개
-          li
-            a(href="#") 교수소개
-          li
-            a(href="#") 학사정보
-          li
-            a(href="#") 대학생활
-          li 
-            a(href="#") 커뮤니티
-      .header__util-wrap
-        ul.header__util__list
-          li
-            a LOGIN
-          li
-            a SITEMAP
-    main.main
-      .main__background
-        span 학과소개
-      .main__content
-        .main__first
-          .main__pop-up.main__first-box
-            span pop-up
-          .main__department-news.main__first-box
-            ul.main__department-news__list
+  include ../templates/_header.pug
+  main.main
+    .main__background
+      span 학과소개
+    .main__content
+      .main__first
+        .main__pop-up.main__first-box
+          span pop-up
+        .main__department-news.main__first-box
+          ul.main__department-news__list
+            -for(let i = 0; i<3; i++)
+              li= `dn ${i}`
+        .main__college-news.main__first-box
+          ul.main__college-news__list
+            -for(let i = 0; i<3; i++)
+              li= `cn ${i}`
+      .main__second
+        .main__academic-info.main__second-box
+          h1.main__second-title 학사정보
+          .main__second__cell-wrap
+            ul.main__academic-info__list
               -for(let i = 0; i<3; i++)
-                li= `dn ${i}`
-          .main__college-news.main__first-box
-            ul.main__college-news__list
+                li= `as ${i}`
+        .main__student-life.main__second-box
+          h1.main__second-title 학생생활
+          .main__second__cell-wrap
+            ul.main__student-life__list
               -for(let i = 0; i<3; i++)
-                li= `cn ${i}`
-        .main__second
-          .main__academic-info.main__second-box
-            h1.main__second-title 학사정보
-            .main__second__cell-wrap
-              ul.main__academic-info__list
-                -for(let i = 0; i<3; i++)
-                  li= `as ${i}`
-          .main__student-life.main__second-box
-            h1.main__second-title 학생생활
-            .main__second__cell-wrap
-              ul.main__student-life__list
-                -for(let i = 0; i<3; i++)
-                  li= `sl ${i}`
-        .main__third
-          .main__third-wrap
-            h1.main__third__quick-menu-title QUICK MENU
-            .main__quick-menu
-              .main__menu
-                ul.main__menu__list
-                  -for(let i=0; i<8; i++)
-                    li= `menu ${i}`
-                .main__professor
-                  span professor zone
-                .main__teaching-assistance
-                  span ta zone
-
-    footer.footer
-      .footer__logo-zone
-        span logo zone
-      .footer__info  
-        .footer__privacy-policy
-          span 개인정보처리방침
-        .footer__college-location
-          span 대전광역시 유성구 가정북로 68 정곡관 6층
+                li= `sl ${i}`
+      .main__third
+        .main__third-wrap
+          h1.main__third__quick-menu-title QUICK MENU
+          .main__quick-menu
+            .main__menu
+              ul.main__menu__list
+                -for(let i=0; i<8; i++)
+                  li= `menu ${i}`
+              .main__professor
+                span professor zone
+              .main__teaching-assistance
+                span ta zone
+  include ../templates/_footer.pug

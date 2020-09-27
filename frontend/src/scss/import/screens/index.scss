@@ -6,15 +6,11 @@
 
 /* -- components -- */
 
-.wrap {
-  padding: 0 20px;
-  position: relative;
-}
-
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Noto Sans"; // 폰트 테스트 라인
 
   .main__background {
     width: 100%;
