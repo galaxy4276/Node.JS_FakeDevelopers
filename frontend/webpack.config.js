@@ -70,9 +70,16 @@ const webpackConfig = {
     // 용도에 따라 js파일을 구분하고,
     // js 파일을 html 페이지에 별로 청크를 분리하여 작성
     index: path.resolve(__dirname, "src", "es6", "pages", "index.js"),
-    // example1: [path.resolve(__dirname, "src", "assets", "es6", "ex1.js")
-    // example2: path.resolve(__dirname, "src", "assets", "es6", "ex2.js"),
-    // 각 호출 파일 내부에선 기능별 js를 import
+
+    // for dev
+    __dev_bear: path.resolve(__dirname, "src", "es6", "pages", "__dev_bear.js"),
+    __dev_wscrg: path.resolve(
+      __dirname,
+      "src",
+      "es6",
+      "pages",
+      "__dev_wscrg.js"
+    ),
   },
 
   output: {
