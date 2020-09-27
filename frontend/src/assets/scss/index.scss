@@ -1,0 +1,152 @@
+@import "./reset.scss", "./header.scss", "./footer.scss";
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.wrap {
+  padding: 0 20px;
+  position: relative;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .main__background {
+    width: 100%;
+    height: 520px;
+    position: absolute;
+    top: 80;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+  }
+
+  .main__content {
+    margin-top: 350px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid black;
+    z-index: 2;
+
+    .main__first {
+      background-color: peru;
+      display: grid;
+      width: 100%;
+      height: 25em;
+      grid-template: "box1 box2 box3" 1fr;
+      border-bottom: 3px solid black;
+
+      @media screen and (max-width: 1315px) {
+        grid-template:
+          "box1 box1" 1fr
+          "box2 box3" 1fr;
+      }
+
+      .main__first-box {
+        padding: 35px 45px;
+      }
+
+      .main__pop-up {
+        grid-area: box1;
+        border: 3px solid black;
+      }
+
+      .main__department-news {
+        grid-area: box2;
+        border-right: 3px solid black;
+      }
+
+      .main__college-news {
+        grid-area: box3;
+      }
+    }
+
+    .main__second {
+      margin-top: 80px;
+      margin-bottom: 100px;
+      background-color: peru;
+      display: grid;
+      width: 100%;
+      grid-template: "box1 box2" 1fr;
+      justify-content: space-around;
+      border-top: 3px solid black;
+      border-bottom: 3px solid black;
+
+      .main__second-title {
+        font-size: 45px;
+      }
+
+      .main__second-box {
+        padding: 40px 220px 40px 45px;
+      }
+
+      .main__second__cell-wrap {
+        padding: 40px 0px;
+      }
+
+      .main__academic-info {
+        grid-area: box1;
+      }
+
+      .main__student-life {
+        grid-area: box2;
+      }
+    }
+
+    .main__third {
+      width: 100%;
+      height: 429px;
+      display: flex;
+      position: relative;
+      .main__third-wrap {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0 45px;
+      }
+
+      .main__quick-menu {
+        .main__menu {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          align-items: center;
+          .main__menu__list {
+            margin-top: 20px;
+            display: grid;
+            grid-template:
+              "box1 box2 box3 box4" 1fr
+              "box5 box6 box7 box8 " 1fr;
+
+            @for $i from 1 through 8 {
+              .main__menu__list li:nth-child(#{$i}) {
+                border: 1px solid black;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .main .main__content .main__second {
+    grid-template:
+      "box1" 1fr
+      "box2" 1fr;
+  }
+}
