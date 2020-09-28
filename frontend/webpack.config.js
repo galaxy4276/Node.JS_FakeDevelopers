@@ -20,6 +20,9 @@ const DEV_SERVER_DIR = path.resolve(
 const PUG_DIR = path.resolve(__dirname, "src", "views");
 
 /* -- output 1: dev_client -- */
+// **** 신규 페이지 추가시에 이 곳에서 작업 ****
+// ** 1. htmlPageNames[] >> 페이지 이름 추가하기 **
+// ** 2. webpackConfig_dev_client{}.entry 에 entry JS 파일 경로 추가하기 **
 const htmlPageNames = ["__dev_wscrg", "__dev_bear", "index"];
 const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
