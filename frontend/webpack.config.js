@@ -70,7 +70,8 @@ const webpackConfig_dev_client = {
   mode: MODE,
 
   devServer: {
-    // contentBase: `${OUTPUT_DIR}`,
+    contentBase: OUTPUT_DIR,
+    publicPath: "../",
     overlay: true,
     port: 8000,
     hot: true,
