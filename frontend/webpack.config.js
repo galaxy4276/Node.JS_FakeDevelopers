@@ -218,20 +218,15 @@ const _webpackConfig_dev_server = {
   output: {
     //  entry 에서 분리한 청크별로 다른 번들파일 출력
     path: DEV_SERVER_DIR,
-    filename: "pages/[name]/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
-    publicPath: "../../",
+    filename: "es5/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
+    publicPath: "./",
   },
 
   module: {
     rules: [
       {
         test: /\.pug$/,
-        use: [
-          "file-loader?name=pages/[name]/[name].html",
-          "extract-loader",
-          "html-loader",
-          "pug-html-loader",
-        ],
+        use: ["file-loader?name=[path]/[name].pug"],
       },
       {
         test: /\.js$/,
@@ -262,7 +257,7 @@ const _webpackConfig_dev_server = {
             loader: "url-loader",
             options: {
               limit: 8192, // (file-size > limit) ? use file-loader
-              publicPath: "./[name]/",
+              publicPath: "./",
               name: "img/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
             },
           },
@@ -283,11 +278,10 @@ const _webpackConfig_dev_server = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "pages/[name]/[name].css",
+      filename: "css/[name].css",
     }),
-  ].concat(verifyHtmlFiles() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
+  ], //.concat(verifyHtmlFiles() ? multipleHtmlPluginsPug : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
-//.concat(multipleHtmlPluginsPug)
 
 module.exports = [webpackConfig, _webpackConfig_dev_server];
 
