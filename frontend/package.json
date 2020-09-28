@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack && webpack",
+    "rebuild": "rmdir build /s && webpack && webpack",
     "start": "webpack-dev-server --progress",
     "server": "cd ../server && yarn start"
   },
