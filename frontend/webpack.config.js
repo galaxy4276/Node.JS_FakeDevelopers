@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const MODE = "development";
 const fs = require("fs");
@@ -163,6 +164,7 @@ const DEV_SERVER_DIR = path.resolve(
   __dirname,
   `../server/${DEV_SERVER_DIR_NAME}`
 );
+const PUG_DIR = path.resolve(__dirname, "src", "views");
 
 // let multipleHtmlPluginsPug = pageNames.map((name) => {
 //   return new HtmlWebpackPlugin({
@@ -204,7 +206,7 @@ const _webpackConfig_dev_server = {
     // for prod
     index: path.resolve(__dirname, "src", "es6", "pages", "index.js"),
 
-    // for dev
+    // for dev_frontend
     __dev_bear: path.resolve(__dirname, "src", "es6", "pages", "__dev_bear.js"),
     __dev_wscrg: path.resolve(
       __dirname,
@@ -226,7 +228,7 @@ const _webpackConfig_dev_server = {
     rules: [
       {
         test: /\.pug$/,
-        use: ["file-loader?name=[path]/[name].pug"],
+        use: ["pug-loader"],
       },
       {
         test: /\.js$/,
@@ -279,6 +281,10 @@ const _webpackConfig_dev_server = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
+    }),
+
+    new CopyWebpackPlugin({
+      patterns: [{ from: PUG_DIR, to: DEV_SERVER_DIR + "/views" }],
     }),
   ], //.concat(verifyHtmlFiles() ? multipleHtmlPluginsPug : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
