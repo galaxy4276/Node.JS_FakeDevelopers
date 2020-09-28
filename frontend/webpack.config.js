@@ -14,8 +14,8 @@ const PUG_DIR = path.resolve(__dirname, "src", "views");
 
 // pug에서 html로 컴파일을 해주면 그 html에 스크립트 코드를 추가하는 함수
 // 아래 html-webpack-plugin 플러그인에서 이 함수 사용
-const pageNames = ["__dev_wscrg", "__dev_bear", "index"];
-let multipleHtmlPlugins = pageNames.map((name) => {
+const htmlPageNames = ["__dev_wscrg", "__dev_bear", "index"];
+const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
     template: `${OUTPUT_DIR}/pages/${name}/${name}.html`, // relative path to the HTML files
     filename: `pages/${name}/${name}.html`, // output HTML files
@@ -30,19 +30,21 @@ const copyPugDir = [
   }),
 ];
 
-let verifyHtmlFiles = () => {
+const verifyHtmlDirBuild = () => {
   const HTML_DIR = path.resolve(__dirname, "build", "pages", "index");
   const isHtmlDir = fs.existsSync(HTML_DIR); // 디렉터리가 있다면 True, 아니라면 False
 
   if (!isHtmlDir) {
     console.log(
-      "\n =================================================================== \n" +
-        "                                                                     \n" +
-        "  [ webpack build ]                                                  \n" +
-        "                                                                     \n" +
-        "  빌드를 한번 더 실행하면 html 파일 내에 스크립트 태그가 삽입됩니다. \n" +
-        "                                                                     \n" +
-        " =================================================================== \n"
+      "\n ================================================================ \n" +
+        "                                                                  \n" +
+        "  [ webpack build ]                                               \n" +
+        "                                                                  \n" +
+        "   > frontend / build /                                           \n" +
+        "                                                                  \n" +
+        "  빌드를 한번 더 실행하면 html 파일에 스크립트 태그가 삽입됩니다. \n" +
+        "                                                                  \n" +
+        " ================================================================ \n"
     );
   } else {
     console.log(
@@ -50,43 +52,32 @@ let verifyHtmlFiles = () => {
         "                                                                              \n" +
         " [ webpack build ]                                                            \n" +
         "                                                                              \n" +
+        "   + [script tag] >> *.html                                                   \n" +
+        "                                                                              \n" +
         "  dev-server 실행 중이 아니라면, html 파일 내에 스크립트 태그가 삽입됩니다.   \n" +
         "                                                                              \n" +
         "  태그 삽입이 완료되면 webpack.config 하단의 concat 함수를 주석처리 해주세요. \n" +
-        "  빌드시에 스크립트 태그가 중복되어 쌓이게 됩니다.                            \n" +
+        "  다음 빌드부터 스크립트 태그가 중복되어 쌓이게 됩니다.                       \n" +
         "                                                                              \n" +
         " ============================================================================ \n"
     );
   }
   return isHtmlDir;
 };
-const verifyPugFiles = () => {
+const verifyPugDirBuild = () => {
   const isPugDir = fs.existsSync(
     path.resolve(DEV_SERVER_DIR, "views", "screens")
   );
 
   if (!isPugDir) {
     console.log(
-      "\n =================================================================== \n" +
-        "                                                                     \n" +
-        "  [ webpack build ]                                                  \n" +
-        "                                                                     \n" +
-        "  빌드를 한번 더 실행하면 pug 파일 내에 스크립트 태그가 삽입됩니다.  \n" +
-        "                                                                     \n" +
-        " =================================================================== \n"
-    );
-  } else {
-    console.log(
-      "\n ============================================================================ \n" +
-        "                                                                              \n" +
-        " [ webpack build ]                                                            \n" +
-        "                                                                              \n" +
-        "  dev-server 실행 중이 아니라면, pug 파일 내에 스크립트 태그가 삽입됩니다.    \n" +
-        "                                                                              \n" +
-        "  태그 삽입이 완료되면 config 하단의 concat 함수를 주석처리 해주세요.         \n" +
-        "  빌드시에 스크립트 태그가 중복되어 쌓이게 됩니다.                            \n" +
-        "                                                                              \n" +
-        " ============================================================================ \n"
+      "\n ================================================================ \n" +
+        "                                                                  \n" +
+        "  [ webpack build ]                                               \n" +
+        "                                                                  \n" +
+        "   > server / public /                                            \n" +
+        "                                                                  \n" +
+        " ================================================================ \n"
     );
   }
   return isPugDir;
@@ -197,7 +188,7 @@ const webpackConfig_dev_client = {
     new MiniCssExtractPlugin({
       filename: "pages/[name]/[name].css",
     }),
-  ].concat(verifyHtmlFiles() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
+  ].concat(verifyHtmlDirBuild() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
 const _webpackConfig_dev_server = {
   mode: MODE,
@@ -301,15 +292,7 @@ const _webpackConfig_dev_server = {
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
-  ].concat(verifyPugFiles() ? [] : copyPugDir),
+  ].concat(verifyPugDirBuild() ? [] : copyPugDir),
 };
 
 module.exports = [webpackConfig_dev_client, _webpackConfig_dev_server];
-
-// module.exports = (env, argv) => {
-//   if (argv.mode === "development") {
-//   }
-//   if (argv.mode === "production") {
-//   }
-//   return config;
-// };
