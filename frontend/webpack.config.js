@@ -1,6 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const HtmlWebpackPugPlugin = require("html-webpack-pug-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const MODE = "development";
@@ -24,20 +23,6 @@ let multipleHtmlPlugins = pageNames.map((name) => {
     // html 파일별 요구하는 스크립트에 따라 청크를 분리하여 아웃풋에서 출력된 청크 이름을 chunks에 기입
   });
 });
-const multipleHtmlWebpackPugPlugins = pageNames
-  .map((name) => {
-    return new HtmlWebpackPlugin({
-      filetype: "pug",
-      template: `${DEV_SERVER_DIR}/views/screens/${name}.pug`, // relative path to the HTML files
-      filename: `views/screens/PROBLEM_IS_THIS_PART_IN_WEBPACK_CONFIC/${name}.pug`, // server output HTML files
-      chunks: [`${name}`], // respective JS files
-    });
-  })
-  .concat([
-    new HtmlWebpackPugPlugin({
-      adjustIndent: true,
-    }),
-  ]);
 
 const copyPugDir = [
   new CopyWebpackPlugin({
@@ -316,7 +301,7 @@ const _webpackConfig_dev_server = {
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
-  ].concat(verifyPugFiles() ? multipleHtmlWebpackPugPlugins : copyPugDir),
+  ].concat(verifyPugFiles() ? [] : copyPugDir),
 };
 
 module.exports = [webpackConfig_dev_client, _webpackConfig_dev_server];
