@@ -1,9 +1,16 @@
+/* -- plugin --*/
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+
+/* -- module -- */
 const path = require("path");
-const MODE = "development";
 const fs = require("fs");
+
+/* -- MODE -- */
+const MODE = "development";
+
+/* -- DIR_PATH -- */
 const OUTPUT_DIR = path.resolve(__dirname, "build");
 const DEV_SERVER_DIR_NAME = "public";
 const DEV_SERVER_DIR = path.resolve(
@@ -12,8 +19,7 @@ const DEV_SERVER_DIR = path.resolve(
 );
 const PUG_DIR = path.resolve(__dirname, "src", "views");
 
-// pug에서 html로 컴파일을 해주면 그 html에 스크립트 코드를 추가하는 함수
-// 아래 html-webpack-plugin 플러그인에서 이 함수 사용
+/* -- output 1: dev_client -- */
 const htmlPageNames = ["__dev_wscrg", "__dev_bear", "index"];
 const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
@@ -23,13 +29,6 @@ const multipleHtmlPlugins = htmlPageNames.map((name) => {
     // html 파일별 요구하는 스크립트에 따라 청크를 분리하여 아웃풋에서 출력된 청크 이름을 chunks에 기입
   });
 });
-
-const copyPugDir = [
-  new CopyWebpackPlugin({
-    patterns: [{ from: PUG_DIR, to: DEV_SERVER_DIR + "/views" }],
-  }),
-];
-
 const verifyHtmlDirBuild = () => {
   const HTML_DIR = path.resolve(__dirname, "build", "pages", "index");
   const isHtmlDir = fs.existsSync(HTML_DIR); // 디렉터리가 있다면 True, 아니라면 False
@@ -64,25 +63,6 @@ const verifyHtmlDirBuild = () => {
   }
   return isHtmlDir;
 };
-const verifyPugDirBuild = () => {
-  const isPugDir = fs.existsSync(
-    path.resolve(DEV_SERVER_DIR, "views", "screens")
-  );
-
-  if (!isPugDir) {
-    console.log(
-      "\n ================================================================ \n" +
-        "                                                                  \n" +
-        "  [ webpack build ]                                               \n" +
-        "                                                                  \n" +
-        "   > server / public /                                            \n" +
-        "                                                                  \n" +
-        " ================================================================ \n"
-    );
-  }
-  return isPugDir;
-};
-
 const webpackConfig_dev_client = {
   mode: MODE,
 
@@ -105,12 +85,12 @@ const webpackConfig_dev_client = {
 
   entry: {
     /* 
-    용도에 따라 js파일을 구분하고,
-     js 파일을 html 페이지에 별로 청크를 분리하여 작성
-     example1: path.resolve(__dirname, "src", "assets", "es6", "ex1.js")
-     example2: path.resolve(__dirname, "src", "assets", "es6", "ex2.js"),
-     각 호출 파일 내부에선 기능별 js를 import
-    */
+      용도에 따라 js파일을 구분하고,
+       js 파일을 html 페이지에 별로 청크를 분리하여 작성
+       example1: path.resolve(__dirname, "src", "assets", "es6", "ex1.js")
+       example2: path.resolve(__dirname, "src", "assets", "es6", "ex2.js"),
+       각 호출 파일 내부에선 기능별 js를 import
+      */
 
     // for prod
     index: path.resolve(__dirname, "src", "es6", "pages", "index.js"),
@@ -190,7 +170,32 @@ const webpackConfig_dev_client = {
     }),
   ].concat(verifyHtmlDirBuild() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
-const _webpackConfig_dev_server = {
+
+/* -- output 2: dev_server -- */
+const copyPugDir = [
+  new CopyWebpackPlugin({
+    patterns: [{ from: PUG_DIR, to: DEV_SERVER_DIR + "/views" }],
+  }),
+];
+const verifyPugDirBuild = () => {
+  const isPugDir = fs.existsSync(
+    path.resolve(DEV_SERVER_DIR, "views", "screens")
+  );
+
+  if (!isPugDir) {
+    console.log(
+      "\n ================================================================ \n" +
+        "                                                                  \n" +
+        "  [ webpack build ]                                               \n" +
+        "                                                                  \n" +
+        "   > server / public /                                            \n" +
+        "                                                                  \n" +
+        " ================================================================ \n"
+    );
+  }
+  return isPugDir;
+};
+const webpackConfig_dev_server = {
   mode: MODE,
 
   devServer: {
@@ -212,12 +217,12 @@ const _webpackConfig_dev_server = {
 
   entry: {
     /*
-    용도에 따라 js파일을 구분하고,
-     js 파일을 html 페이지에 별로 청크를 분리하여 작성
-     example1: path.resolve(__dirname, "src", "assets", "es6", "ex1.js")
-     example2: path.resolve(__dirname, "src", "assets", "es6", "ex2.js"),
-     각 호출 파일 내부에선 기능별 js를 import
-    */
+      용도에 따라 js파일을 구분하고,
+       js 파일을 html 페이지에 별로 청크를 분리하여 작성
+       example1: path.resolve(__dirname, "src", "assets", "es6", "ex1.js")
+       example2: path.resolve(__dirname, "src", "assets", "es6", "ex2.js"),
+       각 호출 파일 내부에선 기능별 js를 import
+      */
 
     // for prod
     index: path.resolve(__dirname, "src", "es6", "pages", "index.js"),
@@ -295,4 +300,5 @@ const _webpackConfig_dev_server = {
   ].concat(verifyPugDirBuild() ? [] : copyPugDir),
 };
 
-module.exports = [webpackConfig_dev_client, _webpackConfig_dev_server];
+/* -- module.exports -- */
+module.exports = [webpackConfig_dev_client, webpackConfig_dev_server];
