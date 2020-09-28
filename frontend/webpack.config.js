@@ -1,15 +1,22 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPugPlugin = require("html-webpack-pug-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const MODE = "development";
 const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "build");
+const DEV_SERVER_DIR_NAME = "public";
+const DEV_SERVER_DIR = path.resolve(
+  __dirname,
+  `../server/${DEV_SERVER_DIR_NAME}`
+);
+const PUG_DIR = path.resolve(__dirname, "src", "views");
 
 // pug에서 html로 컴파일을 해주면 그 html에 스크립트 코드를 추가하는 함수
 // 아래 html-webpack-plugin 플러그인에서 이 함수 사용
-let htmlPageNames = ["__dev_wscrg", "__dev_bear", "index"];
-let multipleHtmlPlugins = htmlPageNames.map((name) => {
+const pageNames = ["__dev_wscrg", "__dev_bear", "index"];
+let multipleHtmlPlugins = pageNames.map((name) => {
   return new HtmlWebpackPlugin({
     template: `${OUTPUT_DIR}/pages/${name}/${name}.html`, // relative path to the HTML files
     filename: `pages/${name}/${name}.html`, // output HTML files
@@ -17,6 +24,26 @@ let multipleHtmlPlugins = htmlPageNames.map((name) => {
     // html 파일별 요구하는 스크립트에 따라 청크를 분리하여 아웃풋에서 출력된 청크 이름을 chunks에 기입
   });
 });
+const multipleHtmlWebpackPugPlugins = pageNames
+  .map((name) => {
+    return new HtmlWebpackPlugin({
+      filetype: "pug",
+      template: `${DEV_SERVER_DIR}/views/screens/${name}.pug`, // relative path to the HTML files
+      filename: `views/screens/PROBLEM_IS_THIS_PART_IN_WEBPACK_CONFIC/${name}.pug`, // server output HTML files
+      chunks: [`${name}`], // respective JS files
+    });
+  })
+  .concat([
+    new HtmlWebpackPugPlugin({
+      adjustIndent: true,
+    }),
+  ]);
+
+const copyPugDir = [
+  new CopyWebpackPlugin({
+    patterns: [{ from: PUG_DIR, to: DEV_SERVER_DIR + "/views" }],
+  }),
+];
 
 let verifyHtmlFiles = () => {
   const HTML_DIR = path.resolve(__dirname, "build", "pages", "index");
@@ -48,8 +75,39 @@ let verifyHtmlFiles = () => {
   }
   return isHtmlDir;
 };
+const verifyPugFiles = () => {
+  const isPugDir = fs.existsSync(
+    path.resolve(DEV_SERVER_DIR, "views", "screens")
+  );
 
-const webpackConfig = {
+  if (!isPugDir) {
+    console.log(
+      "\n =================================================================== \n" +
+        "                                                                     \n" +
+        "  [ webpack build ]                                                  \n" +
+        "                                                                     \n" +
+        "  빌드를 한번 더 실행하면 pug 파일 내에 스크립트 태그가 삽입됩니다.  \n" +
+        "                                                                     \n" +
+        " =================================================================== \n"
+    );
+  } else {
+    console.log(
+      "\n ============================================================================ \n" +
+        "                                                                              \n" +
+        " [ webpack build ]                                                            \n" +
+        "                                                                              \n" +
+        "  dev-server 실행 중이 아니라면, pug 파일 내에 스크립트 태그가 삽입됩니다.    \n" +
+        "                                                                              \n" +
+        "  태그 삽입이 완료되면 config 하단의 concat 함수를 주석처리 해주세요.         \n" +
+        "  빌드시에 스크립트 태그가 중복되어 쌓이게 됩니다.                            \n" +
+        "                                                                              \n" +
+        " ============================================================================ \n"
+    );
+  }
+  return isPugDir;
+};
+
+const webpackConfig_dev_client = {
   mode: MODE,
 
   devServer: {
@@ -156,24 +214,6 @@ const webpackConfig = {
     }),
   ].concat(verifyHtmlFiles() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
-
-// const HtmlWebpackPugPlugin = require("html-webpack-pug-plugin");
-
-const DEV_SERVER_DIR_NAME = "public";
-const DEV_SERVER_DIR = path.resolve(
-  __dirname,
-  `../server/${DEV_SERVER_DIR_NAME}`
-);
-const PUG_DIR = path.resolve(__dirname, "src", "views");
-
-// let multipleHtmlPluginsPug = pageNames.map((name) => {
-//   return new HtmlWebpackPlugin({
-//     template: `${DEV_SERVER_DIR}/pages/${name}/${name}.pug`, // relative path to the HTML files
-//     filename: `pages/${name}/${name}.pug`, // server output HTML files
-//     chunks: [`${name}`], // respective JS files
-//   });
-// });
-
 const _webpackConfig_dev_server = {
   mode: MODE,
 
@@ -240,12 +280,6 @@ const _webpackConfig_dev_server = {
               presets: ["@babel/preset-env"],
             },
           },
-          // {
-          //   loader: `babel-loader?name=[name]/[name].css`,
-          //   options: {
-          //     presets: ["@babel/preset-env"],
-          //   },
-          // },
         ],
       },
       {
@@ -282,14 +316,10 @@ const _webpackConfig_dev_server = {
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
-
-    new CopyWebpackPlugin({
-      patterns: [{ from: PUG_DIR, to: DEV_SERVER_DIR + "/views" }],
-    }),
-  ], //.concat(verifyHtmlFiles() ? multipleHtmlPluginsPug : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
+  ].concat(verifyPugFiles() ? multipleHtmlWebpackPugPlugins : copyPugDir),
 };
 
-module.exports = [webpackConfig, _webpackConfig_dev_server];
+module.exports = [webpackConfig_dev_client, _webpackConfig_dev_server];
 
 // module.exports = (env, argv) => {
 //   if (argv.mode === "development") {
