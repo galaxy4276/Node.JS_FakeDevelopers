@@ -26,14 +26,14 @@ const PUG_DIR = path.resolve(__dirname, "src", "views");
 const htmlPageNames = ["__dev_wscrg", "__dev_bear", "index"];
 const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
-    template: `${OUTPUT_DIR}/pages/${name}/${name}.html`, // relative path to the HTML files
-    filename: `pages/${name}/${name}.html`, // output HTML files
+    template: `${OUTPUT_DIR}/html/${name}.html`, // relative path to the HTML files
+    filename: `html/${name}.html`, // output HTML files
     chunks: [`${name}`], // respective JS files
     // html 파일별 요구하는 스크립트에 따라 청크를 분리하여 아웃풋에서 출력된 청크 이름을 chunks에 기입
   });
 });
 const verifyHtmlDirBuild = () => {
-  const HTML_DIR = path.resolve(__dirname, "build", "pages", "index");
+  const HTML_DIR = path.resolve(__dirname, "build", "html");
   const isHtmlDir = fs.existsSync(HTML_DIR); // 디렉터리가 있다면 True, 아니라면 False
 
   if (!isHtmlDir) {
@@ -70,16 +70,14 @@ const webpackConfig_dev_client = {
   mode: MODE,
 
   devServer: {
-    contentBase: OUTPUT_DIR,
-    // contentBase: `${OUTPUT_DIR}/pages/index`,
-    publicPath: "/",
+    // contentBase: `${OUTPUT_DIR}`,
     overlay: true,
-    port: 8080,
+    port: 8000,
     hot: true,
     inline: true,
     open: true,
+    progress: true,
     stats: "errors-only",
-    host: "localhost",
   },
 
   devtool: "inline-source-map",
@@ -112,8 +110,8 @@ const webpackConfig_dev_client = {
   output: {
     //  entry 에서 분리한 청크별로 다른 번들파일 출력
     path: OUTPUT_DIR,
-    filename: "pages/[name]/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
-    publicPath: "../../",
+    filename: "es5/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
+    publicPath: "../",
   },
 
   module: {
@@ -121,7 +119,7 @@ const webpackConfig_dev_client = {
       {
         test: /\.pug$/,
         use: [
-          "file-loader?name=pages/[name]/[name].html",
+          "file-loader?name=html/[name].html",
           "extract-loader",
           "html-loader",
           "pug-html-loader",
@@ -148,7 +146,7 @@ const webpackConfig_dev_client = {
             loader: "url-loader",
             options: {
               limit: 8192, // (file-size > limit) ? use file-loader
-              publicPath: "./[name]/",
+              publicPath: "./",
               name: "img/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
             },
           },
@@ -169,7 +167,7 @@ const webpackConfig_dev_client = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "pages/[name]/[name].css",
+      filename: "css/[name].css",
     }),
   ].concat(verifyHtmlDirBuild() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
@@ -202,16 +200,14 @@ const webpackConfig_dev_server = {
   mode: MODE,
 
   devServer: {
-    contentBase: `${OUTPUT_DIR}/pages`,
-    // contentBase: `${OUTPUT_DIR}/pages/index`,
-    publicPath: "/",
+    // contentBase: `${DEV_SERVER_DIR}`,
     overlay: true,
     port: 3000,
     hot: true,
     inline: true,
     open: true,
+    progress: true,
     stats: "errors-only",
-    host: "localhost",
   },
 
   devtool: "inline-source-map",
