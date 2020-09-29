@@ -5,6 +5,10 @@ const User = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
     },
+    name: {
+      type: DataTypes.STRING(3),
+      allowNull: false,
+    },
     password: {
       type: DataTypes.STRING(100),
       allowNull: false,
