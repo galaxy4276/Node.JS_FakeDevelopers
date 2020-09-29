@@ -3,3 +3,4 @@ node_modules
 
 public
 src/public
+package-lock.json
