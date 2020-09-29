@@ -1,7 +1,9 @@
 extends ../templates/_base.pug
 
 block title
-  title Index
+  title __dev_bear
+block stylesheet
+  link(rel="stylesheet" href="/css/_dev_bear.css")
 
 block content
   include ../templates/_header.pug
@@ -10,3 +12,6 @@ block content
   include ../components/__dev_login.pug
 
   include ../templates/_footer.pug
+
+block script
+  script(src="/es5/_dev_bear.js")

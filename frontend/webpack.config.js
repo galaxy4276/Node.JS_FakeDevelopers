@@ -66,8 +66,9 @@ const webpackConfig_frontend = {
   output: {
     //  entry 에서 분리한 청크별로 다른 번들파일 출력
     path: FRONT_BUILD_DIR,
-    filename: "[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
-    publicPath: "http://localhost:8080/",
+    filename: "es5/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
+    publicPath: "/",
+    // publicPath: "http://localhost:8080/",
   },
 
   module: {
@@ -118,7 +119,7 @@ const webpackConfig_frontend = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: "css/[name].css",
     }),
   ],
 };
