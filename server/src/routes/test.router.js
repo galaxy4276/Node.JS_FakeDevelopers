@@ -18,11 +18,12 @@ testRouter.get('/create-bulk-users', (req, res) => {
 });
 
 testRouter.get('/user/:id', async (req, res) => {
-  const userId = req.params.userId;
-  const user = await User.findByPk(userId);
-  console.log(user);
+  const userId = req.params.id;
+  const { dataValues } = await User.findByPk(userId);
+  console.log(dataValues);
 
-  res.json(user);
+  res.json(dataValues);
+  res.end();
 })
 
 

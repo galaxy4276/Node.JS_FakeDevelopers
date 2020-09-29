@@ -1,13 +1,30 @@
+/* -- plugin --*/
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
-const MODE = "development";
-const OUTPUT_DIR = path.resolve(__dirname, "build");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-// pug에서 html로 컴파일을 해주면 그 html에 스크립트 코드를 추가하는 함수
-// 아래 html-webpack-plugin 플러그인에서 이 함수 사용
-let htmlPageNames = ["index", "foobar", "fooooo"]; // index는 따로 처리
-let multipleHtmlPlugins = htmlPageNames.map((name) => {
+/* -- module -- */
+const path = require("path");
+const fs = require("fs");
+
+/* -- MODE -- */
+const MODE = "development";
+
+/* -- DIR_PATH -- */
+const OUTPUT_DIR = path.resolve(__dirname, "build");
+const DEV_SERVER_DIR_NAME = "public";
+const DEV_SERVER_DIR = path.resolve(
+  __dirname,
+  `../server/${DEV_SERVER_DIR_NAME}`
+);
+const PUG_DIR = path.resolve(__dirname, "src", "views");
+
+/* -- output 1: dev_client -- */
+// **** 신규 페이지 추가시에 이 곳에서 작업 ****
+// ** 1. htmlPageNames[] >> 페이지 이름 추가하기 **
+// ** 2. webpackConfig_dev_client{}.entry 에 entry JS 파일 경로 추가하기 **
+const htmlPageNames = ["__dev_wscrg", "__dev_bear", "index"];
+const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
     template: `${OUTPUT_DIR}/html/${name}.html`, // relative path to the HTML files
     filename: `html/${name}.html`, // output HTML files
@@ -15,16 +32,53 @@ let multipleHtmlPlugins = htmlPageNames.map((name) => {
     // html 파일별 요구하는 스크립트에 따라 청크를 분리하여 아웃풋에서 출력된 청크 이름을 chunks에 기입
   });
 });
+const verifyHtmlDirBuild = () => {
+  const HTML_DIR = path.resolve(__dirname, "build", "html");
+  const isHtmlDir = fs.existsSync(HTML_DIR); // 디렉터리가 있다면 True, 아니라면 False
 
-module.exports = {
+  if (!isHtmlDir) {
+    console.log(
+      "\n ================================================================ \n" +
+        "                                                                  \n" +
+        "  [ webpack build ]                                               \n" +
+        "                                                                  \n" +
+        "   > frontend / build /                                           \n" +
+        "                                                                  \n" +
+        "  빌드를 한번 더 실행하면 html 파일에 스크립트 태그가 삽입됩니다. \n" +
+        "                                                                  \n" +
+        " ================================================================ \n"
+    );
+  } else {
+    console.log(
+      "\n ============================================================================ \n" +
+        "                                                                              \n" +
+        " [ webpack build ]                                                            \n" +
+        "                                                                              \n" +
+        "   + [script tag] >> *.html                                                   \n" +
+        "                                                                              \n" +
+        "  dev-server 실행 중이 아니라면, html 파일 내에 스크립트 태그가 삽입됩니다.   \n" +
+        "                                                                              \n" +
+        "  태그 삽입이 완료되면 webpack.config 하단의 concat 함수를 주석처리 해주세요. \n" +
+        "  다음 빌드부터 스크립트 태그가 중복되어 쌓이게 됩니다.                       \n" +
+        "                                                                              \n" +
+        " ============================================================================ \n"
+    );
+  }
+  return isHtmlDir;
+};
+const webpackConfig_dev_client = {
   mode: MODE,
 
   devServer: {
+    contentBase: OUTPUT_DIR,
+    publicPath: "../",
+    overlay: true,
+    port: 8000,
     hot: true,
     inline: true,
     open: true,
-    overlay: true,
-    host: "localhost",
+    progress: true,
+    stats: "errors-only",
   },
 
   devtool: "inline-source-map",
@@ -32,28 +86,26 @@ module.exports = {
   // mode development ? ‘inline-source-map" : 'hidden-source-map’
 
   entry: {
-    // 용도에 따라 js파일을 구분하고,
-    // js 파일을 html 페이지에 별로 청크를 분리하여 작성
-    index: path.resolve(__dirname, "src", "assets", "es6", "pages", "index.js"),
-    foobar: path.resolve(
+    /* 
+      용도에 따라 js파일을 구분하고,
+       js 파일을 html 페이지에 별로 청크를 분리하여 작성
+       example1: path.resolve(__dirname, "src", "assets", "es6", "ex1.js")
+       example2: path.resolve(__dirname, "src", "assets", "es6", "ex2.js"),
+       각 호출 파일 내부에선 기능별 js를 import
+      */
+
+    // for prod
+    index: path.resolve(__dirname, "src", "es6", "pages", "index.js"),
+
+    // for dev
+    __dev_bear: path.resolve(__dirname, "src", "es6", "pages", "__dev_bear.js"),
+    __dev_wscrg: path.resolve(
       __dirname,
       "src",
-      "assets",
       "es6",
       "pages",
-      "foobar.js"
+      "__dev_wscrg.js"
     ),
-    fooooo: path.resolve(
-      __dirname,
-      "src",
-      "assets",
-      "es6",
-      "pages",
-      "fooooo.js"
-    ),
-    // example1: [path.resolve(__dirname, "src", "assets", "es6", "ex1.js")
-    // example2: path.resolve(__dirname, "src", "assets", "es6", "ex2.js"),
-    // 각 호출 파일 내부에선 기능별 js를 import
   },
 
   output: {
@@ -95,7 +147,7 @@ module.exports = {
             loader: "url-loader",
             options: {
               limit: 8192, // (file-size > limit) ? use file-loader
-              publicPath: "../",
+              publicPath: "./",
               name: "img/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
             },
           },
@@ -116,17 +168,137 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "css/style.css",
+      filename: "css/[name].css",
     }),
-  ],
-  //.concat(multipleHtmlPlugins), // ****** src/views/screen 에 파일 추가시에 실행 ******
-  // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력
+  ].concat(verifyHtmlDirBuild() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
 
-// module.exports = (env, argv) => {
-//   if (argv.mode === "development") {
-//   }
-//   if (argv.mode === "production") {
-//   }
-//   return config;
-// };
+/* -- output 2: dev_server -- */
+const copyPugDir = [
+  new CopyWebpackPlugin({
+    patterns: [{ from: PUG_DIR, to: DEV_SERVER_DIR + "/views" }],
+  }),
+];
+const verifyPugDirBuild = () => {
+  const isPugDir = fs.existsSync(
+    path.resolve(DEV_SERVER_DIR, "views", "screens")
+  );
+
+  if (!isPugDir) {
+    console.log(
+      "\n ================================================================ \n" +
+        "                                                                  \n" +
+        "  [ webpack build ]                                               \n" +
+        "                                                                  \n" +
+        "   > server / public /                                            \n" +
+        "                                                                  \n" +
+        " ================================================================ \n"
+    );
+  }
+  return isPugDir;
+};
+const webpackConfig_dev_server = {
+  mode: MODE,
+
+  devServer: {
+    // contentBase: `${DEV_SERVER_DIR}`,
+    overlay: true,
+    port: 3000,
+    hot: true,
+    inline: true,
+    open: true,
+    progress: true,
+    stats: "errors-only",
+  },
+
+  devtool: "inline-source-map",
+  // The side effect of this option is to increase build time
+  // mode development ? ‘inline-source-map" : 'hidden-source-map’
+
+  entry: {
+    /*
+      용도에 따라 js파일을 구분하고,
+       js 파일을 html 페이지에 별로 청크를 분리하여 작성
+       example1: path.resolve(__dirname, "src", "assets", "es6", "ex1.js")
+       example2: path.resolve(__dirname, "src", "assets", "es6", "ex2.js"),
+       각 호출 파일 내부에선 기능별 js를 import
+      */
+
+    // for prod
+    index: path.resolve(__dirname, "src", "es6", "pages", "index.js"),
+
+    // for dev_frontend
+    __dev_bear: path.resolve(__dirname, "src", "es6", "pages", "__dev_bear.js"),
+    __dev_wscrg: path.resolve(
+      __dirname,
+      "src",
+      "es6",
+      "pages",
+      "__dev_wscrg.js"
+    ),
+  },
+
+  output: {
+    //  entry 에서 분리한 청크별로 다른 번들파일 출력
+    path: DEV_SERVER_DIR,
+    filename: "es5/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
+    publicPath: "./",
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.pug$/,
+        use: ["pug-loader"],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|ico)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8192, // (file-size > limit) ? use file-loader
+              publicPath: "./",
+              name: "img/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+    }),
+  ].concat(verifyPugDirBuild() ? [] : copyPugDir),
+};
+
+/* -- module.exports -- */
+module.exports = [webpackConfig_dev_client, webpackConfig_dev_server];

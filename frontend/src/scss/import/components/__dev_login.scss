@@ -1,0 +1,12 @@
+.temp-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  .temp-text {
+    font-size: 60px;
+    color: red;
+  }
+}

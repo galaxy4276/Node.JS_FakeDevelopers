@@ -1,0 +1,146 @@
+/* -- common.scss -- */
+@import "../../common/common.scss";
+
+/* -- templates -- */
+@import "../templates/header.scss";
+@import "../templates/footer.scss";
+
+/* -- components -- */
+
+.index-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .index-main__background {
+    width: 100%;
+    height: 520px;
+    position: absolute;
+    top: 80;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+  }
+
+  .index-main__content {
+    margin-top: 350px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid black;
+    z-index: 2;
+
+    .index-main__first {
+      background-color: peru;
+      display: grid;
+      width: 100%;
+      height: 25em;
+      grid-template: "box1 box2 box3" 1fr;
+      border-bottom: 3px solid black;
+
+      @media screen and (max-width: 1315px) {
+        grid-template:
+          "box1 box1" 1fr
+          "box2 box3" 1fr;
+      }
+
+      .index-main__first-box {
+        padding: 35px 45px;
+      }
+
+      .index-main__pop-up {
+        grid-area: box1;
+        border: 3px solid black;
+      }
+
+      .index-main__department-news {
+        grid-area: box2;
+        border-right: 3px solid black;
+      }
+
+      .index-main__college-news {
+        grid-area: box3;
+      }
+    }
+
+    .index-main__second {
+      margin-top: 80px;
+      margin-bottom: 100px;
+      background-color: peru;
+      display: grid;
+      width: 100%;
+      grid-template: "box1 box2" 1fr;
+      justify-content: space-around;
+      border-top: 3px solid black;
+      border-bottom: 3px solid black;
+
+      .index-main__second-title {
+        font-size: 45px;
+      }
+
+      .index-main__second-box {
+        padding: 40px 220px 40px 45px;
+      }
+
+      .index-main__second__cell-wrap {
+        padding: 40px 0px;
+      }
+
+      .index-main__academic-info {
+        grid-area: box1;
+      }
+
+      .index-main__student-life {
+        grid-area: box2;
+      }
+    }
+
+    .index-main__third {
+      width: 100%;
+      height: 429px;
+      display: flex;
+      position: relative;
+      .index-main__third-wrap {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0 45px;
+      }
+
+      .index-main__quick-menu {
+        .index-main__menu {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          align-items: center;
+          .index-main__menu__list {
+            margin-top: 20px;
+            display: grid;
+            grid-template:
+              "box1 box2 box3 box4" 1fr
+              "box5 box6 box7 box8 " 1fr;
+
+            @for $i from 1 through 8 {
+              .index-main__menu__list li:nth-child(#{$i}) {
+                border: 1px solid black;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .index-main .index-main__content .index-main__second {
+    grid-template:
+      "box1" 1fr
+      "box2" 1fr;
+  }
+}

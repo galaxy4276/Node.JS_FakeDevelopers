@@ -1,3 +1,0 @@
-/* -- stylesheet -- */
-
-import "./styles";
