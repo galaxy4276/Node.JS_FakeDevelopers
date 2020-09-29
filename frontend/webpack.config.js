@@ -9,17 +9,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 /* -- MODE -- */
-// const DEV_MODE = {
-//   DEVELOPMENT: "development",
-//   PRODUCTION: "production",
-// };
-// const BUNDLE_POINT = {
-//   FRONTEND: "frontend",
-//   SERVER: "server",
-// };
-// const WEBPACK_MODE = DEV_MODE.DEVELOPMENT;
-// const BUNDLE_DIR = BUNDLE_POINT.FRONTEND;
-const BUNDLE_DIR = process.env.BUNDLE_DIR;
+const BUNDLE_POINT = process.env.BUNDLE_POINT;
 
 /* -- DIR_PATH -- */
 const OUTPUT_DIR = path.resolve(__dirname, "build");
@@ -46,7 +36,7 @@ const multipleHtmlPlugins = htmlPageNames.map((name) => {
 const verifyHtmlDirBuild = () => {
   const isOutputDir = fs.existsSync(OUTPUT_DIR); // 디렉터리가 있다면 True, 아니라면 False
 
-  if (!isOutputDir && BUNDLE_DIR === "frontend") {
+  if (!isOutputDir && BUNDLE_POINT === "frontend") {
     console.log(
       "\n ================================================================ \n" +
         "                                                                  \n" +
@@ -58,7 +48,7 @@ const verifyHtmlDirBuild = () => {
         "                                                                  \n" +
         " ================================================================ \n"
     );
-  } else if (isOutputDir && BUNDLE_DIR === "frontend") {
+  } else if (isOutputDir && BUNDLE_POINT === "frontend") {
     console.log(
       "\n ============================================================================ \n" +
         "                                                                              \n" +
@@ -194,7 +184,7 @@ const verifyPugDirBuild = () => {
     path.resolve(DEV_SERVER_DIR, "views", "screens")
   );
 
-  if (!isPugDir && BUNDLE_DIR === "server") {
+  if (!isPugDir && BUNDLE_POINT === "server") {
     console.log(
       "\n ================================================================ \n" +
         "                                                                  \n" +
@@ -312,4 +302,4 @@ const webpackConfig_server = {
 
 /* -- module.exports -- */
 module.exports =
-  BUNDLE_DIR === "frontend" ? webpackConfig_frontend : webpackConfig_server;
+  BUNDLE_POINT === "frontend" ? webpackConfig_frontend : webpackConfig_server;
