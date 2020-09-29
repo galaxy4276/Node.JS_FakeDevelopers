@@ -27,8 +27,8 @@ const PUG_DIR = path.resolve(__dirname, "src", "views");
 const htmlPageNames = ["__dev_wscrg", "__dev_bear", "index"];
 const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
-    template: `${OUTPUT_DIR}/html/${name}.html`, // relative path to the HTML files
-    filename: `html/${name}.html`, // output HTML files
+    template: `${OUTPUT_DIR}/${name}.html`, // relative path to the HTML files
+    filename: `${name}.html`, // output HTML files
     chunks: [`${name}`], // respective JS files
     // html 파일별 요구하는 스크립트에 따라 청크를 분리하여 아웃풋에서 출력된 청크 이름을 chunks에 기입
   });
@@ -71,9 +71,8 @@ const webpackConfig_frontend = {
 
   devServer: {
     contentBase: OUTPUT_DIR,
-    publicPath: "../",
+    publicPath: "/",
     overlay: true,
-    port: 8000,
     hot: true,
     inline: true,
     open: true,
@@ -111,8 +110,8 @@ const webpackConfig_frontend = {
   output: {
     //  entry 에서 분리한 청크별로 다른 번들파일 출력
     path: OUTPUT_DIR,
-    filename: "es5/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
-    publicPath: "../",
+    filename: "[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
+    publicPath: "http://localhost:8080/",
   },
 
   module: {
@@ -120,7 +119,7 @@ const webpackConfig_frontend = {
       {
         test: /\.pug$/,
         use: [
-          "file-loader?name=html/[name].html",
+          "file-loader?name=[name].html",
           "extract-loader",
           "html-loader",
           "pug-html-loader",
@@ -168,7 +167,7 @@ const webpackConfig_frontend = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "css/[name].css",
+      filename: "[name].css",
     }),
   ].concat(verifyHtmlDirBuild() ? multipleHtmlPlugins : []), // pug에서 컴파일되어 나온 html 파일별로 스크립트 코드 주입하여 출력, 웹팩을 watch 모드로 실행시 변경
 };
