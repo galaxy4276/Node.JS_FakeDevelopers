@@ -5,7 +5,7 @@ const frontUrl = path.join(__dirname, '..', '..', '/frontend');
 
 const FRONT_API = path.join(frontUrl, 'api');
 const FRONT_VIEW = path.join(frontUrl, '/build', '/html');
-const FRONT_CSS = path.join(frontUrl, '/build', 'css');
+const FRONT_CSS = path.resolve(__dirname, 'public', 'css');
 const FRONT_ES6 = path.join(frontUrl, '/build', 'es5');
 const FRONT_IMG = path.join(frontUrl, '/build', 'img');
 
