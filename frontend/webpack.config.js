@@ -1,23 +1,25 @@
-/* -- MODE -- */
-const DEV_MODE = {
-  DEVELOPMENT: "development",
-  PRODUCTION: "production",
-};
-const BUNDLE_POINT = {
-  FRONTEND: "frontend",
-  SERVER: "server",
-};
-const WEBPACK_MODE = DEV_MODE.DEVELOPMENT;
-const BUNDLE_DIR = BUNDLE_POINT.FRONTEND;
+/* -- module -- */
+const path = require("path");
+const fs = require("fs");
+require("dotenv").config();
 
 /* -- plugin --*/
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-/* -- module -- */
-const path = require("path");
-const fs = require("fs");
+/* -- MODE -- */
+// const DEV_MODE = {
+//   DEVELOPMENT: "development",
+//   PRODUCTION: "production",
+// };
+// const BUNDLE_POINT = {
+//   FRONTEND: "frontend",
+//   SERVER: "server",
+// };
+// const WEBPACK_MODE = DEV_MODE.DEVELOPMENT;
+// const BUNDLE_DIR = BUNDLE_POINT.FRONTEND;
+const BUNDLE_DIR = process.env.BUNDLE_DIR;
 
 /* -- DIR_PATH -- */
 const OUTPUT_DIR = path.resolve(__dirname, "build");
@@ -42,10 +44,9 @@ const multipleHtmlPlugins = htmlPageNames.map((name) => {
   });
 });
 const verifyHtmlDirBuild = () => {
-  const HTML_DIR = path.resolve(__dirname, "build", "html");
-  const isHtmlDir = fs.existsSync(HTML_DIR); // 디렉터리가 있다면 True, 아니라면 False
+  const isOutputDir = fs.existsSync(OUTPUT_DIR); // 디렉터리가 있다면 True, 아니라면 False
 
-  if (!isHtmlDir && BUNDLE_DIR === "frontend") {
+  if (!isOutputDir && BUNDLE_DIR === "frontend") {
     console.log(
       "\n ================================================================ \n" +
         "                                                                  \n" +
@@ -57,7 +58,7 @@ const verifyHtmlDirBuild = () => {
         "                                                                  \n" +
         " ================================================================ \n"
     );
-  } else if (isHtmlDir && BUNDLE_DIR === "frontend") {
+  } else if (isOutputDir && BUNDLE_DIR === "frontend") {
     console.log(
       "\n ============================================================================ \n" +
         "                                                                              \n" +
@@ -73,10 +74,10 @@ const verifyHtmlDirBuild = () => {
         " ============================================================================ \n"
     );
   }
-  return isHtmlDir;
+  return isOutputDir;
 };
 const webpackConfig_frontend = {
-  mode: WEBPACK_MODE,
+  mode: process.env.DEV_MODE,
 
   devServer: {
     contentBase: OUTPUT_DIR,
@@ -207,7 +208,7 @@ const verifyPugDirBuild = () => {
   return isPugDir;
 };
 const webpackConfig_server = {
-  mode: WEBPACK_MODE,
+  mode: process.env.DEV_MODE,
 
   devServer: {
     // contentBase: `${DEV_SERVER_DIR}`,
