@@ -15,7 +15,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "build");
 const DEV_SERVER_DIR_NAME = "public";
 const DEV_SERVER_DIR = path.resolve(
   __dirname,
-  `../server/${DEV_SERVER_DIR_NAME}`
+  `../server/src/${DEV_SERVER_DIR_NAME}`
 );
 const PUG_DIR = path.resolve(__dirname, "src", "views");
 
