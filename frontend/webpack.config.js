@@ -81,6 +81,7 @@ const webpackConfig_frontend = {
   },
 
   devtool: "inline-source-map",
+  // 콘솔에서 오류 경로를 번들 후 파일이 아닌 번들 전 파일로 명시해줌
   // The side effect of this option is to increase build time
   // mode development ? ‘inline-source-map" : 'hidden-source-map’
 
