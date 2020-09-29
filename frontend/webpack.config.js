@@ -1,3 +1,15 @@
+/* -- MODE -- */
+const DEV_MODE = {
+  DEVELOPMENT: "development",
+  PRODUCTION: "production",
+};
+const BUNDLE_POINT = {
+  FRONTEND: "frontend",
+  SERVER: "server",
+};
+const WEBPACK_MODE = DEV_MODE.DEVELOPMENT;
+const BUNDLE_DIR = BUNDLE_POINT.FRONTEND;
+
 /* -- plugin --*/
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -6,9 +18,6 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 /* -- module -- */
 const path = require("path");
 const fs = require("fs");
-
-/* -- MODE -- */
-const MODE = "development";
 
 /* -- DIR_PATH -- */
 const OUTPUT_DIR = path.resolve(__dirname, "build");
@@ -20,9 +29,9 @@ const DEV_SERVER_DIR = path.resolve(
 const PUG_DIR = path.resolve(__dirname, "src", "views");
 
 /* -- output 1: dev_client -- */
-// **** 신규 페이지 추가시에 이 곳에서 작업 ****
+// **** 신규 페이지 추가시에 이 곳에서 페이지 추가를 위한 작업 ****
 // ** 1. htmlPageNames[] >> 페이지 이름 추가하기 **
-// ** 2. webpackConfig_dev_client{}.entry 에 entry JS 파일 경로 추가하기 **
+// ** 2. webpackConfig_frontend{}.entry 에 entry JS 파일 경로 추가하기 **
 const htmlPageNames = ["__dev_wscrg", "__dev_bear", "index"];
 const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
@@ -36,7 +45,7 @@ const verifyHtmlDirBuild = () => {
   const HTML_DIR = path.resolve(__dirname, "build", "html");
   const isHtmlDir = fs.existsSync(HTML_DIR); // 디렉터리가 있다면 True, 아니라면 False
 
-  if (!isHtmlDir) {
+  if (!isHtmlDir && BUNDLE_DIR === "frontend") {
     console.log(
       "\n ================================================================ \n" +
         "                                                                  \n" +
@@ -48,7 +57,7 @@ const verifyHtmlDirBuild = () => {
         "                                                                  \n" +
         " ================================================================ \n"
     );
-  } else {
+  } else if (isHtmlDir && BUNDLE_DIR === "frontend") {
     console.log(
       "\n ============================================================================ \n" +
         "                                                                              \n" +
@@ -66,8 +75,8 @@ const verifyHtmlDirBuild = () => {
   }
   return isHtmlDir;
 };
-const webpackConfig_dev_client = {
-  mode: MODE,
+const webpackConfig_frontend = {
+  mode: WEBPACK_MODE,
 
   devServer: {
     contentBase: OUTPUT_DIR,
@@ -184,7 +193,7 @@ const verifyPugDirBuild = () => {
     path.resolve(DEV_SERVER_DIR, "views", "screens")
   );
 
-  if (!isPugDir) {
+  if (!isPugDir && BUNDLE_DIR === "server") {
     console.log(
       "\n ================================================================ \n" +
         "                                                                  \n" +
@@ -197,8 +206,8 @@ const verifyPugDirBuild = () => {
   }
   return isPugDir;
 };
-const webpackConfig_dev_server = {
-  mode: MODE,
+const webpackConfig_server = {
+  mode: WEBPACK_MODE,
 
   devServer: {
     // contentBase: `${DEV_SERVER_DIR}`,
@@ -301,4 +310,5 @@ const webpackConfig_dev_server = {
 };
 
 /* -- module.exports -- */
-module.exports = [webpackConfig_dev_client, webpackConfig_dev_server];
+module.exports =
+  BUNDLE_DIR === "frontend" ? webpackConfig_frontend : webpackConfig_server;
