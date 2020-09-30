@@ -225,12 +225,25 @@ const webpackConfig_server = {
 module.exports =
   BUNDLE_POINT === "frontend" ? webpackConfig_frontend : webpackConfig_server;
 
-// console.log(
-//   "\n ================================================================ \n" +
-//     "                                                                  \n" +
-//     "  [ webpack build ]                                               \n" +
-//     "                                                                  \n" +
-//     "   > server / public /                                            \n" +
-//     "                                                                  \n" +
-//     " ================================================================ \n"
-// );
+const BUNDLE_POINT_LOG = () => {
+  BUNDLE_POINT === "frontend"
+    ? console.log(
+        "\n ================================================================ \n" +
+          "                                                                  \n" +
+          "  [ webpack build ]                                               \n" +
+          "                                                                  \n" +
+          "   > frontend / public /                                            \n" +
+          "                                                                  \n" +
+          " ================================================================ \n"
+      )
+    : console.log(
+        "\n ================================================================ \n" +
+          "                                                                  \n" +
+          "  [ webpack build ]                                               \n" +
+          "                                                                  \n" +
+          "   > server / public /                                            \n" +
+          "                                                                  \n" +
+          " ================================================================ \n"
+      );
+};
+BUNDLE_POINT_LOG();
