@@ -4,7 +4,7 @@
   "description": "---",
   "main": "app.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -w",
     "rebuild": "rmdir public /s && webpack",
     "start": "webpack-dev-server --progress",
     "server": "cd ../server && yarn start"
