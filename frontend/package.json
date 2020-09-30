@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -w",
     "rebuild": "rmdir public /s && webpack",
-    "start": "webpack-dev-server --progress",
+    "start": "node app.js",
     "server": "cd ../server && yarn start"
   },
   "repository": {
@@ -21,7 +21,6 @@
   "homepage": "https://github.com/bear-bear-bear/learning-javascript#readme",
   "dependencies": {
     "@babel/core": "^7.11.5",
-    "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.5",
     "babel-node": "0.0.1-security",
     "cookie-parser": "^1.4.5",
@@ -48,19 +47,18 @@
     "eslint": "^7.8.1",
     "file-loader": "^6.1.0",
     "helmet": "^4.1.0",
-    "html-webpack-pug-plugin": "^2.0.0",
     "mariadb": "^2.4.2",
     "mini-css-extract-plugin": "^0.11.2",
     "morgan": "^1.10.0",
     "node-sass": "^4.14.1",
     "pug": "^3.0.0",
-    "pug-html-loader": "^1.1.5",
     "pug-loader": "^2.4.0",
     "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
+    "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.11.0"
   }
 }

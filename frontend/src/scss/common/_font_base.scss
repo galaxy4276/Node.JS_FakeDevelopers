@@ -28,11 +28,11 @@
 //
 // ------------------------------------------------------------
 
-// 아웃풋 css 폴더 기준 폰트 파일이 들어 있는 디렉터리는 >> "../../font/"   // 200928 웹팩 설정 기준
+// 아웃풋 css 폴더 기준 폰트 파일이 들어 있는 디렉터리는 >> "../font/"   // 200928 웹팩 설정 기준
 // ! 중요 - 번들되는 폰트파일의 경로 변경시ㄴ font 파일 경로 전부 수정하기
 
 @font-face {
   font-family: "Noto Sans --Regular";
-  src: local("../../font/NotoSansKR-Regular.otf") format("otf"),
-    local("../../font/OpenSans-Regular.ttf") format("ttf");
+  src: local("../font/NotoSansKR-Regular.otf") format("otf"),
+    local("../font/OpenSans-Regular.ttf") format("ttf");
 }
