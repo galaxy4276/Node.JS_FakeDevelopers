@@ -11,4 +11,3 @@ import "../../font/Open_Sans/OpenSans-Regular.ttf";
 /* -- function -- */
 import "../function/function_AA/drawCircle";
 import "../function/function_BB/typingText";
-import "../function/function_header/header";
