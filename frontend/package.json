@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -w",
     "rebuild": "rmdir public /s && webpack",
-    "start": "webpack-dev-server --progress",
+    "start": "node app.js",
     "server": "cd ../server && yarn start"
   },
   "repository": {
