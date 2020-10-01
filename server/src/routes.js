@@ -1,13 +1,13 @@
 import path from "path";
 
 /* ---  프론트 경로   --- */
-const frontUrl = path.join(__dirname, '..', '..', '/frontend');
+const frontUrl = path.resolve(__dirname, "public");
 
-const FRONT_API = path.join(frontUrl, 'api');
-const FRONT_VIEW = path.join(frontUrl, '/build', '/html');
-const FRONT_CSS = path.resolve(__dirname, 'public', 'css');
-const FRONT_ES6 = path.join(frontUrl, '/build', 'es5');
-const FRONT_IMG = path.join(frontUrl, '/build', 'img');
+const FRONT_API = path.resolve(frontUrl, 'api');
+const FRONT_VIEW = path.resolve(frontUrl, 'views');
+const FRONT_CSS = path.resolve(frontUrl, 'css');
+const FRONT_ES6 = path.resolve(frontUrl, 'es5');
+const FRONT_IMG = path.resolve(frontUrl, 'img');
 
 
 /* --- 전공 소개 카테고리   --- */
