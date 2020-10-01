@@ -1,1 +1,21 @@
-// mixins
+// mixin
+
+@mixin __dev_template {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 4vh;
+  font-size: 20px;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin full {
+  width: 100%;
+  height: 100%;
+}

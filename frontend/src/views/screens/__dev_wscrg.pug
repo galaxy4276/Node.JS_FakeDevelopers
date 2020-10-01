@@ -1,4 +1,4 @@
-extends ../templates/_base.pug
+extends ../templates/__dev_template.pug
 
 block title
   title 지용킹__dev_wscrg
@@ -6,12 +6,6 @@ block stylesheet
   link(rel="stylesheet" href="/css/__dev_wscrg.css")
 
 block content
-  include ../templates/_header.pug
-
-  //- Login component _dev
-  include ../components/__dev_login.pug
-
-  include ../templates/_footer.pug
 
 block script
   script(src="/es5/__dev_wscrg.js")
