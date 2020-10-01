@@ -26,3 +26,8 @@
   left: $left;
   transform: translate(-50%, -50%);
 }
+
+@mixin border-bottom($color) {
+  border: none;
+  border-bottom: 1px solid $color;
+}
