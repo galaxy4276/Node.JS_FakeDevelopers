@@ -1,12 +1,13 @@
-extends ../templates/_base.pug
+extends ../templates/__dev_template.pug
 
 block title
-  title Index
+  title __dev_bear
+block stylesheet
+  link(rel="stylesheet" href="/css/__dev_bear.css")
 
 block content
-  include ../templates/_header.pug
-
   //- Login component _dev
   include ../components/__dev_login.pug
 
-  include ../templates/_footer.pug
+block script
+  script(src="/es5/__dev_bear.js")

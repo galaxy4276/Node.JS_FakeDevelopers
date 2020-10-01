@@ -1,9 +1,17 @@
 extends ../templates/_base.pug
 
+block stylesheet
+  link(rel="stylesheet" href="/css/index.css")
+
 block title
   title Index
 
 block content
+  a(href="/__dev_bear") 준재의 개발공간
+  |
+  br
+  |
+  a(href="/__dev_wscrg") 킹지용의 개발공간
   include ../templates/_header.pug
   main.index-main
     .index-main__background
@@ -46,3 +54,6 @@ block content
               .index-main__teaching-assistance
                 span ta zone
   include ../templates/_footer.pug
+
+block script
+  script(src="/es5/index.js")
