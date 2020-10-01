@@ -1,3 +1,7 @@
+body {
+  padding: 0; // 개발 페이지 내에선 공동 패딩 초기화
+}
+
 .dev-main {
   @include flex-center;
   @include full;
