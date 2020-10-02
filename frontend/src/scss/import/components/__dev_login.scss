@@ -14,7 +14,7 @@
   border-radius: 1rem;
 
   .login__title {
-    color: $login__font-color;
+    color: $login__font-color--before;
     text-align: center;
     font-size: 2rem;
     margin-bottom: 2.8rem;
@@ -22,14 +22,14 @@
   }
 
   &:focus-within .login__title {
-    color: white;
+    color: $login__font-color--after;
   }
 
   .login__input-box {
     position: relative;
 
     .login__input {
-      @include border-bottom($login__font-color, 1px);
+      @include border-bottom($login__font-color--before, 1px);
 
       width: 100%;
       margin-bottom: 2.6rem;
@@ -37,12 +37,12 @@
       outline: none;
       background-color: transparent;
       font-size: 1rem;
-      color: $login__font-color;
+      color: $login__font-color--before;
     }
 
     .login__input-label {
       @include position(absolute, 0, 0);
-      color: $login__font-color;
+      color: $login__font-color--before;
       opacity: 0.6;
       pointer-events: none;
       transition: 0.5s;
@@ -68,7 +68,7 @@
 
     .login__input:valid ~ .login__input-check::before {
       content: "✓";
-      color: white;
+      color: $login__font-color--after;
     }
   }
 
@@ -120,6 +120,7 @@
 
       &:hover,
       &:focus {
+        color: $login__font-color--after;
         opacity: initial;
       }
     }
