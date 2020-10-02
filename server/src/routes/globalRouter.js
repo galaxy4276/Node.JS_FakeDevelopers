@@ -6,7 +6,11 @@ globalRouter.get('/', (req, res) => {
 });
 
 globalRouter.get('/login', (req, res) => {
-  res.render('components/__dev_login', { user: 'user' });
+  res.render('components/_login', {});
+});
+
+globalRouter.get('/join', (req, res) => {
+  res.render('components/_join', {});
 });
 
 
