@@ -82,7 +82,7 @@ app.get('/', (req, res, next) => {
   console.log('session');
   console.table(req.session);
   next();
-});
+}); // 일반 테스트용 미들웨어 ( 삭졔 예정 )
 
 app.use("/", globalRouter);
 app.use("/test", testRouter);
