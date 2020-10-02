@@ -12,10 +12,11 @@ import MySQLStore from 'express-mysql-session';
 
 /* --- 개인 라이브러리 관련 모듈 import  --- */
 import connectMaria from './lib/connectMaria';
+import './controllers/passport';
 
 /* --- 라우트 관련 모듈 import  --- */
-import testRouter from './routes/test.router';
-import globalRouter from './routes/globalRouter';
+import testRouter from './routes/test';
+import globalRouter from './routes/global';
 import routes from './routes';
 
 
