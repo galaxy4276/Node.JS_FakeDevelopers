@@ -12,17 +12,17 @@
     color: $login__font-color;
     text-align: center;
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.8rem;
   }
 
   .login__input-box {
     position: relative;
 
     .login__input {
-      @include border-bottom($login__font-color);
+      @include border-bottom($login__font-color, 1px);
 
       width: 100%;
-      margin-bottom: 2rem;
+      margin-bottom: 2.6rem;
       padding: 0.4rem 0;
       outline: none;
       background-color: transparent;
