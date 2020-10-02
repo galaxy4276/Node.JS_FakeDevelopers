@@ -38,6 +38,11 @@
       transition: 0.5s;
     }
 
+    .login__input:focus,
+    .login__input:valid {
+      border-color: $main-color--orange; // 아래 라벨 폰트 색과 일치시키기
+    }
+
     .login__input:focus ~ .login__input-label,
     .login__input:valid ~ .login__input-label {
       top: -1rem;
