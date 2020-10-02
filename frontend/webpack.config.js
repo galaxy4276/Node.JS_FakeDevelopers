@@ -13,7 +13,7 @@ const BUNDLE_POINT = process.env.BUNDLE_POINT;
 
 /* -- DIR_PATH -- */
 const FRONT_BUILD_DIR = path.resolve(__dirname, "public");
-const SERVER_BUILD_DIR = path.resolve(__dirname, `../server/public`);
+const SERVER_BUILD_DIR = path.resolve(__dirname, `../server/src/public`);
 const PUG_DIR = path.resolve(__dirname, "src", "views");
 
 /* -- webpack_config -- */
