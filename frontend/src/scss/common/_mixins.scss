@@ -29,7 +29,11 @@
   }
 }
 
-@mixin border-bottom($color) {
+@mixin border-bottom($color, $thickness) {
   border: none;
-  border-bottom: 1px solid $color;
+  @if $thickness {
+    border-bottom: $thickness solid $color;
+  } @else {
+    border-bottom: 1px solid $color;
+  }
 }
