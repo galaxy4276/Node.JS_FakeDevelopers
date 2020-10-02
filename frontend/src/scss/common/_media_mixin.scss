@@ -56,7 +56,7 @@
       @content;
     }
   } @else if $size == mobile-fold-landscape {
-    @media (width: 653px) and (height: 280px) {
+    @media (min-width: 650px) and (max-width: 660px) and (max-height: 281px) {
       @content;
     }
   }
