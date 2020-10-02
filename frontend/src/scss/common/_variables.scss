@@ -9,5 +9,6 @@ $main-color--black: #000000;
 $login__font-color: $main-color--silver;
 
 // shadow
-$text-shadow: 0.02em 0.04em 0.2em rgba(0, 0, 0, 0.5);
+$text-shadow--black: 0.02em 0.04em 0.2em rgba(0, 0, 0, 0.5);
+$text-shadow--white: 0.02em 0.04em 0.2em rgba(255, 255, 255, 0.5);
 $box-shadow: 0.3vw 0.6vw 1.5vw rgba(0, 0, 0, 0.5);
