@@ -1,0 +1,34 @@
+article.join
+    |
+    |
+    form(action="#" autocomplete="off").join__wrapper
+        |
+        |
+        .join__title Join
+        |
+        |
+        //- input의 minlegnth, maxlength 는 백엔드와 상의
+        .join__input-box
+            input(type="text" name="id" minlength="1" maxlength="20" required).join__input
+            label.join__input-label Username
+            span.join__input-check
+            //- toDo: id 입력창 focus가 풀리면 DB와 연동해서 입력한 아이디가 있는지 검증
+            //- toDo: id 입력창 요구조건 (특수문자 미포함 등) 만족 검증
+        .join__input-box
+            input(type="password" name="password" minlength="1" maxlength="20" required).join__input
+            label.join__input-label Password
+            span.join__input-check
+        //- toDo: 아래 패스워드 체크에 입력한 값이 위에 입력했던 패스워드와 동일한지 검증
+        .join__input-box
+            input(type="password" name="" minlength="1" maxlength="20" required).join__input
+            label.join__input-label Password-Check
+            span.join__input-check
+        //- toDo: 자동입력 방지 테스트 추가
+        .join__input-box
+            input(type="email" name="email" minlength="1" maxlength="20" required).join__input
+            label.join__input-label Email
+            span.join__input-check
+             //- toDo: 비밀번호를 찾는데 사용됩니다 주의 문구 추가
+        |
+        |
+        input(type="submit" value="Create Account").join__btn.join__join-btn
