@@ -1,0 +1,111 @@
+// ***********************************************************************************
+// 이 파일에서 제시하는 디바이스별 mixin으로 각 태그 안에 미디어 쿼리를 제작해주세요.
+//
+// ** example **
+//
+// html {
+//   @include for-size(desktop) {
+//     font-size: initial; // 'rem' 조정
+//   }
+//   @include for-size(laptop) {
+//     font-size: 14px;
+//   }
+//   @include for-size(tablet-portrait) {
+//     font-size: 12px;
+//   }
+//   @include for-size(tablet-landscape) {
+//     font-size: 12px;
+//   }
+//   @include for-size(mobile-landscape) {
+//     font-size: 10px;
+//   }
+//   @include for-size(mobile-portrait) {
+//     font-size: 10px;
+//   }
+// }
+//
+// ***********************************************************************************
+
+@mixin for-size($size) {
+  @if $size == desktop {
+    @media (min-width: 1281px) {
+      @content;
+    }
+  } @else if $size == laptop {
+    @media (min-width: 1025px) and (max-width: 1280px) {
+      @content;
+    }
+  } @else if $size == tablet-portrait {
+    @media (min-width: 768px) and (max-width: 1024px) {
+      @content;
+    }
+  } @else if $size == tablet-landscape {
+    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+      @content;
+    }
+  } @else if $size == mobile-landscape {
+    @media (min-width: 481px) and (max-width: 767px) {
+      @content;
+    }
+  } @else if $size == mobile-portrait {
+    @media (min-width: 320px) and (max-width: 480px) {
+      @content;
+    }
+  } @else if $size == mobile-fold-portrait {
+    @media (min-width: 279px) and (max-width: 319px) {
+      @content;
+    }
+  } @else if $size == mobile-fold-landscape {
+    @media (min-width: 650px) and (max-width: 660px) and (max-height: 281px) {
+      @content;
+    }
+  }
+}
+
+// *********
+//  ##Device = Desktops
+//  ##Screen = 1281px to higher resolution desktops
+// *********
+// @media (min-width: 1281px) {
+//   //CSS
+// }
+
+// *********
+//  ##Device = Laptops, Desktops
+//  ##Screen = B/w 1025px to 1280px
+// *********
+// @media (min-width: 1025px) and (max-width: 1280px) {
+//   //CSS
+// }
+
+// *********
+//  ##Device = Tablets, Ipads (portrait)
+//  ##Screen = B/w 768px to 1024px
+// *********
+// @media (min-width: 768px) and (max-width: 1024px) {
+//   //CSS
+// }
+
+// *********
+//  ##Device = Tablets, Ipads (landscape)
+//  ##Screen = B/w 768px to 1024px
+// *********
+// @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+//   //CSS
+// }
+
+// *********
+//  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+//  ##Screen = B/w 481px to 767px
+// *********
+// @media (min-width: 481px) and (max-width: 767px) {
+//   //CSS
+// }
+
+// *********
+//  ##Device = Most of the Smartphones Mobiles (Portrait)
+//  ##Screen = B/w 320px to 479px
+// *********
+// @media (min-width: 320px) and (max-width: 480px) {
+//   //CSS
+// }

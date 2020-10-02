@@ -1,0 +1,178 @@
+.login {
+  @include position(absolute, 0, 0);
+  @include full;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.login__wrapper {
+  @mixin full-screen_border-init {
+    @include full;
+    border-radius: initial;
+  }
+  @include position(absolute, 50%, 50%);
+
+  @include for-size(desktop) {
+    width: 380px;
+    padding: 38px;
+  }
+  @include for-size(laptop) {
+    width: 360px;
+    padding: 36px;
+  }
+  @include for-size(tablet-portrait) {
+    @include full-screen_border-init;
+    padding: 100px;
+  }
+  @include for-size(tablet-landscape) {
+    @include full-screen_border-init;
+    padding: 0 100px;
+  }
+  @include for-size(mobile-landscape) {
+    @include full-screen_border-init;
+    padding: 40px;
+  }
+  @include for-size(mobile-portrait) {
+    @include full-screen_border-init;
+    padding: 40px;
+  }
+  @include for-size(mobile-fold-portrait) {
+    @include full-screen_border-init;
+    padding: 10px;
+  }
+  @include for-size(mobile-fold-landscape) {
+    @include full-screen_border-init;
+    padding: 20px 60px 0 60px;
+
+    .login__input-box {
+      .login__input {
+        padding: 0.05rem 0;
+      }
+    }
+
+    .login__title {
+      @include for-size(mobile-fold-landscape) {
+        display: none;
+      }
+    }
+  }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: $box-shadow;
+  border-radius: 1rem;
+
+  .login__title {
+    color: $login__font-color--before;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2.8rem;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+
+  &:focus-within .login__title {
+    color: $login__font-color--after;
+  }
+
+  .login__input-box {
+    position: relative;
+
+    .login__input {
+      @include border-bottom($login__font-color--before, 1px);
+
+      width: 100%;
+      margin-bottom: 2.6rem;
+      outline: none;
+      background-color: transparent;
+      font-size: 1.2rem;
+      color: $login__font-color--after;
+    }
+
+    .login__input-label {
+      @include position(absolute, 0, 0);
+      color: $login__font-color--before;
+      opacity: 0.6;
+      pointer-events: none;
+      transition: 0.5s;
+    }
+
+    .login__input:focus ~ .login__input-label,
+    .login__input:valid ~ .login__input-label {
+      top: -1.2rem;
+      left: 0;
+      font-size: 0.8rem;
+      opacity: 1;
+      color: $main-color--orange;
+    }
+
+    .login__input-check {
+      position: relative;
+    }
+
+    .login__input-check::before {
+      position: absolute;
+      right: 5px;
+    }
+
+    .login__input:valid ~ .login__input-check::before {
+      content: "✓";
+      color: $login__font-color--before;
+    }
+  }
+
+  .login__btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 0.15rem;
+    font-weight: 400;
+    font-size: 0.8rem;
+    text-shadow: $text-shadow--black;
+    transition: 0.1s;
+    filter: opacity(0.5);
+
+    &:hover,
+    &:focus {
+      filter: none;
+    }
+  }
+
+  .login__login-btn {
+    cursor: pointer;
+    background-color: $main-color--orange;
+  }
+
+  .login__join-btn {
+    text-align: center;
+    background-color: $main-color--silver;
+  }
+
+  .login__find-password-box {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+    .login__find-password {
+      position: relative;
+      right: 0;
+      width: fit-content;
+      color: $main-color--silver;
+      opacity: 0.7;
+      font-size: 0.8rem;
+      transition: 0.1s;
+
+      &:hover,
+      &:focus {
+        color: $login__font-color--after;
+        opacity: initial;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+article.login
+    |
+    |
+    form(action="#" autocomplete="off").login__wrapper
+        |
+        |
+        .login__title Login
+        |
+        |
+        //- input의 minlegnth, maxlength 는 백엔드와 상의
+        .login__input-box
+            input(type="text" name="id" minlength="1" maxlength="20" required).login__input
+            label.login__input-label Username
+            span.login__input-check
+        .login__input-box
+            input(type="password" name="password" minlength="1" maxlength="20" required).login__input
+            label.login__input-label Password
+            span.login__input-check
+        |
+        |
+        input(type="submit" value="Sign In").login__btn.login__login-btn
+        a(href="#").login__btn.login__join-btn Create Account
+        |
+        |
+        div.login__find-password-box
+            a(href="#").login__find-password Forgot password?
