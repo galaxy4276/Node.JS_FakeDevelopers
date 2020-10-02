@@ -15,8 +15,9 @@ import connectMaria from './lib/connectMaria';
 import './controllers/passport';
 
 /* --- 라우트 관련 모듈 import  --- */
-import testRouter from './routes/test';
-import globalRouter from './routes/global';
+import test from './routes/test';
+import global from './routes/global';
+import auth from './routes/auth';
 import routes from './routes';
 
 
@@ -85,11 +86,9 @@ app.get('/', (req, res, next) => {
   next();
 }); // 일반 테스트용 미들웨어 ( 삭졔 예정 )
 
-app.use("/", globalRouter);
-app.use("/test", testRouter);
-
-app.use('/', globalRouter);
-app.use('/test', testRouter);
+app.use('/', global);
+app.use('/auth', auth);
+app.use('/test', test);
 
 
 
