@@ -44,6 +44,21 @@
       left: 0;
       font-size: 0.8rem;
       opacity: 1;
+      color: $main-color--orange;
+    }
+
+    .login__input-check {
+      position: relative;
+    }
+
+    .login__input-check::before {
+      position: absolute;
+      right: 5px;
+    }
+
+    .login__input:valid ~ .login__input-check::before {
+      content: "✓";
+      color: white;
     }
   }
 }
