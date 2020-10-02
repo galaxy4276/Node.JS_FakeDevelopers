@@ -1,0 +1,14 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module" // import, export 를 하기 때문에 모듈을 사용
+  },
+  "env": {
+    "browser": true, // browser에서 돌아가니까
+    "node": true, // node에서도 돌아가니까
+    "es6": true // 최신 문법 쓰니까 
+  },
+  "extends": [
+    "eslint:recommended"
+  ]
+}
