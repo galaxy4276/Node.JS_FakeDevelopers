@@ -1,8 +1,13 @@
 .login {
   @include position(absolute, 50%, 50%);
+}
 
+.login__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 40px;
-  width: 400px;
+  width: 380px;
   // toDo: @media screen 추가하기
   background-color: rgba(0, 0, 0, 0.8);
   box-shadow: $box-shadow;
