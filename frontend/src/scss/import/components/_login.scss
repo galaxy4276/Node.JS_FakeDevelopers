@@ -41,7 +41,19 @@
   }
   @include for-size(mobile-fold-landscape) {
     @include full-screen_border-init;
-    padding: 10px 60px;
+    padding: 20px 60px 0 60px;
+
+    .login__input-box {
+      .login__input {
+        padding: 0.05rem 0;
+      }
+    }
+
+    .login__title {
+      @include for-size(mobile-fold-landscape) {
+        display: none;
+      }
+    }
   }
 
   display: flex;
@@ -52,10 +64,6 @@
   border-radius: 1rem;
 
   .login__title {
-    @include for-size(mobile-fold-landscape) {
-      display: none;
-    }
-
     color: $login__font-color--before;
     text-align: center;
     font-size: 1.8rem;
@@ -76,10 +84,9 @@
 
       width: 100%;
       margin-bottom: 2.6rem;
-      padding: 0.4rem 0;
       outline: none;
       background-color: transparent;
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: $login__font-color--after;
     }
 
@@ -93,7 +100,7 @@
 
     .login__input:focus ~ .login__input-label,
     .login__input:valid ~ .login__input-label {
-      top: -1rem;
+      top: -1.2rem;
       left: 0;
       font-size: 0.8rem;
       opacity: 1;
