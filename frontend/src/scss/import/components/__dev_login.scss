@@ -71,4 +71,56 @@
       color: white;
     }
   }
+
+  .login__btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 0.15rem;
+    font-weight: 400;
+    font-size: 0.8rem;
+    text-shadow: $text-shadow--black;
+    transition: 0.3s;
+    filter: opacity(0.5);
+
+    &:hover,
+    &:focus {
+      filter: none;
+    }
+  }
+
+  .login__login-btn {
+    cursor: pointer;
+    background-color: $main-color--orange;
+  }
+
+  .login__join-btn {
+    text-align: center;
+    background-color: $main-color--silver;
+  }
+
+  .login__find-password-box {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+    .login__find-password {
+      position: relative;
+      right: 0;
+      width: fit-content;
+      color: $main-color--silver;
+      opacity: 0.7;
+      font-size: 0.8rem;
+
+      &:hover,
+      &:focus {
+        opacity: initial;
+      }
+    }
+  }
 }
