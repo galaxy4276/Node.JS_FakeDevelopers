@@ -7,11 +7,12 @@ article.login
     form(action="#").login__wrapper
         |
         |
+        //- input의 minlegnth, maxlength 는 백엔드와 상의
         .login__input-box
-            input(type="text" required).login__input
+            input(type="text" minlength="1" maxlength="20" required).login__input
             label.login__input-label Username
         .login__input-box
-            input(type="password" required).login__input
+            input(type="password" minlength="1" maxlength="20" required).login__input
             label.login__input-label Password
         |
         |
