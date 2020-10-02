@@ -1,19 +1,47 @@
-.temp-main {
-  @include flex-center;
-  @include full;
+.login {
+  @include position(absolute, 50%, 50%);
 
-  .temp-main__wrapper {
-    @include flex-center;
-    width: 70vw;
-    height: 70vh;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid black;
-    border-radius: 15px;
+  padding: 40px;
+  width: 400px;
+  // toDo: @media screen 추가하기
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: $box-shadow;
+  border-radius: 1rem;
 
-    .temp-main__text {
-      font-size: 30px;
-      color: white;
-      text-shadow: 0.02em 0.04em 0.2em rgba(0, 0, 0, 0.8);
+  .login__title {
+    color: $login__font-color;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .login__input-box {
+    position: relative;
+
+    .login__input {
+      @include border-bottom($login__font-color);
+
+      width: 100%;
+      margin-bottom: 3vh;
+      padding: 1vh 0;
+      outline: none;
+      background-color: transparent;
+      font-size: 1rem;
+      color: $login__font-color;
+    }
+
+    .login__input-label {
+      @include position(absolute, 0, 0);
+      color: $login__font-color;
+      pointer-events: none;
+      transition: 0.5s;
+    }
+
+    .login__input:focus ~ .login__input-label,
+    .login__input:valid ~ .login__input-label {
+      top: -2vh;
+      left: 0;
+      font-size: 0.8rem;
     }
   }
 }

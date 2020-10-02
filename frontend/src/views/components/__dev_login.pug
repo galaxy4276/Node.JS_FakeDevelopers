@@ -1,3 +1,24 @@
-main.temp-main
-    .temp-main__wrapper
-        p.temp-main__text 개발공간
+article.login
+    |
+    |
+    .login__title Login
+    |
+    |
+    form.login__wrapper
+        |
+        |
+        .login__input-box
+            input(type="text" required).login__input
+            label.login__input-label Username
+        .login__input-box
+            input(type="password" required).login__input
+            label.login__input-label Password
+        |
+        |
+        .login__btn
+            input(type="submit" value="Sign In").login__login-btn
+        .login__btn
+            a(href="#").login__join-btn Create Account
+        |
+        |
+        a(href="#").login__find-password forgot password?

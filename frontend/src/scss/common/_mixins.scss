@@ -19,3 +19,17 @@
   width: 100%;
   height: 100%;
 }
+
+@mixin position($position, $top, $left) {
+  position: $position;
+  top: $top;
+  left: $left;
+  @if $top == 50% and $left == 50% {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@mixin border-bottom($color) {
+  border: none;
+  border-bottom: 1px solid $color;
+}
