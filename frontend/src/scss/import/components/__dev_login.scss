@@ -12,7 +12,7 @@
     color: $login__font-color;
     text-align: center;
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   .login__input-box {
@@ -22,8 +22,8 @@
       @include border-bottom($login__font-color);
 
       width: 100%;
-      margin-bottom: 3vh;
-      padding: 1vh 0;
+      margin-bottom: 2rem;
+      padding: 0.4rem 0;
       outline: none;
       background-color: transparent;
       font-size: 1rem;
@@ -33,15 +33,17 @@
     .login__input-label {
       @include position(absolute, 0, 0);
       color: $login__font-color;
+      opacity: 0.6;
       pointer-events: none;
       transition: 0.5s;
     }
 
     .login__input:focus ~ .login__input-label,
     .login__input:valid ~ .login__input-label {
-      top: -2vh;
+      top: -1rem;
       left: 0;
       font-size: 0.8rem;
+      opacity: 1;
     }
   }
 }
