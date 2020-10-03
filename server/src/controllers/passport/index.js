@@ -4,6 +4,13 @@ import local from './local';
 
 const { User } = sequelize;
 
+/*
+  구성해둔 전략 (함수) 를 실행
+  arguments
+  1: passport Module
+  2: sequelize Schema
+*/
+local(passport, User);
 
 
 passport.serializeUser(({ id }, done) => {
@@ -16,12 +23,5 @@ passport.deserializeUser(async (id, done) => {
     .catch(err => done(null, false, { message: err }));
 }) ;
 
-/*
-  구성해둔 전략 (함수) 를 실행
-  arguments
-  1: passport Module
-  2: sequelize Schema
-*/
-local(passport, User);
 
 export default passport;
