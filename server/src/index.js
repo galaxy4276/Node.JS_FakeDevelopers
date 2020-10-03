@@ -29,7 +29,7 @@ const sessionStore = new MySQLStore({
   port: process.env.MARIADB_PORT,
   user: process.env.MARIADB_USERNAME,
   password: process.env.MARIADB_PASSWORD,
-  database: process.env.MARIADB_DATABASE
+  database: process.env.MARIADB_TEST_DATABASE,
 }); // 세션 유지 함수 
 
 
