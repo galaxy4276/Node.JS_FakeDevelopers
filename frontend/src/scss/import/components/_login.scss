@@ -76,7 +76,7 @@
 
   &:focus-within .login__title {
     color: $login__font-color--after;
-  }
+  } //- toDo: focus-within js로 영구 적용하기
 
   .login__input-box {
     position: relative;
