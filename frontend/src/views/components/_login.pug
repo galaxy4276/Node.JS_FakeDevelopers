@@ -4,7 +4,9 @@ article.login
     form(action="#" autocomplete="off").login__wrapper
         |
         |
+        i.fas.fa-times.login__close-btn
         .login__title Login
+        //- toDo: 컴포넌트 클릭시에 타이틀 글자 애니메이션 시작, 컴포넌트 밖 클릭시에 애니메이션 중지.
         |
         |
         //- input의 minlegnth, maxlength 는 백엔드와 상의
@@ -18,8 +20,8 @@ article.login
             span.login__input-check
         |
         |
-        input(type="submit" value="Sign In").login__btn.login__login-btn
-        a(href="#").login__btn.login__join-btn Create Account
+        input(type="submit" value="Sign In").login__login-btn
+        a(href="#").login__join-btn Create Account
         |
         |
         div.login__find-password-box

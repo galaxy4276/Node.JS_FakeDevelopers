@@ -21,6 +21,15 @@
   }
 }
 
+@mixin border-top($color, $thickness) {
+  border: none;
+  @if $thickness {
+    border-top: $thickness solid $color;
+  } @else {
+    border-top: 1px solid $color;
+  }
+}
+
 @mixin border-bottom($color, $thickness) {
   border: none;
   @if $thickness {
@@ -28,6 +37,21 @@
   } @else {
     border-bottom: 1px solid $color;
   }
+}
+
+@mixin btn-retangle {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 1rem 0;
+  background-color: transparent;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 0.15rem;
+  font-weight: 400;
+  font-size: 0.8rem;
+  text-shadow: $text-shadow--black;
 }
 
 // for dev

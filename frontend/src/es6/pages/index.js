@@ -8,6 +8,12 @@ import "../../scss/import/screens/index.scss";
 import "../../font/Noto_Sans_KR/NotoSansKR-Regular.otf";
 import "../../font/Open_Sans/OpenSans-Regular.ttf";
 
-/* -- function -- */
-import "../function/testLog";
-import "../function/header";
+/* -- javascript -- */
+// function
+import "../function/_testLog";
+// template
+import "../templates/_header";
+// component
+import "../components/_join";
+
+//toDo: .js확장자를 >> entry 파일과 page별 js 모아둔 파일로 나누기

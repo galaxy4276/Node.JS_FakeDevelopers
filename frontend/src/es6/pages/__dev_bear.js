@@ -8,7 +8,12 @@ import "../../scss/import/screens/__dev_bear.scss";
 import "../../font/Noto_Sans_KR/NotoSansKR-Regular.otf";
 import "../../font/Open_Sans/OpenSans-Regular.ttf";
 
-/* -- function -- */
-import "../function/testLog";
+/* -- javascript -- */
+// function
+import "../function/_testLog";
+// template
+
+// component
+import "../components/_join";
 
 /* -- current dev -- */

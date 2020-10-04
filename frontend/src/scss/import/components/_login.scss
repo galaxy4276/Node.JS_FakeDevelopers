@@ -1,3 +1,5 @@
+/* --'.login__input-label' 클래스에 will-change 적용 -- */
+
 .login {
   @include position(absolute, 0, 0);
   @include full;
@@ -5,10 +7,15 @@
 }
 
 .login__wrapper {
-  @mixin full-screen_border-init {
+  @mixin login-mibile {
     @include full;
     border-radius: initial;
+
+    .login__close-btn {
+      font-size: 1.8rem;
+    }
   }
+
   @include position(absolute, 50%, 50%);
 
   @include for-size(desktop) {
@@ -20,27 +27,27 @@
     padding: 36px;
   }
   @include for-size(tablet-portrait) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 100px;
   }
   @include for-size(tablet-landscape) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 0 100px;
   }
   @include for-size(mobile-landscape) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 40px;
   }
   @include for-size(mobile-portrait) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 40px;
   }
   @include for-size(mobile-fold-portrait) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 10px;
   }
   @include for-size(mobile-fold-landscape) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 20px 60px 0 60px;
 
     .login__input-box {
@@ -63,6 +70,13 @@
   box-shadow: $box-shadow;
   border-radius: 1rem;
 
+  .login__close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: $main-color--silver;
+  }
+
   .login__title {
     color: $login__font-color--before;
     text-align: center;
@@ -70,11 +84,15 @@
     margin-bottom: 2.8rem;
     transition: 0.5s;
     pointer-events: none;
+
+    &::before {
+      position: absolute;
+    }
   }
 
   &:focus-within .login__title {
     color: $login__font-color--after;
-  }
+  } //- toDo: focus-within js로 영구 적용하기
 
   .login__input-box {
     position: relative;
@@ -88,6 +106,19 @@
       background-color: transparent;
       font-size: 1.2rem;
       color: $login__font-color--after;
+
+      &:focus ~ .login__input-label,
+      &:valid ~ .login__input-label {
+        top: -1.2rem;
+        left: 0;
+        font-size: 0.8rem;
+        opacity: 1;
+        color: $main-color--orange;
+      }
+      &:valid ~ .login__input-check::before {
+        content: "✓";
+        color: $login__font-color--before;
+      }
     }
 
     .login__input-label {
@@ -95,61 +126,35 @@
       color: $login__font-color--before;
       opacity: 0.6;
       pointer-events: none;
-      transition: 0.5s;
-    }
-
-    .login__input:focus ~ .login__input-label,
-    .login__input:valid ~ .login__input-label {
-      top: -1.2rem;
-      left: 0;
-      font-size: 0.8rem;
-      opacity: 1;
-      color: $main-color--orange;
+      transition: all 700ms cubic-bezier(0.23, 1, 0.32, 1); /* easeOutQuint */
+      will-change: contents;
     }
 
     .login__input-check {
       position: relative;
-    }
 
-    .login__input-check::before {
-      position: absolute;
-      right: 5px;
-    }
-
-    .login__input:valid ~ .login__input-check::before {
-      content: "✓";
-      color: $login__font-color--before;
-    }
-  }
-
-  .login__btn {
-    display: block;
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 1rem 0;
-    background-color: transparent;
-    color: #fff;
-    outline: none;
-    border: none;
-    border-radius: 0.15rem;
-    font-weight: 400;
-    font-size: 0.8rem;
-    text-shadow: $text-shadow--black;
-    transition: 0.1s;
-    filter: opacity(0.5);
-
-    &:hover,
-    &:focus {
-      filter: none;
+      &::before {
+        position: absolute;
+        right: 5px;
+      }
     }
   }
 
   .login__login-btn {
+    @include btn-retangle;
     cursor: pointer;
     background-color: $main-color--orange;
+    transition: 0.1s;
+    filter: opacity(0.7);
+
+    &:hover,
+    &:focus {
+      filter: none;
+    } // toDo: 체크값 검증 후 2개 다 완료시 밝게
   }
 
   .login__join-btn {
+    @include btn-retangle;
     text-align: center;
     background-color: $main-color--silver;
   }
@@ -164,9 +169,9 @@
       right: 0;
       width: fit-content;
       color: $main-color--silver;
-      opacity: 0.7;
       font-size: 0.8rem;
       transition: 0.1s;
+      opacity: 0.7;
 
       &:hover,
       &:focus {
