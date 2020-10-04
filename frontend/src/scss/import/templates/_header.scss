@@ -13,6 +13,7 @@
     height: 100%;
     @include flex-center;
     position: absolute;
+    top: 0;
     left: 0;
     border-right: 3px solid black;
   }
@@ -77,6 +78,7 @@
     height: 100%;
     @include flex-center;
     position: absolute;
+    top: 0;
     right: 0;
 
     &__list {
