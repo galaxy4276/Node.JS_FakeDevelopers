@@ -30,6 +30,28 @@
   }
 }
 
+@mixin btn-retangle {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 1rem 0;
+  background-color: transparent;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 0.15rem;
+  font-weight: 400;
+  font-size: 0.8rem;
+  text-shadow: $text-shadow--black;
+  transition: 0.1s;
+  filter: opacity(0.5);
+
+  &:hover,
+  &:focus {
+    filter: none;
+  }
+}
+
 // for dev
 
 @mixin __dev_template {
