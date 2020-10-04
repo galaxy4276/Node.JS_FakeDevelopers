@@ -27,6 +27,7 @@
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "eslint": "^7.10.0",
     "express-mysql-session": "^2.1.4",
     "helmet": "^4.1.0",
     "mariadb": "^2.4.2",

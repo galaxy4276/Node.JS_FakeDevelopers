@@ -6,4 +6,5 @@ globalRouter.get('/', (req, res) => {
 });
 
 
+
 export default globalRouter;
