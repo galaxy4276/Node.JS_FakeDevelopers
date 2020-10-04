@@ -43,13 +43,6 @@
   font-weight: 400;
   font-size: 0.8rem;
   text-shadow: $text-shadow--black;
-  transition: 0.1s;
-  filter: opacity(0.7);
-
-  &:hover,
-  &:focus {
-    filter: none;
-  }
 }
 
 // for dev

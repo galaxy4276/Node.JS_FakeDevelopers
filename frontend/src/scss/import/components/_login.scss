@@ -72,6 +72,10 @@
     margin-bottom: 2.8rem;
     transition: 0.5s;
     pointer-events: none;
+
+    &::before {
+      position: absolute;
+    }
   }
 
   &:focus-within .login__title {
@@ -90,6 +94,19 @@
       background-color: transparent;
       font-size: 1.2rem;
       color: $login__font-color--after;
+
+      &:focus ~ .login__input-label,
+      &:valid ~ .login__input-label {
+        top: -1.2rem;
+        left: 0;
+        font-size: 0.8rem;
+        opacity: 1;
+        color: $main-color--orange;
+      }
+      &:valid ~ .login__input-check::before {
+        content: "✓";
+        color: $login__font-color--before;
+      }
     }
 
     .login__input-label {
@@ -101,40 +118,31 @@
       will-change: contents;
     }
 
-    .login__input:focus ~ .login__input-label,
-    .login__input:valid ~ .login__input-label {
-      top: -1.2rem;
-      left: 0;
-      font-size: 0.8rem;
-      opacity: 1;
-      color: $main-color--orange;
-    }
-
     .login__input-check {
       position: relative;
-    }
 
-    .login__input-check::before {
-      position: absolute;
-      right: 5px;
+      &::before {
+        position: absolute;
+        right: 5px;
+      }
     }
-
-    .login__input:valid ~ .login__input-check::before {
-      content: "✓";
-      color: $login__font-color--before;
-    }
-  }
-
-  .login__btn {
-    @include btn-retangle;
   }
 
   .login__login-btn {
+    @include btn-retangle;
     cursor: pointer;
     background-color: $main-color--orange;
+    transition: 0.1s;
+    filter: opacity(0.7);
+
+    &:hover,
+    &:focus {
+      filter: none;
+    } // toDo: 체크값 검증 후 2개 다 완료시 밝게
   }
 
   .login__join-btn {
+    @include btn-retangle;
     text-align: center;
     background-color: $main-color--silver;
   }
