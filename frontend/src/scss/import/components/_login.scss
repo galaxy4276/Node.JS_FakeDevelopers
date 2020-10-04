@@ -7,10 +7,15 @@
 }
 
 .login__wrapper {
-  @mixin full-screen_border-init {
+  @mixin login-mibile {
     @include full;
     border-radius: initial;
+
+    .login__close-btn {
+      font-size: 1.8rem;
+    }
   }
+
   @include position(absolute, 50%, 50%);
 
   @include for-size(desktop) {
@@ -22,27 +27,27 @@
     padding: 36px;
   }
   @include for-size(tablet-portrait) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 100px;
   }
   @include for-size(tablet-landscape) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 0 100px;
   }
   @include for-size(mobile-landscape) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 40px;
   }
   @include for-size(mobile-portrait) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 40px;
   }
   @include for-size(mobile-fold-portrait) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 10px;
   }
   @include for-size(mobile-fold-landscape) {
-    @include full-screen_border-init;
+    @include login-mibile;
     padding: 20px 60px 0 60px;
 
     .login__input-box {
