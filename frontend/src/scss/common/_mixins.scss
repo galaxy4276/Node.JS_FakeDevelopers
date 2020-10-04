@@ -21,6 +21,15 @@
   }
 }
 
+@mixin border-top($color, $thickness) {
+  border: none;
+  @if $thickness {
+    border-top: $thickness solid $color;
+  } @else {
+    border-top: 1px solid $color;
+  }
+}
+
 @mixin border-bottom($color, $thickness) {
   border: none;
   @if $thickness {
