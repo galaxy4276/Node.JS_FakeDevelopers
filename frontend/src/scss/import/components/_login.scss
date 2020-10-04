@@ -65,6 +65,13 @@
   box-shadow: $box-shadow;
   border-radius: 1rem;
 
+  .login__close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: $main-color--silver;
+  }
+
   .login__title {
     color: $login__font-color--before;
     text-align: center;
