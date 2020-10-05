@@ -2,6 +2,7 @@ import sequelize from '../models';
 import url from 'url';
 import passport from 'passport';
 import bcrypt from 'bcrypt';
+import isEmail from 'validator/lib/isEmail';
 
 
 const { User } = sequelize;
@@ -25,6 +26,15 @@ const error = {
     });
   },
 
+  emailNotFound() {
+    return url.format({
+      pathname: '/',
+      query: {
+        'error': 'emailNotFound',
+      },
+    });
+  },
+
   critical() {
     return url.format({
       pathname: '/',
@@ -33,18 +43,26 @@ const error = {
       },
     });
   },
-}
+};
 
 
 export const postJoin = async ({ body }, res) => {
   const { id, password, pwcheck, email } = body;
+  
   try {
+    const verifyEmail = isEmail(email);
     const verifyUser = await User.findByPk(id);
+    console.log(`verifyEmail: ${verifyEmail}`);
+  
+    if (!verifyEmail) {
+      res.redirect(error.emailNotFound());
+    }
+    
     
     if (verifyUser) 
       res.redirect(error.alreadyUser());
     
-    (password === pwcheck)
+    (password === (pwcheck && verifyEmail))
       ? await User.create({
           id,
           password: await bcrypt.hash(password, 10),
