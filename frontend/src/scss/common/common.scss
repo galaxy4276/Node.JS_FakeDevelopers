@@ -40,6 +40,7 @@ html {
 
 body {
   position: relative;
-  padding: 0 2.5vw; // 웹 전체 공통 padding
+  padding: 0 2.5vw $footer-height 2.5vw; // 웹 전체 공통 padding
   font-family: "Noto Sans --Regular"; // 웹 전체 공통 폰트: Noto Sans -- Weight 400
+  height: fit-content;
 }

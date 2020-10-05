@@ -2,11 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 85px;
-  border: 3px solid black;
   z-index: 2;
+  background-color: #fff;
 
   &-logo {
     width: 160px;
@@ -15,15 +17,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    border-right: 3px solid black;
   }
 
   &-menu {
     width: 100%;
     height: 100%;
     display: inline-block;
-    margin: 0 160px;
-    border-right: 3px solid black;
+    margin: 0 25vw;
 
     &__list {
       display: flex;
@@ -35,29 +35,33 @@
     }
 
     &__item {
-      width: 20%;
+      width: 25%;
       text-align: center;
     }
 
     &-dropdown {
       position: absolute;
-      top: 80px;
-      width: 20%;
+      top: 85px;
+      width: 25%;
       height: 300px;
-      background-color: #2ce300;
+      background-color: #fff;
       box-sizing: border-box;
-      // transition: all 0.4s ease-in-out;
-      // visibility: hidden;
-      // opacity: 0;
+      transition: all 0.2s ease-in-out;
+      visibility: hidden;
+      opacity: 0;
 
       &__list {
         display: flex;
+        height: 100%;
         flex-direction: column;
-        padding: 20px 0;
+        border: 1px solid black;
+        box-sizing: border-box;
+        padding: 20px 0 0;
       }
 
       &__link {
         margin-top: 10px;
+        padding: 10px 0;
       }
 
       &__link:hover {
@@ -67,10 +71,10 @@
     }
 
     // menu__list hover 시 dropdown 표시
-    // &__list:hover &__dropdown {
-    //   visibility: visible;
-    //   opacity: 1;
-    // }
+    &__list:hover &-dropdown {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 
   &-util {
