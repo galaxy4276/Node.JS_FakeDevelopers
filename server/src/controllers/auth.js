@@ -58,11 +58,10 @@ export const postJoin = async ({ body }, res) => {
       res.redirect(error.emailNotFound());
     }
     
-    
     if (verifyUser) 
       res.redirect(error.alreadyUser());
     
-    (password === (pwcheck && verifyEmail))
+    ((password === pwcheck) && verifyEmail)
       ? await User.create({
           id,
           password: await bcrypt.hash(password, 10),
