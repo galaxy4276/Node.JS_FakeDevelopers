@@ -16,4 +16,4 @@ import "../templates/_header";
 // component
 import "../components/_join";
 
-//toDo: .js확장자를 >> entry 파일과 page별 js 모아둔 파일로 나누기
+//TODO: .js확장자를 >> entry 파일과 page별 js 모아둔 파일로 나누기
