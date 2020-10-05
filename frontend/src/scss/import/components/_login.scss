@@ -92,7 +92,7 @@
 
   &:focus-within .login__title {
     color: $login__font-color--after;
-  } //- toDo: focus-within js로 영구 적용하기
+  } //- TODO: focus-within js로 영구 적용하기
 
   .login__input-box {
     position: relative;
@@ -150,7 +150,7 @@
     &:hover,
     &:focus {
       filter: none;
-    } // toDo: 체크값 검증 후 2개 다 완료시 밝게
+    } // TODO: 체크값 검증 후 2개 다 완료시 밝게
   }
 
   .login__join-btn {
