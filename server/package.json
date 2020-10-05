@@ -17,7 +17,8 @@
     "passport-local": "^1.0.0",
     "pug": "^3.0.0",
     "sass": "^1.26.10",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "validator": "^13.1.17"
   },
   "scripts": {
     "start": "nodemon --exec babel-node ./src",
