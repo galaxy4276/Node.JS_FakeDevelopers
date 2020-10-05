@@ -1,6 +1,6 @@
-// variables
+//- variables
 
-// color
+//- color
 $main-color--orange: #ff7300;
 $main-color--light-orange: #ff9900;
 $main-color--silver: #bebebe;
@@ -9,8 +9,10 @@ $main-color--black: #000000;
 $login__font-color--before: $main-color--silver;
 $login__font-color--after: rgb(245, 245, 245);
 
-// shadow
+//- shadow
 $text-shadow--black: 0.02em 0.04em 0.2em rgba(0, 0, 0, 0.5);
 $text-shadow--white: 0.02em 0.04em 0.2em rgba(255, 255, 255, 0.5);
 $box-shadow: 0.3vw 0.6vw 1.5vw rgba(0, 0, 0, 0.5);
-$footer-height: 136px;
+
+//- length
+$footer-height: 136px; //TODO: 반응형으로 수정
