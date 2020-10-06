@@ -94,5 +94,32 @@
     &__item {
       margin: 0 10px;
     }
+
+    &__link {
+      @media screen and (max-width: 1024px) {
+        display: none;
+      }
+    }
+
+    &__btn {
+      position: absolute;
+      right: 30px;
+      top: 30.5px;
+    }
+
+    &__btn::before {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      @media screen and (max-width: 1024px) {
+        display: block;
+      }
+    }
+  }
+
+  &-menu {
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
   }
 }
