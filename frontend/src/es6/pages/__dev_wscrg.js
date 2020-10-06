@@ -14,6 +14,5 @@ import "../function/_testLog";
 // template
 
 // component
-import "../components/_join";
 
 /* -- current dev -- */

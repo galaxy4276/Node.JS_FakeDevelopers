@@ -1,5 +1,12 @@
+// 컴포넌트 개발 중
+
+html {
+  // 컴포넌트 개발 페이지 내에선 common.scss 의 공통 속성 초기화
+  height: 100%;
+}
 body {
-  padding: 0; // 개발 페이지 내에선 공동 패딩 초기화
+  // 컴포넌트 개발 페이지 내에선 common.scss 의 공통 속성 초기화
+  padding: initial;
 }
 
 .dev-main {

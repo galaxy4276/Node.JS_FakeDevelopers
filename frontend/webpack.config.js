@@ -142,10 +142,10 @@ const webpackConfig_server = {
        각 호출 파일 내부에선 기능별 js를 import
       */
 
-    // for prod
+    // production
     index: path.resolve(__dirname, "src", "es6", "pages", "index.js"),
 
-    // for dev_frontend
+    // dev_frontend
     __dev_bear: path.resolve(__dirname, "src", "es6", "pages", "__dev_bear.js"),
     __dev_wscrg: path.resolve(
       __dirname,
