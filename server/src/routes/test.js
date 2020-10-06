@@ -1,5 +1,6 @@
 import createBulkUsers from '../models/userQuery.test';
 import sequelize from '../models';
+import transEmail from '../controllers/mailer';
 
 const { User } = sequelize;
 
@@ -23,7 +24,10 @@ testRouter.get('/user/:id', async (req, res) => {
 
   res.json(dataValues);
   res.end();
-})
+});
+
+testRouter.get('/email', (req, res) => res.render('test/email'));
+testRouter.post('/email', transEmail);
 
 
 export default testRouter;
