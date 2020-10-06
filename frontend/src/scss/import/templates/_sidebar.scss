@@ -1,0 +1,88 @@
+.cover {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: none;
+
+  &--covered {
+    display: block;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  top: 0;
+  right: -250px;
+  background-color: #1e1e1e;
+  color: white;
+  z-index: 6;
+  transition: right 0.3s ease-in-out;
+
+  &--show {
+    right: 0;
+  }
+
+  &__logo {
+    font-size: 2em;
+    text-align: center;
+    height: 50px;
+    @include flex-center;
+  }
+
+  &__list {
+    height: 100%;
+  }
+
+  &__item {
+    font-size: 1.2em;
+    line-height: 50px;
+    position: relative;
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    cursor: pointer;
+  }
+
+  &__btn,
+  &__inner-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__btn:after {
+    content: "\f0d7";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+
+  &__btn--active:after {
+    transform: rotate(-180deg);
+  }
+
+  &__inner-list {
+    display: none;
+  }
+
+  &__inner-list--clicked {
+    display: block;
+  }
+
+  &__inner-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0px 0px 0px 40px;
+  }
+}

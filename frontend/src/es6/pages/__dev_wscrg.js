@@ -12,6 +12,7 @@ import "../../font/Open_Sans/OpenSans-Regular.ttf";
 // function
 import "../function/_testLog";
 // template
+import "../templates/_sidebar";
 
 // component
 
