@@ -11,15 +11,17 @@ html(lang="en")
         |
         //- script(async src="https://kit.fontawesome.com/5e169df0e9.js" crossorigin="anonymous" data-auto-add-css="false")
     body
-        header.dev_header
+        include _header.pug
         |
         |
-        main.dev-main
-            .dev-main__wrapper
-                block content            
+        include _sidebar.pug
         |
         |
-        footer.dev_footer
+        block content
+        //- extends _sub-main.pug // 코드를 직접 복사
+        |
+        |
+        include _footer.pug
         |
         |
         block script

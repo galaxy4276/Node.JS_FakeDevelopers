@@ -2,9 +2,11 @@
 @import "../../common/common.scss";
 
 /* -- templates -- */
-@import "../templates/__dev_galaxy_template";
+@import "../templates/__dev_template";
 @import "../templates/header";
 @import "../templates/footer";
+@import "../templates/sidebar";
+@import "../templates/sub-main";
 
 /* -- components -- */
 
