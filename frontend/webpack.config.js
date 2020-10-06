@@ -154,6 +154,13 @@ const webpackConfig_server = {
       "pages",
       "__dev_wscrg.js"
     ),
+    __dev_galaxy: path.resolve(
+      __dirname,
+      "src",
+      "es6",
+      "pages",
+      "__dev_galaxy.js"
+    ),
   },
 
   output: {

@@ -1,0 +1,15 @@
+extends ../templates/__dev_galaxy_template.pug
+
+block title
+  title __dev_galaxy
+block stylesheet
+  link(rel="stylesheet" href="/css/__dev_galaxy.css")
+
+block content
+  //- Board component _dev
+  include ../templates/_header.pug
+  include ../components/_board.pug
+  include ../templates/_footer.pug
+
+block script
+  script(src="/es5/__dev_galaxy.js")

@@ -41,6 +41,9 @@ app.get("/__dev_bear", function (req, res) {
 app.get("/__dev_wscrg", function (req, res) {
   res.render("__dev_wscrg");
 });
+app.get("/__dev_galaxy", function (req, res) {
+  res.render("__dev_galaxy");
+});
 
 app.listen(port, () => {
   console.log(`App is Listening at http://localhost:${port}`);

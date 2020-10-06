@@ -1,0 +1,12 @@
+/* -- common.scss -- */
+@import "../../common/common.scss";
+
+/* -- templates -- */
+@import "../templates/__dev_galaxy_template";
+@import "../templates/header";
+@import "../templates/footer";
+
+/* -- components -- */
+
+/* -- current dev -- */
+@import "../components/board";
