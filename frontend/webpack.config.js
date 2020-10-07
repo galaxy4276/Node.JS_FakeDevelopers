@@ -55,6 +55,7 @@ const webpackConfig_frontend = {
 
     // for dev
     __dev_bear: path.resolve(__dirname, "src", "es6", "pages", "__dev_bear.js"),
+    __dev_galaxy: path.resolve(__dirname, "src", "es6", "pages", "__dev_galaxy.js"),
     __dev_wscrg: path.resolve(
       __dirname,
       "src",
