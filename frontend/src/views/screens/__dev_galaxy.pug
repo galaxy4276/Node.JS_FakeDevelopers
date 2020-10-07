@@ -1,9 +1,22 @@
 extends ../templates/__dev_template.pug
 
+mixin card(title, info, content)
+  // title = 자격증 이름
+  // info = 학생 인적사항 예 ) 201311099 김준재
+  // content = 취득 내용 후기 등..
+  .card__wrap
+    .card-body
+      a.card-title
+        span.card-content__title= title
+        img(src="#" alt="certification")
+      .card-content
+        p.card-content__info= info
+        p.card-content__text= content
+
 block title
-  title __dev_bear
+  title #{title || '은기 개발 공간'}
 block stylesheet
-  link(rel="stylesheet" href="/css/__dev_bear.css")
+  link(rel="stylesheet" href="/css/__dev_galaxy.css")
 block script
   script(src="/es5/__dev_bear.js")
 
@@ -14,9 +27,10 @@ block content
     .sub-main__wrap
 
       // 여기서부터 네비게이션 바 시작
+      // TODO: 네비게이션 보완
       .sub-nav
         .sub-nav__title-wrap
-          h3.sub-nav__title 상위 주제
+          h3.sub-nav__title 학생 자취록
         .sub-nav__list-wrap
           ul.sub-nav__list
             li.sub-nav__item 
@@ -30,7 +44,7 @@ block content
       .sub-contents
         .sub-contents__wrap
           .sub-contents__header
-            h2.sub-contents__title 선택된 하위 주제
+            h2.sub-contents__title #{title || "선택된 하위 주제"}
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
@@ -40,8 +54,10 @@ block content
                 li.sub-contents__item
                   a(href="#").sub-contents__link 하위 주제 
 
+          // 카드 게시글 테스트
+          - let count = 0;
           .sub-contents__content
-            .sub-contents__missing-message
-              i.fas.fa-exclamation-triangle.fa-9x.sub-contents__alert-icon
-              strong.sub-contents__txt-1 콘텐츠 작업이 필요한 페이지입니다.
-              p.sub-contents__txt-2 빠르고 편리한 서비스를 위해 최선을 다하겠습니다.
+            .student-board__wrap
+              while count < 18
+                    +card("리눅스마스터 2급", "201911064최은기", "와! 타이어보다 쉽다!")
+                    - count++;
