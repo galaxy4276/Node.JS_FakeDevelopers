@@ -29,5 +29,14 @@ testRouter.get('/user/:id', async (req, res) => {
 testRouter.get('/email', (req, res) => res.render('test/email'));
 testRouter.post('/email', transEmail);
 
+testRouter.get('/__dev_bear', (req, res) => {
+  res.render('screens/__dev_bear', {});
+});
+testRouter.get('/__dev_galaxy', (req, res) => {
+  res.render('screens/__dev_galaxy', {});
+});
+testRouter.get('/__dev_wscrg', (req, res) => {
+  res.render('screens/__dev_wscrg', {});
+});
 
 export default testRouter;
