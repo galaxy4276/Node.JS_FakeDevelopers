@@ -35,13 +35,13 @@ app.use("/", staticMiddleWare);
 app.get("/", function (req, res) {
   res.render("index");
 });
-app.get("/__dev_bear", function (req, res) {
+app.get("/test/__dev_bear", function (req, res) {
   res.render("__dev_bear");
 });
-app.get("/__dev_wscrg", function (req, res) {
+app.get("/test/__dev_wscrg", function (req, res) {
   res.render("__dev_wscrg");
 });
-app.get("/__dev_galaxy", function (req, res) {
+app.get("/test/__dev_galaxy", function (req, res) {
   res.render("__dev_galaxy");
 });
 
