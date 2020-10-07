@@ -128,7 +128,7 @@ const webpackConfig_frontend = {
 
 // output 2: dev_server
 const webpackConfig_server = {
-  mode: process.env.DEV_MODE,
+  mode: process.env.DEV_MODE || 'development',
 
   devtool: "inline-source-map",
   // The side effect of this option is to increase build time
