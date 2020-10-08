@@ -1,0 +1,29 @@
+//- for dev page or template
+doctype html
+html(lang="en")
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        |
+        |
+        block title
+        link(rel="stylesheet" href="/css/common.css")
+        block stylesheet
+        script(defer src="/es5/common.js")
+        block script
+        |
+        |
+        script(async src="https://kit.fontawesome.com/5e169df0e9.js" crossorigin="anonymous" data-auto-add-css="false")
+        //-TODO: 현재 아이콘 svg로 변경 작업 완료 후 font awesome 스크립트 태그 삭제 
+    body
+        include ../../../common/templates/_header.pug
+        |
+        |
+        include ../../../common/templates/_sidebar.pug
+        |
+        |
+        block content
+        //- ../../../common/tempates/_sub-main.pug // 페이지 파일에 해당하는 파일의 코드를 복사해서 입맛대로 변경
+        |
+        |
+        include ../../../common/templates/_footer.pug

@@ -20,6 +20,48 @@ const PUG_DIR = path.resolve(__dirname, "src", "views");
 
 // **** 신규 페이지 추가시에 이 곳에서 페이지 추가를 위한 작업 ****
 // ** webpackConfig.entry 에 엔트리 JS 파일 경로 추가하기 **
+const ENTRY = {
+    /* 
+    용도에 따라 js파일을 구분하고,
+    js 파일을 html 페이지에 별로 청크를 분리하여 작성
+    각 호출 파일 내부에선 기능별 js를 import
+    */
+
+    /* -- production pages -- */
+    // common
+    common: path.resolve(__dirname, "src", "_entry", "common.js"),
+
+    // index
+    index: path.resolve(__dirname, "src", "_entry", "index.js"),
+
+    // community/
+    board: path.resolve(__dirname, "src", "_entry", "community", "board.js"),
+    donation: path.resolve(__dirname, "src", "_entry", "community", "donation.js"),
+    suggestion: path.resolve(__dirname, "src", "_entry", "community", "suggestion.js"),
+
+    // footprint/
+    acquisition: path.resolve(__dirname, "src", "_entry", "footprint", "acquisition.js"),
+    awards: path.resolve(__dirname, "src", "_entry", "footprint", "awards.js"),
+    portfolio: path.resolve(__dirname, "src", "_entry", "footprint", "portfolio.js"),
+
+    // intro/
+    club: path.resolve(__dirname, "src", "_entry", "intro", "club.js"),
+    env: path.resolve(__dirname, "src", "_entry", "intro", "env.js"),
+    info: path.resolve(__dirname, "src", "_entry", "intro", "info.js"),
+    member: path.resolve(__dirname, "src", "_entry", "intro", "member.js"),
+
+    // milestone/
+    career: path.resolve(__dirname, "src", "_entry", "milestone", "career.js"),
+    cert: path.resolve(__dirname, "src", "_entry", "milestone", "cert.js"),
+    curriculum: path.resolve(__dirname, "src", "_entry", "milestone", "curriculum.js"),
+
+
+    /* -- development pages -- */
+    bear: path.resolve(__dirname, "src", "_entry", "__dev", "bear.js"),
+    galaxy: path.resolve(__dirname, "src", "_entry", "__dev", "galaxy.js"),
+    wscrg: path.resolve(__dirname, "src", "_entry", "__dev", "wscrg.js"),
+}
+
 
 // output 1: dev_client
 const webpackConfig_frontend = {
@@ -41,29 +83,7 @@ const webpackConfig_frontend = {
   // The side effect of this option is to increase build time
   // mode development ? ‘inline-source-map" : 'hidden-source-map’
 
-  entry: {
-    /* 
-      용도에 따라 js파일을 구분하고,
-       js 파일을 html 페이지에 별로 청크를 분리하여 작성
-       example1: path.resolve(__dirname, "src", "assets", "es6", "ex1.js")
-       example2: path.resolve(__dirname, "src", "assets", "es6", "ex2.js"),
-       각 호출 파일 내부에선 기능별 js를 import
-      */
-
-    // for prod
-    index: path.resolve(__dirname, "src", "es6", "pages", "index.js"),
-
-    // for dev
-    __dev_bear: path.resolve(__dirname, "src", "es6", "pages", "__dev_bear.js"),
-    __dev_galaxy: path.resolve(__dirname, "src", "es6", "pages", "__dev_galaxy.js"),
-    __dev_wscrg: path.resolve(
-      __dirname,
-      "src",
-      "es6",
-      "pages",
-      "__dev_wscrg.js"
-    ),
-  },
+  entry: ENTRY,
 
   output: {
     //  entry 에서 분리한 청크별로 다른 번들파일 출력
@@ -128,41 +148,13 @@ const webpackConfig_frontend = {
 
 // output 2: dev_server
 const webpackConfig_server = {
-  mode: process.env.DEV_MODE || 'development',
+  mode: process.env.DEV_MODE || "development",
 
   devtool: "inline-source-map",
   // The side effect of this option is to increase build time
   // mode development ? ‘inline-source-map" : 'hidden-source-map’
 
-  entry: {
-    /*
-      용도에 따라 js파일을 구분하고,
-       js 파일을 html 페이지에 별로 청크를 분리하여 작성
-       example1: path.resolve(__dirname, "src", "assets", "es6", "ex1.js")
-       example2: path.resolve(__dirname, "src", "assets", "es6", "ex2.js"),
-       각 호출 파일 내부에선 기능별 js를 import
-      */
-
-    // production
-    index: path.resolve(__dirname, "src", "es6", "pages", "index.js"),
-
-    // dev_frontend
-    __dev_bear: path.resolve(__dirname, "src", "es6", "pages", "__dev_bear.js"),
-    __dev_wscrg: path.resolve(
-      __dirname,
-      "src",
-      "es6",
-      "pages",
-      "__dev_wscrg.js"
-    ),
-    __dev_galaxy: path.resolve(
-      __dirname,
-      "src",
-      "es6",
-      "pages",
-      "__dev_galaxy.js"
-    ),
-  },
+  entry: ENTRY,
 
   output: {
     //  entry 에서 분리한 청크별로 다른 번들파일 출력
