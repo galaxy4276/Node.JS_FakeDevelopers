@@ -12,10 +12,12 @@ import MySQLStore from 'express-mysql-session';
 
 /* --- 개인 라이브러리 관련 모듈 import  --- */
 import connectMaria from './lib/connectMaria';
+import './controllers/passport';
 
 /* --- 라우트 관련 모듈 import  --- */
-import testRouter from './routes/test.router';
-import globalRouter from './routes/globalRouter';
+import test from './routes/test';
+import global from './routes/global';
+import auth from './routes/auth';
 import routes from './routes';
 
 
@@ -27,7 +29,7 @@ const sessionStore = new MySQLStore({
   port: process.env.MARIADB_PORT,
   user: process.env.MARIADB_USERNAME,
   password: process.env.MARIADB_PASSWORD,
-  database: process.env.MARIADB_DATABASE
+  database: process.env.MARIADB_TEST_DATABASE,
 }); // 세션 유지 함수 
 
 
@@ -82,13 +84,11 @@ app.get('/', (req, res, next) => {
   console.log('session');
   console.table(req.session);
   next();
-});
+}); // 일반 테스트용 미들웨어 ( 삭졔 예정 )
 
-app.use("/", globalRouter);
-app.use("/test", testRouter);
-
-app.use('/', globalRouter);
-app.use('/test', testRouter);
+app.use('/', global);
+app.use('/auth', auth);
+app.use('/test', test);
 
 
 

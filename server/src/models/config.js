@@ -1,11 +1,9 @@
-import dotenv from 'dotenv';
+/* eslint-disable no-unused-vars */
+require('dotenv').config();
 
-dotenv.config();
-
-// eslint-disable-next-line no-undef
 const env = process.env;
 
-export const development = {
+const development = {
   username: env.MARIADB_USERNAME,
   password: env.MARIADB_PASSWORD,
   database: env.MARIADB_DATABASE,
@@ -17,7 +15,7 @@ export const development = {
   },
 };
 
-export const production = {
+const production = {
   username: env.MARIADB_USERNAME,
   password: env.MARIADB_PASSWORD,
   database: env.MARIADB_DATABASE,
@@ -29,7 +27,7 @@ export const production = {
   },
 };
 
-export const test = {
+const test = {
   username: env.MARIADB_USERNAME,
   password: env.MARIADB_PASSWORD,
   database: env.MARIADB_TEST_DATABASE,
@@ -41,3 +39,5 @@ export const test = {
     timezone: 'Etc/GMT0',
   },
 };
+
+module.exports = test;

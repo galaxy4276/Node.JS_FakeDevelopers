@@ -1,18 +1,14 @@
+/* -- base.scss & default.scss -- */
 @import "./base";
-@import "./font_base";
-@import "./mixins";
-@import "./placeholders";
-@import "./variables";
+@import "./default.scss";
+/* ---------- */
 
-/* custom */
+/* common templates */
+@import "./templates/header";
+@import "./templates/sub-main";
+@import "./templates/footer";
+@import "./templates/sidebar";
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  // 웹 전체 공통 padding
-  position: relative;
-  padding: 0 2.5vw;
-  font-family: "Noto Sans --Regular"; // 웹 전체 공통 폰트: Noto Sans -- Weight 400
-}
+/* common components */
+@import "./components/login";
+@import "./components/join";

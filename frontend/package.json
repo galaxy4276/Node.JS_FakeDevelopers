@@ -5,9 +5,10 @@
   "main": "app.js",
   "scripts": {
     "build": "webpack -w",
-    "rebuild": "rmdir public /s && webpack",
+    "rebuild": "rmdir /s /q ..\\server\\src\\public && webpack -w",
     "start": "node app.js",
-    "server": "cd ../server && yarn start"
+    "server": "cd ../server && yarn start",
+    "restart": "rmdir /s /q ..\\server\\src\\public && webpack && npm run server"
   },
   "repository": {
     "type": "git",

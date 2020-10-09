@@ -1,0 +1,41 @@
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  border: 3px solid black;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: $footer-height;
+
+  .footer__wrap {
+    margin: 15px auto;
+    display: flex;
+    justify-content: start;
+    width: fit-content;
+
+    .footer__logo-zone {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 100px;
+      border: 3px solid black;
+
+      @media screen and (max-width: 580px) {
+        display: none;
+      }
+    }
+
+    .footer__info {
+      display: inline-block;
+      display: flex;
+      flex-direction: column;
+      border: 3px solid black;
+
+      .footer__college-location {
+        margin-top: 20px;
+      }
+    }
+  }
+}

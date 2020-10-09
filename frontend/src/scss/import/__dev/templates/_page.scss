@@ -1,0 +1,10 @@
+//- for dev page or template
+
+@import "../../../common/templates/header";
+@import "../../../common/templates/footer";
+@import "../../../common/templates/sidebar";
+@import "../../../common/templates/sub-main";
+
+.dev-main {
+  background: linear-gradient(to right, #eef2f3, #8e9eab);
+}
