@@ -61,6 +61,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false,
+      maxAge: new Date(Date.now() + 1800000), 
     },
   })
 ); /*
