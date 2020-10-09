@@ -1,9 +1,9 @@
 /* default */
-@import "./font_base";
-@import "./mixins";
-@import "./media_mixin";
-@import "./placeholders";
-@import "./variables";
+@import "./default/font_base";
+@import "./default/mixins";
+@import "./default/media_mixin";
+@import "./default/placeholders";
+@import "./default/variables";
 
 /* custom */
 * {
