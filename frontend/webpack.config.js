@@ -62,12 +62,10 @@ const ENTRY = {
     wscrg: path.resolve(__dirname, "src", "_entry", "__dev", "wscrg.js"),
 }
 
+const webpackConfig = {
+  mode: process.env.DEV_MODE || "development",
 
-// output 1: dev_client
-const webpackConfig_frontend = {
-  mode: process.env.DEV_MODE,
-
-  devServer: {
+  devServer: BUNDLE_POINT === "frontend" ? {
     contentBase: FRONT_BUILD_DIR,
     publicPath: "/",
     overlay: true,
@@ -76,7 +74,7 @@ const webpackConfig_frontend = {
     open: true,
     progress: true,
     stats: "errors-only",
-  },
+  } : {},
 
   devtool: "inline-source-map",
   // 콘솔에서 오류 경로를 번들 후 파일이 아닌 번들 전 파일로 명시해줌
@@ -87,10 +85,9 @@ const webpackConfig_frontend = {
 
   output: {
     //  entry 에서 분리한 청크별로 다른 번들파일 출력
-    path: FRONT_BUILD_DIR,
+    path: BUNDLE_POINT === "frontend" ? FRONT_BUILD_DIR : SERVER_BUILD_DIR,
     filename: "es5/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
-    publicPath: "/",
-    // publicPath: "http://localhost:8080/",
+    publicPath: BUNDLE_POINT === "frontend" ? "/" : "./",
   },
 
   module: {
@@ -129,89 +126,17 @@ const webpackConfig_frontend = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
-            },
-          },
+          "file-loader?font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
         ],
       },
     ],
   },
-  plugins: [
+  plugins: BUNDLE_POINT === "frontend" ? [
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
-  ],
-};
-
-// output 2: dev_server
-const webpackConfig_server = {
-  mode: process.env.DEV_MODE || "development",
-
-  devtool: "inline-source-map",
-  // The side effect of this option is to increase build time
-  // mode development ? ‘inline-source-map" : 'hidden-source-map’
-
-  entry: ENTRY,
-
-  output: {
-    //  entry 에서 분리한 청크별로 다른 번들파일 출력
-    path: SERVER_BUILD_DIR,
-    filename: "es5/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
-    publicPath: "./",
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.pug$/,
-        use: ["pug-loader"],
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: ["@babel/preset-env"],
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg|ico)$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 8192, // (file-size > limit) ? use file-loader
-              publicPath: "./",
-              name: "img/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
-            },
-          },
-        ],
-      },
-    ],
-  },
-  plugins: [
+  ]
+  : [
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
@@ -222,8 +147,7 @@ const webpackConfig_server = {
 };
 
 /* -- module.exports -- */
-module.exports =
-  BUNDLE_POINT === "frontend" ? webpackConfig_frontend : webpackConfig_server;
+module.exports = webpackConfig;
 
 const BUNDLE_POINT_LOG = () => {
   BUNDLE_POINT === "frontend"
