@@ -83,7 +83,7 @@
 
 .sub-contents {
   width: 100%;
-  height: fit-content;
+  height: 100vh; // galaxy: fit-content 였는데 문제가 있어서 잠깐 수정했습니다.
 
   &__header {
     width: 100%;
@@ -126,6 +126,7 @@
   &__content {
     display: flex;
     width: 100%;
+    background: rgb(250, 250, 250); // galaxy:  키위색 제거!
     border: 1px solid black;
     margin-top: 30px;
   }
