@@ -19,6 +19,10 @@ import test from './routes/test';
 import global from './routes/global';
 import auth from './routes/auth';
 import routes from './routes';
+import commRouter from './routes/category/community';
+import footRouter from './routes/category/footprint';
+import introRouter from './routes/category/intro';
+import mileRouter from './routes/category/milestone';
 
 
 const app = express(); // 서버 객체 생성
@@ -91,8 +95,11 @@ app.use('/', global);
 app.use('/auth', auth);
 app.use('/test', test);
 
-
-
+/* 학과 카테고리 라우터 */
+app.use('/community', commRouter);
+app.use('/footprint', footRouter);
+app.use('/intro', introRouter);
+app.use('/milestone', mileRouter);
 /* 앱 실행  */
 app.listen(app.get('port'), () => {
   console.log('실행중 테스트');
