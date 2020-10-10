@@ -66,12 +66,6 @@
     min-width: 420px;
 
     &__close-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      width: 1rem;
-      cursor: pointer;
-
       @mixin login__close-btn--mobile {
         top: 0.6rem;
         right: 0.6rem;
@@ -94,6 +88,19 @@
       }
       @include for-size(mobile-fold-landscape) {
         @include login__close-btn--mobile;
+      }
+
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 1rem;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        path {
+          stroke-width: 60; // defalut: 40
+        }
       }
     }
 
