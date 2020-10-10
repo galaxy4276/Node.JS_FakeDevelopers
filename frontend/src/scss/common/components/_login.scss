@@ -31,27 +31,27 @@
       padding: 36px;
     }
     @include for-size(tablet-portrait) {
-      @include login-mibile;
+      @include login__form--mobile;
       padding: 100px;
     }
     @include for-size(tablet-landscape) {
-      @include login-mibile;
+      @include login__form--mobile;
       padding: 0 100px;
     }
     @include for-size(mobile-landscape) {
-      @include login-mibile;
+      @include login__form--mobile;
       padding: 40px;
     }
     @include for-size(mobile-portrait) {
-      @include login-mibile;
+      @include login__form--mobile;
       padding: 40px;
     }
     @include for-size(mobile-fold-portrait) {
-      @include login-mibile;
+      @include login__form--mobile;
       padding: 10px;
     }
     @include for-size(mobile-fold-landscape) {
-      @include login-mibile;
+      @include login__form--mobile;
       padding: 20px 60px 0 60px;
 
       &__input-box {
@@ -75,6 +75,34 @@
 
     &__close-btn {
       position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 1rem;
+      cursor: pointer;
+
+      @mixin login__close-btn--mobile {
+        top: 0.6rem;
+        right: 0.6rem;
+        width: 1.4rem;
+      }
+      @include for-size(tablet-portrait) {
+        @include login__close-btn--mobile;
+      }
+      @include for-size(tablet-landscape) {
+        @include login__close-btn--mobile;
+      }
+      @include for-size(mobile-landscape) {
+        @include login__close-btn--mobile;
+      }
+      @include for-size(mobile-portrait) {
+        @include login__close-btn--mobile;
+      }
+      @include for-size(mobile-fold-portrait) {
+        @include login__close-btn--mobile;
+      }
+      @include for-size(mobile-fold-landscape) {
+        @include login__close-btn--mobile;
+      }
     }
 
     &__title {
