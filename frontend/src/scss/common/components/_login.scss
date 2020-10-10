@@ -8,16 +8,10 @@
   }
 
   &__form {
-    @mixin login-mibile {
+    @mixin login__form--mobile {
       @include full;
       min-width: 279px; // galaxy fold width
       border-radius: initial;
-
-      &__close-btn {
-        top: 0.2rem;
-        right: 0.2rem;
-        width: 1.2rem;
-      }
     }
 
     @include position(absolute, 50%, 50%);
