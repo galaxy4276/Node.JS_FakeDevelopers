@@ -1,103 +1,100 @@
-/* --'.login__input-label' 클래스에 will-change 적용 -- */
+/* --'.login__form__input-label' 에 will-change 적용 -- */
 
 .login {
-  @include position(absolute, 0, 0);
-  @include full;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.login__wrapper {
-  @mixin login-mibile {
+  &__overlay {
+    @include position(absolute, 0, 0);
     @include full;
-    border-radius: initial;
-
-    .login__close-btn {
-      font-size: 1.8rem;
-    }
+    background-color: rgba(0, 0, 0, 0.2);
   }
 
-  @include position(absolute, 50%, 50%);
+  &__form {
+    @mixin login-mibile {
+      @include full;
+      min-width: 279px; // galaxy fold width
+      border-radius: initial;
 
-  @include for-size(desktop) {
-    width: 380px;
-    padding: 38px;
-  }
-  @include for-size(laptop) {
-    width: 360px;
-    padding: 36px;
-  }
-  @include for-size(tablet-portrait) {
-    @include login-mibile;
-    padding: 100px;
-  }
-  @include for-size(tablet-landscape) {
-    @include login-mibile;
-    padding: 0 100px;
-  }
-  @include for-size(mobile-landscape) {
-    @include login-mibile;
-    padding: 40px;
-  }
-  @include for-size(mobile-portrait) {
-    @include login-mibile;
-    padding: 40px;
-  }
-  @include for-size(mobile-fold-portrait) {
-    @include login-mibile;
-    padding: 10px;
-  }
-  @include for-size(mobile-fold-landscape) {
-    @include login-mibile;
-    padding: 20px 60px 0 60px;
-
-    .login__input-box {
-      .login__input {
-        padding: 0.05rem 0;
+      &__close-btn {
+        top: 0.2rem;
+        right: 0.2rem;
+        width: 1.2rem;
       }
     }
 
-    .login__title {
-      @include for-size(mobile-fold-landscape) {
+    @include position(absolute, 50%, 50%);
+
+    @include for-size(desktop) {
+      width: 460px;
+      padding: 38px;
+    }
+    @include for-size(laptop) {
+      width: 420px;
+      padding: 36px;
+    }
+    @include for-size(tablet-portrait) {
+      @include login-mibile;
+      padding: 100px;
+    }
+    @include for-size(tablet-landscape) {
+      @include login-mibile;
+      padding: 0 100px;
+    }
+    @include for-size(mobile-landscape) {
+      @include login-mibile;
+      padding: 40px;
+    }
+    @include for-size(mobile-portrait) {
+      @include login-mibile;
+      padding: 40px;
+    }
+    @include for-size(mobile-fold-portrait) {
+      @include login-mibile;
+      padding: 10px;
+    }
+    @include for-size(mobile-fold-landscape) {
+      @include login-mibile;
+      padding: 20px 60px 0 60px;
+
+      &__input-box {
+        .login__form__input {
+          padding: 0.05rem 0;
+        }
+      }
+
+      &__title {
         display: none;
       }
     }
-  }
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: $box-shadow;
-  border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: $box-shadow;
+    border-radius: 1rem;
+    min-width: 420px;
 
-  .login__close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 0.9rem;
-  }
-
-  .login__title {
-    color: $login__font-color--before;
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 2.8rem;
-    transition: 0.5s;
-    pointer-events: none;
-
-    &::before {
+    &__close-btn {
       position: absolute;
     }
-  }
 
-  &:focus-within .login__title {
-    color: $login__font-color--after;
-  } //- TODO: focus-within js로 영구 적용하기
+    &__title {
+      color: $login__font-color--after;
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 4rem;
+      transition: 0.5s;
+      pointer-events: none;
 
-  .login__input-box {
-    position: relative;
+      &::before {
+        position: absolute;
+      }
+    }
 
-    .login__input {
+    &__input-box {
+      position: relative;
+    }
+
+    &__input {
       @include border-bottom($login__font-color--before, 1px);
 
       width: 100%;
@@ -105,23 +102,30 @@
       outline: none;
       background-color: transparent;
       font-size: 1.2rem;
+      line-height: 1.5rem;
       color: $login__font-color--after;
 
-      &:focus ~ .login__input-label,
-      &:valid ~ .login__input-label {
+      &:focus,
+      &:valid {
+        font-size: 1.5rem;
+      }
+
+      &:focus ~ &-label,
+      &:valid ~ &-label {
         top: -1.2rem;
         left: 0;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         opacity: 1;
         color: $main-color--orange;
       }
-      &:valid ~ .login__input-check::before {
+
+      &:valid ~ &-check::before {
         content: "✓";
         color: $login__font-color--before;
       }
     }
 
-    .login__input-label {
+    &__input-label {
       @include position(absolute, 0, 0);
       color: $login__font-color--before;
       opacity: 0.6;
@@ -130,53 +134,55 @@
       will-change: contents;
     }
 
-    .login__input-check {
+    &__input-check {
       position: relative;
 
       &::before {
         position: absolute;
         right: 5px;
+        top: 0.1rem;
       }
     }
-  }
 
-  .login__login-btn {
-    @include btn-retangle;
-    cursor: pointer;
-    background-color: $main-color--orange;
-    transition: 0.1s;
-    filter: opacity(0.7);
-
-    &:hover,
-    &:focus {
-      filter: none;
-    } // TODO: 체크값 검증 후 2개 다 완료시 밝게
-  }
-
-  .login__join-btn {
-    @include btn-retangle;
-    text-align: center;
-    background-color: $main-color--silver;
-  }
-
-  .login__find-password-box {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-
-    .login__find-password {
-      position: relative;
-      right: 0;
-      width: fit-content;
-      color: $main-color--silver;
-      font-size: 0.8rem;
+    &__login-btn {
+      @include btn-retangle;
+      cursor: pointer;
+      margin-top: 1.2rem;
+      background-color: $main-color--orange;
       transition: 0.1s;
-      opacity: 0.7;
+      filter: opacity(0.7);
 
       &:hover,
       &:focus {
-        color: $login__font-color--after;
-        opacity: initial;
+        filter: none;
+      } // TODO: 체크값 검증 후 2개 다 완료시 밝게
+    }
+
+    &__join-btn {
+      @include btn-retangle;
+      text-align: center;
+      background-color: $main-color--silver;
+    }
+
+    &__find-password {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+
+      &-link {
+        position: relative;
+        right: 0;
+        width: fit-content;
+        color: $main-color--silver;
+        font-size: 0.8rem;
+        transition: 0.1s;
+        opacity: 0.7;
+
+        &:hover,
+        &:focus {
+          color: $login__font-color--after;
+          opacity: initial;
+        }
       }
     }
   }
