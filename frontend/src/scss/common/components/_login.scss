@@ -13,55 +13,6 @@
   &__form {
     @include position(absolute, 50%, 50%);
 
-    @mixin login__form--mobile {
-      @include full;
-      min-width: 279px; // galaxy fold width
-      border-radius: initial;
-    }
-
-    @include for-size(desktop) {
-      width: 29rem;
-      padding: 2.3rem;
-    }
-    @include for-size(laptop) {
-      width: 26rem;
-      padding: 2.2rem;
-    }
-    @include for-size(tablet-portrait) {
-      @include login__form--mobile;
-      padding: 100px;
-    }
-    @include for-size(tablet-landscape) {
-      @include login__form--mobile;
-      padding: 0 100px;
-    }
-    @include for-size(mobile-landscape) {
-      @include login__form--mobile;
-      padding: 40px;
-    }
-    @include for-size(mobile-portrait) {
-      @include login__form--mobile;
-      padding: 40px;
-    }
-    @include for-size(mobile-fold-portrait) {
-      @include login__form--mobile;
-      padding: 10px;
-    }
-    @include for-size(mobile-fold-landscape) {
-      @include login__form--mobile;
-      padding: 20px 60px 0 60px;
-
-      &__input-box {
-        .login__form__input {
-          padding: 0.05rem 0;
-        }
-      }
-
-      &__title {
-        display: none;
-      }
-    }
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -121,6 +72,10 @@
       &::before {
         position: absolute;
       }
+
+      @include for-size(mobile-fold-landscape) {
+        display: none;
+      }
     }
 
     &__input-box {
@@ -155,6 +110,10 @@
       &:valid ~ &-check::before {
         content: "✓";
         color: $login__font-color--before;
+      }
+
+      @include for-size(mobile-fold-landscape) {
+        padding: 0.05rem 0;
       }
     }
 
@@ -210,6 +169,46 @@
           opacity: initial;
         }
       }
+    }
+
+    // login__form 클래스에 대한 media query
+    @mixin login__form--mobile {
+      @include full;
+      min-width: 279px; // galaxy fold width
+      border-radius: initial;
+    }
+
+    @include for-size(desktop) {
+      width: 29rem;
+      padding: 2.3rem;
+    }
+    @include for-size(laptop) {
+      width: 26rem;
+      padding: 2.2rem;
+    }
+    @include for-size(tablet-portrait) {
+      @include login__form--mobile;
+      padding: 100px;
+    }
+    @include for-size(tablet-landscape) {
+      @include login__form--mobile;
+      padding: 0 100px;
+    }
+    @include for-size(mobile-landscape) {
+      @include login__form--mobile;
+      padding: 40px;
+    }
+    @include for-size(mobile-portrait) {
+      @include login__form--mobile;
+      padding: 40px;
+    }
+    @include for-size(mobile-fold-portrait) {
+      @include login__form--mobile;
+      padding: 10px;
+    }
+    @include for-size(mobile-fold-landscape) {
+      @include login__form--mobile;
+      padding: 20px 60px 0 60px;
     }
   }
 }
