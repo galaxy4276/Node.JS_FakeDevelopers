@@ -64,6 +64,7 @@
     box-shadow: $box-shadow;
     border-radius: 1rem;
     min-width: 420px;
+    z-index: 10000;
 
     &__close-btn {
       @mixin login__close-btn--mobile {
