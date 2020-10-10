@@ -1,6 +1,11 @@
 /* --'.login__form__input-label' 에 will-change 적용 -- */
-
 .login {
+  display: none;
+
+  &--show {
+    display: initial;
+  }
+
   &__overlay {
     @include overlay;
   }
