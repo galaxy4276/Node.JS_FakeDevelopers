@@ -28,31 +28,31 @@
 
 @mixin for-size($size) {
   @if $size == desktop {
-    @media (min-width: 1281px) {
+    @media (min-width: 1280.01px) {
       @content;
     }
   } @else if $size == laptop {
-    @media (min-width: 1025px) and (max-width: 1280px) {
+    @media (min-width: 1024.01px) and (max-width: 1280px) {
       @content;
     }
   } @else if $size == tablet-portrait {
-    @media (min-width: 768px) and (max-width: 1024px) {
+    @media (min-width: 768.01px) and (max-width: 1024px) {
       @content;
     }
   } @else if $size == tablet-landscape {
-    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    @media (min-width: 768.01px) and (max-width: 1024px) and (orientation: landscape) {
       @content;
     }
   } @else if $size == mobile-landscape {
-    @media (min-width: 481px) and (max-width: 767px) {
+    @media (min-width: 48.01px) and (max-width: 768px) {
       @content;
     }
   } @else if $size == mobile-portrait {
-    @media (min-width: 320px) and (max-width: 480px) {
+    @media (min-width: 320.01px) and (max-width: 480px) {
       @content;
     }
   } @else if $size == mobile-fold-portrait {
-    @media (min-width: 279px) and (max-width: 319px) {
+    @media (min-width: 279px) and (max-width: 320px) {
       @content;
     }
   } @else if $size == mobile-fold-landscape {
