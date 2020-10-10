@@ -76,6 +76,40 @@
   z-index: 9999;
 }
 
+@mixin underline-hover-fill($color) {
+  position: relative;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+
+  &:hover {
+    color: $main-color--white;
+    text-shadow: $text-shadow--black;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: calc(0.5rem + 2rem); // 현재 padding 값 절반 + 글자높이 2배
+    left: 0;
+    width: inherit;
+    height: 0;
+    overflow: hidden;
+    color: $color;
+    background-color: $color;
+    border-bottom: 2px solid $color;
+    transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335); /* easeInCirc */
+  }
+
+  &:hover::before {
+    top: 0.5rem; // 현재 padding 값 절반
+    height: calc(100% - 1rem); // 현재 padding 값 빼기
+    border-radius: 0.15rem;
+    box-shadow: 0.01rem 0.02rem 0.1rem -0.1rem black;
+  }
+}
+
 // for dev
 
 @mixin __dev_template {

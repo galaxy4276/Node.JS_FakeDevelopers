@@ -78,41 +78,53 @@
   }
 
   &-util {
-    width: 160px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 300px;
     height: 100%;
-    @include flex-center;
     position: absolute;
     top: 0;
     right: 0;
 
     &__list {
       display: flex;
-      justify-content: space-around;
       align-items: center;
     }
 
     &__item {
-      margin: 0 10px;
+      margin-right: 1rem;
     }
 
     &__link {
+      border-radius: initial;
+      color: $main-color--black;
+      text-align: center;
+      width: 6rem; // 딱 텍스트 wrap이 안되는 크기
+
+      &--login {
+        @include underline-hover-fill($main-color--orange);
+      }
+
+      &--join {
+        @include underline-hover-fill($main-color--silver);
+      }
+
       @media screen and (max-width: 1024px) {
         display: none;
       }
     }
 
     &__btn {
+      display: none;
       position: absolute;
       right: 30px;
       top: 30.5px;
-    }
-
-    &__btn::before {
-      display: none;
-      font-size: 24px;
       cursor: pointer;
       @media screen and (max-width: 1024px) {
         display: block;
+        width: 1.3rem;
+        height: 1.3rem;
       }
     }
   }
