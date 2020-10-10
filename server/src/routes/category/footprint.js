@@ -1,8 +1,8 @@
 const footprint = require('express').Router();
 
 
-footprint.get('/acquistion', (req, res) => {
-  res.render('import/footprint/acquistion', {});
+footprint.get('/acquisition', (req, res) => {
+  res.render('import/footprint/acquisition', {});
 });
 
 footprint.get('/awards', (req, res) => {
