@@ -65,6 +65,7 @@
   }
 }
 
+//TODO: 오버레이 위의 컨텐츠가 중앙을 유지하면서 스크롤 따라다니도록 수정
 @mixin overlay {
   position: absolute;
   top: 0;
