@@ -2,9 +2,7 @@
 
 .login {
   &__overlay {
-    @include position(absolute, 0, 0);
-    @include full;
-    background-color: rgba(0, 0, 0, 0.2);
+    @include overlay;
   }
 
   &__form {
