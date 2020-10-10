@@ -6,21 +6,21 @@
   }
 
   &__form {
+    @include position(absolute, 50%, 50%);
+
     @mixin login__form--mobile {
       @include full;
       min-width: 279px; // galaxy fold width
       border-radius: initial;
     }
 
-    @include position(absolute, 50%, 50%);
-
     @include for-size(desktop) {
-      width: 460px;
-      padding: 38px;
+      width: 29rem;
+      padding: 2.3rem;
     }
     @include for-size(laptop) {
-      width: 420px;
-      padding: 36px;
+      width: 26rem;
+      padding: 2.2rem;
     }
     @include for-size(tablet-portrait) {
       @include login__form--mobile;
