@@ -137,16 +137,19 @@
     }
 
     &__login-btn {
-      @include btn-retangle;
+      @include btn-retangle(1rem 0, true, true);
       cursor: pointer;
-      margin-top: 1.2rem;
+      margin: 1.2rem 0 1rem 0;
       background-color: $main-color--orange;
+      color: #fff;
     }
 
     &__join-btn {
-      @include btn-retangle;
+      @include btn-retangle(1rem 0, true, true);
       text-align: center;
       background-color: $main-color--silver;
+      margin-bottom: 1rem;
+      color: #fff;
     }
 
     &__find-password {
