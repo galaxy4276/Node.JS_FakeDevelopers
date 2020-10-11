@@ -93,9 +93,9 @@ export const postLogin = passport.authenticate('local', {
 });
 
 export const login = (___, res) => {
-  res.render('components/_login', {});
+  res.render('auth/_login', {});
 };
 
 export const join = (___, res) => {
-  res.render('components/_join', {});
+  res.render('auth/_join', {});
 };

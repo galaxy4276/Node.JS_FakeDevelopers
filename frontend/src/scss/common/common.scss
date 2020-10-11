@@ -12,6 +12,7 @@
 @import "./templates/footer";
 @import "./templates/sidebar";
 
-/* common components */
-@import "./components/login";
-@import "./components/join";
+/* common auth */
+@import "./auth/login";
+@import "./auth/join";
+@import "./auth/find";
