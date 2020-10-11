@@ -10,15 +10,15 @@ const loginOpenBtns = document.querySelectorAll(".js-loginBtn"); // 로그인 �
 const loginCloseBtn = document.querySelector(".login__form__close-btn"); // 로그인 닫기 버튼
 const loginWindow = document.querySelector(".login");
 
-const findOpenBtn = document.querySelector(".js-findBtn"); // find pw 열기 버튼
-const findCloseBtn = document.querySelector(".find__form__close-btn"); // find pw 닫기 버튼
-const findWindow = document.querySelector(".find");
+// const findOpenBtn = document.querySelector(".js-findBtn"); // find pw 열기 버튼
+// const findCloseBtn = document.querySelector(".find__form__close-btn"); // find pw 닫기 버튼
+// const findWindow = document.querySelector(".find");
 
 
-function toggleFindWindow(){
-    loginWindow.classList.remove("login--show");
-    findWindow.classList.toggle("find--show");
-}
+// function toggleFindWindow(){
+//     loginWindow.classList.remove("login--show");
+//     findWindow.classList.toggle("find--show");
+// }
 
 function toggleLoginWindow(){
     loginWindow.classList.toggle("login--show");
@@ -30,8 +30,8 @@ function authToggleEventHandle() {
     });
     loginCloseBtn.addEventListener("click", toggleLoginWindow);
 
-    findOpenBtn.addEventListener("click", toggleFindWindow);
-    findCloseBtn.addEventListener("click", toggleFindWindow);
+    // findOpenBtn.addEventListener("click", toggleFindWindow);
+    // findCloseBtn.addEventListener("click", toggleFindWindow);
 }
 
 authToggleEventHandle();

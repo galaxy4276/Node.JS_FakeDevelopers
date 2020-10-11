@@ -1,10 +1,4 @@
 .find {
-  display: none;
-
-  &--show {
-    display: initial;
-  }
-
   &__overlay {
     @include overlay;
   }
@@ -12,23 +6,6 @@
   &__form {
     @include auth-form;
     min-width: 420px;
-
-    // !!!!!!!!!!!!!!!!!!!!!!!!! 이 코드에서 임시로 display:none 하고 있습니다 !!!!!!!!!!
-    &__fieldset {
-      &--send-email {
-        display: initial;
-        // display: none;
-      }
-      &--check-hash {
-        // display: initial;
-        display: none;
-      }
-      &--reset-password {
-        // display: initial;
-        display: none;
-      }
-    }
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     &__return-btn {
       position: absolute;

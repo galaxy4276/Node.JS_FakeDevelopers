@@ -34,6 +34,11 @@ const ENTRY = {
     // index
     index: path.resolve(__dirname, "src", "_entry", "index.js"),
 
+    // auth
+    hashCheck: path.resolve(__dirname, "src", "_entry", "auth", "hashCheck.js"),
+    resetPassword: path.resolve(__dirname, "src", "_entry", "auth", "resetPassword.js"),
+    sendEmail: path.resolve(__dirname, "src", "_entry", "auth", "sendEmail.js"),
+
     // community/
     board: path.resolve(__dirname, "src", "_entry", "community", "board.js"),
     donation: path.resolve(__dirname, "src", "_entry", "community", "donation.js"),
