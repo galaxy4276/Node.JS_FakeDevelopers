@@ -1,12 +1,34 @@
-head
-  link(rel="stylesheet" href="/css/index.css")
-body
-.find-form__wrap 
-  .find-title 
-    .ddc-logo__one
-    .ddc-logo__two
-    span 비밀번호 찾기
-  form.find-content
-    label(for="email") 이메일
-    input(name="email" placeholder="이메일을 입력하세요.")
-    input(type="submit" value="확인")
+article.find
+    |
+    |
+    .find__overlay
+    |
+    |
+    form(action="/auth/find" method="post" autocomplete="off").find__form
+        |
+        |
+        .find__form__close-btn
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='105 105 300 300'><title>닫기</title><path fill='none' stroke='#f5f5f5' stroke-linecap='round' stroke-linejoin='round' stroke-width='40' d='M368 368L144 144M368 144L144 368'/></svg>
+        .find__form__title 비밀번호 찾기
+        |
+        |
+        fieldset.find__form__send-email
+            .find__form__input-box
+                input(type="email" name="email" minlength="1" maxlength="30" required).find__form__input
+                label.find__form__input-label 가입 시 사용했던 이메일을 입력해주세요
+            input.find__form__btn.find__form__btn--send-email(type="submit" value="다음")
+        //- fieldset.find__form__check-hash
+        //-     .find__form__input-box
+        //-         input(type="text" name="hash" minlength="1" required).find__form__input
+        //-         label.find__form__input-label 입력하신 이메일로 보내드린 값을 입력해주세요
+        //-     input.find__form__btn.find__form__btn--hash(type="submit" value="확인")
+        //-     div.find__form__return 이메일 다시 입력하기
+        //- fieldset.find__form__reset-password
+        //-     .find__form__input-box
+        //-         input(type="password" name="reset" minlength="1" maxlength="20" required).find__form__input
+        //-         label.find__form__input-label 재설정할 비밀번호를 입력해주세요.
+        //-         //- TODO: 아래 패스워드 체크에 입력한 값이 위에 입력했던 패스워드와 동일한지 검증
+        //-     .find__form__input-box
+        //-         input(type="password" name="reset" minlength="1" maxlength="20" required).find__form__input
+        //-         label.find__form__input-label 비밀번호 확인
+        //-     input.find__form__btn.find__form__btn--reset(type="submit" value="확인")
