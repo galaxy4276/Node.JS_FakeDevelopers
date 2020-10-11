@@ -1,12 +1,11 @@
 doctype html
-html(lang="en")
+html(lang="ko")
     head
         meta(charset='UTF-8')
         meta(name='viewport' content='width=device-width, initial-scale=1.0')
         title hashCheck
         link(rel="stylesheet" href="/css/common.css")
         link(rel="stylesheet" href="/css/hashCheck.css")
-        script(defer src="/es5/common.js")
         script(src="/es5/hashCheck.js")
     body 
         article.find
@@ -21,7 +20,7 @@ html(lang="en")
                 //- TODO: 뒤로가기버튼(로그인 창으로 돌아가기) 추가하기
                 .find__form__close-btn
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='105 105 300 300'><title>닫기</title><path fill='none' stroke='#f5f5f5' stroke-linecap='round' stroke-linejoin='round' stroke-width='40' d='M368 368L144 144M368 144L144 368'/></svg>
-                .find__form__title 비밀번호 찾기
+                .find__form__title 비밀번호 변경
                 |
                 |
                 fieldset.find__form__fieldset.find__form__fieldset--check-hash
@@ -34,4 +33,4 @@ html(lang="en")
                     .find__form__input-box
                         input(type="text" name="emailHash" minlength="1" required).find__form__input
                         label.find__form__input-label 입력하신 이메일로 발송된 값을 입력해주세요
-                    submit(type="submit" value="확인").find__form__btn.find__form__btn--hash
+                    button(type="submit").find__form__btn.find__form__btn--hash 확인
