@@ -38,7 +38,7 @@
       grid-template: "box1 box2 box3" 1fr;
       border-bottom: 3px solid black;
 
-      @media screen and (max-width: 1315px) {
+      @media screen and (max-width: 1335px) {
         grid-template:
           "box1 box1" 1fr
           "box2 box3" 1fr;
@@ -137,5 +137,42 @@
     grid-template:
       "box1" 1fr
       "box2" 1fr;
+  }
+}
+
+// 임시 
+.forgot-form__wrap {
+  border: 1px solid #c4c4c4;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  width: 500px;
+  height: 300px;
+
+  .ddc-logo__one {
+    width: 60px;
+    height: 40px;
+    background-color: #f15a22;
+    border-radius: 0 35px 35px 0 / 0 35px 35px 0
+  }
+  .ddc-logo__two {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: #58595b;
+    border-radius: 0 0 35px 35px / 0 0 35px 35px;
+  }
+
+  .forgot-title {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    width: 100%;
+    background: white;
+    box-shadow:  0px 8px 6px -6px #CCC;
+    
   }
 }
