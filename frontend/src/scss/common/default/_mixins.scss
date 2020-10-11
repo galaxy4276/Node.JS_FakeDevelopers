@@ -18,6 +18,10 @@
   left: $left;
   @if $top == 50% and $left == 50% {
     transform: translate(-50%, -50%);
+  } @else if $left == 50% {
+    transform: translate(0, -50%);
+  } @else if $top == 50% {
+    transform: translate(-50%, 0);
   }
 }
 
@@ -110,6 +114,19 @@
   }
 }
 
+@mixin auth-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: $box-shadow;
+  border-radius: 1rem;
+  z-index: 10000;
+}
 // for dev
 
 @mixin __dev_template {

@@ -62,6 +62,78 @@
   }
 }
 
+// auth/ 컴포넌트들의 닫기 버튼 관련 media query
+@mixin auth__close-btn--mobile--all {
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 1.4rem;
+}
+
+@mixin auth__close-btn--mobile {
+  @include for-size(tablet-portrait) {
+    @include auth__close-btn--mobile--all;
+  }
+  @include for-size(tablet-landscape) {
+    @include auth__close-btn--mobile--all;
+  }
+  @include for-size(mobile-landscape) {
+    @include auth__close-btn--mobile--all;
+  }
+  @include for-size(mobile-portrait) {
+    @include auth__close-btn--mobile--all;
+  }
+  @include for-size(mobile-fold-portrait) {
+    @include auth__close-btn--mobile--all;
+  }
+  @include for-size(mobile-fold-landscape) {
+    @include auth__close-btn--mobile--all;
+  }
+}
+
+// auth/ 컴포넌트들의 너비 높이 관련 media query
+@mixin auth__form--mobile--all {
+  @include full;
+  min-width: 279px; // galaxy fold width
+  border-radius: initial;
+}
+
+@mixin auth__form--mobile {
+  @include for-size(desktop) {
+    width: 29rem;
+    padding: 2.3rem;
+    min-height: 25rem;
+  }
+  @include for-size(laptop) {
+    width: 26rem;
+    padding: 2.2rem;
+    min-height: 25rem;
+  }
+  @include for-size(tablet-portrait) {
+    @include auth__form--mobile--all;
+    padding: 100px;
+  }
+  @include for-size(tablet-landscape) {
+    @include auth__form--mobile--all;
+    padding: 0 100px;
+  }
+  @include for-size(mobile-landscape) {
+    @include auth__form--mobile--all;
+    padding: 40px;
+  }
+  @include for-size(mobile-portrait) {
+    @include auth__form--mobile--all;
+    padding: 40px;
+  }
+  @include for-size(mobile-fold-portrait) {
+    @include auth__form--mobile--all;
+    padding: 10px;
+  }
+  @include for-size(mobile-fold-landscape) {
+    @include auth__form--mobile--all;
+    padding: 20px 60px 0 60px;
+  }
+}
+
 // *********
 //  ##Device = Desktops
 //  ##Screen = 1281px to higher resolution desktops
