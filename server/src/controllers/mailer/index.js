@@ -1,9 +1,11 @@
 import nodemailer from 'nodemailer';
 import url from 'url';
+import sequelize from '../../models';
+const { User } = sequelize;
 require('dotenv').config();
 
 
-const transEmail = async (req, res) => {
+const transEmail = async (req, res, next) => {
   const { email } = req.body;
 
   try {
@@ -20,17 +22,18 @@ const transEmail = async (req, res) => {
         rejectUnauthorized: false,
       }
     });
-  
+
+    const user = await User.findOne({ where: { email }});
+
     const info = {
       from: `"DDCComputer" ${process.env.EMAIL_USER}`,
       to: email,
-      subject: '광화문 집회...문재인 정부 이대로 가면',
+      subject: '[컴퓨터정보학과] 비밀번호 변경 안내사항입니다.',
       html: `
-      <img src="https://image.fmkorea.com/files/attach/new/20200616/486616/1656451610/2949357783/00c58fbff364944d81103e4aed32dbde.jpeg" />
-      <h1>
-        라이더!
-      </h1>`,
+        수신 코드: ${user.hash}
+      `
     };
+  
 
     await transporter.sendMail(info, (err, res) => {
       console.log('res');
@@ -42,14 +45,15 @@ const transEmail = async (req, res) => {
         console.log('success');
       }
       transporter.close();
-    });
+    }); 
     
-    res.redirect(url.format({
-      pathname: '/',
-      query: {
-        "success": "email_passed"
-      },
-    }));
+    next();
+    // res.redirect(url.format({
+    //   pathname: '/',
+    //   query: {
+    //     "success": "email_passed"
+    //   },
+    // }));
     } catch (err) {
     console.log('nodemailer error');
     console.error(err);

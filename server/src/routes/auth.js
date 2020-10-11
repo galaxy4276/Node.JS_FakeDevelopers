@@ -1,4 +1,5 @@
-import { join, login, postLogin, postJoin } from '../controllers/auth';
+import { join, login, postLogin, postJoin, forgotHash } from '../controllers/auth';
+import sendMail from '../controllers/mailer';
 
 
 const auth = require('express').Router();
@@ -12,7 +13,11 @@ auth.post('/join', postJoin);
 auth.get('/find', (req, res) => {
   res.render('import/find', {});
 });
-auth.post('/forgot', (req, res) => {
+auth.get('/forgot', (req, res) => {
+  res.render('import/forgot', {});
+});
+
+auth.post('/forgot', forgotHash, sendMail, (req, res) => {
   res.render('import/forgot2', {});
 });
 

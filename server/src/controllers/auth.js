@@ -3,6 +3,7 @@ import url from 'url';
 import passport from 'passport';
 import bcrypt from 'bcrypt';
 import isEmail from 'validator/lib/isEmail';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const { User } = sequelize;
@@ -99,3 +100,18 @@ export const login = (___, res) => {
 export const join = (___, res) => {
   res.render('auth/_join', {});
 };
+
+export const forgotHash = async (req, res, next) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ where: { email }});
+    console.log(user);
+    if (user) {
+      const uuid = uuidv4();
+      await User.update({ hash: uuid }, { where: { email }});
+    }
+  } catch (err) {
+    console.error(err);
+    next(err);
+  } 
+}
