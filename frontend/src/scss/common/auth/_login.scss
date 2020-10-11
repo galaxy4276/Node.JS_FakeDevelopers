@@ -28,7 +28,7 @@
         }
       }
 
-      @include auth__close-btn--mobile;
+      @include top-right-btn--mobile;
     }
 
     &__title {
@@ -122,6 +122,7 @@
       display: flex;
       justify-content: flex-end;
       width: 100%;
+      cursor: pointer;
 
       &-link {
         position: relative;

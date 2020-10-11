@@ -62,31 +62,59 @@
   }
 }
 
-// auth/ 컴포넌트들의 닫기 버튼 관련 media query
-@mixin auth__close-btn--mobile--all {
+// 컴포넌트들의 버튼 관련 media query
+
+@mixin top-left-btn--mobile-all {
+  top: 0.6rem;
+  left: 0.6rem;
+  width: 1.4rem;
+}
+
+@mixin top-left-btn--mobile {
+  @include for-size(tablet-portrait) {
+    @include top-left-btn--mobile-all;
+  }
+  @include for-size(tablet-landscape) {
+    @include top-left-btn--mobile-all;
+  }
+  @include for-size(mobile-landscape) {
+    @include top-left-btn--mobile-all;
+  }
+  @include for-size(mobile-portrait) {
+    @include top-left-btn--mobile-all;
+  }
+  @include for-size(mobile-fold-portrait) {
+    @include top-left-btn--mobile-all;
+  }
+  @include for-size(mobile-fold-landscape) {
+    @include top-left-btn--mobile-all;
+  }
+}
+
+@mixin top-right-btn--mobile--all {
   top: 0.6rem;
   right: 0.6rem;
   width: 1.4rem;
 }
 
-@mixin auth__close-btn--mobile {
+@mixin top-right-btn--mobile {
   @include for-size(tablet-portrait) {
-    @include auth__close-btn--mobile--all;
+    @include top-right-btn--mobile--all;
   }
   @include for-size(tablet-landscape) {
-    @include auth__close-btn--mobile--all;
+    @include top-right-btn--mobile--all;
   }
   @include for-size(mobile-landscape) {
-    @include auth__close-btn--mobile--all;
+    @include top-right-btn--mobile--all;
   }
   @include for-size(mobile-portrait) {
-    @include auth__close-btn--mobile--all;
+    @include top-right-btn--mobile--all;
   }
   @include for-size(mobile-fold-portrait) {
-    @include auth__close-btn--mobile--all;
+    @include top-right-btn--mobile--all;
   }
   @include for-size(mobile-fold-landscape) {
-    @include auth__close-btn--mobile--all;
+    @include top-right-btn--mobile--all;
   }
 }
 

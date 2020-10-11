@@ -127,6 +127,18 @@
   border-radius: 1rem;
   z-index: 10000;
 }
+
+@mixin svg-btn($width) {
+  width: $width;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    path {
+      stroke-width: 60; // defalut: 40
+    }
+  }
+}
 // for dev
 
 @mixin __dev_template {
