@@ -1,0 +1,94 @@
+.find {
+  &__overlay {
+    @include overlay;
+  }
+
+  &__form {
+    @include auth-form;
+    min-width: 420px;
+
+    &__return-btn {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      @include svg-btn(1rem);
+      @include top-left-btn--mobile;
+    }
+
+    &__close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      @include svg-btn(1rem);
+      @include top-right-btn--mobile;
+    }
+
+    &__title {
+      position: relative; // 참고 - 로그인 폼은 포지션 없음
+      top: -2rem;
+      color: $auth__font-color--after;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 4rem;
+      transition: 0.5s;
+      pointer-events: none;
+
+      @include for-size(mobile-fold-landscape) {
+        display: none;
+      }
+    }
+
+    &__input-box {
+      position: relative;
+    }
+
+    &__input {
+      @include border-bottom($auth__font-color--before, 1px);
+
+      width: 100%;
+      margin-bottom: 2.6rem;
+      outline: none;
+      background-color: transparent;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      color: $auth__font-color--after;
+      overflow-wrap: normal;
+
+      &-label {
+        @include position(absolute, 0, 0);
+        color: $auth__font-color--before;
+        opacity: 0.6;
+        pointer-events: none;
+        transition: all 700ms cubic-bezier(0.23, 1, 0.32, 1); /* easeOutQuint */
+        will-change: contents;
+      }
+
+      @include for-size(mobile-fold-landscape) {
+        padding: 0.05rem 0;
+      }
+    }
+
+    &__btn {
+      @include btn-retangle(1rem 0, true, true);
+      position: relative;
+      top: 1rem;
+      width: 100%;
+      color: #fff;
+      cursor: pointer;
+
+      &--send-email {
+        background-color: $main-color--silver;
+      }
+
+      &--hash {
+        background-color: $main-color--orange;
+      }
+
+      &--reset {
+        background-color: $main-color--orange;
+      }
+    }
+
+    @include auth__form--mobile;
+  }
+}

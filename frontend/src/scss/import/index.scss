@@ -38,7 +38,7 @@
       grid-template: "box1 box2 box3" 1fr;
       border-bottom: 3px solid black;
 
-      @media screen and (max-width: 1315px) {
+      @media screen and (max-width: 1335px) {
         grid-template:
           "box1 box1" 1fr
           "box2 box3" 1fr;
