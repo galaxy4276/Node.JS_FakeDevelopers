@@ -45,6 +45,10 @@ app.get("/test/galaxy", function (req, res) {
   res.render("__dev/galaxy");
 });
 
+app.get("/auth/sendEmail", function (req, res) {
+  res.render("auth/sendEmail");
+});
+
 app.listen(port, () => {
   console.log(`App is Listening at http://localhost:${port}`);
 });
