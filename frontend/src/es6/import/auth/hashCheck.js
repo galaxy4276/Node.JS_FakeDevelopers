@@ -30,21 +30,3 @@ function findFormInputEventHandle(){
 }
 
 findFormInputEventHandle();
-
-
-
-// const findForm = document.forms['findPassword'];
-//     findForm.addEventListener('submit', (event) => {
-//     event.preventDefault();
-//     console.log(this); // this === findForm
-// });
-
-// function btn_click(str){                             
-//     if(str=="update"){                                 
-//         frm1.action="/manage/update";      
-//     } else if(str=="delete"){      
-//         frm1.action="/manage/delete";      
-//     }  else {
-//         //...
-//     }
-// }
