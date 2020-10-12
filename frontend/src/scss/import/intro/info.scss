@@ -1,0 +1,44 @@
+/* 학과소개 프로토타입 */
+
+.sub-contents {
+  width: 100%;
+  height: fit-content;
+
+  &__background {
+    width: 100%;
+    height: 15.625rem;
+    background-color: pink;
+    padding: 3.125rem;
+    font-size: 1.4375rem;
+    color: #fff;
+    margin-top: 1.875rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__box {
+    margin-bottom: 0.9375px;
+    padding: 2.815rem;
+    border: 1px solid purple;
+  }
+
+  &__box:last-child {
+    margin: 0;
+  }
+
+  &__box-title {
+    text-align: center;
+  }
+
+  &__box-txt {
+    margin-top: 1.875rem;
+    background-color: #dcdcdc;
+  }
+
+  &__box-txt:first-child {
+    margin-top: 0;
+  }
+}
