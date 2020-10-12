@@ -67,10 +67,8 @@
       margin-top: 80px;
       margin-bottom: 100px;
       background-color: peru;
-      display: grid;
+      display: flex;
       width: 100%;
-      grid-template: "box1 box2" 1fr;
-      justify-content: space-around;
       border-top: 3px solid black;
       border-bottom: 3px solid black;
 
@@ -80,6 +78,7 @@
 
       .index-main__second-box {
         padding: 40px 220px 40px 45px;
+        width: 100%;
       }
 
       .index-main__second__cell-wrap {
@@ -132,10 +131,8 @@
   }
 }
 
-@media screen and (max-width: 1020px) {
-  .index-main .index-main__content .index-main__second {
-    grid-template:
-      "box1" 1fr
-      "box2" 1fr;
+@media screen and (max-width: 1024px) {
+  .index-main__second {
+    flex-direction: column;
   }
 }
