@@ -1,5 +1,5 @@
 // ***********************************************************************************
-// 이 파일에서 제시하는 디바이스별 mixin으로 각 태그 안에 미디어 쿼리를 제작해주세요.
+// 아래 @mixin for-size 에서 제시하는 디바이스별 mixin으로 각 태그 안에 미디어 쿼리를 제작해주세요.
 //
 // ** example **
 //
@@ -61,6 +61,68 @@
     }
   }
 }
+
+// *********
+//  ##Device = Desktops
+//  ##Screen = 1281px to higher resolution desktops
+// *********
+// @media (min-width: 1281px) {
+//   //CSS
+// }
+
+// *********
+//  ##Device = Laptops, Desktops
+//  ##Screen = B/w 1025px to 1280px
+// *********
+// @media (min-width: 1025px) and (max-width: 1280px) {
+//   //CSS
+// }
+
+// *********
+//  ##Device = Tablets, Ipads (portrait)
+//  ##Screen = B/w 768px to 1024px
+// *********
+// @media (min-width: 768px) and (max-width: 1024px) {
+//   //CSS
+// }
+
+// *********
+//  ##Device = Tablets, Ipads (landscape)
+//  ##Screen = B/w 768px to 1024px
+// *********
+// @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+//   //CSS
+// }
+
+// *********
+//  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+//  ##Screen = B/w 481px to 767px
+// *********
+// @media (min-width: 481px) and (max-width: 767px) {
+//   //CSS
+// }
+
+// *********
+//  ##Device = Most of the Smartphones Mobiles (Portrait)
+//  ##Screen = B/w 320px to 479px
+// *********
+// @media (min-width: 320px) and (max-width: 480px) {
+//   //CSS
+// }
+
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
 
 // 컴포넌트들의 버튼 관련 media query
 
@@ -161,51 +223,3 @@
     padding: 20px 60px 0 60px;
   }
 }
-
-// *********
-//  ##Device = Desktops
-//  ##Screen = 1281px to higher resolution desktops
-// *********
-// @media (min-width: 1281px) {
-//   //CSS
-// }
-
-// *********
-//  ##Device = Laptops, Desktops
-//  ##Screen = B/w 1025px to 1280px
-// *********
-// @media (min-width: 1025px) and (max-width: 1280px) {
-//   //CSS
-// }
-
-// *********
-//  ##Device = Tablets, Ipads (portrait)
-//  ##Screen = B/w 768px to 1024px
-// *********
-// @media (min-width: 768px) and (max-width: 1024px) {
-//   //CSS
-// }
-
-// *********
-//  ##Device = Tablets, Ipads (landscape)
-//  ##Screen = B/w 768px to 1024px
-// *********
-// @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-//   //CSS
-// }
-
-// *********
-//  ##Device = Low Resolution Tablets, Mobiles (Landscape)
-//  ##Screen = B/w 481px to 767px
-// *********
-// @media (min-width: 481px) and (max-width: 767px) {
-//   //CSS
-// }
-
-// *********
-//  ##Device = Most of the Smartphones Mobiles (Portrait)
-//  ##Screen = B/w 320px to 479px
-// *********
-// @media (min-width: 320px) and (max-width: 480px) {
-//   //CSS
-// }

@@ -122,8 +122,9 @@ const webpackConfig = {
             loader: "url-loader",
             options: {
               limit: 8192, // (file-size > limit) ? use file-loader
-              publicPath: "./",
+              publicPath: "../",
               name: "img/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+              // useRelativePaths: true,
             },
           },
         ],
