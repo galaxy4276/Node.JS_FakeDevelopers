@@ -6,9 +6,10 @@ mixin card(title, info, content)
   // content = 취득 내용 후기 등..
   .card__wrap
     .card-body
-      a.card-title
-        span.card-content__title= title
-        img(src="#" alt="certification")
+      a.card-title(href="#")
+        //span.card-content__title= title
+        .card-title__img
+        //- !! Comment bear - 이미지는 웹팩 css 로더에 의해 file-loader에 연결되어 빌드되므로 css에서 지정해주어야 합니다.
       .card-content
         p.card-content__info= info
         p.card-content__text= content
@@ -58,6 +59,10 @@ block content
           - let count = 0;
           .sub-contents__content
             .student-board__wrap
-              while count < 18
-                    +card("리눅스마스터 2급", "201911064최은기", "와! 타이어보다 쉽다!")
-                    - count++;
+              .student-board__title
+                span 자격증 취득
+                button.write-btn 글쓰기
+              while count < 14
+                +card("리눅스마스터 2급", "201911064최은기", "와! 타이어보다 쉽다!")
+                - count++;
+              .ap-blank
