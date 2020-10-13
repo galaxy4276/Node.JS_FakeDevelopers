@@ -67,10 +67,8 @@
       margin-top: 80px;
       margin-bottom: 100px;
       background-color: peru;
-      display: grid;
+      display: flex;
       width: 100%;
-      grid-template: "box1 box2" 1fr;
-      justify-content: space-around;
       border-top: 3px solid black;
       border-bottom: 3px solid black;
 
@@ -80,6 +78,7 @@
 
       .index-main__second-box {
         padding: 40px 220px 40px 45px;
+        width: 100%;
       }
 
       .index-main__second__cell-wrap {
@@ -94,49 +93,12 @@
         grid-area: box2;
       }
     }
-
-    .index-main__third {
-      width: 100%;
-      height: 429px;
-      display: flex;
-      position: relative;
-      .index-main__third-wrap {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding: 0 45px;
-      }
-
-      .index-main__quick-menu {
-        .index-main__menu {
-          display: flex;
-          width: 100%;
-          justify-content: space-between;
-          align-items: center;
-          .index-main__menu__list {
-            margin-top: 20px;
-            display: grid;
-            grid-template:
-              "box1 box2 box3 box4" 1fr
-              "box5 box6 box7 box8 " 1fr;
-
-            @for $i from 1 through 8 {
-              .index-main__menu__list li:nth-child(#{$i}) {
-                border: 1px solid black;
-              }
-            }
-          }
-        }
-      }
-    }
   }
 }
 
-@media screen and (max-width: 1020px) {
-  .index-main .index-main__content .index-main__second {
-    grid-template:
-      "box1" 1fr
-      "box2" 1fr;
+@media screen and (max-width: 1024px) {
+  .index-main__second {
+    flex-direction: column;
   }
 }
 
