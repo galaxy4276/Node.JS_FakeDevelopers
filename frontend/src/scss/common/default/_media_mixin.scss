@@ -1,5 +1,5 @@
 // ***********************************************************************************
-// 이 파일에서 제시하는 디바이스별 mixin으로 각 태그 안에 미디어 쿼리를 제작해주세요.
+// 아래 @mixin for-size 에서 제시하는 디바이스별 mixin으로 각 태그 안에 미디어 쿼리를 제작해주세요.
 //
 // ** example **
 //
@@ -62,106 +62,6 @@
   }
 }
 
-// 컴포넌트들의 버튼 관련 media query
-
-@mixin top-left-btn--mobile-all {
-  top: 0.6rem;
-  left: 0.6rem;
-  width: 1.4rem;
-}
-
-@mixin top-left-btn--mobile {
-  @include for-size(tablet-portrait) {
-    @include top-left-btn--mobile-all;
-  }
-  @include for-size(tablet-landscape) {
-    @include top-left-btn--mobile-all;
-  }
-  @include for-size(mobile-landscape) {
-    @include top-left-btn--mobile-all;
-  }
-  @include for-size(mobile-portrait) {
-    @include top-left-btn--mobile-all;
-  }
-  @include for-size(mobile-fold-portrait) {
-    @include top-left-btn--mobile-all;
-  }
-  @include for-size(mobile-fold-landscape) {
-    @include top-left-btn--mobile-all;
-  }
-}
-
-@mixin top-right-btn--mobile--all {
-  top: 0.6rem;
-  right: 0.6rem;
-  width: 1.4rem;
-}
-
-@mixin top-right-btn--mobile {
-  @include for-size(tablet-portrait) {
-    @include top-right-btn--mobile--all;
-  }
-  @include for-size(tablet-landscape) {
-    @include top-right-btn--mobile--all;
-  }
-  @include for-size(mobile-landscape) {
-    @include top-right-btn--mobile--all;
-  }
-  @include for-size(mobile-portrait) {
-    @include top-right-btn--mobile--all;
-  }
-  @include for-size(mobile-fold-portrait) {
-    @include top-right-btn--mobile--all;
-  }
-  @include for-size(mobile-fold-landscape) {
-    @include top-right-btn--mobile--all;
-  }
-}
-
-// auth/ 컴포넌트들의 너비 높이 관련 media query
-@mixin auth__form--mobile--all {
-  @include full;
-  min-width: 279px; // galaxy fold width
-  border-radius: initial;
-}
-
-@mixin auth__form--mobile {
-  @include for-size(desktop) {
-    width: 29rem;
-    padding: 2.3rem;
-    min-height: 25rem;
-  }
-  @include for-size(laptop) {
-    width: 26rem;
-    padding: 2.2rem;
-    min-height: 25rem;
-  }
-  @include for-size(tablet-portrait) {
-    @include auth__form--mobile--all;
-    padding: 100px;
-  }
-  @include for-size(tablet-landscape) {
-    @include auth__form--mobile--all;
-    padding: 0 100px;
-  }
-  @include for-size(mobile-landscape) {
-    @include auth__form--mobile--all;
-    padding: 40px;
-  }
-  @include for-size(mobile-portrait) {
-    @include auth__form--mobile--all;
-    padding: 40px;
-  }
-  @include for-size(mobile-fold-portrait) {
-    @include auth__form--mobile--all;
-    padding: 10px;
-  }
-  @include for-size(mobile-fold-landscape) {
-    @include auth__form--mobile--all;
-    padding: 20px 60px 0 60px;
-  }
-}
-
 // *********
 //  ##Device = Desktops
 //  ##Screen = 1281px to higher resolution desktops
@@ -209,3 +109,184 @@
 // @media (min-width: 320px) and (max-width: 480px) {
 //   //CSS
 // }
+
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+// ***********************************************************************************
+
+// 컴포넌트들의 버튼 관련 media query
+
+@mixin top-left-btn--all {
+  top: 0.6rem;
+  left: 0.6rem;
+  width: 1.4rem;
+}
+
+@mixin top-left-btn--media {
+  @include for-size(tablet-portrait) {
+    @include top-left-btn--all;
+  }
+  @include for-size(tablet-landscape) {
+    @include top-left-btn--all;
+  }
+  @include for-size(mobile-landscape) {
+    @include top-left-btn--all;
+  }
+  @include for-size(mobile-portrait) {
+    @include top-left-btn--all;
+  }
+  @include for-size(mobile-fold-portrait) {
+    @include top-left-btn--all;
+  }
+  @include for-size(mobile-fold-landscape) {
+    @include top-left-btn--all;
+  }
+}
+
+@mixin top-right-btn--all {
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 1.4rem;
+}
+
+@mixin top-right-btn--media {
+  @include for-size(tablet-portrait) {
+    @include top-right-btn--all;
+  }
+  @include for-size(tablet-landscape) {
+    @include top-right-btn--all;
+  }
+  @include for-size(mobile-landscape) {
+    @include top-right-btn--all;
+  }
+  @include for-size(mobile-portrait) {
+    @include top-right-btn--all;
+  }
+  @include for-size(mobile-fold-portrait) {
+    @include top-right-btn--all;
+  }
+  @include for-size(mobile-fold-landscape) {
+    @include top-right-btn--all;
+  }
+}
+
+// auth/ 컴포넌트들의 너비 높이 관련 media query
+@mixin auth__form--mobile {
+  @include full;
+  min-width: 279px; // galaxy fold width
+  border-radius: initial;
+}
+
+@mixin auth__form--media {
+  @include for-size(desktop) {
+    width: 29rem;
+    padding: 2.3rem;
+    min-height: 25rem;
+  }
+  @include for-size(laptop) {
+    width: 26rem;
+    padding: 2.2rem;
+    min-height: 25rem;
+  }
+  @include for-size(tablet-portrait) {
+    @include auth__form--mobile;
+    padding: 100px;
+  }
+  @include for-size(tablet-landscape) {
+    @include auth__form--mobile;
+    padding: 0 100px;
+  }
+  @include for-size(mobile-landscape) {
+    @include auth__form--mobile;
+    padding: 40px;
+  }
+  @include for-size(mobile-portrait) {
+    @include auth__form--mobile;
+    padding: 40px;
+  }
+  @include for-size(mobile-fold-portrait) {
+    @include auth__form--mobile;
+    padding: 10px;
+  }
+  @include for-size(mobile-fold-landscape) {
+    @include auth__form--mobile;
+    padding: 20px 60px 0 60px;
+  }
+}
+
+// sub-main 이미지 높이 관련 미디어 쿼리
+// TODO: 임시 mixin 추후 반드시 수정 (제대로 된 이미지, 제대로 된 background-size 컨트롤)
+@mixin sub-background-height($height) {
+  height: $height; // 배경 높이
+  background-size: 100% $height; // 배경을 덮는 이미지 높이
+}
+
+@mixin sub-background-height--media {
+  // TODO: 임시 mixin 추후 반드시 수정 (제대로 된 이미지, 제대로 된 background-size 컨트롤)
+  @include for-size(desktop) {
+    @include sub-background-height($sub-background-height--desktop);
+  }
+  @include for-size(laptop) {
+    @include sub-background-height($sub-background-height--laptop);
+  }
+  @include for-size(tablet-portrait) {
+    @include sub-background-height($sub-background-height--tablet);
+  }
+  @include for-size(tablet-landscape) {
+    @include sub-background-height($sub-background-height--tablet);
+  }
+  @include for-size(mobile-landscape) {
+    @include sub-background-height($sub-background-height--mobile);
+    // background: none;
+  }
+  @include for-size(mobile-portrait) {
+    @include sub-background-height($sub-background-height--mobile);
+    // background: none;
+  }
+  @include for-size(mobile-fold-portrait) {
+    @include sub-background-height($sub-background-height--mobile);
+    // background: none;
+  }
+  @include for-size(mobile-fold-landscape) {
+    @include sub-background-height($sub-background-height--mobile);
+    // background: none;
+  }
+}
+
+@mixin sub-main-margin--media {
+  // 바로 위의 요소만큼 margin-top을 가짐
+  @include for-size(desktop) {
+    margin-top: calc(#{$sub-background-height--desktop} - 6rem);
+  }
+  @include for-size(laptop) {
+    margin-top: calc(#{$sub-background-height--laptop} - 6rem);
+  }
+  @include for-size(tablet-portrait) {
+    margin-top: calc(#{$sub-background-height--tablet} - 6rem);
+  }
+  @include for-size(tablet-landscape) {
+    margin-top: calc(#{$sub-background-height--tablet} - 6rem);
+  }
+  @include for-size(mobile-landscape) {
+    margin-top: $sub-background-height--mobile;
+  }
+  @include for-size(mobile-portrait) {
+    margin-top: $sub-background-height--mobile;
+  }
+  @include for-size(mobile-fold-portrait) {
+    margin-top: $sub-background-height--mobile;
+  }
+  @include for-size(mobile-fold-landscape) {
+    margin-top: $sub-background-height--mobile;
+  }
+}

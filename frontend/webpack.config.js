@@ -12,6 +12,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const BUNDLE_POINT = process.env.BUNDLE_POINT;
 
 /* -- DIR_PATH -- */
+const SRC = path.resolve(__dirname, "src");
 const FRONT_BUILD_DIR = path.resolve(__dirname, "public");
 const SERVER_BUILD_DIR = path.resolve(__dirname, `../server/src/public`);
 const PUG_DIR = path.resolve(__dirname, "src", "views");
@@ -122,8 +123,10 @@ const webpackConfig = {
             loader: "url-loader",
             options: {
               limit: 8192, // (file-size > limit) ? use file-loader
-              publicPath: "./",
-              name: "img/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+              publicPath: "../",
+              context: SRC,
+              name: "img/[name].[ext]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+              useRelativePaths: true,
             },
           },
         ],
@@ -131,7 +134,7 @@ const webpackConfig = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
-          "file-loader?font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+          "file-loader?name=font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
         ],
       },
     ],

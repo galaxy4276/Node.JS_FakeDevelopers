@@ -1,3 +1,7 @@
+/* -- scss default: mixin, veriables 등-- */
+@import "../../common/default/default.scss";
+/* --------------- */
+
 .find {
   &__overlay {
     @include overlay;
@@ -12,7 +16,7 @@
       top: 1rem;
       left: 1rem;
       @include svg-btn(1rem);
-      @include top-left-btn--mobile;
+      @include top-left-btn--media;
     }
 
     &__close-btn {
@@ -20,7 +24,7 @@
       top: 1rem;
       right: 1rem;
       @include svg-btn(1rem);
-      @include top-right-btn--mobile;
+      @include top-right-btn--media;
     }
 
     &__title {
@@ -89,6 +93,6 @@
       }
     }
 
-    @include auth__form--mobile;
+    @include auth__form--media;
   }
 }

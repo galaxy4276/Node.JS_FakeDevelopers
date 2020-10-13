@@ -1,0 +1,13 @@
+head
+  link(rel="stylesheet" href="/css/index.css")
+body
+.forgot-form__wrap 
+  .forgot-title 
+    .ddc-logo__one
+    .ddc-logo__two
+    span 비밀번호 찾기
+  form(action="/auth/forgot" method="post").forgot-content
+    .input-content
+      label(for="email") 이메일
+      input(name="email" id="email" placeholder="이메일을 입력하세요.")
+    input(type="submit" value="확인")

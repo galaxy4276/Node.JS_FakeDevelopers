@@ -28,7 +28,7 @@
         }
       }
 
-      @include top-right-btn--mobile;
+      @include top-right-btn--media;
     }
 
     &__title {
@@ -141,6 +141,6 @@
       }
     }
 
-    @include auth__form--mobile;
+    @include auth__form--media;
   }
 }

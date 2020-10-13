@@ -7,7 +7,8 @@
   height: 100vh;
   display: grid;
   grid-template-columns: [second] repeat(4, 1fr);
-  grid-template-rows: [first] 5% 
+  grid-template-rows:
+    [first] 5%
     [second] repeat(5, 1fr)
     [third] 20px;
 
@@ -19,7 +20,7 @@
     padding-left: 5%;
     padding-right: 5%;
     background: white;
-    box-shadow:  0px 8px 6px -6px #CCC;
+    box-shadow: 0px 8px 6px -6px #ccc;
 
     span {
       font-weight: 600;
@@ -28,7 +29,7 @@
     button.write-btn {
       border: none;
       outline: none;
-      background: #FF893C;
+      background: #ff893c;
       color: white;
       padding: 5px 20px 5px 20px;
       border-radius: 5px;
@@ -46,10 +47,8 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    
+
     .card-body {
-      width: 84%;
-      height: 154px;
       border: 1px solid rgba(54, 54, 54, 1);
       display: grid;
       background: white;
@@ -57,19 +56,21 @@
       border-radius: 3px;
 
       .card-title {
+        position: relative;
         width: 100%;
         height: 100%;
-        border-bottom: 1px solid #CCC;
+        border-bottom: 1px solid #ccc;
         span {
           position: absolute;
           color: black;
-          font-weight: 600;
           z-index: 300;
         }
-        img {
+        &__img {
+          //- !! Comment bear - 이미지는 웹팩 css 로더에 의해 file-loader에 연결되어 빌드되므로 아래처럼 css에서 지정해주어야 합니다.
+          background: url("../../../img/example_cert.jpg") center/cover;
           position: relative;
-          width: inherit;
-          height: inherit;
+          width: 100%;
+          height: 100%;
         }
       }
 

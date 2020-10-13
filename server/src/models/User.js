@@ -13,6 +13,10 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING(50),
         allowNull: false,
       },
+      hash: {
+        type: DataTypes.STRING(200),
+        allowNull: true,
+      }
     }, {
       timestamps: true,
     });

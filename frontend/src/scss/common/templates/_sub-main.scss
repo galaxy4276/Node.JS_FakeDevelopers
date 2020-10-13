@@ -11,23 +11,34 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 450px;
-  background-color: peru;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url("../../img/example_big_school.jpg") no-repeat top; // TODO: 임시 이미지. 각 카테고리마다 다른 배경 적용
+  filter: contrast(80%) grayscale(70%); // TODO: 불필요하다 판단시 삭제, filter 퍼포먼스 영향 알아보기
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($main-color--black, 0.3);
+  }
+
+  @include sub-background-height--media; // _media_mixin.scss
 }
 
 .sub-main__wrap {
   width: 100%;
   height: fit-content;
-  background-color: greenyellow;
+  background-color: white; // bear: 키위색 제거 완료
   z-index: 1;
   position: relative;
   display: flex;
   justify-content: center;
   padding: 50px 50px 125px 50px;
-  margin-top: 400px;
+
+  @include sub-main-margin--media; // _media_mixin.scss
 }
 
 .sub-nav {
@@ -126,7 +137,7 @@
   &__content {
     display: flex;
     width: 100%;
-    background: rgb(250, 250, 250); // galaxy:  키위색 제거!
+
     border: 1px solid black;
     margin-top: 30px;
   }
