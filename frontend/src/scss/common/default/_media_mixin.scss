@@ -223,3 +223,70 @@
     padding: 20px 60px 0 60px;
   }
 }
+
+// sub-main 이미지 높이 관련 미디어 쿼리
+// TODO: 임시 mixin 추후 반드시 수정 (제대로 된 이미지, 제대로 된 background-size 컨트롤)
+@mixin sub-background-height($height) {
+  height: $height; // 배경 높이
+  background-size: 100% $height; // 배경을 덮는 이미지 높이
+}
+
+@mixin sub-background-height--media {
+  // TODO: 임시 mixin 추후 반드시 수정 (제대로 된 이미지, 제대로 된 background-size 컨트롤)
+  @include for-size(desktop) {
+    @include sub-background-height($sub-background-height--desktop);
+  }
+  @include for-size(laptop) {
+    @include sub-background-height($sub-background-height--laptop);
+  }
+  @include for-size(tablet-portrait) {
+    @include sub-background-height($sub-background-height--tablet);
+  }
+  @include for-size(tablet-landscape) {
+    @include sub-background-height($sub-background-height--tablet);
+  }
+  @include for-size(mobile-landscape) {
+    @include sub-background-height($sub-background-height--mobile);
+    // background: none;
+  }
+  @include for-size(mobile-portrait) {
+    @include sub-background-height($sub-background-height--mobile);
+    // background: none;
+  }
+  @include for-size(mobile-fold-portrait) {
+    @include sub-background-height($sub-background-height--mobile);
+    // background: none;
+  }
+  @include for-size(mobile-fold-landscape) {
+    @include sub-background-height($sub-background-height--mobile);
+    // background: none;
+  }
+}
+
+@mixin sub-main-margin--media {
+  // 바로 위의 요소만큼 margin-top을 가짐
+  @include for-size(desktop) {
+    margin-top: calc(#{$sub-background-height--desktop} - 6rem);
+  }
+  @include for-size(laptop) {
+    margin-top: calc(#{$sub-background-height--laptop} - 6rem);
+  }
+  @include for-size(tablet-portrait) {
+    margin-top: calc(#{$sub-background-height--tablet} - 6rem);
+  }
+  @include for-size(tablet-landscape) {
+    margin-top: calc(#{$sub-background-height--tablet} - 6rem);
+  }
+  @include for-size(mobile-landscape) {
+    margin-top: $sub-background-height--mobile;
+  }
+  @include for-size(mobile-portrait) {
+    margin-top: $sub-background-height--mobile;
+  }
+  @include for-size(mobile-fold-portrait) {
+    margin-top: $sub-background-height--mobile;
+  }
+  @include for-size(mobile-fold-landscape) {
+    margin-top: $sub-background-height--mobile;
+  }
+}
