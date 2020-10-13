@@ -131,7 +131,7 @@ const webpackConfig = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
-          "file-loader?font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+          "file-loader?name=font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
         ],
       },
     ],
