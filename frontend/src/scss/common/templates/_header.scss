@@ -8,8 +8,10 @@
   width: 100%;
   height: $header-height;
   z-index: 2;
-  background-color: rgba(black, 0.6);
+  background-color: rgba(black, 0.4);
+  font-size: 1rem;
   font-weight: bold;
+  letter-spacing: -1px;
 
   &-logo {
     width: 160px;
