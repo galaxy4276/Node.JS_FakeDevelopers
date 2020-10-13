@@ -85,7 +85,7 @@ export const postLogin = passport.authenticate('local', {
       'success': 'login_done',
     },
   }),
-  failureFlash: url.format({
+  failureRedirect: url.format({
     pathname: '/',
     query: {
       'failure': 'login_failure'
@@ -98,7 +98,7 @@ export const login = (___, res) => {
 };
 
 export const join = (___, res) => {
-  res.render('auth/_join', {});
+  res.render('components/_join', {});
 };
 
 export const forgotHash = async (req, res, next) => {
@@ -110,8 +110,9 @@ export const forgotHash = async (req, res, next) => {
       const uuid = uuidv4();
       await User.update({ hash: uuid }, { where: { email }});
     }
+    next();
   } catch (err) {
     console.error(err);
     next(err);
   } 
-}
+} 

@@ -6,7 +6,8 @@ body
     .ddc-logo__one
     .ddc-logo__two
     span 비밀번호 찾기
-  form.forgot-content
+  form(action="/auth/forgot2" method="post").forgot-content
+    span 이메일로 코드가 발송되었습니다!
     .input-content
       label(for="hash") 코드
       input(name="hash" placeholder="코드를 입력하세요.")
