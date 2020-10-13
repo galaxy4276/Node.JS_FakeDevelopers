@@ -46,10 +46,9 @@
 
     &-dropdown {
       position: absolute;
-      top: 85px;
+      top: $header-height;
       width: 25%;
-      height: 300px;
-      background-color: $main-color--white;
+      background-color: white;
       box-sizing: border-box;
       transition: all 0.2s ease-in-out;
       visibility: hidden;
@@ -62,12 +61,11 @@
         flex-direction: column;
         border: 1px solid black;
         box-sizing: border-box;
-        padding: 20px 0 0;
+        padding: 1.5rem 0;
       }
 
       &__link {
-        margin-top: 10px;
-        padding: 10px 0;
+        padding: 1rem 0;
       }
 
       &__link:hover {
