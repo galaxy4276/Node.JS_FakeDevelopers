@@ -25,7 +25,7 @@
     background-color: rgba($main-color--black, 0.3);
   }
 
-  @include sub-background-height--media; _media_mixin.scss
+  @include sub-background-height--media; // _media_mixin.scss
 }
 
 .sub-main__wrap {

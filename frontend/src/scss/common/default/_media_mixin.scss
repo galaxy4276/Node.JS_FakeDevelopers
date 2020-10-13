@@ -126,68 +126,68 @@
 
 // 컴포넌트들의 버튼 관련 media query
 
-@mixin top-left-btn--mobile-all {
+@mixin top-left-btn--all {
   top: 0.6rem;
   left: 0.6rem;
   width: 1.4rem;
 }
 
-@mixin top-left-btn--mobile {
+@mixin top-left-btn--media {
   @include for-size(tablet-portrait) {
-    @include top-left-btn--mobile-all;
+    @include top-left-btn--all;
   }
   @include for-size(tablet-landscape) {
-    @include top-left-btn--mobile-all;
+    @include top-left-btn--all;
   }
   @include for-size(mobile-landscape) {
-    @include top-left-btn--mobile-all;
+    @include top-left-btn--all;
   }
   @include for-size(mobile-portrait) {
-    @include top-left-btn--mobile-all;
+    @include top-left-btn--all;
   }
   @include for-size(mobile-fold-portrait) {
-    @include top-left-btn--mobile-all;
+    @include top-left-btn--all;
   }
   @include for-size(mobile-fold-landscape) {
-    @include top-left-btn--mobile-all;
+    @include top-left-btn--all;
   }
 }
 
-@mixin top-right-btn--mobile--all {
+@mixin top-right-btn--all {
   top: 0.6rem;
   right: 0.6rem;
   width: 1.4rem;
 }
 
-@mixin top-right-btn--mobile {
+@mixin top-right-btn--media {
   @include for-size(tablet-portrait) {
-    @include top-right-btn--mobile--all;
+    @include top-right-btn--all;
   }
   @include for-size(tablet-landscape) {
-    @include top-right-btn--mobile--all;
+    @include top-right-btn--all;
   }
   @include for-size(mobile-landscape) {
-    @include top-right-btn--mobile--all;
+    @include top-right-btn--all;
   }
   @include for-size(mobile-portrait) {
-    @include top-right-btn--mobile--all;
+    @include top-right-btn--all;
   }
   @include for-size(mobile-fold-portrait) {
-    @include top-right-btn--mobile--all;
+    @include top-right-btn--all;
   }
   @include for-size(mobile-fold-landscape) {
-    @include top-right-btn--mobile--all;
+    @include top-right-btn--all;
   }
 }
 
 // auth/ 컴포넌트들의 너비 높이 관련 media query
-@mixin auth__form--mobile--all {
+@mixin auth__form--mobile {
   @include full;
   min-width: 279px; // galaxy fold width
   border-radius: initial;
 }
 
-@mixin auth__form--mobile {
+@mixin auth__form--media {
   @include for-size(desktop) {
     width: 29rem;
     padding: 2.3rem;
@@ -199,27 +199,27 @@
     min-height: 25rem;
   }
   @include for-size(tablet-portrait) {
-    @include auth__form--mobile--all;
+    @include auth__form--mobile;
     padding: 100px;
   }
   @include for-size(tablet-landscape) {
-    @include auth__form--mobile--all;
+    @include auth__form--mobile;
     padding: 0 100px;
   }
   @include for-size(mobile-landscape) {
-    @include auth__form--mobile--all;
+    @include auth__form--mobile;
     padding: 40px;
   }
   @include for-size(mobile-portrait) {
-    @include auth__form--mobile--all;
+    @include auth__form--mobile;
     padding: 40px;
   }
   @include for-size(mobile-fold-portrait) {
-    @include auth__form--mobile--all;
+    @include auth__form--mobile;
     padding: 10px;
   }
   @include for-size(mobile-fold-landscape) {
-    @include auth__form--mobile--all;
+    @include auth__form--mobile;
     padding: 20px 60px 0 60px;
   }
 }
