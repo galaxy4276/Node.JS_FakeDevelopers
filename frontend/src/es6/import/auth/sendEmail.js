@@ -22,6 +22,6 @@ function raiseLabel(e) {
 
 window.onload = () => {
     const findFormInput = document.querySelector(".find__form__input");
-    
+
     findFormInput.addEventListener("click", raiseLabel, {once: true});
 }
