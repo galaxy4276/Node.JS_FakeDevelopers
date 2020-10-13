@@ -53,7 +53,7 @@ body {
   height: fit-content;
   min-height: 100%; // 웹 전체 기본 높이
   position: relative;
-  padding: $header-height 2.5vw $footer-height 2.5vw; // 웹 전체 기본 padding
+  padding: 0 2.5vw $footer-height 2.5vw; // 웹 전체 기본 padding
   font-family: "Noto Sans --Regular"; // 웹 전체 기본 폰트: Noto Sans -- Weight 400
 }
 
