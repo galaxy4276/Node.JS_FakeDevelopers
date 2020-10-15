@@ -22,6 +22,7 @@
   "homepage": "https://github.com/bear-bear-bear/learning-javascript#readme",
   "dependencies": {
     "@babel/core": "^7.11.5",
+    "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.5",
     "babel-node": "0.0.1-security",
     "cookie-parser": "^1.4.5",
@@ -29,11 +30,15 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "global": "^4.4.0",
+    "nodemailer": "^6.4.13",
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "pug": "^3.0.0",
     "sass": "^1.26.10",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "uuid": "^8.3.1",
+    "validator": "^13.1.17"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -52,7 +57,6 @@
     "mini-css-extract-plugin": "^0.11.2",
     "morgan": "^1.10.0",
     "node-sass": "^4.14.1",
-    "pug": "^3.0.0",
     "pug-loader": "^2.4.0",
     "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
