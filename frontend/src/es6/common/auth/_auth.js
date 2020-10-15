@@ -14,20 +14,27 @@ const joinOpenBtns = document.querySelectorAll(".js-joinOpenBtn"); // 회원가�
 const joinCloseBtn = document.querySelector(".join__form__close-btn"); // 회원가입 닫기 버튼
 const joinWindow = document.querySelector(".join"); // 회원가입 창
 
-function toggleAuthWindow(e){
-    console.log(e.target);
-    // loginWindow.classList.toggle("login--show");
-    // joinWindow.classList.toggle("join--show");
+function toggleloginWindow(){
+    loginWindow.classList.toggle("login--show");
+}
+
+function togglejoinWindow(e){
+    let currentBtn = e.target;
+    let isBtnInLoginWindow = currentBtn.classList.contains("login__form__join-open-btn");
+
+    if (isBtnInLoginWindow) toggleloginWindow(); // join 버튼이 로그인 창 안에 있는 버튼이라면 로그인 창 닫기
+
+    joinWindow.classList.toggle("join--show");
 }
 
 function authToggleEventHandle() {
     loginOpenBtns.forEach((loginOpenBtn) => {
-        loginOpenBtn.addEventListener("click", toggleAuthWindow);
+        loginOpenBtn.addEventListener("click", toggleloginWindow, false);
     });
-    loginCloseBtn.addEventListener("click", toggleAuthWindow);
+    loginCloseBtn.addEventListener("click", toggleloginWindow, false);
 
     joinOpenBtns.forEach((joinOpenBtn) => {
-        joinOpenBtn.addEventListener("click", toggleAuthWindow);
+        joinOpenBtn.addEventListener("click", togglejoinWindow, false);
     });
     joinCloseBtn.addEventListener("click", toggleAuthWindow);
 }
