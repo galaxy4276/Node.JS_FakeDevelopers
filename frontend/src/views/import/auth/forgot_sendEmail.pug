@@ -5,8 +5,8 @@ html(lang="ko")
         meta(name='viewport' content='width=device-width, initial-scale=1.0')
         title sendEmail
         link(rel="stylesheet" href="/css/common.css")
-        link(rel="stylesheet" href="/css/sendEmail.css")
-        script(src="/es5/sendEmail.js")
+        link(rel="stylesheet" href="/css/forgot_sendEmail.css")
+        script(src="/es5/forgot_sendEmail.js")
     body 
         article.find
             |
@@ -14,7 +14,7 @@ html(lang="ko")
             .find__overlay
             |
             |
-            form(action="/auth/forgot" method="post" autocomplete="off").find__form
+            form(action="/auth/forgot_sendEmail" method="post" autocomplete="off").find__form
                 |
                 |
                 //- TODO: 뒤로가기버튼(로그인 창으로 돌아가기) 추가하기

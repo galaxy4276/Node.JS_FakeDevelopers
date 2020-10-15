@@ -36,9 +36,9 @@ const ENTRY = {
     index: path.resolve(__dirname, "src", "_entry", "index.js"),
 
     // auth
-    hashCheck: path.resolve(__dirname, "src", "_entry", "auth", "hashCheck.js"),
-    resetPassword: path.resolve(__dirname, "src", "_entry", "auth", "resetPassword.js"),
-    sendEmail: path.resolve(__dirname, "src", "_entry", "auth", "sendEmail.js"),
+    forgot_check: path.resolve(__dirname, "src", "_entry", "auth", "forgot_check.js"),
+    forgot_resetPassword: path.resolve(__dirname, "src", "_entry", "auth", "forgot_resetPassword.js"),
+    forgot_sendEmail: path.resolve(__dirname, "src", "_entry", "auth", "forgot_sendEmail.js"),
 
     // community/
     board: path.resolve(__dirname, "src", "_entry", "community", "board.js"),
