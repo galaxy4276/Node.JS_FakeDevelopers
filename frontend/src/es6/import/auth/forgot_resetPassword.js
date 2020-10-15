@@ -21,7 +21,9 @@ function raiseLabel(e) {
 }
 
 window.onload = () => {
-    const findFormInput = document.querySelector(".find__form__input");
+    const findFormInputs = document.querySelectorAll(".find__form__input");
     
-    findFormInput.addEventListener("click", raiseLabel, {once: true});
+    findFormInputs.forEach((input) => {
+        input.addEventListener("click", raiseLabel, {once: true});
+    });
 }
