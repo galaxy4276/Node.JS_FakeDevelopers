@@ -110,7 +110,7 @@
       color: #fff;
     }
 
-    &__join-btn {
+    &__join-open-btn {
       @include btn-retangle(1rem 0, true, true);
       text-align: center;
       background-color: $main-color--silver;
