@@ -1,4 +1,7 @@
-/* -- find 폼의 input 요소 클릭시 label 포지션 변경 후 그 자리에 고정시키는 이벤트 --*/
+/* --- */
+/* -- 타입이 이메일인 input 요소 클릭시 label 포지션 변경 후 그 자리에 고정시키는 이벤트 --*/
+
+let raised = false;
 
 function raiseLabel(e) {
     function next(element) {
@@ -6,9 +9,9 @@ function raiseLabel(e) {
         do {
             element = element.nextSibling;
         } while (element && element.nodeType !== 1);
-        return element;        
+        return element;
     }
-    
+
     let input = e.target;
     let label = next(input);
 
@@ -18,12 +21,15 @@ function raiseLabel(e) {
     label.style["font-size"] = "0.9rem";
     label.style.opacity = "1";
     label.style.color = " #bebebe";
+
+    raised = true;
 }
 
 window.onload = () => {
-    const findFormInputs = document.querySelectorAll(".find__form__input");
-    
-    findFormInputs.forEach((input) => {
-        input.addEventListener("click", raiseLabel, {once: true});
+    const emailInputs = document.querySelectorAll(".js-emailInput");
+
+    emailInputs.forEach((input) => {
+        input.addEventListener("click", !raised ? raiseLabel : {}, {once: true});
+        input.addEventListener("focus", !raised ? raiseLabel : {}, {once: true});
     });
 }
