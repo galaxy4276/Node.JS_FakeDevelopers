@@ -57,7 +57,7 @@ function raiseLabel(e) {
     }
 
     let input = e.target;
-    let label = next(input);
+    let label = next(input); // input 뒤에 오는 label
 
     input.style["font-size"] = "1.5rem";
     label.style.top = "-1.5rem";
