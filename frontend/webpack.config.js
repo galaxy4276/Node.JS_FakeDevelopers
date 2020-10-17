@@ -114,7 +114,7 @@ const webpackConfig = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "resolve-url-loader", "sass-loader"],
       },
       {
         test: /\.(png|jpe?g|gif|svg|ico)$/,
@@ -125,7 +125,7 @@ const webpackConfig = {
               limit: 8192, // (file-size > limit) ? use file-loader
               publicPath: "../",
               context: SRC,
-              name: "img/[name].[ext]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+              name: "img/[name].[ext]", //  (mode == "production") ? name: "img/[hash].[ext]",
               useRelativePaths: true,
             },
           },
@@ -134,7 +134,16 @@ const webpackConfig = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
-          "file-loader?name=font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+          {
+            loader: "url-loader",
+            options: {
+              limit: 100000, // (file-size > limit) ? use file-loader
+              publicPath: "../",
+              context: SRC,
+              name: "font/[name].[ext]", //  (mode == "production") ? name: "font/[hash].[ext]",
+              useRelativePaths: true,
+            },
+          },
         ],
       },
     ],
