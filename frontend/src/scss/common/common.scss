@@ -17,15 +17,21 @@
 @import "./auth/join";
 
 /* custom */
-
 @font-face {
-  font-family: hanna;
+  font-family: "hanna";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot);
   src: url(../../font/BMHANNA_11yrs_ttf.ttf) format("truetype"),
-    url(../../font/BMHANNA_11yrs_otf.otf) format("opentype");
+    url(../../font/BMHANNA_11yrs_otf.otf) format("opentype"),
+    url(https://fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot?#iefix) format("embedded-opentype"),
+    url(https://fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff2) format("woff2"),
+    url(https://fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff) format("woff"),
+    url(https://fonts.gstatic.com/ea/hanna/v3/BM-HANNA.ttf) format("truetype");
 }
-.font-hanna {
-  font-family: hanna, Noto Sans KR, Roboto, sans-serif, Apple SD Gothic Neo !important;
-}
+// .font-hanna {
+//   font-family: hanna, Noto Sans KR, Roboto, sans-serif, Apple SD Gothic Neo !important;
+// }
 
 * {
   box-sizing: border-box;
