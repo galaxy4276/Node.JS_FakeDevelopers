@@ -7,6 +7,7 @@ import suggest from './suggest';
 import donate from './donate';
 import award from './award';
 import portfolio from './portfolio';
+import image from './image';
 
 
 const config = env;
@@ -22,6 +23,7 @@ db.Suggest = suggest(sequelize, Sequelize);
 db.Donate = donate(sequelize, Sequelize);
 db.Award = award(sequelize, Sequelize);
 db.Portfolio = portfolio(sequelize, Sequelize);
+db.Image = image(sequelize, Sequelize);
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
