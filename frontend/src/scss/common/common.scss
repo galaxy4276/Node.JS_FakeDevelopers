@@ -16,23 +16,7 @@
 @import "./auth/login";
 @import "./auth/join";
 
-/* custom */
-@font-face {
-  font-family: "hanna";
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot);
-  src: url(../../font/BMHANNA_11yrs_ttf.ttf) format("truetype"),
-    url(../../font/BMHANNA_11yrs_otf.otf) format("opentype"),
-    url(https://fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot?#iefix) format("embedded-opentype"),
-    url(https://fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff2) format("woff2"),
-    url(https://fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff) format("woff"),
-    url(https://fonts.gstatic.com/ea/hanna/v3/BM-HANNA.ttf) format("truetype");
-}
-// .font-hanna {
-//   font-family: hanna, Noto Sans KR, Roboto, sans-serif, Apple SD Gothic Neo !important;
-// }
-
+/* 개발자 설정 */
 * {
   box-sizing: border-box;
 }
@@ -75,6 +59,7 @@ body {
   min-height: 100%; // 웹 전체 기본 높이
   position: relative;
   padding: 0 2.5vw $footer-height 2.5vw; // 웹 전체 기본 padding
+  font-family: Roboto, Noto Sans KR, sans-serif, Apple SD Gothic Neo; // 웹 전체 기본 폰트
 }
 
 main {
