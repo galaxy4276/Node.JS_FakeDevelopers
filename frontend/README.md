@@ -45,7 +45,7 @@ _*이렇게 하는 이유*_
 
 #### bear TODO: 
 
-> - [ ] 폰트 적용 확인과 기본 폰트(ex- apple 폰트)를 내장 폰트으로 설정할 것을 고려해보기
+> - [X] 폰트 적용 확인, 폰트 체계 확립
 > - [X] 이미지 적용법 문서화 :sparkles:
 > - [ ] 폰트 적용법 문서화 :sparkles:
 > - [ ] sub-main 템플릿 background 에 가운데 텍스트 logo image로 변경
