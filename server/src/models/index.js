@@ -7,7 +7,7 @@ import suggest from './suggest';
 import donate from './donate';
 import award from './award';
 import portfolio from './portfolio';
-import image from './imgae';
+import image from './image';
 
 
 const config = env;
