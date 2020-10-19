@@ -7,6 +7,7 @@ require("dotenv").config();
 /* -- plugin --*/
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 /* -- MODE -- */
 const BUNDLE_POINT = process.env.BUNDLE_POINT;
@@ -152,6 +153,7 @@ const webpackConfig = {
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
+    new CleanWebpackPlugin(),
   ]
   : [
     new MiniCssExtractPlugin({
@@ -160,6 +162,7 @@ const webpackConfig = {
     new CopyWebpackPlugin({
       patterns: [{ from: PUG_DIR, to: SERVER_BUILD_DIR + "/views" }],
     }),
+    new CleanWebpackPlugin(),
   ],
 };
 
