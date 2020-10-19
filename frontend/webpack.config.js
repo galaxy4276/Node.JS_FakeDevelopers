@@ -72,16 +72,31 @@ const ENTRY = {
 const webpackConfig = {
   mode: process.env.DEV_MODE || "development",
 
-  devServer: BUNDLE_POINT === "frontend" ? {
-    contentBase: FRONT_BUILD_DIR,
+  devServer: {
+    contentBase: BUNDLE_POINT === "frontend" ? FRONT_BUILD_DIR : SERVER_BUILD_DIR,
     publicPath: "/",
     overlay: true,
     hot: true,
     inline: true,
     open: true,
     progress: true,
-    stats: "errors-only",
-  } : {},
+    stats: {
+      errors: true,
+      colors: true,
+      warnings: true,
+      hash: false,
+      version: false,
+      timings: false,
+      assets: false,
+      chunks: false,
+      modules: false,
+      reasons: false,
+      children: false,
+      source: false,
+      errorDetails: false,
+      publicPath: false,
+    }
+  },
 
   devtool: "inline-source-map",
   // 콘솔에서 오류 경로를 번들 후 파일이 아닌 번들 전 파일로 명시해줌
