@@ -22,16 +22,24 @@ export const uploads = multer({
 });
 
 export const acquisitionPost = async (req, res, next) => {
-  const { title, image, content } = req.body;
+  const { title, content } = req.body;
   const { id } = req.user;
+  const { file } = req;
+
+  console.log(file);
 
   try {
+
+    if (!title) {
+      return res.redirect('/footprint/acquisition');
+    }
+    
     await Post.create({
       title,
-      image,
       content,
       UserId: id,
     });
+
   } catch(err) {
     console.log('acquisitionPost Error');
     console.error(err);
