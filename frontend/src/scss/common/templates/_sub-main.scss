@@ -29,7 +29,7 @@
 }
 
 .sub-main__wrap {
-  width: 1300px;
+  max-width: 1300px;
   height: fit-content;
   background-color: white; // bear: 키위색 제거 완료
   z-index: 1;
@@ -39,9 +39,6 @@
   padding: 50px 50px 125px 50px;
 
   @include sub-main-margin--media; // _media_mixin.scss
-  @media screen and (max-width: 1340px) {
-    width: 100%;
-  }
 }
 
 .sub-nav {
