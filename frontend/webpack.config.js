@@ -169,7 +169,7 @@ const webpackConfig = {
       filename: "css/[name].css",
     }),
     new CleanWebpackPlugin({
-      // cleanStaleWebpackAssets: false,
+      cleanStaleWebpackAssets: false,
       cleanOnceBeforeBuildPatterns: ['font*'],
     }),
     new webpack.ProgressPlugin(),
@@ -179,7 +179,7 @@ const webpackConfig = {
       filename: "css/[name].css",
     }),
     new CleanWebpackPlugin({
-      // cleanStaleWebpackAssets: false,
+      cleanStaleWebpackAssets: false,
       cleanOnceBeforeBuildPatterns: ['font*'],
     }),
     new webpack.ProgressPlugin(),
