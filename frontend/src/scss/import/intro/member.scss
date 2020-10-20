@@ -9,6 +9,7 @@
 
   &__content {
     margin-top: 4.0625rem;
+    border: none;
   }
 
   &__member-list {
@@ -20,17 +21,32 @@
     margin-bottom: 1.25rem;
     height: 100%;
     border: 1px solid black;
-    padding: 1.25rem;
+    padding: 1.25rem 3.12rem;
+
+    @media screen and (max-width: 650px) {
+      flex-direction: column;
+    }
   }
 
   &__member-image-zone {
     width: fit-content;
     margin-right: 3.125rem;
+
+    @media screen and (max-width: 650px) {
+      margin: 0 auto;
+    }
   }
 
   &__member-image {
     width: 7.5rem;
     height: 10rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media screen and (max-width: 650px) {
+      width: 14.6875rem;
+      height: 18.75rem;
+    }
   }
 
   &__lee-image {
@@ -45,18 +61,40 @@
     background-image: url('../../../img/jang.jpg');
   }
 
+  &__member-profile {
+    width: 100%;
+  }
+
   &__member-name {
-    padding: 1rem 0 1.25rem;
+    padding: 1.25rem 0;
+    width: 100%;
     border-bottom: 1px solid black;
     font-size: 1.125rem;
   }
 
   &__member-info-item {
     margin-top: 1.25rem;
+    height: fit-content;
+
+    @media screen and (max-width: 650px) {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0.9375rem;
+    }
 
     &__title {
       display: inline-block;
       width: 7.5rem;
+      height: 100%;
+      font-weight: 700;
+    }
+
+    &__info {
+      display: inline-block;
+      word-break: keep-all;
+      @media screen and (max-width: 650px) {
+        margin-top: 0.9375rem;
+      }
     }
   }
 }
