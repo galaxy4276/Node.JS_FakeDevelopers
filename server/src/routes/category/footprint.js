@@ -17,6 +17,10 @@ footprint.get('/awards', (req, res) => {
   res.render('import/footprint/awards', {});
 });
 
+footprint.get('/acquisition/post', (req, res, next) => {
+  res.render('import/footprint/post', {});
+});
+
 footprint.get('/portfolio', (req, res) => {
   res.render('import/footprint/portfolio', {});
 });
