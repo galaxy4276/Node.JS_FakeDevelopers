@@ -1,17 +1,16 @@
 import sequelize from '../models';
 import multer from 'multer';
 import path from 'path';
-import fs from 'fs';
 import url from 'url';
 
-const { Certpost } = sequelize;
+const { Certpost, Image } = sequelize;
 
 export const uploads = multer({
   storage: multer.diskStorage({
     destination(req, file, cb) {
-      if (!fs.accessSync('../uploads')) {
-        fs.mkdirSync(path.join(__dirname, '../', 'uploads'));
-      } 
+    //  if (!fs.accessSync('../uploads')) {
+    //    fs.mkdirSync(path.join(__dirname, '../', 'uploads'));
+    //  } 
       cb(null, 'uploads');
     },
     filename(req, file, cb) {
@@ -24,11 +23,10 @@ export const uploads = multer({
 });
 
 export const acquisitionPost = async (req, res, next) => {
-  const { title, content } = req.body;
-  const { user } = req;
-  const { file } = req;
-
   try {
+    const { title, content } = req.body;
+    const { user } = req;
+    const { file } = req;
     console.log(file);
     console.log(req.files);
 
@@ -44,12 +42,19 @@ export const acquisitionPost = async (req, res, next) => {
     if (!title) {
       return res.redirect('/footprint/acquisition');
     }
+    if (req.file) {
+      await Image.create({
+        src: req.file.filename,
+      });
+    }
     
     await Certpost.create({
       title,
       content,
       UserId: user,
     });
+
+    return res.redirect('/footprint/acquisition');
 
   } catch(err) {
     console.log('acquisitionPost Error');
