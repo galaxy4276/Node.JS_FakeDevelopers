@@ -15,13 +15,21 @@ const compiler = webpack(webpackConfig);
 const middleware = webpackDevMiddleware(compiler, {
   contentBase: path.resolve(__dirname, "public"),
   publicPath: "/",
-  noInfo: true,
-  hot: true,
-  inline: true,
-  open: true,
-  progress: true,
   stats: {
+    errors: true,
     colors: true,
+    warnings: true,
+    hash: false,
+    version: false,
+    timings: false,
+    assets: false,
+    chunks: false,
+    modules: false,
+    reasons: false,
+    children: false,
+    source: false,
+    errorDetails: false,
+    publicPath: false,
   },
 });
 
