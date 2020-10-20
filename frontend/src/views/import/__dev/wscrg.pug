@@ -45,36 +45,16 @@ block content
                   a(href="#").sub-contents__link 학과소개
 
           .sub-contents__content-wrap
-            .sub-contents__background
-              strong 대덕대학교 컴퓨터정보학과 <br>
-              span Deaduk College
             .sub-contents__content
-              .sub-contents__box
-                p.sub-contents__box-txt
-                  | 대덕대학교 컴퓨터정보학과는<br>컴퓨터, 정보처리 기술과 활용에 대한 다양한 지식을 학습하여
-                  | SW/서버/네트워크/정보보안과 관련된 운영, 관리 및 개발 등에 종사하는 현장형 스마트 IT 인력 양성을 목표로 하고 있습니다.
-
-              .sub-contents__box
-                h2.sub-contents__box-title 소프트웨어 개발
-                p.sub-contents__box-txt 4차산업 혁명 시대의 IT 분야를 주도하기 위해 IOT, 인공지능, 스마트 모빌리티, 빅데이터, 증강현실 등을 이해하고 코딩 능력과 문제해결력을 배운 SW개발자 인재 양성
-              .sub-contents__box
-                h2.sub-contents__box-title 정보보안
-                p.sub-contents__box-txt 보안해킹 기술 및 사이버범죄에 대처하는 전문지식과 체계적인 수사기법을 활용하여 디지털 자산을 보호하는 사이버 정보보호 인재양성
-              .sub-contents__box
-                h2.sub-contents__box-title 네트워크
-                p.sub-contents__box-txt 네트워크 구축 운영기술을 학습하여 정보전문기술 인재 양성
-              .sub-contents__box
-                h2.sub-contents__box-title 4년제 국립대학 및 사립대학과의 연계편입학 협약
-                p.sub-contents__box-txt
-                  | 충남대 컴퓨터공학과, 한밭대학교 컴퓨터공학과, 공주대학교 컴퓨터공학과, <br><br>
-                  | 고려대학교 세종캠퍼스 컴퓨터융합소프트웨어학과,<br><br>
-                  | 고려대학교 세종캠퍼스 응용수리과학부사이버보안전공<br><br>
-                  | 홍익대학교 세종캠퍼스 컴퓨터정보통신공학과<br><br>
-                  | 남서울대학교 컴퓨터과학과와<br><br>
-                  | 연계교육과정 윤영에 의한 편입학 협약을 체결함에 따라 졸업 후 정원 외 전형으로 위 대학에 편입을 할 수 있습니다.
-
-
-
-
-
-
+              h2.sub-contents__form-title board Form
+              form(action="" method="post").sub-contents__form
+                .sub-contents__input-wrap.sub-contents__title-wrap
+                  h3.sub-contents__text-title.sub-contents__input-title 제목
+                  input(type="text" name="title" size="54" required)
+                .sub-contents__input-wrap.sub-contents__file-wrap
+                  h3.sub-contents__file-title.sub-contents__input-title 파일
+                  input(type="file" name="file")
+                .sub-contents__input-wrap.sub-contents__paragraph-wrap
+                  h3.sub-contents__paragraph-title.sub-contents__input-title 내용
+                  textarea(rows="5" cols="50" name="paragraph" required)
+                input(type="submit" name="submit").sub-contents__submit
