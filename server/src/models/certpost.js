@@ -4,10 +4,6 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING(30),
       allowNull: false,
     },
-    image: {
-      type: DataTypes.STRING(200),
-      allowNull: true,
-    },
     user: {
       type: DataTypes.STRING(200),
     },
