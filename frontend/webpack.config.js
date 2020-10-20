@@ -170,7 +170,6 @@ const webpackConfig = {
     }),
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
-      cleanOnceBeforeBuildPatterns: ['font*'],
     }),
     new webpack.ProgressPlugin(),
   ]
@@ -180,7 +179,6 @@ const webpackConfig = {
     }),
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
-      cleanOnceBeforeBuildPatterns: ['font*'],
     }),
     new webpack.ProgressPlugin(),
     new CopyWebpackPlugin({
