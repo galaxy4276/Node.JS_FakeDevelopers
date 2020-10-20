@@ -13,6 +13,7 @@ import MySQLStore from 'express-mysql-session';
 /* --- 개인 라이브러리 관련 모듈 import  --- */
 import connectMaria from './lib/connectMaria';
 import './controllers/passport';
+import sharePug from './lib/sharePug';
 
 /* --- 라우트 관련 모듈 import  --- */
 import test from './routes/test';
@@ -81,7 +82,7 @@ app.use(
 */
 app.use(passport.initialize()); // 유저 데이터 요청으로부터 serialize/deserialize 함수를 설정 
 app.use(passport.session()); // passport가 세션정보에 접근할 수 있도록 하는 미들웨어
-
+app.use(sharePug);
 
 /* 라우터 미들웨어들 */
 app.get('/', (req, res, next) => {

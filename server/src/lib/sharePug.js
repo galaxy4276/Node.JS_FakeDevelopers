@@ -1,5 +1,5 @@
 const sharePug = (req, res, next) => {
-  req.locals.user = req.user;
+  res.locals.user = req.user;
   next();
 };
 
