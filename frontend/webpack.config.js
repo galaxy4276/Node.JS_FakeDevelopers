@@ -168,14 +168,20 @@ const webpackConfig = {
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      // cleanStaleWebpackAssets: false,
+      cleanOnceBeforeBuildPatterns: ['font*'],
+    }),
     new webpack.ProgressPlugin(),
   ]
   : [
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      // cleanStaleWebpackAssets: false,
+      cleanOnceBeforeBuildPatterns: ['font*'],
+    }),
     new webpack.ProgressPlugin(),
     new CopyWebpackPlugin({
       patterns: [{ from: PUG_DIR, to: SERVER_BUILD_DIR + "/views" }],
