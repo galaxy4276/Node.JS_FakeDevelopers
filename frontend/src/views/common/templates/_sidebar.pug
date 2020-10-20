@@ -1,9 +1,14 @@
+mixin sidebar__btn__icon()
+  div.sidebar__btn__icon
+    +icon("caretDown", '여닫기', '#f5f5f5')
+
 .cover
 .sidebar
   .sidebar__logo logo
   ul.sidebar__list
     li.sidebar__item
       .sidebar__btn.sidebar__intro 학과소개
+        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
           a(href="#").sidebar__inner-link 학과소개
@@ -15,6 +20,7 @@
           a(href="#").sidebar__inner-link 동아리
     li.sidebar__item
       .sidebar__btn.sidebar__career 학과진로
+        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
           a(href="#").sidebar__inner-link 교육목표
@@ -24,6 +30,7 @@
           a(href="#").sidebar__inner-link 진로 설정
     li.sidebar__item
       .sidebar__btn.sidebar__community 커뮤니티
+        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
           a(href="#").sidebar__inner-link 학과이야기
@@ -33,6 +40,7 @@
           a(href="#").sidebar__inner-link 나눔의 공간
     li.sidebar__item
       .sidebar__btn.sidebar__history 학생 자취록
+        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
           a(href="#").sidebar__inner-link 자격증 취득
