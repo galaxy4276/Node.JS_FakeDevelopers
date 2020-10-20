@@ -2,7 +2,9 @@ import sequelize from '../models';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
-const { Post } = sequelize;
+import url from 'url';
+
+const { Certpost } = sequelize;
 
 export const uploads = multer({
   storage: multer.diskStorage({
@@ -23,21 +25,30 @@ export const uploads = multer({
 
 export const acquisitionPost = async (req, res, next) => {
   const { title, content } = req.body;
-  const { id } = req.user;
+  const { user } = req;
   const { file } = req;
 
-  console.log(file);
-
   try {
+    console.log(file);
+    console.log(req.files);
+
+    if (!user) {
+      return res.redirect(url.format({
+        pathname: '/',
+        query: {
+          'error': 'please-login'
+        },
+      }));
+    }
 
     if (!title) {
       return res.redirect('/footprint/acquisition');
     }
     
-    await Post.create({
+    await Certpost.create({
       title,
       content,
-      UserId: id,
+      UserId: user,
     });
 
   } catch(err) {
