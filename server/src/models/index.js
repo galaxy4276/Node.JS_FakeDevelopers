@@ -2,7 +2,6 @@ import Sequelize from 'sequelize';
 import env from './config';
 import user from './user';
 import certpost from './certpost';
-import post from './post';
 import suggest from './suggest';
 import donate from './donate';
 import award from './award';
@@ -18,7 +17,6 @@ export const sequelize = new Sequelize(config.database, config.username, config.
 
 db.User = user(sequelize, Sequelize);
 db.Certpost = certpost(sequelize, Sequelize);
-db.Post = post(sequelize, Sequelize);
 db.Suggest = suggest(sequelize, Sequelize);
 db.Donate = donate(sequelize, Sequelize);
 db.Award = award(sequelize, Sequelize);

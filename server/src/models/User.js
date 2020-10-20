@@ -23,7 +23,6 @@ export default (sequelize, DataTypes) => {
 
     User.associate = (db) => {
       db.User.hasMany(db.Certpost);
-      db.User.hasMany(db.Post);
       db.User.hasMany(db.Suggest);
       db.User.hasMany(db.Donate);
       db.User.hasMany(db.Award);
