@@ -3,3 +3,10 @@ public
 
 # .env
 .env
+
+# bear save dir (개인용 저장)
+_save
+
+
+# 서버 이미지 파일
+../server/uploads

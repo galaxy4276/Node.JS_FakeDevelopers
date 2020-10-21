@@ -1,0 +1,117 @@
+extends ../../common/_base.pug
+
+block title
+  title 지용킹의 개발공간
+block append stylesheet
+  link(rel="stylesheet" href="/css/member.css")
+block append script
+  script(src="/es5/member.js")
+
+block content
+  main.sub-main
+    .sub-background
+      span 학교 소개
+    .sub-main__wrap
+
+      // 여기서부터 네비게이션 바 시작
+      .sub-nav
+        .sub-nav__title-wrap
+          h3.sub-nav__title 학과소개
+        .sub-nav__list-wrap
+          ul.sub-nav__list
+            li.sub-nav__item 
+              a(href="#").sub-nav__link 학과소개
+            li.sub-nav__item
+              a(href="#").sub-nav__link 구성원
+            li.sub-nav__item
+              a(href="#").sub-nav__link 교육 환경
+            li.sub-nav__item
+              a(href="#").sub-nav__link 동아리
+
+      // 여기서부터 콘텐츠 시작
+      .sub-contents
+        .sub-contents__wrap
+          .sub-contents__header
+            h2.sub-contents__title 구성원
+            .sub-contents__util-wrap
+              ul.sub-contents__util-list
+                li.sub-contents__item
+                  a(href="#").sub-contents__link HOME 
+                  +sub-contents__item__icon() 
+                li.sub-contents__item
+                  a(href="#").sub-contents__link 학과소개
+                  +sub-contents__item__icon() 
+                li.sub-contents__item
+                  a(href="#").sub-contents__link 구성원
+
+          .sub-contents__content
+            .sub-contents__member-wrap
+              ul.sub-contents__member-list
+                li.sub-contents__member-item
+                  .sub-contents__member-image-zone
+                    .sub-contents__member-image.sub-contents__lee-image
+                  .sub-contents__member-profile
+                    h3.sub-contents__member-name 이권일 교수
+                    ul.sub-contents__member-info-list
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 직위
+                        span.sub-contents__member-info-item__info 교수
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 담당과목
+                        span.sub-contents__member-info-item__info 프로그래밍언어/객체프로그래밍응용
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 전화번호
+                        span.sub-contents__member-info-item__info 042-866-0398
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 연구실
+                        span.sub-contents__member-info-item__info 정곡관 10604
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 이메일
+                        span.sub-contents__member-info-item__info kilee@ddu.ac.kr
+                li.sub-contents__member-item
+                  .sub-contents__member-image-zone
+                    .sub-contents__member-image.sub-contents__jo-image
+                  .sub-contents__member-profile
+                    h3.sub-contents__member-name 조은경 교수
+                    ul.sub-contents__member-info-list
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 직위
+                        span.sub-contents__member-info-item__info 교수
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 담당과목
+                        span.sub-contents__member-info-item__info 빅데이터실습/어플리케이션보보안
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 전화번호
+                        span.sub-contents__member-info-item__info 042-866-0453
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 연구실
+                        span.sub-contents__member-info-item__info 정곡관 10605
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 이메일
+                        span.sub-contents__member-info-item__info ekcho@ddu.ac.kr
+                li.sub-contents__member-item
+                  .sub-contents__member-image-zone
+                    .sub-contents__member-image.sub-contents__jang-image
+                  .sub-contents__member-profile
+                    h3.sub-contents__member-name 장화식 교수
+                    ul.sub-contents__member-info-list
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 직위
+                        span.sub-contents__member-info-item__info 교수
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 담당과목
+                        span.sub-contents__member-info-item__info 암호학이해/보안실습
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 전화번호
+                        span.sub-contents__member-info-item__info 042-866-0397
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 연구실
+                        span.sub-contents__member-info-item__info 정곡관 10604
+                      li.sub-contents__member-info-item
+                        span.sub-contents__member-info-item__title 이메일
+                        span.sub-contents__member-info-item__info hsjang@ddu.ac.kr
+
+
+
+
+

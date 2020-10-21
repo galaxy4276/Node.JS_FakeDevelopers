@@ -1,0 +1,32 @@
+extends ../../common/_base.pug
+
+block title
+  title #{title || '섹시은기의 개발 공간'}
+block append stylesheet
+  link(rel="stylesheet" href="/css/galaxy.css")
+block append script
+  script(src="/es5/galaxy.js")
+
+block content
+  main.sub-main
+    .sub-background
+      span 학교 소개
+    .sub-main__wrap
+
+      // 여기서부터 네비게이션 바 시작
+      // TODO: 네비게이션 보완
+      .sub-nav
+        .sub-nav__title-wrap
+          h3.sub-nav__title 학생 자취록
+        .sub-nav__list-wrap
+          ul.sub-nav__list
+            li.sub-nav__item 
+              a(href="/footprint/acquisition").sub-nav__link 자격증 취득
+            li.sub-nav__item
+              a(href="/footprint/awards").sub-nav__link 대회 수상
+            li.sub-nav__item
+              a(href="/footprint/portfolio").sub-nav__link 포트폴리오
+
+      // 여기서부터 콘텐츠 시작
+      .sub-contents
+        +postForm()

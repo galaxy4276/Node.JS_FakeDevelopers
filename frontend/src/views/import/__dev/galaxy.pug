@@ -49,11 +49,13 @@ block content
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
-                  a(href='#').sub-contents__link HOME 
+                  a(href='#').sub-contents__item__link HOME
+                  +sub-contents__item__icon() 
                 li.sub-contents__item
-                  a(href='#').sub-contents__link 상위 주제
+                  a(href='#').sub-contents__item__link 상위 주제
+                  +sub-contents__item__icon()
                 li.sub-contents__item
-                  a(href="#").sub-contents__link 하위 주제 
+                  a(href="#").sub-contents__item__link 하위 주제 
 
           // 카드 게시글 테스트
           - let count = 0;

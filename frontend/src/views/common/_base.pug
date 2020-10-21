@@ -9,6 +9,9 @@ html(lang="en")
         script(defer src="/es5/common.js")
         block script
     body
+        include _mixins.pug
+        |
+        |
         include templates/_header.pug
         |
         |
@@ -27,5 +30,4 @@ html(lang="en")
         |
         // default >> hide
         include auth/_login.pug
-        //- ui 개발중
-        //- include auth/_join.pug
+        include auth/_join.pug

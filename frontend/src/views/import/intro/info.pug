@@ -3,9 +3,9 @@ extends ../../common/_base.pug
 block title
   title 지용킹의 개발공간
 block append stylesheet
-  link(rel="stylesheet" href="/css/wscrg.css")
+  link(rel="stylesheet" href="/css/info.css")
 block append script
-  script(src="/es5/wscrg.js")
+  script(src="/es5/info.js")
 
 block content
   main.sub-main
@@ -38,11 +38,13 @@ block content
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
-                  a(href="#").sub-contents__link HOME 
+                  a(href="#").sub-contents__item__link HOME
+                  +sub-contents__item__icon() 
                 li.sub-contents__item
-                  a(href="#").sub-contents__link 학과소개
+                  a(href="#").sub-contents__item__link 학과소개
+                  +sub-contents__item__icon()
                 li.sub-contents__item
-                  a(href="#").sub-contents__link 학과소개
+                  a(href="#").sub-contents__item__link 학과소개
 
           .sub-contents__content-wrap
             .sub-contents__background

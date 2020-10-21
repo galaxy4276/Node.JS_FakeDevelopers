@@ -7,6 +7,7 @@ require("dotenv").config();
 /* -- plugin --*/
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 /* -- MODE -- */
 const BUNDLE_POINT = process.env.BUNDLE_POINT;
@@ -36,9 +37,9 @@ const ENTRY = {
     index: path.resolve(__dirname, "src", "_entry", "index.js"),
 
     // auth
-    hashCheck: path.resolve(__dirname, "src", "_entry", "auth", "hashCheck.js"),
-    resetPassword: path.resolve(__dirname, "src", "_entry", "auth", "resetPassword.js"),
-    sendEmail: path.resolve(__dirname, "src", "_entry", "auth", "sendEmail.js"),
+    forgot_check: path.resolve(__dirname, "src", "_entry", "auth", "forgot_check.js"),
+    forgot_resetPassword: path.resolve(__dirname, "src", "_entry", "auth", "forgot_resetPassword.js"),
+    forgot_sendEmail: path.resolve(__dirname, "src", "_entry", "auth", "forgot_sendEmail.js"),
 
     // community/
     board: path.resolve(__dirname, "src", "_entry", "community", "board.js"),
@@ -71,16 +72,31 @@ const ENTRY = {
 const webpackConfig = {
   mode: process.env.DEV_MODE || "development",
 
-  devServer: BUNDLE_POINT === "frontend" ? {
-    contentBase: FRONT_BUILD_DIR,
+  devServer: {
+    contentBase: BUNDLE_POINT === "frontend" ? FRONT_BUILD_DIR : SERVER_BUILD_DIR,
     publicPath: "/",
     overlay: true,
     hot: true,
     inline: true,
     open: true,
     progress: true,
-    stats: "errors-only",
-  } : {},
+    stats: {
+      errors: true,
+      colors: true,
+      warnings: true,
+      hash: false,
+      version: false,
+      timings: false,
+      assets: false,
+      chunks: false,
+      modules: false,
+      reasons: false,
+      children: false,
+      source: false,
+      errorDetails: false,
+      publicPath: false,
+    }
+  },
 
   devtool: "inline-source-map",
   // 콘솔에서 오류 경로를 번들 후 파일이 아닌 번들 전 파일로 명시해줌
@@ -114,7 +130,7 @@ const webpackConfig = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "resolve-url-loader", "sass-loader"],
       },
       {
         test: /\.(png|jpe?g|gif|svg|ico)$/,
@@ -125,7 +141,7 @@ const webpackConfig = {
               limit: 8192, // (file-size > limit) ? use file-loader
               publicPath: "../",
               context: SRC,
-              name: "img/[name].[ext]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+              name: "img/[name].[ext]", //  (mode == "production") ? name: "img/[hash].[ext]",
               useRelativePaths: true,
             },
           },
@@ -134,7 +150,16 @@ const webpackConfig = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
-          "file-loader?name=font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+          {
+            loader: "url-loader",
+            options: {
+              limit: 100000, // (file-size > limit) ? use file-loader
+              publicPath: "../",
+              context: SRC,
+              name: "font/[name].[ext]", //  (mode == "production") ? name: "font/[hash].[ext]",
+              useRelativePaths: true,
+            },
+          },
         ],
       },
     ],
@@ -143,11 +168,19 @@ const webpackConfig = {
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false,
+    }),
+    new webpack.ProgressPlugin(),
   ]
   : [
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false,
+    }),
+    new webpack.ProgressPlugin(),
     new CopyWebpackPlugin({
       patterns: [{ from: PUG_DIR, to: SERVER_BUILD_DIR + "/views" }],
     }),

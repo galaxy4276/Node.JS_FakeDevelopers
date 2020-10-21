@@ -12,27 +12,29 @@ const auth = require('express').Router();
 
 auth.get('/login', login);
 auth.post('/login', postLogin);
+
 auth.get('/join', join);
 auth.post('/join', postJoin);
-auth.get('/forgot', (req, res) => {
-  res.render('import/forgot', {});
+
+auth.get('/forgot_sendEmail', (req, res) => {
+  res.render('import/auth/forgot_sendEmail', {});
 });
 
-auth.post('/forgot', forgotHash, sendMail, (req, res) => {
-  res.redirect('/auth/forgot2');
+auth.post('/forgot_sendEmail', forgotHash, sendMail, (req, res) => {
+  res.redirect('/auth/forgot_check');
 });
 
-auth.get('/forgot2', (req, res) => {
-  res.render('import/forgot2');
+auth.get('/forgot_check', (req, res) => {
+  res.render('import/auth/forgot_check');
 });
 
-auth.post('/forgot2', async (req, res, next) => {
+auth.post('/forgot_check', async (req, res, next) => {
   const { hash } = req.body;
   try {
     const user = await User.findOne({ where: { hash }});
      if (user) {
        res.redirect(url.format({
-         pathname: '/auth/forgot3',
+         pathname: '/auth/forgot_resetPassword',
          query: {
            'hash': user.hash
          }
@@ -44,12 +46,12 @@ auth.post('/forgot2', async (req, res, next) => {
   }
 });
 
-auth.get('/forgot3', (req, res) => {
+auth.get('/forgot_resetPassword', (req, res) => {
   console.log(req.query);
-  res.render('import/forgot3', { hash: req.query.hash });
+  res.render('import/auth/forgot_resetPassword', { hash: req.query.hash });
 });
 
-auth.post('/forgot3', async (req, res, next) => {
+auth.post('/forgot_resetPassword', async (req, res, next) => {
   const { newPw } = req.body;
   try {
     console.log(req.query);
@@ -69,6 +71,10 @@ auth.post('/forgot3', async (req, res, next) => {
   }
 })
 
+auth.get('/logout', (req, res, next) => {
+  req.logout();
+  return res.redirect('/');
+});
 
 
 
