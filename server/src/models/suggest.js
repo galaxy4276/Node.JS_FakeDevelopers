@@ -1,23 +1,27 @@
-export default (sequelize, DataTypes) => {
-  const Suggest = sequelize.define('Suggest', {
-    title: {
-      type: DataTypes.STRING(30),
-      allowNull: false,
-    },
-    user: {
-      type: DataTypes.STRING(200),
-    },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-  }, {
-    timestamps: true,
-  });
+import { Model, DataTypes } from 'sequelize';
 
-  Suggest.associate = (db) => {
-    db.Suggest.belongsTo(db.User);
+
+export default class SuggestPost extends Model {
+  static init(sequelize) {
+    return super.init({
+      title: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+    }, {
+      modelName: 'SuggestPost',
+      tableName: 'suggestposts',
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_general_ci',
+      sequelize,
+    })
   }
 
-  return Suggest;
-} 
+  static associate(db) {
+    db.Suggest.belongsTo(db.User);
+  }
+}

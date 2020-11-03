@@ -1,23 +1,27 @@
-export default (sequelize, DataTypes) => {
-  const Certpost = sequelize.define('Certpost', {
-    title: {
-      type: DataTypes.STRING(30),
-      allowNull: false,
-    },
-    user: {
-      type: DataTypes.STRING(200),
-    },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-  }, {
-    timestamps: true,
-  });
+import { Model, DataTypes } from 'sequelize';
 
-  Certpost.associate = (db) => {
+
+export default class CertPost extends Model {
+  static init(sequelize) {
+    return super.init({
+      title: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+    }, {
+      modelName: 'CertPost',
+      tableName: 'certposts',
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_general_ci',
+      sequelize,
+    })
+  }
+  
+  static associate(db) {
     db.Certpost.belongsTo(db.User);
   }
-
-  return Certpost;
-} 
+}

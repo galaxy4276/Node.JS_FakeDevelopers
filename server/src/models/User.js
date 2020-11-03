@@ -1,5 +1,9 @@
-export default (sequelize, DataTypes) => {
-    const User = sequelize.define('User', {
+import { Model, DataTypes } from 'sequelize';
+
+
+export default class User extends Model {
+  static init(sequelize) {
+    return super.init({
       id: {
         type: DataTypes.STRING(35),
         allowNull: false,
@@ -18,16 +22,11 @@ export default (sequelize, DataTypes) => {
         allowNull: true,
       }
     }, {
-      timestamps: true,
-    });
-
-    User.associate = (db) => {
-      db.User.hasMany(db.Certpost);
-      db.User.hasMany(db.Suggest);
-      db.User.hasMany(db.Donate);
-      db.User.hasMany(db.Award);
-      db.User.hasMany(db.Portfolio);
-    }
-
-    return User;
+      modelName: 'User',
+      tableName: 'users',
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_general_ci',
+      sequelize,
+    })
+  }
 }
