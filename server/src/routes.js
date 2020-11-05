@@ -48,7 +48,7 @@ const routes = {
   frontView: FRONT_VIEW,
   frontCss: FRONT_CSS,
   frontEs6: FRONT_ES6,
-  forntImg: FRONT_IMG,
+  frontImg: FRONT_IMG,
   frontFont: FRONT_FONT,
 
   intro: INTRO,
