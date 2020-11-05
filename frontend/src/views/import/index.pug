@@ -16,25 +16,30 @@ block content
     .index-main__content
       .index-main__first
         .index-main__pop-up.index-main__first-box
-          span pop-up
+          span 공지사항
         .index-main__department-news.index-main__first-box
-          ul.index-main__department-news__list
-            -for(let i = 0; i<3; i++)
-              li= `dn ${i}`
+          span 학과이야기
         .index-main__college-news.index-main__first-box
-          ul.index-main__college-news__list
-            -for(let i = 0; i<3; i++)
-              li= `cn ${i}`
+          span 동아리
       .index-main__second
         .index-main__academic-info.index-main__second-box
           h1.index-main__second-title 학사정보
           .index-main__second__cell-wrap
-            ul.index-main__academic-info__list
-              -for(let i = 0; i<3; i++)
-                li= `as ${i}`
+            ul.index-main__scond__content-list
+              li.index-main__second__content-item
+                a(href="/intro/info") 학과소개
+              li.index-main__second__content-item
+                a(href="/intro/member") 구성원
+              li.index-main__second__content-item
+                a(href="/milestone/curriculum") 교육목표
         .index-main__student-life.index-main__second-box
           h1.index-main__second-title 학생생활
           .index-main__second__cell-wrap
-            ul.index-main__student-life__list
-              -for(let i = 0; i<3; i++)
-                li= `sl ${i}`
+            ul.index-main__scond__content-list
+              li.index-main__second__content-item
+                a(href="/footprint/acquisition") 자격증 취득
+              li.index-main__second__content-item
+                a(href="/footprint/awards") 대회 수상
+              li.index-main__second__content-item
+                a(href="/footprint/portfolio") 포트폴리오
+
