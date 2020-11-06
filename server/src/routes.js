@@ -7,7 +7,8 @@ const FRONT_API = path.resolve(frontUrl, 'api');
 const FRONT_VIEW = path.resolve(frontUrl, 'views');
 const FRONT_CSS = path.resolve(frontUrl, 'css');
 const FRONT_ES6 = path.resolve(frontUrl, 'es5');
-const FRONT_IMG = path.resolve(frontUrl, 'img');
+const FRONT_IMG = path.resolve(frontUrl, 'img');  
+const FRONT_FONT = path.resolve(frontUrl, 'font');
 
 
 /* --- 전공 소개 카테고리   --- */
@@ -48,6 +49,7 @@ const routes = {
   frontCss: FRONT_CSS,
   frontEs6: FRONT_ES6,
   forntImg: FRONT_IMG,
+  frontFont: FRONT_FONT,
 
   intro: INTRO,
   introInfo: INTRO_INFO,

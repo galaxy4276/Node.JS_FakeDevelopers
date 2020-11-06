@@ -1,6 +1,12 @@
 import Sequelize from 'sequelize';
 import env from './config';
-import User from './User';
+import user from './user';
+import certpost from './certpost';
+import suggest from './suggest';
+import donate from './donate';
+import award from './award';
+import portfolio from './portfolio';
+import image from './image';
 
 
 const config = env;
@@ -9,8 +15,19 @@ const db = {};
 
 export const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
+db.User = user(sequelize, Sequelize);
+db.Certpost = certpost(sequelize, Sequelize);
+db.Suggest = suggest(sequelize, Sequelize);
+db.Donate = donate(sequelize, Sequelize);
+db.Award = award(sequelize, Sequelize);
+db.Portfolio = portfolio(sequelize, Sequelize);
+db.Image = image(sequelize, Sequelize);
 
-db.User = User(sequelize, Sequelize);
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

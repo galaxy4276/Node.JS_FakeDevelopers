@@ -7,11 +7,13 @@ require("dotenv").config();
 /* -- plugin --*/
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 /* -- MODE -- */
 const BUNDLE_POINT = process.env.BUNDLE_POINT;
 
 /* -- DIR_PATH -- */
+const SRC = path.resolve(__dirname, "src");
 const FRONT_BUILD_DIR = path.resolve(__dirname, "public");
 const SERVER_BUILD_DIR = path.resolve(__dirname, `../server/src/public`);
 const PUG_DIR = path.resolve(__dirname, "src", "views");
@@ -33,6 +35,11 @@ const ENTRY = {
 
     // index
     index: path.resolve(__dirname, "src", "_entry", "index.js"),
+
+    // auth
+    forgot_check: path.resolve(__dirname, "src", "_entry", "auth", "forgot_check.js"),
+    forgot_resetPassword: path.resolve(__dirname, "src", "_entry", "auth", "forgot_resetPassword.js"),
+    forgot_sendEmail: path.resolve(__dirname, "src", "_entry", "auth", "forgot_sendEmail.js"),
 
     // community/
     board: path.resolve(__dirname, "src", "_entry", "community", "board.js"),
@@ -62,20 +69,33 @@ const ENTRY = {
     wscrg: path.resolve(__dirname, "src", "_entry", "__dev", "wscrg.js"),
 }
 
-
-// output 1: dev_client
-const webpackConfig_frontend = {
-  mode: process.env.DEV_MODE,
+const webpackConfig = {
+  mode: process.env.DEV_MODE || "development",
 
   devServer: {
-    contentBase: FRONT_BUILD_DIR,
+    contentBase: BUNDLE_POINT === "frontend" ? FRONT_BUILD_DIR : SERVER_BUILD_DIR,
     publicPath: "/",
     overlay: true,
     hot: true,
     inline: true,
     open: true,
     progress: true,
-    stats: "errors-only",
+    stats: {
+      errors: true,
+      colors: true,
+      warnings: true,
+      hash: false,
+      version: false,
+      timings: false,
+      assets: false,
+      chunks: false,
+      modules: false,
+      reasons: false,
+      children: false,
+      source: false,
+      errorDetails: false,
+      publicPath: false,
+    }
   },
 
   devtool: "inline-source-map",
@@ -87,10 +107,9 @@ const webpackConfig_frontend = {
 
   output: {
     //  entry 에서 분리한 청크별로 다른 번들파일 출력
-    path: FRONT_BUILD_DIR,
+    path: BUNDLE_POINT === "frontend" ? FRONT_BUILD_DIR : SERVER_BUILD_DIR,
     filename: "es5/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
-    publicPath: "/",
-    // publicPath: "http://localhost:8080/",
+    publicPath: BUNDLE_POINT === "frontend" ? "/" : "./",
   },
 
   module: {
@@ -111,7 +130,7 @@ const webpackConfig_frontend = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "resolve-url-loader", "sass-loader"],
       },
       {
         test: /\.(png|jpe?g|gif|svg|ico)$/,
@@ -120,101 +139,48 @@ const webpackConfig_frontend = {
             loader: "url-loader",
             options: {
               limit: 8192, // (file-size > limit) ? use file-loader
-              publicPath: "./",
-              name: "img/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+              publicPath: "../",
+              context: SRC,
+              name: "img/[name].[ext]", //  (mode == "production") ? name: "img/[hash].[ext]",
+              useRelativePaths: true,
             },
           },
         ],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
-            },
-          },
-        ],
-      },
-    ],
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "css/[name].css",
-    }),
-  ],
-};
-
-// output 2: dev_server
-const webpackConfig_server = {
-  mode: process.env.DEV_MODE || "development",
-
-  devtool: "inline-source-map",
-  // The side effect of this option is to increase build time
-  // mode development ? ‘inline-source-map" : 'hidden-source-map’
-
-  entry: ENTRY,
-
-  output: {
-    //  entry 에서 분리한 청크별로 다른 번들파일 출력
-    path: SERVER_BUILD_DIR,
-    filename: "es5/[name].js", // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
-    publicPath: "./",
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.pug$/,
-        use: ["pug-loader"],
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: ["@babel/preset-env"],
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg|ico)$/,
         use: [
           {
             loader: "url-loader",
             options: {
-              limit: 8192, // (file-size > limit) ? use file-loader
-              publicPath: "./",
-              name: "img/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "font/[name].[ext]?[hash]", //  (mode == "production") ? name: "../img/[hash].[ext]",
+              limit: 100000, // (file-size > limit) ? use file-loader
+              publicPath: "../",
+              context: SRC,
+              name: "font/[name].[ext]", //  (mode == "production") ? name: "font/[hash].[ext]",
+              useRelativePaths: true,
             },
           },
         ],
       },
     ],
   },
-  plugins: [
+  plugins: BUNDLE_POINT === "frontend" ? [
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false,
+    }),
+    new webpack.ProgressPlugin(),
+  ]
+  : [
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+    }),
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false,
+    }),
+    new webpack.ProgressPlugin(),
     new CopyWebpackPlugin({
       patterns: [{ from: PUG_DIR, to: SERVER_BUILD_DIR + "/views" }],
     }),
@@ -222,8 +188,7 @@ const webpackConfig_server = {
 };
 
 /* -- module.exports -- */
-module.exports =
-  BUNDLE_POINT === "frontend" ? webpackConfig_frontend : webpackConfig_server;
+module.exports = webpackConfig;
 
 const BUNDLE_POINT_LOG = () => {
   BUNDLE_POINT === "frontend"

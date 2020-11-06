@@ -11,23 +11,34 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 450px;
-  background-color: peru;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url('../../../img/example_big_school.jpg') no-repeat top; // TODO: 임시 이미지. 각 카테고리마다 다른 배경 적용
+  filter: contrast(80%) grayscale(70%); // TODO: 불필요하다 판단시 삭제, filter 퍼포먼스 영향 알아보기
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($main-color--black, 0.3);
+  }
+
+  @include sub-background-height--media; // _media_mixin.scss
 }
 
 .sub-main__wrap {
-  width: 100%;
+  max-width: 1300px;
   height: fit-content;
-  background-color: greenyellow;
+  background-color: white; // bear: 키위색 제거 완료
   z-index: 1;
   position: relative;
   display: flex;
   justify-content: center;
   padding: 50px 50px 125px 50px;
-  margin-top: 400px;
+
+  @include sub-main-margin--media; // _media_mixin.scss
 }
 
 .sub-nav {
@@ -56,7 +67,6 @@
 
   &__item {
     width: 100%;
-    height: 55px;
     border-bottom: 1px solid black;
     display: flex;
     justify-content: start;
@@ -65,25 +75,17 @@
   }
 
   &__link {
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-
-    &:after {
-      content: "\f0d7";
-      font-family: "Font Awesome 5 Free";
-      font-weight: 900;
-      text-align: right;
-    }
+    width: 100%;
+    padding: 1rem;
   }
 }
 
 .sub-contents {
   width: 100%;
-  height: fit-content;
+  height: 100vh; // galaxy: fit-content 였는데 문제가 있어서 잠깐 수정했습니다.
 
   &__header {
     width: 100%;
@@ -108,24 +110,27 @@
     }
   }
 
-  &__item:nth-child(-n + 2) {
-    .sub-contents__link:after {
-      content: "\f105";
-      font-family: "Font Awesome 5 Free";
-      font-weight: 900;
-      margin: 0 10px;
-    }
-  }
-
-  &__link {
+  &__item {
+    position: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+    &__link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__icon {
+      width: 0.6rem;
+      height: 0.6rem;
+      margin: 0 0.4rem;
+    }
   }
 
   &__content {
     display: flex;
     width: 100%;
+
     border: 1px solid black;
     margin-top: 30px;
   }

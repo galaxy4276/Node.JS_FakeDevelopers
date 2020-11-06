@@ -1,0 +1,12 @@
+/* default */
+// 모든 파일에 사용되는 scss
+//
+// -- 이 파일을 호출하는 파일 --
+// 1. scss/import/ 하위의 모든 파일에서 호출 ([pagename].css 빌드시에 사용)
+// 2. scss/common/common.scss 에서 호출 (common.css 빌드시에 사용)
+
+@import "./font_base";
+@import "./mixins";
+@import "./media_mixin";
+@import "./placeholders";
+@import "./variables";

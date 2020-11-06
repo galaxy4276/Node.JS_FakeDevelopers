@@ -1,1 +1,2 @@
-SequelizeConnectionRefusedError: connect ECONNREFUSED 34.64.107.143:3306.
+SequelizeForeignKeyConstraintError: (conn=9838, no: 1451, SQLState: 23000) Cannot delete or update a parent row: a foreign key constraint fails
+sql: DROP TABLE IF EXISTS `Users`; - parameters:[]

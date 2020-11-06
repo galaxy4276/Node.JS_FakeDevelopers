@@ -1,0 +1,151 @@
+// @mixin
+// 미디어 쿼리 관련 mixin 은 './media_mixin.scss'
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin full {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin position($position, $top, $left) {
+  position: $position;
+  top: $top;
+  left: $left;
+  @if $top == 50% and $left == 50% {
+    transform: translate(-50%, -50%);
+  } @else if $left == 50% {
+    transform: translate(0, -50%);
+  } @else if $top == 50% {
+    transform: translate(-50%, 0);
+  }
+}
+
+@mixin border-top($color, $thickness) {
+  border: none;
+  @if $thickness {
+    border-top: $thickness solid $color;
+  } @else {
+    border-top: 1px solid $color;
+  }
+}
+
+@mixin border-bottom($color, $thickness) {
+  border: none;
+  @if $thickness {
+    border-bottom: $thickness solid $color;
+  } @else {
+    border-bottom: 1px solid $color;
+  }
+}
+
+@mixin btn-retangle($padding, $istextShadow, $isGrayscale) {
+  @if $padding {
+    padding: $padding;
+  } @else {
+    padding: 1rem;
+  }
+  display: block;
+  outline: none;
+  border: none;
+  border-radius: 0.15rem;
+  font-weight: 400;
+  font-size: 1rem;
+  @if $istextShadow == true {
+    text-shadow: $text-shadow--black;
+  }
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    @if $isGrayscale == true {
+      filter: grayscale(20%);
+    }
+    box-shadow: inset 0.02rem 0.04rem 0.2rem black;
+  }
+}
+
+//TODO: 오버레이 위의 컨텐츠가 중앙을 유지하면서 스크롤 따라다니도록 수정
+@mixin overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+
+@mixin underline-hover-fill($color) {
+  position: relative;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+
+  &:hover {
+    color: $main-color--white;
+    text-shadow: $text-shadow--black;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: calc(0.5rem + 2rem); // 현재 padding 값 절반 + 글자높이 2배
+    left: 0;
+    width: inherit;
+    height: 0;
+    overflow: hidden;
+    color: $color;
+    background-color: $color;
+    border-bottom: 2px solid $color;
+    transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335); /* easeInCirc */
+  }
+
+  &:hover::before {
+    top: 0.5rem; // 현재 padding 값 절반
+    height: calc(100% - 1rem); // 현재 padding 값 빼기
+    border-radius: 0.15rem;
+    box-shadow: 0.01rem 0.02rem 0.1rem -0.1rem black;
+  }
+}
+
+@mixin auth-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: $box-shadow;
+  border-radius: 1rem;
+  z-index: 10000;
+}
+
+@mixin svg-btn($width) {
+  width: $width;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    path {
+      stroke-width: 60; // defalut: 40
+    }
+  }
+}
+// for dev
+
+@mixin __dev_template {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 4vh;
+  font-size: 20px;
+}

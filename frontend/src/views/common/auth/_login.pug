@@ -1,0 +1,32 @@
+article.login
+    |
+    |
+    .login__overlay
+    |
+    |
+    form(action="/auth/login" method="post" autocomplete="off").login__form
+        |
+        |
+        .login__form__close-btn
+            +icon("close", '닫기', '#f5f5f5')
+        .login__form__title 로그인
+        //- TODO: 컴포넌트 클릭시에 타이틀 글자 애니메이션 시작, 컴포넌트 밖 클릭시에 애니메이션 중지.
+        |
+        |
+        //- input의 minlegnth, maxlength 는 백엔드와 상의
+        .login__form__input-box
+            input(type="text" name="id" minlength="1" maxlength="20" required).login__form__input
+            label.login__form__input-label 사용자 이름
+            span.login__form__input-check
+        .login__form__input-box
+            input(type="password" name="password" minlength="1" maxlength="20" required).login__form__input
+            label.login__form__input-label 비밀번호
+            span.login__form__input-check
+        |
+        |
+        input(type="submit" value="로그인").login__form__login-btn
+        button(type="button").login__form__join-open-btn.js-joinOpenBtn 회원가입
+        |
+        |
+        div.login__form__find-password
+            a(href="/auth/forgot_sendEmail").login__form__find-password-link.js-findBtn 비밀번호를 잊으셨나요?

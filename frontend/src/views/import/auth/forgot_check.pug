@@ -1,0 +1,36 @@
+doctype html
+html(lang="ko")
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        title check
+        link(rel="stylesheet" href="/css/common.css")
+        link(rel="stylesheet" href="/css/forgot_check.css")
+        script(src="/es5/forgot_check.js")
+    body 
+        article.find
+            |
+            |
+            .find__overlay
+            |
+            |
+            form(action="/auth/forgot_check" method="post" autocomplete="off").find__form
+                |
+                |
+                //- TODO: 뒤로가기버튼(로그인 창으로 돌아가기) 추가하기
+                .find__form__close-btn
+                    +icon("close", '닫기', '#f5f5f5')
+                .find__form__title 이메일로 코드가 발송되었습니다!
+                |
+                |
+                fieldset.find__form__fieldset.find__form__fieldset--check-hash
+                    |
+                    |
+                    .find__form__return-btn
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='105 105 300 300'><title>뒤로가기</title><path fill='none' stroke='#f5f5f5' stroke-linecap='round' stroke-linejoin='round' stroke-width='40' d='M244 400L100 256l144-144M120 256h292'/></svg>
+                    |
+                    |        
+                    .find__form__input-box
+                        input(type="text" name="hash" id="hash" minlength="1" required).find__form__input
+                        label(for="hash").find__form__input-label 입력하신 이메일로 보내드린 값을 입력해주세요
+                    button(type="submit").find__form__btn.find__form__btn--hash 확인

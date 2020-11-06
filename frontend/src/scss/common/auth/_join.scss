@@ -1,0 +1,115 @@
+/* --'.join__form__input-label' 에 will-change 적용 -- */
+.join {
+  display: none;
+
+  &--show {
+    display: initial;
+  }
+
+  &__overlay {
+    @include overlay;
+  }
+
+  &__form {
+    @include auth-form;
+    min-width: 420px;
+
+    &__close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 1rem;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        path {
+          stroke-width: 60; // defalut: 40
+        }
+      }
+
+      @include top-right-btn--media;
+    }
+
+    &__title {
+      color: $auth__font-color--after;
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 4rem;
+      transition: 0.5s;
+      pointer-events: none;
+
+      @include for-size(mobile-fold-landscape) {
+        display: none;
+      }
+    }
+
+    &__input-box {
+      position: relative;
+    }
+
+    &__input {
+      @include border-bottom($auth__font-color--before, 1px);
+
+      width: 100%;
+      margin-bottom: 3rem;
+      outline: none;
+      background-color: transparent;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      color: $auth__font-color--after;
+
+      &:focus,
+      &:valid {
+        font-size: 1.5rem;
+      }
+
+      &:focus ~ &-label,
+      &:valid ~ &-label {
+        top: -1.5rem;
+        left: 0;
+        font-size: 0.9rem;
+        opacity: 1;
+        color: $main-color--silver;
+      }
+
+      &:valid ~ &-check::before {
+        content: "✓";
+        color: $auth__font-color--before;
+      }
+
+      @include for-size(mobile-fold-landscape) {
+        padding: 0.05rem 0;
+      }
+    }
+
+    &__input-label {
+      @include position(absolute, 0, 0);
+      color: $auth__font-color--before;
+      opacity: 0.6;
+      pointer-events: none;
+      transition: all 700ms cubic-bezier(0.23, 1, 0.32, 1); /* easeOutQuint */
+      will-change: contents;
+    }
+
+    &__input-check {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        right: 5px;
+        top: 0.1rem;
+      }
+    }
+
+    &__join-btn {
+      @include btn-retangle(1rem 0, true, true);
+      text-align: center;
+      background-color: $main-color--silver;
+      margin: 1.6rem 0 0.8rem 0;
+      color: #fff;
+    }
+
+    @include auth__form--media;
+  }
+}

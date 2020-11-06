@@ -1,4 +1,4 @@
-extends templates/_page.pug
+extends ../../common/_base.pug
 
 block title
   title 지용킹의 개발공간
@@ -16,30 +16,47 @@ block content
       // 여기서부터 네비게이션 바 시작
       .sub-nav
         .sub-nav__title-wrap
-          h3.sub-nav__title 상위 주제
+          h3.sub-nav__title 학과소개
         .sub-nav__list-wrap
           ul.sub-nav__list
             li.sub-nav__item 
-              a(href="#").sub-nav__link 하위 주제 1
+              a(href="#").sub-nav__link 학과소개
             li.sub-nav__item
-              a(href="#").sub-nav__link 하위 주제 2
+              a(href="#").sub-nav__link 구성원
+            li.sub-nav__item
+              a(href="#").sub-nav__link 교육환경
+            li.sub-nav__item
+              a(href="#").sub-nav__link 동아리
+
+
 
       // 여기서부터 콘텐츠 시작
       .sub-contents
         .sub-contents__wrap
           .sub-contents__header
-            h2.sub-contents__title 선택된 하위 주제
+            h2.sub-contents__title 학과소개
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
-                  a(href="#").sub-contents__link HOME 
+                  a(href="#").sub-contents__item__link HOME
+                  +sub-contents__item__icon() 
                 li.sub-contents__item
-                  a(href="#").sub-contents__link 상위 주제 
+                  a(href="#").sub-contents__item__link 학과소개
+                  +sub-contents__item__icon()
                 li.sub-contents__item
-                  a(href="#").sub-contents__link 하위 주제 
+                  a(href="#").sub-contents__item__link 학과소개
 
-          .sub-contents__content
-            .sub-contents__missing-message
-              i.fas.fa-exclamation-triangle.fa-9x.sub-contents__alert-icon
-              strong.sub-contents__txt-1 콘텐츠 작업이 필요한 페이지입니다.
-              p.sub-contents__txt-2 빠르고 편리한 서비스를 위해 최선을 다하겠습니다.
+          .sub-contents__content-wrap
+            .sub-contents__content
+              h2.sub-contents__form-title board Form
+              form(action="" method="post").sub-contents__form
+                .sub-contents__input-wrap.sub-contents__title-wrap
+                  h3.sub-contents__text-title.sub-contents__input-title 제목
+                  input(type="text" name="title" size="54" required)
+                .sub-contents__input-wrap.sub-contents__file-wrap
+                  h3.sub-contents__file-title.sub-contents__input-title 파일
+                  input(type="file" name="file")
+                .sub-contents__input-wrap.sub-contents__paragraph-wrap
+                  h3.sub-contents__paragraph-title.sub-contents__input-title 내용
+                  textarea(rows="5" cols="50" name="paragraph" required)
+                input(type="submit" name="submit").sub-contents__submit

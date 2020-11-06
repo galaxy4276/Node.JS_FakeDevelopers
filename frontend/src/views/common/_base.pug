@@ -8,11 +8,10 @@ html(lang="en")
         block stylesheet
         script(defer src="/es5/common.js")
         block script
-        |
-        |
-        script(async src="https://kit.fontawesome.com/5e169df0e9.js" crossorigin="anonymous" data-auto-add-css="false")
-        //-TODO: 현재 아이콘 svg로 변경 작업 완료 후 font awesome 스크립트 태그 삭제 
     body
+        include _mixins.pug
+        |
+        |
         include templates/_header.pug
         |
         |
@@ -20,7 +19,15 @@ html(lang="en")
         |
         |
         block content
+            main
         //- tempates/_sub-main.pug // 페이지 파일에 해당하는 파일의 코드를 복사해서 입맛대로 변경
         |
         |
         include templates/_footer.pug
+        |
+        |
+        |
+        |
+        // default >> hide
+        include auth/_login.pug
+        include auth/_join.pug

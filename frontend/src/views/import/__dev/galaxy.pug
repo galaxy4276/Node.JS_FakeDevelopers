@@ -1,4 +1,4 @@
-extends templates/_page.pug
+extends ../../common/_base.pug
 
 mixin card(title, info, content)
   // title = 자격증 이름
@@ -6,9 +6,10 @@ mixin card(title, info, content)
   // content = 취득 내용 후기 등..
   .card__wrap
     .card-body
-      a.card-title
-        span.card-content__title= title
-        img(src="#" alt="certification")
+      a.card-title(href="#")
+        //span.card-content__title= title
+        .card-title__img
+        //- !! Comment bear - 이미지는 웹팩 css 로더에 의해 file-loader에 연결되어 빌드되므로 css에서 지정해주어야 합니다.
       .card-content
         p.card-content__info= info
         p.card-content__text= content
@@ -34,11 +35,11 @@ block content
         .sub-nav__list-wrap
           ul.sub-nav__list
             li.sub-nav__item 
-              a(href="#").sub-nav__link 자격증 취득
+              a(href="/footprint/acquisition").sub-nav__link 자격증 취득
             li.sub-nav__item
-              a(href="#").sub-nav__link 대회 수상
+              a(href="/footprint/awards").sub-nav__link 대회 수상
             li.sub-nav__item
-              a(href="#").sub-nav__link 포트폴리오
+              a(href="/footprint/portfolio").sub-nav__link 포트폴리오
 
       // 여기서부터 콘텐츠 시작
       .sub-contents
@@ -48,16 +49,22 @@ block content
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
-                  a(href="#").sub-contents__link HOME 
+                  a(href='#').sub-contents__item__link HOME
+                  +sub-contents__item__icon() 
                 li.sub-contents__item
-                  a(href="#").sub-contents__link 상위 주제
+                  a(href='#').sub-contents__item__link 상위 주제
+                  +sub-contents__item__icon()
                 li.sub-contents__item
-                  a(href="#").sub-contents__link 하위 주제 
+                  a(href="#").sub-contents__item__link 하위 주제 
 
           // 카드 게시글 테스트
           - let count = 0;
           .sub-contents__content
             .student-board__wrap
-              while count < 18
-                    +card("리눅스마스터 2급", "201911064최은기", "와! 타이어보다 쉽다!")
-                    - count++;
+              .student-board__title
+                span 자격증 취득
+                button.write-btn 글쓰기
+              while count < 14
+                +card("리눅스마스터 2급", "201911064최은기", "와! 타이어보다 쉽다!")
+                - count++;
+              .ap-blank
