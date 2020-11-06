@@ -1,4 +1,5 @@
 import sequelize from '../models';
+import community from './category/community';
 const { Announcement, Community, Award, Certpost, Portfolio } = sequelize;
 
 
@@ -12,7 +13,8 @@ globalRouter.get('/', (req, res) => {
 globalRouter.get('/announcement', async (req, res, next) => {
   try {
     const posts = await Announcement.findAll({
-      limit: 10
+      limit: 10,
+      attributes: ['title', 'updatedAt'],
     });
 
     res.status(200).json(posts);
@@ -25,9 +27,13 @@ globalRouter.get('/announcement', async (req, res, next) => {
 globalRouter.get('/community', async (req, res, next) => {
   try {
     const posts = await Community.findAll({
-      limit: 10
+      limit: 10,
+      attributes: ['title', 'updatedAt'],
     });
 
+    if (posts[0] === undefined) {
+      return res.status(404).send('데이터가 존재하지 않습니다.');
+    }
     res.status(200).json(posts);
   } catch (err) {
     console.error(err);
@@ -51,21 +57,24 @@ globalRouter.get('/campuslive', async (req, res, next) => {
       order: [
         ['createdAt', 'DESC'],
       ],
+      attributes: ['title', 'updatedAt'],
     });
     const awardPost = await Award.findAll({
       limit: 1,
       order: [
         ['createdAt', 'DESC'],
       ],
+      attributes: ['title', 'updatedAt'],
     });
     const portfolioPost = await Portfolio.findAll({
       limit: 1,
       order: [
         ['createdAt', 'DESC'],
       ],
+      attributes: ['title', 'updatedAt'],
     });
-
     const posts = [].concat(certPost).concat(awardPost).concat(portfolioPost);
+
     res.status(200).json(posts);
   } catch (err) {
     console.error(err);
