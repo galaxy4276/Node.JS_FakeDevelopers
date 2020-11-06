@@ -25,7 +25,7 @@ export const uploads = multer({
 
 export const acquisitionPost = async (req, res, next) => {
   try {
-    const { title, content } = req.body;
+    const { title, paragraph } = req.body;
     const { user } = req;
     const { file } = req;
 
@@ -49,7 +49,7 @@ export const acquisitionPost = async (req, res, next) => {
     
     await Certpost.create({
       title,
-      content,
+      content: paragraph,
       UserId: user,
     });
 
