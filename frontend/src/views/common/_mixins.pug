@@ -1,3 +1,7 @@
+//- 이 파일은 index를 제외한 모든 페이지에서 호출 되므로 따로 
+//- 본 파일에 명시된 mixin 은 따로 호출 안하시고 그냥 쓰시면 됩니다.
+
+//- board template
 mixin postForm()
   .sub-contents__content-wrap
     .sub-contents__content
@@ -11,5 +15,39 @@ mixin postForm()
           input(type="file" name="file")
         .sub-contents__input-wrap.sub-contents__paragraph-wrap
           h3.sub-contents__paragraph-title.sub-contents__input-title 내용
-          textarea(rows="5" cols="50" name="content" required)
+          textarea(rows="5" cols="50" name="paragraph" required)
         input(type="submit" name="submit").sub-contents__submit
+
+//- Icons
+//- 사용법: 1. div 하나를 생성하여(중요) '그 안에' icon mixin 을 호출하고,
+//-         2. icon mixin에 원하는 아이콘의 이름과, title (img 태그의 alt 같은 역할), 원하는 색상을 인자로 전달하고,
+//-             ex) +icon('close', '닫기', '#f5f5f5')
+//-         3. css 에서 title을 지정하고
+//-         4. 크기가 맘에 안든다면 css에서 div의 크기를 조정하고
+//-         5. 아이콘 두께를 조정하려면 css에서 stroke-width 를 조절하시면 됩니다.
+mixin icon(iconName, title, color)
+  - var icons = { close: "close", caretDown: "caretDown", chevronForward: "chevronForward", chevronDown: "chevronDown"}
+  case iconName
+    when icons.close
+      svg(xmlns='http://www.w3.org/2000/svg' viewBox='105 105 300 300')
+        title= title
+        path(fill='none' stroke= color stroke-linecap='round' stroke-linejoin='round' stroke-width='40' d='M368 368L144 144M368 144L144 368')
+    when icons.caretDown
+      svg(xmlns='http://www.w3.org/2000/svg' viewBox='91 91 330 330')
+        title= title
+        path(fill= color d='M98 190.06l139.78 163.12a24 24 0 0036.44 0L414 190.06c13.34-15.57 2.28-39.62-18.22-39.62h-279.6c-20.5 0-31.56 24.05-18.18 39.62z')
+    when icons.chevronForward
+      svg(xmlns='http://www.w3.org/2000/svg' viewBox='105 105 300 300')
+        title= title
+        path(fill='none' stroke= color stroke-linecap='round' stroke-linejoin='round' stroke-width='32' d='M184 112l144 144-144 144')
+    when icons.chevronDown
+      svg(xmlns='http://www.w3.org/2000/svg' viewBox='105 105 300 300')
+        title= title
+        path(fill='none' stroke= color stroke-linecap='round' stroke-linejoin='round' stroke-width='32' d='M112 184l144 144 144-144')
+    default
+      p(style="color:red;") icon mixin에 존재하지 않는 인자 #{currentIcon}이(가) 전달되었습니다.
+      
+//- sub-main 템플릿의 icon 관련 mixin
+mixin sub-contents__item__icon()
+  div.sub-contents__item__icon
+    +icon("chevronForward", '', '#0f0f0f')
