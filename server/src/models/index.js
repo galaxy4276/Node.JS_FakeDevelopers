@@ -8,6 +8,7 @@ import award from './award';
 import portfolio from './portfolio';
 import image from './image';
 import announcement from './announcement';
+import community from './community';
 
 
 const config = env;
@@ -24,6 +25,7 @@ db.Award = award;
 db.Portfolio = portfolio;
 db.Image = image;
 db.Announcement = announcement;
+db.Community = community;
 
 Object.keys(db).forEach(modelName => {
   db[modelName].init(sequelize);
