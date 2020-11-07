@@ -1,5 +1,4 @@
 import sequelize from '../models';
-import community from './category/community';
 const { Announcement, Community, Award, Certpost, Portfolio } = sequelize;
 
 
@@ -41,7 +40,7 @@ globalRouter.get('/community', async (req, res, next) => {
   }
 });
 
-globalRouter.get('/club', async (req, res, next) => {
+globalRouter.get('/club', async (req, res, next) => { 
   try {
     // 차 후 작성
   } catch (err) {
