@@ -6,18 +6,19 @@ const { Certpost } = sequelize;
 const footprint = require('express').Router();
 
 
-footprint.get('/acquisition', (req, res) => {
-  res.render('import/footprint/acquisition', {});
+footprint.get('/acquisition', async (req, res) => {
+  const posts = await Certpost.findAll({
+    attributes: ['title', 'content', 'createdAt', 'UserId'],
+  });
+  console.log(posts);
+  res.render('import/footprint/acquisition', { posts });
 });
 
 footprint.post('/acquisition/post', uploads.single('file'), acquisitionPost);
 
 footprint.get('/acquisition/post', async (req, res, next) => {
-  const posts = await Certpost.findAll({
-    attributes: ['title', 'content', 'createdAt', 'UserId'],
-  });
 
-  res.render('import/footprint/post.pug', { posts });
+  res.render('import/footprint/post.pug');
 });
 
 footprint.get('/awards', (req, res) => {
