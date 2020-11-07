@@ -1,5 +1,5 @@
 /* -- scss default: mixin, veriables 등-- */
-@import "../common/default/default.scss";
+@import '../common/default/default.scss';
 /* --------------- */
 
 .index-main {
@@ -35,20 +35,20 @@
       display: grid;
       width: 100%;
       height: 25em;
-      grid-template: "box1 box2 box3" 1fr;
+      grid-template: 'box1 box2 box3' 1fr;
       border-bottom: 3px solid black;
 
       @media screen and (max-width: 1335px) {
         grid-template:
-          "box1 box1" 1fr
-          "box2 box3" 1fr;
+          'box1 box1' 1fr
+          'box2 box3' 1fr;
       }
 
       .index-main__first-box {
         padding: 35px 45px;
       }
 
-      .index-main__pop-up {
+      .index-main__notice {
         grid-area: box1;
         border: 3px solid black;
       }
