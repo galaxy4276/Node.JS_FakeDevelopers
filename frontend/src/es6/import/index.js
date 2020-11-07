@@ -59,8 +59,11 @@ const createUl = (res, div) => {
     a.textContent = titleText;
     span.textContent = dateText;
     li.appendChild(a);
+    a.classList.add('index-main__first__link');
     li.appendChild(span);
+    li.classList.add('index-main__first__item');
     ul.appendChild(li);
+    ul.classList.add('index-main__first__list');
   }
   div.appendChild(ul);
 };

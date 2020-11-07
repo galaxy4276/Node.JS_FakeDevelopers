@@ -31,35 +31,71 @@
     z-index: 2;
 
     .index-main__first {
-      background: rgba(0, 0, 0, 0.1);
       display: grid;
       width: 100%;
       height: 25em;
       grid-template: 'box1 box2 box3' 1fr;
+      grid-template-columns: 33.33% 33.33% 33.33%;
       border-bottom: 3px solid black;
 
       @media screen and (max-width: 1335px) {
         grid-template:
           'box1 box1' 1fr
           'box2 box3' 1fr;
+        grid-template-columns: 50% 50%;
+      }
+
+      @media screen and(max-width: 1024px) {
+        grid-template:
+          'box1' 1fr
+          'box2' 1fr
+          'box3' 1fr;
       }
 
       .index-main__first-box {
         padding: 35px 45px;
+        min-width: 0;
+
+        &-title {
+          font-size: 1.25rem;
+          margin-bottom: 1rem;
+        }
       }
 
       .index-main__notice {
         grid-area: box1;
-        border: 3px solid black;
+        background-color: #149ab8;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
 
       .index-main__department-news {
         grid-area: box2;
-        border-right: 3px solid black;
+        background-color: #e5e8e9;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      &__item {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &__link {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .index-main__college-news {
         grid-area: box3;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
     }
 
