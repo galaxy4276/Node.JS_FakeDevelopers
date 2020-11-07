@@ -64,7 +64,7 @@ block content
               .student-board__title
                 span 자격증 취득
                 a.write-btn(href="/footprint/acquisition/post") 글쓰기
-              while count < 14
-                +card("리눅스마스터 2급", "201911064최은기", "와! 타이어보다 쉽다!")
-                - count++;
+              if posts
+                each post in posts
+                  +card(post.title, post.UserId, post.content)
               .ap-blank
