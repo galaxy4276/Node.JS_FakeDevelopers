@@ -11,7 +11,7 @@ mixin card(title, info, content)
         .card-title__img
         //- !! Comment bear - 이미지는 웹팩 css 로더에 의해 file-loader에 연결되어 빌드되므로 css에서 지정해주어야 합니다.
       .card-content
-        p.card-content__info= info
+        p.card-content__info= title
         p.card-content__text= content
 
 block title
@@ -65,7 +65,6 @@ block content
                 span 자격증 취득
                 a.write-btn(href="/footprint/acquisition/post") 글쓰기
               if posts
-                #{console.log(posts)}
                 each post in posts
                   +card(post.title, post.UserId, post.content)
               else
