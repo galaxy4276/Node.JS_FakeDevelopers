@@ -65,6 +65,9 @@ block content
                 span 자격증 취득
                 a.write-btn(href="/footprint/acquisition/post") 글쓰기
               if posts
+                #{console.log(posts)}
                 each post in posts
                   +card(post.title, post.UserId, post.content)
+              else
+                h2 게시물이 존재하지 않습니다.
               .ap-blank
