@@ -1,35 +1,32 @@
-const introBtn = document.querySelector(".sidebar__intro"),
-  careerBtn = document.querySelector(".sidebar__career"),
-  communityBtn = document.querySelector(".sidebar__community"),
-  historyBtn = document.querySelector(".sidebar__history"),
-  utilBtn = document.querySelector(".header-util__btn"),
-  sidebar = document.querySelector(".sidebar"),
-  cover = document.querySelector(".cover");
+const sidebar = document.querySelector(".sidebar");
+const utilBtn = document.querySelector(".header-util__btn");
+const cover = document.querySelector(".cover");
+const sideList = document.querySelector(".sidebar__list");
+console.log(sideList);
 
-function showDropdown(event) {
-  const innerList = event.target.parentNode.querySelector(
-    ".sidebar__inner-list"
-  );
+function showDropdown(e) {
+  let title = e.target.closest("div");
+
+  if (title.tagName === "UL") return;
+  if (title.tagName === "svg" || title.tagName === "path")
+    title = e.target.closest("div").closest("div"); // svg를 감싸는 div를 거쳐, title div를 선택
+
+  if (!sideList.contains(title)) return; // 클릭한게 드롭다운 inner-list의 링크면 종료
+
+  const innerList = title.parentNode.querySelector(".sidebar__inner-list");
   innerList.classList.toggle("sidebar__inner-list--clicked");
-  event.target.classList.toggle("sidebar__btn--active");
+  title.classList.toggle("sidebar__btn--active");
 }
 
-function showSideBar(event) {
-  sidebar.classList.add("sidebar--show");
-  cover.classList.add("cover--covered");
+function toggleSideBar() {
+  sidebar.classList.toggle("sidebar--show");
+  cover.classList.toggle("cover--covered");
 }
 
-function closeSidebar() {
-  sidebar.classList.remove("sidebar--show");
-  cover.classList.remove("cover--covered");
-}
+function initSidebar() {
+  utilBtn.addEventListener("click", toggleSideBar, false);
+  cover.addEventListener("click", toggleSideBar, false);
 
-function init() {
-  introBtn.addEventListener("click", showDropdown);
-  careerBtn.addEventListener("click", showDropdown);
-  communityBtn.addEventListener("click", showDropdown);
-  historyBtn.addEventListener("click", showDropdown);
-  utilBtn.addEventListener("click", showSideBar);
-  cover.addEventListener("click", closeSidebar);
+  sideList.addEventListener("click", showDropdown, false);
 }
-init();
+initSidebar();
