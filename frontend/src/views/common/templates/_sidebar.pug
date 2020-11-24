@@ -7,8 +7,8 @@ mixin sidebar__btn__icon()
   .sidebar__logo logo
   ul.sidebar__list
     li.sidebar__item
+      +sidebar__btn__icon()
       .sidebar__btn.sidebar__intro 학과소개
-        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
           a(href="/intro/info").sidebar__inner-link 학과소개
@@ -19,8 +19,8 @@ mixin sidebar__btn__icon()
         li.sidebar__inner-item
           a(href="/intro/club").sidebar__inner-link 동아리
     li.sidebar__item
+      +sidebar__btn__icon()
       .sidebar__btn.sidebar__career 학과진로
-        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
           a(href="/milestone/cirriculum").sidebar__inner-link 교육목표
@@ -29,8 +29,8 @@ mixin sidebar__btn__icon()
         li.sidebar__inner-item
           a(href="/milestone/career").sidebar__inner-link 진로 설정
     li.sidebar__item
+      +sidebar__btn__icon()
       .sidebar__btn.sidebar__community 커뮤니티
-        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
           a(href="/community/board").sidebar__inner-link 학과 이야기
@@ -41,8 +41,8 @@ mixin sidebar__btn__icon()
         li.sidebar__inner-item
           a(href="/community/notice").sidebar__inner-link 공지사항
     li.sidebar__item
+      +sidebar__btn__icon()
       .sidebar__btn.sidebar__history 학생 자취록
-        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
           a(href="/footprint/acquisition").sidebar__inner-link 자격증 취득
@@ -51,8 +51,8 @@ mixin sidebar__btn__icon()
         li.sidebar__inner-item
           a(href="/footprint/portfolio").sidebar__inner-link 포트폴리오
     li.sidebar__item
+      +sidebar__btn__icon()
       .sidebar__btn.sidebar__history _dev
-        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
           a(href="/test/bear").sidebar__inner-link 준재의 공간
