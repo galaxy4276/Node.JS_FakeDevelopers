@@ -2,7 +2,6 @@ const sidebar = document.querySelector(".sidebar");
 const utilBtn = document.querySelector(".header-util__btn");
 const cover = document.querySelector(".cover");
 const sideList = document.querySelector(".sidebar__list");
-console.log(sideList);
 
 function showDropdown(e) {
   let title = e.target.closest("div");
