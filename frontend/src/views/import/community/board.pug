@@ -47,34 +47,36 @@ block content
         .sub-contents__content
             // 게시판
             article.board
-                // 게시글
-                //- 번호, 제목, 작성자, 조회수, 등록일
-                - const NOTICE_PER_PAGE = 10;
-                - const POST_PER_PAGE = 15;
+                //- 게시글 preview 양식
+                //- 현재 게시글 preview 속성: 번호, 제목, 작성자, 조회수, 등록일
                 mixin item(category)
-                  - let props = ['item', 'number', 'title', 'writer', 'hit', 'reg-date'];
-                  - let classes = props.reduce((acc, prop) => acc.concat([`board__${category}__${prop}`]), []);
-                  div(class=`board__${category}__item`)
-                    div(class=`board__${category}__number`)
-                    div(class=`board__${category}__title`)
-                    div(class=`board__${category}__writer`)
-                    div(class=`board__${category}__hit`)
-                    div(class=`board__${category}__reg-date`)
+                  - const item = 'item';
+                  - const props = ['number', 'title', 'writer', 'hit', 'reg-date'];
+                  - const classes = [item, ...props].reduce((acc, prop) => Object.defineProperty(acc, prop, {value: `board__${category}__${prop}`}), {});
+                  div(class=`${classes.item}`)
+                    div(class=`${classes.number}`)
+                    div(class=`${classes.title}`)
+                    div(class=`${classes.writer}`)
+                    div(class=`${classes.hit}`)
+                    div(class=`${classes['reg-date']}`)
+                  //- 출력되는 클래스 예시- 'board__post__number', 'board__notice__reg-date' etc..
                 |
                 |
-                div.board__notice
+                // 게시판 공지 글 목록
+                - const NOTICE_PER_PAGE = 10;
+                section.board__notice
                     - let cnt = 0;
-                    - console.log(NOTICE_PER_PAGE, cnt);
-                    while cnt < 10
-                        +item(`notice`)
-                        p #{cnt}
+                    while cnt < NOTICE_PER_PAGE
+                        +item('notice')
                         - cnt++;
                 |
                 |
-                div.board__post
+                // 게시판 일반유저 글 목록
+                - const POST_PER_PAGE = 15;
+                section.board__post
                     - cnt = 0;
-                    while cnt < 15
-                        +item(`post`)
+                    while cnt < POST_PER_PAGE
+                        +item('post')
                         - cnt++;
                 |
                 |
