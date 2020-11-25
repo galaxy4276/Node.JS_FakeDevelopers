@@ -31,9 +31,9 @@ mixin postList()
       - const item = 'item';
       - const props = ['number', 'title', 'writer', 'hit', 'reg-date'];
       - const classes = [item, ...props].reduce((acc, prop) => Object.defineProperty(acc, prop, {value: `post-list__${category}__${prop}`}), {});
-      div(class=`${classes.item}`)
+      div(class=`post-list__item ${classes.item}`)
         div(class=`${classes.number}`)
-        div(class=`${classes.title}`)
+        a(class=`${classes.title}` href=`#`)
         div(class=`${classes.writer}`)
         div(class=`${classes.hit}`)
         div(class=`${classes['reg-date']}`)
