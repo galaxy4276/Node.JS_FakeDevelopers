@@ -45,6 +45,38 @@ block content
                 a(href="/community/board").sub-contents__item__link 학과 이야기
 
         .sub-contents__content
-          .sub-contents__missing-message
-            strong.sub-contents__txt-1 콘텐츠 작업이 필요한 페이지입니다.
-            p.sub-contents__txt-2 빠르고 편리한 서비스를 위해 최선을 다하겠습니다.
+            // 게시판
+            article.board
+                // 게시글
+                //- 번호, 제목, 작성자, 조회수, 등록일
+                - const NOTICE_PER_PAGE = 10;
+                - const POST_PER_PAGE = 15;
+                mixin item(category)
+                  - let props = ['item', 'number', 'title', 'writer', 'hit', 'reg-date'];
+                  - let classes = props.reduce((acc, prop) => acc.concat([`board__${category}__${prop}`]), []);
+                  div(class=`board__${category}__item`)
+                    div(class=`board__${category}__number`)
+                    div(class=`board__${category}__title`)
+                    div(class=`board__${category}__writer`)
+                    div(class=`board__${category}__hit`)
+                    div(class=`board__${category}__reg-date`)
+                |
+                |
+                div.board__notice
+                    - let cnt = 0;
+                    - console.log(NOTICE_PER_PAGE, cnt);
+                    while cnt < 10
+                        +item(`notice`)
+                        p #{cnt}
+                        - cnt++;
+                |
+                |
+                div.board__post
+                    - cnt = 0;
+                    while cnt < 15
+                        +item(`post`)
+                        - cnt++;
+                |
+                |
+                section.board__post__paging
+                // TODO: board__post의 페이지 네이션 부분 구현
