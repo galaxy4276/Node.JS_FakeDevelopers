@@ -66,6 +66,7 @@
 
   &__list-wrap {
     width: 100%;
+    height: 100%;
     margin-top: 25px;
   }
 
@@ -89,7 +90,9 @@
 
 .sub-contents {
   width: 100%;
-  height: 100vh; // galaxy: fit-content 였는데 문제가 있어서 잠깐 수정했습니다.
+  height: 100%;
+  // galaxy: fit-content 였는데 문제가 있어서 잠깐 수정했습니다.
+  // bear: 201126 100vh -> 100% 로 변경
 
   &__header {
     display: flex;
@@ -140,7 +143,7 @@
   &__content {
     display: flex;
     width: 100%;
-
+    height: 100%;
     border: 1px solid black;
     margin-top: 30px;
   }
