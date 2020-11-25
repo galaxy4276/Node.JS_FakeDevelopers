@@ -4,7 +4,7 @@ const post = postList.querySelector('.post-list__post');
 
 /* Test Code for set default style in CSS*/
 const setFakeData = (items) => {
-  const name = items.length === 10 ? 'notice' : 'post';
+  const name = items.length === 5 ? 'notice' : 'post';
 
   const exData = {
     number: 1234,
