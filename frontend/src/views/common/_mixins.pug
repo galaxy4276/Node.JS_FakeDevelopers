@@ -1,7 +1,11 @@
 //- 이 파일은 index를 제외한 모든 페이지에서 호출 되므로 따로 
 //- 본 파일에 명시된 mixin 은 따로 호출 안하시고 그냥 쓰시면 됩니다.
+//- 현재 mixin 목록 - (게시판 쓰기 mixin, 게시판 목록 mixin, 아이콘 mixin)
 
-//- board template
+//- -----------------------------------------------------------------------------------------------------------------
+//- ------------------------------------------- 게시판 관련 mixin ---------------------------------------------------
+//- -----------------------------------------------------------------------------------------------------------------
+//- Bulletn Board Post Write Template
 mixin postForm()
   .sub-contents__content-wrap
     .sub-contents__content
@@ -18,6 +22,50 @@ mixin postForm()
           textarea(rows="5" cols="50" name="paragraph" required)
         input(type="submit" name="submit").sub-contents__submit
 
+//- Bulletn Board Post List Template
+mixin postList()
+  article.post-list
+    //- 게시글 preview 양식
+    //- 현재 게시글 preview 속성: 번호, 제목, 작성자, 조회수, 등록일
+    mixin item(category)
+      - const item = 'item';
+      - const props = ['number', 'title', 'writer', 'hit', 'reg-date'];
+      - const classes = [item, ...props].reduce((acc, prop) => Object.defineProperty(acc, prop, {value: `post-list__${category}__${prop}`}), {});
+      div(class=`${classes.item}`)
+        div(class=`${classes.number}`)
+        div(class=`${classes.title}`)
+        div(class=`${classes.writer}`)
+        div(class=`${classes.hit}`)
+        div(class=`${classes['reg-date']}`)
+      //- 출력되는 클래스 예시- 'post-list__post__number', 'post-list__notice__reg-date' etc..
+    |
+    |
+    // 게시판 공지 글 목록
+    - const NOTICE_PER_PAGE = 10;
+    section.post-list__notice
+      - let cnt = 0;
+      while cnt < NOTICE_PER_PAGE
+        +item('notice')
+        - cnt++;
+    |
+    |
+    // 게시판 일반유저 글 목록
+    - const POST_PER_PAGE = 15;
+    section.post-list__post
+      - cnt = 0;
+      while cnt < POST_PER_PAGE
+        +item('post')
+        - cnt++;
+    |
+    |
+    section.post-list__paging
+    // TODO: board__post의 페이지 네이션 부분 구현 (board__notice 부분은 내용 유지)
+
+//- TODO: Bulletn Board Post View Template 추가하기
+
+//- -----------------------------------------------------------------------------------------------------------------
+//- ------------------------------------------- 아이콘 관련 mixin ---------------------------------------------------
+//- -----------------------------------------------------------------------------------------------------------------
 //- Icons
 //- 사용법: 1. div 하나를 생성하여(중요) '그 안에' icon mixin 을 호출하고,
 //-         2. icon mixin에 원하는 아이콘의 이름과, title (img 태그의 alt 같은 역할), 원하는 색상을 인자로 전달하고,
