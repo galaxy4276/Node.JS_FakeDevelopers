@@ -20,16 +20,27 @@
     display: grid;
     grid-template-columns: [number]10% [title]50% [writer]15% [hit]10% [reg-data]15%;
     width: 100%;
-    margin: 1rem;
   }
 
   &__notice {
-    padding: 0.05rem 0;
+    padding: 0.02rem 0;
     background-color: rgba($main-color--silver, 0.5);
+
+    &__item {
+      padding: 0.66rem 0.5rem;
+    }
 
     &__title {
       font-weight: 700;
       color: $main-color--orange;
+    }
+  }
+
+  &__post {
+    padding: 0.02rem 0;
+
+    &__item {
+      padding: 0.66rem 0.5rem;
     }
   }
 }
