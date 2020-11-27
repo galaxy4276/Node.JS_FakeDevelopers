@@ -17,7 +17,10 @@ const POST_LIMIT = 15;
 const processToElems = (category, data) => {
   const propNames = ['number', 'title', 'writer', 'hit', 'reg-time'];
   const classes = ['item', ...propNames].reduce(
-    (acc, prop) => Object.defineProperty(acc, prop, { value: `post-list__${category}__${prop}` }),
+    (acc, prop) =>
+      Object.defineProperty(acc, prop, {
+        value: `post-list__${category}__${prop}`,
+      }),
     {}
   );
 
@@ -46,11 +49,11 @@ const processToElems = (category, data) => {
     item.setAttribute('class', `post-list__item ${classes.item}`);
 
     item.innerHTML = `
-    <div class=${classes.number}>${props.number || ''}</div>
-    <a class=${classes.title} href='#'>${props.title || '빈 제목입니다'}</a>
-    <div class=${classes.writer}>${props.writer || ''}</div>
-    <div class=${classes.hit}>${props.hit || ''}</div>
-    <div class=${classes['reg-time']}>${props.updatedAt || ''}</div>
+    <div class=${classes.number}>${props.number || '0000'}</div>
+    <a class=${classes.title} href='#'>${props.title || '[ 빈 제목입니다 ]'}</a>
+    <div class=${classes.writer}>${props.writer || 'Annonymous'}</div>
+    <div class=${classes.hit}>${props.hit || '000'}</div>
+    <div class=${classes['reg-time']}>${props.updatedAt || '0000-00-00'}</div>
   `.trim();
 
     fragment.appendChild(item);
