@@ -25,37 +25,14 @@ mixin postForm()
 //- Bulletn Board Post List Template
 mixin postList()
   article.post-list
-    //- 게시글 preview 양식
-    //- 현재 게시글 preview 속성: 번호, 제목, 작성자, 조회수, 등록일
-    mixin item(category)
-      - const item = 'item';
-      - const props = ['number', 'title', 'writer', 'hit', 'reg-date'];
-      - const classes = [item, ...props].reduce((acc, prop) => Object.defineProperty(acc, prop, {value: `post-list__${category}__${prop}`}), {});
-      div(class=`post-list__item ${classes.item}`)
-        div(class=`${classes.number}`)
-        a(class=`${classes.title}` href=`#`)
-        div(class=`${classes.writer}`)
-        div(class=`${classes.hit}`)
-        div(class=`${classes['reg-date']}`)
-      //- 출력되는 클래스 예시- 'post-list__post__number', 'post-list__notice__reg-date' etc..
     |
     |
     // 게시판 공지 글 목록
-    - const NOTICE_PER_PAGE = 5;
     section.post-list__notice
-      - let cnt = 0;
-      while cnt < NOTICE_PER_PAGE
-        +item('notice')
-        - cnt++;
     |
     |
     // 게시판 일반유저 글 목록
-    - const POST_PER_PAGE = 15;
     section.post-list__post
-      - cnt = 0;
-      while cnt < POST_PER_PAGE
-        +item('post')
-        - cnt++;
     |
     |
     section.post-list__paging
