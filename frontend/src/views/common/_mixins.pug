@@ -27,6 +27,16 @@ mixin postList()
   article.post-list
     |
     |
+    // 게시판 헤더
+    section.post-list__header
+      //- 표시될 게시글의 속성 = ['number', 'title', 'writer', 'hit', 'reg-time'];
+      div.post-list__header__prop.post-list__header__number 번호
+      div.post-list__header__prop.post-list__header__title 제목
+      div.post-list__header__prop.post-list__header__writer 작성자
+      div.post-list__header__prop.post-list__header__hit 조회수
+      div.post-list__header__prop.post-list__header__reg-time 등록일
+    |
+    |
     // 게시판 공지 글 목록
     section.post-list__notice
     |
@@ -35,6 +45,7 @@ mixin postList()
     section.post-list__post
     |
     |
+    // 페이지 네이션
     section.post-list__paging
     // TODO: board__post의 페이지 네이션 부분 구현 (board__notice 부분은 내용 유지)
 
