@@ -3,23 +3,60 @@
 // document.addEventListener('DOMContentLoaded', setFakeData, false);
 // document.addEventListener('DOMContentLoaded', () => setPostList(url), false);
 /* --------------------- */
+/* Module */
+import { getFormatDate } from '../../common/function/_getFormatDate';
 
 /* Constant */
 const NOTICE_LIMIT = 5;
 const POST_LIMIT = 15;
 
 /* Variables */
-// let currentPage = 1;
+// let currentPage = 1; // 페이지 네이션을 위한 현재 페이지를 가리키는 전역 변수
 
 /* Function */
-const processToElems = (category, obj) => {
-  const props = ['number', 'title', 'writer', 'hit', 'reg-date'];
-  const classes = props.reduce(
+const processToElems = (category, data) => {
+  const propNames = ['number', 'title', 'writer', 'hit', 'reg-time'];
+  const classes = ['item', ...propNames].reduce(
     (acc, prop) => Object.defineProperty(acc, prop, { value: `post-list__${category}__${prop}` }),
     {}
   );
-  console.log(classes);
-  console.log(obj);
+
+  const setTimeText = (updatedAt) => {
+    const today = getFormatDate(new Date());
+    const regDate = getFormatDate(updatedAt);
+
+    const timeText =
+      today === regDate // 글을 쓴 날짜가 오늘이면
+        ? updatedAt.match(/(?<=T).*(?=\.)/)[0] // 시간을 세팅
+        : regDate; // 아니라면 날짜를 세팅
+
+    return timeText;
+  };
+
+  for (const props of data) {
+    const setTime = setTimeText;
+
+    props.updatedAt = setTime(props.updatedAt);
+  }
+
+  const fragment = new DocumentFragment();
+
+  for (const props of data) {
+    const item = document.createElement('div');
+    item.setAttribute('class', `post-list__item ${classes.item}`);
+
+    item.innerHTML = `
+    <div class=${classes.number}>${props.number || ''}</div>
+    <a class=${classes.title} href='#'>${props.title || '빈 제목입니다'}</a>
+    <div class=${classes.writer}>${props.writer || ''}</div>
+    <div class=${classes.hit}>${props.hit || ''}</div>
+    <div class=${classes['reg-time']}>${props.updatedAt || ''}</div>
+  `.trim();
+
+    fragment.appendChild(item);
+  }
+
+  return fragment;
 };
 
 const getDataJson = (url = '') => {
@@ -41,22 +78,21 @@ const setBoardList = (parentElem, path, limit = 10) => {
   getDataJson(url)
     .then((res) => {
       // test
-      console.log(`받아온 데이터 개수 => ${res.length}`);
+      console.log(`[ ${parentElem.className} ]\n받아온 데이터 개수 => ${res.length}`);
       return res;
     })
-    .then((json) => JSON.stringify(json))
-    .then((dataObj) => processToElems(category, dataObj))
-    .then((elems) => elems.map((elem) => parentElem.appendChild(elem)))
+    .then((data) => processToElems(category, data))
+    .then((fragment) => parentElem.appendChild(fragment))
     .catch(console.error);
 };
 
 document.addEventListener(
   'DOMContentLoaded',
   () => {
-    // const notice = document.querySelector('.post-list__notice');
+    const notice = document.querySelector('.post-list__notice');
     const post = document.querySelector('.post-list__post');
 
-    // setBoardList(notice, 'announcement', NOTICE_LIMIT);
+    setBoardList(notice, 'announcement', NOTICE_LIMIT);
     setBoardList(post, 'community', POST_LIMIT);
   },
   false
