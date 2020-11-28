@@ -7,44 +7,56 @@ mixin sidebar__btn__icon()
   .sidebar__logo logo
   ul.sidebar__list
     li.sidebar__item
+      +sidebar__btn__icon()
       .sidebar__btn.sidebar__intro 학과소개
-        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 학과소개
+          a(href="/intro/info").sidebar__inner-link 학과소개
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 구성원
+          a(href="/intro/member").sidebar__inner-link 구성원
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 교육환경
+          a(href="/intro/env").sidebar__inner-link 교육환경
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 동아리
+          a(href="/intro/club").sidebar__inner-link 동아리
     li.sidebar__item
+      +sidebar__btn__icon()
       .sidebar__btn.sidebar__career 학과진로
-        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 교육목표
+          a(href="/milestone/cirriculum").sidebar__inner-link 교육목표
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 자격증 소개
+          a(href="/milestone/cert").sidebar__inner-link 자격증 소개
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 진로 설정
+          a(href="/milestone/career").sidebar__inner-link 진로 설정
     li.sidebar__item
+      +sidebar__btn__icon()
       .sidebar__btn.sidebar__community 커뮤니티
-        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 학과이야기
+          a(href="/community/board").sidebar__inner-link 학과 이야기
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 바라는 점
+          a(href="/community/suggestion").sidebar__inner-link 바라는 점
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 나눔의 공간
+          a(href="/community/donation").sidebar__inner-link 나눔의 공간
+        li.sidebar__inner-item
+          a(href="/community/notice").sidebar__inner-link 공지사항
     li.sidebar__item
+      +sidebar__btn__icon()
       .sidebar__btn.sidebar__history 학생 자취록
-        +sidebar__btn__icon()
       ul.sidebar__inner-list
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 자격증 취득
+          a(href="/footprint/acquisition").sidebar__inner-link 자격증 취득
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 대회수상
+          a(href="/footprint/awards").sidebar__inner-link 대회수상
         li.sidebar__inner-item
-          a(href="#").sidebar__inner-link 포트폴리오
+          a(href="/footprint/portfolio").sidebar__inner-link 포트폴리오
+    li.sidebar__item
+      +sidebar__btn__icon()
+      .sidebar__btn.sidebar__history _dev
+      ul.sidebar__inner-list
+        li.sidebar__inner-item
+          a(href="/test/bear").sidebar__inner-link 준재의 공간
+        li.sidebar__inner-item
+          a(href="/test/wscrg").sidebar__inner-link 지용의 공간
+        li.sidebar__inner-item
+          a(href="/test/galaxy").sidebar__inner-link 은기의 공간
