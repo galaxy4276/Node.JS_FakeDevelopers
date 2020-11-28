@@ -2,11 +2,9 @@
   "name": "frontend",
   "main": "app.js",
   "scripts": {
-    "build": "webpack -w",
-    "rebuild": "rmdir /s /q ..\\server\\src\\public && webpack -w",
+    "build": "rmdir /s /q ..\\server\\src\\public && webpack -w",
     "start": "node app.js",
-    "server": "cd ../server && yarn start",
-    "restart": "rmdir /s /q ..\\server\\src\\public && webpack && npm run server"
+    "server": "cd ../server && yarn start"
   },
   "repository": {
     "type": "git",

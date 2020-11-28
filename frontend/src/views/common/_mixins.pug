@@ -1,7 +1,11 @@
 //- 이 파일은 index를 제외한 모든 페이지에서 호출 되므로 따로 
 //- 본 파일에 명시된 mixin 은 따로 호출 안하시고 그냥 쓰시면 됩니다.
+//- 현재 mixin 목록 - (게시판 쓰기 mixin, 게시판 목록 mixin, 아이콘 mixin)
 
-//- board template
+//- -----------------------------------------------------------------------------------------------------------------
+//- ------------------------------------------- 게시판 관련 mixin ---------------------------------------------------
+//- -----------------------------------------------------------------------------------------------------------------
+//- Bulletn Board Post Write Template
 mixin postForm()
   .sub-contents__content-wrap
     .sub-contents__content
@@ -18,6 +22,38 @@ mixin postForm()
           textarea(rows="5" cols="50" name="paragraph" required)
         input(type="submit" name="submit").sub-contents__submit
 
+//- Bulletn Board Post List Template
+mixin postList()
+  article.post-list
+    |
+    |
+    // 게시판 헤더
+    section.post-list__header
+      //- 표시될 게시글의 속성 = ['number', 'title', 'writer', 'hit', 'reg-time'];
+      div.post-list__header__prop.post-list__header__number 번호
+      div.post-list__header__prop.post-list__header__title 제목
+      div.post-list__header__prop.post-list__header__writer 작성자
+      div.post-list__header__prop.post-list__header__hit 조회수
+      div.post-list__header__prop.post-list__header__reg-time 등록일
+    |
+    |
+    // 게시판 공지 글 목록
+    section.post-list__notice
+    |
+    |
+    // 게시판 일반유저 글 목록
+    section.post-list__post
+    |
+    |
+    // 페이지 네이션
+    section.post-list__paging
+    // TODO: board__post의 페이지 네이션 부분 구현 (board__notice 부분은 내용 유지)
+
+//- TODO: Bulletn Board Post View Template 추가하기
+
+//- -----------------------------------------------------------------------------------------------------------------
+//- ------------------------------------------- 아이콘 관련 mixin ---------------------------------------------------
+//- -----------------------------------------------------------------------------------------------------------------
 //- Icons
 //- 사용법: 1. div 하나를 생성하여(중요) '그 안에' icon mixin 을 호출하고,
 //-         2. icon mixin에 원하는 아이콘의 이름과, title (img 태그의 alt 같은 역할), 원하는 색상을 인자로 전달하고,
