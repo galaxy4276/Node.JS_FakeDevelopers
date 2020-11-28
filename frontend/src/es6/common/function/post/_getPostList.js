@@ -66,10 +66,18 @@ const getPostList = (parentElem, path, limit = 10) => {
   const url = `http://localhost:8001/${path}?limit=${limit}`;
   const category = parentElem.className.match(/(?<=__).*(?=__|$)/)[0]; // post-list__[이곳에 오는 문자열]
 
+  // test
+  const testLog = (res) => {
+    if (res.length !== limit)
+      console.warn(
+        ' 쿼리문으로 요청한 데이터 수와 받아온 데이터 수가 다릅니다.\n',
+        ' ▶ 마지막 페이지이거나 서버측 코드가 변경되었습니다.'
+      );
+  };
+
   getDataJson(url)
     .then((res) => {
-      // test
-      console.log(`[ ${parentElem.className} ]\n받아온 데이터 개수 => ${res.length}\n`);
+      testLog(res); //test
       return res;
     })
     .then((data) => processToElems(category, data))
