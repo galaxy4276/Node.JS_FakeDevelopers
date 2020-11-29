@@ -9,6 +9,7 @@ import portfolio from './portfolio';
 import image from './image';
 import announcement from './announcement';
 import community from './community';
+import inquiry from './inquiry';
 
 
 const config = env;
@@ -26,6 +27,7 @@ db.Portfolio = portfolio;
 db.Image = image;
 db.Announcement = announcement;
 db.Community = community;
+db.Inquiry = inquiry;
 
 Object.keys(db).forEach(modelName => {
   db[modelName].init(sequelize);
