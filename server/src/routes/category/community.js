@@ -12,11 +12,6 @@ import { getPostsList } from '../../controllers/post';
 const community = require('express').Router();
 
 
-// Custom Functions
-const isEmpty = params => {
-  return Object.keys(params).length === 0;
-}
-
 // Router & Controllers ( 차 후 분리 필요 )
 
 // 학과 이야기 ( Community )
