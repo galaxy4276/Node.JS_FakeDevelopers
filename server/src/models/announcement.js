@@ -23,5 +23,6 @@ export default class Announcement extends Model {
   
   static associate(db) {
     db.Announcement.belongsTo(db.User);
+    db.Announcement.hasMany(db.Inquiry);
   }
 }
