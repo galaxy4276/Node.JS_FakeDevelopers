@@ -36,12 +36,12 @@ const processToElems = (category, postsData) => {
     item.setAttribute('class', `post-list__${itemName} ${classes.item}`);
 
     item.innerHTML = `
-      <div class=${classes.number}>${props.number || '0000'}</div>
-      <a class=${classes.title} href='#'>${props.title || '[ 빈 제목입니다 ]'}</a>
-      <div class=${classes.writer}>${props.writer || 'Annonymous'}</div>
-      <div class=${classes.hit}>${props.hit || '000'}</div>
-      <div class=${classes['reg-time']}>${props.updatedAt || '0000-00-00'}</div>
-    `.trim();
+    <div class=${classes.number}>${post.id || '0000'}</div>
+    <a class=${classes.title} href='#'>${post.title || '[ 빈 제목입니다 ]'}</a>
+    <div class=${classes.writer}>${post.UserId || 'Annonymous'}</div>
+    <div class=${classes.hit}>${post.Inquiries.length || '0'}</div>
+    <div class=${classes['reg-time']}>${setTime(post.updatedAt) || '0000-00-00'}</div>
+  `.trim();
 
     DOMfragment.appendChild(item);
   }
