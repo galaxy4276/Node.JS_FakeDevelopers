@@ -61,14 +61,18 @@ const getpostsData = (url = '') => {
   }).then((res) => res.json());
 };
 
-const getPostList = (parentElem, path, limit = 10) => {
+const getPostList = (parentElem, path, limit = 10, page = 1, useFakeData = false) => {
   //TODO: page 파라미터 받아서 url에 추가
-  const url = `http://localhost:8001/${path}?limit=${limit}`;
+  const url = useFakeData
+    ? `http://localhost:8001/community/${path}/api/create-bulk`
+    : `http://localhost:8001/community/${path}/api?limit=${limit}&page=${page}`;
   const category = parentElem.className.match(/(?<=__).*(?=__|$)/)[0]; // post-list__[이곳에 오는 문자열]
 
   // test
-  const testLog = (res) => {
-    if (res.length !== limit)
+  const testLog = (postsData) => {
+    console.log(`요청 url => ${url}`);
+
+    if (postsData.length !== limit)
       console.warn(
         ' 쿼리문으로 요청한 데이터 수와 받아온 데이터 수가 다릅니다.\n',
         ' ▶ 마지막 페이지이거나 서버측 코드가 변경되었습니다.'
