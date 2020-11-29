@@ -22,15 +22,18 @@ const toClassNamesObj = (midName, ...lastNames) => {
   );
 };
 
+const processToElems = (category, postsData) => {
   const DOMfragment = new DocumentFragment();
 
   const itemName = 'item';
   const propNames = ['number', 'title', 'writer', 'hit', 'reg-time'];
   const classes = toClassNamesObj(category, itemName, ...propNames);
 
-  for (const props of data) {
+  const setTime = setTimeText;
+
+  for (const post of postsData) {
     const item = document.createElement('div');
-    item.setAttribute('class', `post-list__item ${classes.item}`);
+    item.setAttribute('class', `post-list__${itemName} ${classes.item}`);
 
     item.innerHTML = `
       <div class=${classes.number}>${props.number || '0000'}</div>
@@ -46,7 +49,7 @@ const toClassNamesObj = (midName, ...lastNames) => {
   return DOMfragment;
 };
 
-const getDataJson = (url = '') => {
+const getpostsData = (url = '') => {
   return fetch(url, {
     method: 'GET',
     cache: 'no-cache',
@@ -72,12 +75,12 @@ const getPostList = (parentElem, path, limit = 10) => {
       );
   };
 
-  getDataJson(url)
-    .then((res) => {
-      testLog(res); //test
-      return res;
+  getpostsData(url)
+    .then((postsData) => {
+      testLog(postsData); //test
+      return postsData;
     })
-    .then((data) => processToElems(category, data))
+    .then((postsData) => processToElems(category, postsData))
     .then((DOMfragment) => parentElem.appendChild(DOMfragment))
     .catch(console.error);
 };
