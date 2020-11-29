@@ -12,24 +12,21 @@ const setTimeText = (updatedAt) => {
   return timeText;
 };
 
-const processToElems = (category, data) => {
-  const setTime = setTimeText;
-
-  for (const props of data) {
-    props.updatedAt = setTime(props.updatedAt);
-  }
+const toClassNamesObj = (midName, ...lastNames) => {
+  return lastNames.reduce(
+    (acc, lastName) =>
+      Object.defineProperty(acc, lastName, {
+        value: `post-list__${midName}__${lastName}`,
+      }),
+    {}
+  );
+};
 
   const DOMfragment = new DocumentFragment();
 
   const itemName = 'item';
   const propNames = ['number', 'title', 'writer', 'hit', 'reg-time'];
-  const classes = [itemName, ...propNames].reduce(
-    (acc, prop) =>
-      Object.defineProperty(acc, prop, {
-        value: `post-list__${category}__${prop}`,
-      }),
-    {}
-  );
+  const classes = toClassNamesObj(category, itemName, ...propNames);
 
   for (const props of data) {
     const item = document.createElement('div');
