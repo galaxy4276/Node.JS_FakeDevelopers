@@ -18,10 +18,11 @@ export default class SuggestPost extends Model {
       charset: 'utf8mb4',
       collate: 'utf8mb4_general_ci',
       sequelize,
-    })
-  }
+    });
+  };
 
   static associate(db) {
     db.Suggest.belongsTo(db.User);
-  }
+    db.Suggest.hasMany(db.Inquiry);
+  };
 }
