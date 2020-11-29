@@ -1,5 +1,6 @@
 import { acquisitionPost, uploads } from '../../controllers/post';
 import { createBulkBoard } from '../../lib/createBulkData';
+import { getPostsList } from '../../controllers/post';
 import sequelize from '../../models';
 const { 
   Certpost,
