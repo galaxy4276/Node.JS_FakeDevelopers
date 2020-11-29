@@ -12,6 +12,7 @@ export default class CertPost extends Model {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      
     }, {
       modelName: 'CertPost',
       tableName: 'certposts',
@@ -23,5 +24,6 @@ export default class CertPost extends Model {
   
   static associate(db) {
     db.Certpost.belongsTo(db.User);
+    db.Certpost.hasMany(db.Inquiry);
   }
 }

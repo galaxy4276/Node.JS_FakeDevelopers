@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 
 
-export default class Announcement extends Model {
+export default class Notice extends Model {
   static init(sequelize) {
     return super.init({
       title: {
@@ -12,9 +12,10 @@ export default class Announcement extends Model {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      
     }, {
-      modelName: 'Announcement',
-      tableName: 'announcements',
+      modelName: 'Notice',
+      tableName: 'notices',
       charset: 'utf8mb4',
       collate: 'utf8mb4_general_ci',
       sequelize,
@@ -22,7 +23,8 @@ export default class Announcement extends Model {
   }
   
   static associate(db) {
-    db.Announcement.belongsTo(db.User);
-    db.Announcement.hasMany(db.Inquiry);
+    db.Notice.belongsTo(db.User);
+    db.Notice.hasMany(db.Inquiry);
+    db.Notice.hasMany(db.Image);
   }
 }
