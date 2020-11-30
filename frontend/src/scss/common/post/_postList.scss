@@ -40,7 +40,9 @@
 
       &:hover,
       &:focus {
+        cursor: pointer;
         font-weight: 700;
+        font-size: 1rem;
       }
     }
 
@@ -51,7 +53,7 @@
 
     &:hover,
     &:focus {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: rgba(0, 0, 0, 0.05);
     }
   }
 
@@ -61,6 +63,11 @@
     .post-list__item__title {
       font-weight: 700;
       color: $main-color--orange;
+
+      &:hover,
+      &:focus {
+        filter: grayscale(70%);
+      }
     }
   }
 
