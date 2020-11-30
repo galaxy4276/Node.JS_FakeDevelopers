@@ -12,12 +12,10 @@ const setTimeText = (updatedAt) => {
   return timeText;
 };
 
-const toClassNamesObj = (midName, ...lastNames) => {
+const toClassNamesObj = (...lastNames) => {
   return lastNames.reduce(
     (acc, lastName) =>
-      Object.defineProperty(acc, lastName, {
-        value: `post-list__${midName}__${lastName}`,
-      }),
+      Object.defineProperty(acc, lastName, { value: `post-list__item__${lastName}` }),
     {}
   );
 };
@@ -25,13 +23,13 @@ const toClassNamesObj = (midName, ...lastNames) => {
 const processToElems = (category, postsData) => {
   const itemName = 'item';
   const propNames = ['number', 'title', 'writer', 'hit', 'reg-time'];
-  const classes = toClassNamesObj(category, itemName, ...propNames);
+  const classes = toClassNamesObj(...propNames);
 
   const setTime = setTimeText;
 
   const postitems = postsData.reduceRight((acc, post) => {
     const item = document.createElement('div');
-    item.setAttribute('class', `post-list__${itemName} ${classes.item}`);
+    item.setAttribute('class', `post-list__${itemName} post-list__${itemName}--${category}`);
 
     item.innerHTML = `
     <div class=${classes.number}>${post.id || '0000'}</div>
@@ -64,7 +62,7 @@ const getpostsData = (url = '') => {
   }).then((res) => res.json());
 };
 
-const getPostList = (parentElem, path, limit = 10, page = 1, useFakeData = false) => {
+const getPostList = (parentElem, path, useFakeData = false, limit = 10, page = 1) => {
   //TODO: page 파라미터 받아서 url에 추가
   const url = useFakeData
     ? `http://localhost:8001/community/${path}/api/create-bulk`

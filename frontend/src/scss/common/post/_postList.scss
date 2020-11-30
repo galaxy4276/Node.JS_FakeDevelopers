@@ -28,35 +28,43 @@
     width: 100%;
     border-bottom: 0.002rem solid $main-color--silver;
 
-    * {
+    & > * {
       display: flex;
       justify-content: center;
       width: 100%;
+    }
+
+    &__title {
+      width: fit-content;
+      justify-content: flex-start !important;
+
+      &:hover,
+      &:focus {
+        font-weight: 700;
+      }
+    }
+
+    &--notice,
+    &--post {
+      padding: 1rem 0;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: rgba(0, 0, 0, 0.1);
     }
   }
 
   &__notice {
     background-color: rgba($main-color--silver, 0.5);
 
-    &__item {
-      padding: 0.66rem 0;
-    }
-
-    &__title {
+    .post-list__item__title {
       font-weight: 700;
       color: $main-color--orange;
-      justify-content: flex-start !important;
     }
   }
 
   &__post {
-    &__item {
-      padding: 0.66rem 0;
-    }
-
-    &__title {
-      justify-content: flex-start !important;
-    }
   }
 
   /* 페이지 네이션 */
