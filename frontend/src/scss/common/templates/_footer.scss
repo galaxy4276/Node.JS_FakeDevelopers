@@ -7,6 +7,7 @@
   bottom: 0;
   left: 0;
   height: $footer-height;
+  background-color: #313745;
 
   .footer__wrap {
     margin: 15px auto;
@@ -20,7 +21,11 @@
       align-items: center;
       width: 200px;
       height: 100px;
-      border: 3px solid black;
+      background-image: url('../../../../src/img/logo.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 60px;
+      margin-top: 20px;
 
       @media screen and (max-width: 580px) {
         display: none;
@@ -31,10 +36,22 @@
       display: inline-block;
       display: flex;
       flex-direction: column;
-      border: 3px solid black;
+      padding-top: 20px;
+      color: #acadb0;
+
+      .footer__privacy-policy span {
+        padding: 0 30px;
+        border-right: 3px solid #525c64;
+        cursor: pointer;
+      }
+
+      .footer__privacy-policy span:nth-last-child(1) {
+        border-right: none;
+      }
 
       .footer__college-location {
-        margin-top: 20px;
+        padding: 0 30px;
+        margin-top: 30px;
       }
     }
   }
