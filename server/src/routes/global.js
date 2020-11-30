@@ -1,5 +1,5 @@
 import sequelize from '../models';
-const { Announcement, Community, Award, Certpost, Portfolio } = sequelize;
+const { Notice, Community, Award, Certpost, Portfolio } = sequelize;
 
 const globalRouter = require('express').Router();
 
@@ -18,11 +18,12 @@ globalRouter.get('/announcement', async (req, res, next) => {
   const LIMIT = getLimit(req);
 
   try {
-    const posts = await Announcement.findAll({
+    const posts = await Notice.findAll({
       limit: LIMIT,
       attributes: ['title', 'updatedAt'],
     });
 
+    console.log(posts);
     res.status(200).json(posts);
   } catch (err) {
     console.error(err);
