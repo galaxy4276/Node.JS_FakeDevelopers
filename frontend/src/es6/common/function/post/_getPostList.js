@@ -23,15 +23,13 @@ const toClassNamesObj = (midName, ...lastNames) => {
 };
 
 const processToElems = (category, postsData) => {
-  const DOMfragment = new DocumentFragment();
-
   const itemName = 'item';
   const propNames = ['number', 'title', 'writer', 'hit', 'reg-time'];
   const classes = toClassNamesObj(category, itemName, ...propNames);
 
   const setTime = setTimeText;
 
-  for (const post of postsData) {
+  const postitems = postsData.reduceRight((acc, post) => {
     const item = document.createElement('div');
     item.setAttribute('class', `post-list__${itemName} ${classes.item}`);
 
@@ -43,10 +41,17 @@ const processToElems = (category, postsData) => {
     <div class=${classes['reg-time']}>${setTime(post.updatedAt) || '0000-00-00'}</div>
   `.trim();
 
-    DOMfragment.appendChild(item);
-  }
+    acc.push(item);
 
-  return DOMfragment;
+    return acc;
+  }, []);
+
+  console.log(elems);
+
+  const DOMfragement = new DocumentFragment();
+  DOMfragement.append(...postitems);
+
+  return DOMfragement;
 };
 
 const getpostsData = (url = '') => {
