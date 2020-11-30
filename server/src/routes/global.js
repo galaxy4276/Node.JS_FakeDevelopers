@@ -3,23 +3,14 @@ const { Notice, Community, Award, Certpost, Portfolio } = sequelize;
 
 const globalRouter = require('express').Router();
 
-const getLimit = (req) => {
-  const strLimit = req.url.match(/(?<=limit=)\d*/);
-  const limit = strLimit !== null ? parseInt(strLimit) : 10;
-
-  return limit;
-};
-
 globalRouter.get('/', (req, res) => {
   res.render('import/index', { title: 'hello' });
 });
 
 globalRouter.get('/announcement', async (req, res, next) => {
-  const LIMIT = getLimit(req);
-
   try {
     const posts = await Notice.findAll({
-      limit: LIMIT,
+      limit: 10,
       attributes: ['title', 'updatedAt'],
     });
 
@@ -32,11 +23,9 @@ globalRouter.get('/announcement', async (req, res, next) => {
 });
 
 globalRouter.get('/community', async (req, res, next) => {
-  const LIMIT = getLimit(req);
-
   try {
     const posts = await Community.findAll({
-      limit: LIMIT,
+      limit: 10,
       attributes: ['title', 'updatedAt'],
     });
 
@@ -63,23 +52,17 @@ globalRouter.get('/campuslive', async (req, res, next) => {
   try {
     const certPost = await Certpost.findAll({
       limit: 1,
-      order: [
-        ['createdAt', 'DESC'],
-      ],
+      order: [['createdAt', 'DESC']],
       attributes: ['title', 'updatedAt'],
     });
     const awardPost = await Award.findAll({
       limit: 1,
-      order: [
-        ['createdAt', 'DESC'],
-      ],
+      order: [['createdAt', 'DESC']],
       attributes: ['title', 'updatedAt'],
     });
     const portfolioPost = await Portfolio.findAll({
       limit: 1,
-      order: [
-        ['createdAt', 'DESC'],
-      ],
+      order: [['createdAt', 'DESC']],
       attributes: ['title', 'updatedAt'],
     });
     const posts = [].concat(certPost).concat(awardPost).concat(portfolioPost);
