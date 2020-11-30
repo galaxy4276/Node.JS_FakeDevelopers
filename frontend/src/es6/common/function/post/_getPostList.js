@@ -46,8 +46,6 @@ const processToElems = (category, postsData) => {
     return acc;
   }, []);
 
-  console.log(elems);
-
   const DOMfragement = new DocumentFragment();
   DOMfragement.append(...postitems);
 
@@ -82,13 +80,12 @@ const getPostList = (parentElem, path, limit = 10, page = 1, useFakeData = false
         ' 쿼리문으로 요청한 데이터 수와 받아온 데이터 수가 다릅니다.\n',
         ' ▶ 마지막 페이지이거나 서버측 코드가 변경되었습니다.'
       );
+
+    return postsData;
   };
 
   getpostsData(url)
-    .then((postsData) => {
-      testLog(postsData); //test
-      return postsData;
-    })
+    .then((postsData) => testLog(postsData) /* Just log => data not change */)
     .then((postsData) => processToElems(category, postsData))
     .then((DOMfragment) => parentElem.appendChild(DOMfragment))
     .catch(console.error);
