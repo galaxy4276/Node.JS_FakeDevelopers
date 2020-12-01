@@ -1,5 +1,4 @@
 import nodemailer from 'nodemailer';
-import url from 'url';
 import sequelize from '../../models';
 const { User } = sequelize;
 require('dotenv').config();
@@ -23,6 +22,7 @@ const transEmail = async (req, res, next) => {
       }
     });
 
+    
     const user = await User.findOne({ where: { email }});
 
     const info = {
@@ -30,7 +30,20 @@ const transEmail = async (req, res, next) => {
       to: email,
       subject: '[컴퓨터정보학과] 비밀번호 변경 안내사항입니다.',
       html: `
-        수신 코드: ${user.hash}
+        <body>
+          <div style="display: inline-block">
+            <img src="https://avatars2.githubusercontent.com/u/50310464?s=460&u=f07ee268c49e26c81d411da21f085bef7f72ed52&v=4" />
+            <h3>최은기</h3>
+            <img src="https://avatars2.githubusercontent.com/u/57123802?s=460&u=c018c65ec73f4a41926d7a8f6780f4db5b314644&v=4" />
+            <h3>킹 황 김 준 재</h3>
+            <img src="https://avatars0.githubusercontent.com/u/57584529?s=460&v=4" /> 
+            <h3>정지용</h3>
+            <img src="https://github.com/bs4biz6298" />
+            <h3>엄민호</h3>
+            <br />
+          </div>
+          <h1>수신 코드: ${user.hash}</h1>
+        </body>
       `
     };
   

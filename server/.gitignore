@@ -5,3 +5,4 @@ public
 src/public
 package-lock.json
 uploads
+log/*

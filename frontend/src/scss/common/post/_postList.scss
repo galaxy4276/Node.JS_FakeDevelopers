@@ -1,0 +1,150 @@
+.post-list {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+
+  & > * {
+    padding: 0.02rem 0;
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: [number]10% [title]50% [writer]15% [hit]10% [reg-data]15%;
+    width: 100%;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #333;
+
+    &__prop {
+      justify-self: center;
+      padding: 0.66rem 0.5rem;
+    }
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: [number]10% [title]50% [writer]15% [hit]10% [reg-data]15%;
+    width: 100%;
+    border-bottom: 0.002rem solid $main-color--silver;
+
+    & > * {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    &__title {
+      width: fit-content;
+      justify-content: flex-start !important;
+
+      &:hover,
+      &:focus {
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+    }
+
+    &--notice,
+    &--post {
+      padding: 1rem 0;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  &__notice {
+    background-color: rgba($main-color--silver, 0.5);
+
+    .post-list__item__title {
+      font-weight: 700;
+      color: $main-color--orange;
+
+      &:hover,
+      &:focus {
+        filter: grayscale(70%);
+      }
+    }
+  }
+
+  &__post {
+  }
+
+  /* 페이지 네이션 */
+  &__inner-paging {
+    position: absolute;
+    bottom: -2.5rem;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    align-items: center;
+  }
+
+  &__page-numbers {
+    display: flex;
+
+    &__number {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      color: #7a7a7a;
+      margin: 0.2rem 0.5rem;
+      padding: 0.1rem 0.3rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        background-color: #cccccc;
+      }
+
+      &--highlight {
+        font-size: 1.6rem;
+        font-weight: 700;
+        cursor: initial;
+      }
+
+      &--highlight:hover,
+      &--highlight:focus {
+        background-color: inherit;
+      }
+    }
+  }
+
+  &__page-btn {
+    position: absolute;
+    color: #6e6e6e;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: transform 0.01s ease-in-out;
+
+    &:hover,
+    &:focus {
+      transform: scale(1.15);
+      background-color: #cccccc;
+    }
+
+    &--left {
+      left: -1.5rem;
+    }
+
+    &--right {
+      right: -1.5rem;
+    }
+
+    &--disabled {
+      display: none;
+    }
+  }
+}
+
+/* for dev */
+.post-list {
+  // background-color: rgba(black, 0.1);
+}

@@ -11,7 +11,7 @@ mixin card(title, info, content)
         .card-title__img
         //- !! Comment bear - 이미지는 웹팩 css 로더에 의해 file-loader에 연결되어 빌드되므로 css에서 지정해주어야 합니다.
       .card-content
-        p.card-content__info= info
+        p.card-content__info= title
         p.card-content__text= content
 
 block title
@@ -19,7 +19,7 @@ block title
 block append stylesheet
   link(rel="stylesheet" href="/css/galaxy.css")
 block append script
-  script(src="/es5/galaxy.js")
+  script(defer src="/es5/galaxy.js")
 
 block content
   main.sub-main
@@ -64,7 +64,9 @@ block content
               .student-board__title
                 span 자격증 취득
                 a.write-btn(href="/footprint/acquisition/post") 글쓰기
-              while count < 14
-                +card("리눅스마스터 2급", "201911064최은기", "와! 타이어보다 쉽다!")
-                - count++;
+              if posts
+                each post in posts
+                  +card(post.title, post.UserId, post.content)
+              else
+                h2 게시물이 존재하지 않습니다.
               .ap-blank

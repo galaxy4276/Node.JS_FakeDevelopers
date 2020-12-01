@@ -7,6 +7,10 @@ import donate from './donate';
 import award from './award';
 import portfolio from './portfolio';
 import image from './image';
+import announcement from './announcement';
+import community from './community';
+import inquiry from './inquiry';
+import notice from './notice';
 
 
 const config = env;
@@ -15,13 +19,21 @@ const db = {};
 
 export const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
-db.User = user(sequelize, Sequelize);
-db.Certpost = certpost(sequelize, Sequelize);
-db.Suggest = suggest(sequelize, Sequelize);
-db.Donate = donate(sequelize, Sequelize);
-db.Award = award(sequelize, Sequelize);
-db.Portfolio = portfolio(sequelize, Sequelize);
-db.Image = image(sequelize, Sequelize);
+db.User = user;
+db.Certpost = certpost;
+db.Suggest = suggest;
+db.Donate = donate;
+db.Award = award;
+db.Portfolio = portfolio;
+db.Image = image;
+db.Announcement = announcement;
+db.Community = community;
+db.Inquiry = inquiry;
+db.Notice = notice;
+
+Object.keys(db).forEach(modelName => {
+  db[modelName].init(sequelize);
+})
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {

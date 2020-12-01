@@ -1,35 +1,35 @@
-const introBtn = document.querySelector(".sidebar__intro"),
-  careerBtn = document.querySelector(".sidebar__career"),
-  communityBtn = document.querySelector(".sidebar__community"),
-  historyBtn = document.querySelector(".sidebar__history"),
-  utilBtn = document.querySelector(".header-util__btn"),
-  sidebar = document.querySelector(".sidebar"),
-  cover = document.querySelector(".cover");
+const sidebar = document.querySelector(".sidebar");
+const sideUtilBtn = document.querySelector(".header-util__btn");
+const sideWrap = document.querySelector(".cover");
+const sideList = document.querySelector(".sidebar__list");
 
-function showDropdown(event) {
-  const innerList = event.target.parentNode.querySelector(
-    ".sidebar__inner-list"
-  );
+function toggleDropdown(e) {
+  // ** 드롭다운 이벤트 **
+  // sideList 전체에 이벤트 리스너를 걸었을 때 화면에서 클릭 이벤트가 발생할 수 있는 요소는
+  // 1. sideList의 공백 부분 (😫 종료시킨다!)
+  // 2. 각 타이틀의 드롭다운이 펼쳐졌을때 나오는 각 링크들 (😫 종료시킨다!)
+  // 3. 각 타이틀 버튼의 caretDown 아이콘 (🙄 가장 가까운 li 부모 요소로 이벤트 타겟이 전환된다)
+  // 4. 각 타이틀 버튼 그 자체 (😀 클릭한 이벤트 타겟 그대로 실행된다)
+
+  if (e.target === this) return; // 공백부분이라면 종료
+  if (e.target.tagName === "A") return; // 드롭다운 링크들이라면 종료
+
+  const title = e.target.closest("li");
+  const innerList = title.querySelector(".sidebar__inner-list");
+
   innerList.classList.toggle("sidebar__inner-list--clicked");
-  event.target.classList.toggle("sidebar__btn--active");
+  title.classList.toggle("sidebar__btn--active");
 }
 
-function showSideBar(event) {
-  sidebar.classList.add("sidebar--show");
-  cover.classList.add("cover--covered");
+function toggleSideBar() {
+  sidebar.classList.toggle("sidebar--show");
+  sideWrap.classList.toggle("cover--covered");
 }
 
-function closeSidebar() {
-  sidebar.classList.remove("sidebar--show");
-  cover.classList.remove("cover--covered");
-}
+function initSidebar() {
+  sideUtilBtn.addEventListener("click", toggleSideBar, false);
+  sideWrap.addEventListener("click", toggleSideBar, false);
 
-function init() {
-  introBtn.addEventListener("click", showDropdown);
-  careerBtn.addEventListener("click", showDropdown);
-  communityBtn.addEventListener("click", showDropdown);
-  historyBtn.addEventListener("click", showDropdown);
-  utilBtn.addEventListener("click", showSideBar);
-  cover.addEventListener("click", closeSidebar);
+  sideList.addEventListener("click", toggleDropdown, false);
 }
-init();
+initSidebar();

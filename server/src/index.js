@@ -49,7 +49,7 @@ app.use(helmet()); // 보안 관련 미들웨어
 app.use(morgan('dev')); // 서버 로깅
 app.use('/css', express.static(routes.frontCss)); // 프론트 CSS 파일 위치
 app.use('/es5', express.static(routes.frontEs6)); // 프론트 자바스크립트 파일 위치
-app.use('/img', express.static(routes.forntImg)); // 프론트 이미지파일 위치
+app.use('/img', express.static(routes.frontImg)); // 프론트 이미지파일 위치
 app.use('/font', express.static(routes.frontFont)); // 프론트 폰트 파일 위치
 app.use(express.json()); // json으로 이루어진 Request Body 데이터를 받아오는 미들웨어
 app.use(express.urlencoded({ extended: true })); /* body 데이터를 자동으로 req.body에 추가해주는 미들웨어
