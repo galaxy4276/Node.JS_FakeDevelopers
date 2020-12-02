@@ -12,28 +12,24 @@ const setTimeText = (updatedAt) => {
   return timeText;
 };
 
-const toClassNamesObj = (midName, ...lastNames) => {
+const toClassNamesObj = (...lastNames) => {
   return lastNames.reduce(
     (acc, lastName) =>
-      Object.defineProperty(acc, lastName, {
-        value: `post-list__${midName}__${lastName}`,
-      }),
+      Object.defineProperty(acc, lastName, { value: `post-list__item__${lastName}` }),
     {}
   );
 };
 
 const processToElems = (category, postsData) => {
-  const DOMfragment = new DocumentFragment();
-
   const itemName = 'item';
   const propNames = ['number', 'title', 'writer', 'hit', 'reg-time'];
-  const classes = toClassNamesObj(category, itemName, ...propNames);
+  const classes = toClassNamesObj(...propNames);
 
   const setTime = setTimeText;
 
-  for (const post of postsData) {
+  const postitems = postsData.reduceRight((acc, post) => {
     const item = document.createElement('div');
-    item.setAttribute('class', `post-list__${itemName} ${classes.item}`);
+    item.setAttribute('class', `post-list__${itemName} post-list__${itemName}--${category}`);
 
     item.innerHTML = `
     <div class=${classes.number}>${post.id || '0000'}</div>
@@ -43,10 +39,15 @@ const processToElems = (category, postsData) => {
     <div class=${classes['reg-time']}>${setTime(post.updatedAt) || '0000-00-00'}</div>
   `.trim();
 
-    DOMfragment.appendChild(item);
-  }
+    acc.push(item);
 
-  return DOMfragment;
+    return acc;
+  }, []);
+
+  const DOMfragement = new DocumentFragment();
+  DOMfragement.append(...postitems);
+
+  return DOMfragement;
 };
 
 const getpostsData = (url = '') => {
@@ -61,7 +62,7 @@ const getpostsData = (url = '') => {
   }).then((res) => res.json());
 };
 
-const getPostList = (parentElem, path, limit = 10, page = 1, useFakeData = false) => {
+const getPostList = (parentElem, path, useFakeData = false, limit = 10, page = 1) => {
   //TODO: page 파라미터 받아서 url에 추가
   const url = useFakeData
     ? `http://localhost:8001/community/${path}/api/create-bulk`
@@ -70,20 +71,19 @@ const getPostList = (parentElem, path, limit = 10, page = 1, useFakeData = false
 
   // test
   const testLog = (postsData) => {
-    console.log(`요청 url => ${url}`);
+    console.log(`요청 API => ${url.match(/(?<!\/)\/(?!\/).*$/)}`);
 
     if (postsData.length !== limit)
       console.warn(
         ' 쿼리문으로 요청한 데이터 수와 받아온 데이터 수가 다릅니다.\n',
         ' ▶ 마지막 페이지이거나 서버측 코드가 변경되었습니다.'
       );
+
+    return postsData;
   };
 
-  getpostsData(url)
-    .then((postsData) => {
-      testLog(postsData); //test
-      return postsData;
-    })
+  return getpostsData(url)
+    .then((postsData) => testLog(postsData) /* Just log => data not change */)
     .then((postsData) => processToElems(category, postsData))
     .then((DOMfragment) => parentElem.appendChild(DOMfragment))
     .catch(console.error);

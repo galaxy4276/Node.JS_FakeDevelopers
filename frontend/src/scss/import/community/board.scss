@@ -2,80 +2,15 @@
 @import '../../common/default/default.scss';
 /* --------------- */
 
+/*-- post에 관한 스타일 시트 --*/
+@import '../../common/post/post.scss';
+
 /* initial */
 .sub-contents__content {
   border: none;
 }
 
-/* main code */
-.sub-contents__content {
-}
-
-.post-list {
-  width: 100%;
-  height: 100%;
-  padding: 0.5rem;
-
-  & > * {
-    padding: 0.02rem 0;
-  }
-
-  &__header {
-    display: grid;
-    grid-template-columns: [number]10% [title]50% [writer]15% [hit]10% [reg-data]15%;
-    width: 100%;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #333;
-
-    &__prop {
-      justify-self: center;
-      padding: 0.66rem 0.5rem;
-    }
-  }
-
-  &__item {
-    display: grid;
-    grid-template-columns: [number]10% [title]50% [writer]15% [hit]10% [reg-data]15%;
-    width: 100%;
-
-    * {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
-  }
-
-  &__notice {
-    background-color: rgba($main-color--silver, 0.5);
-
-    &__item {
-      padding: 0.66rem 0;
-    }
-
-    &__title {
-      font-weight: 700;
-      color: $main-color--orange;
-      justify-content: flex-start !important;
-    }
-  }
-
-  &__post {
-    &__item {
-      padding: 0.66rem 0;
-    }
-
-    &__title {
-      justify-content: flex-start !important;
-    }
-  }
-}
-
 /* for dev */
-.post-list {
-  background-color: rgba(black, 0.1);
-}
-
-.sub-contents__content {
-  border: 1px dotted rgba(gray, 0.3);
-}
+// .sub-contents__content {
+//   border: 1px dotted rgba(gray, 0.3);
+// }

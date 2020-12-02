@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 import env from './config';
-import user from './user';
+import user from './User';
 import certpost from './certpost';
 import suggest from './suggest';
 import donate from './donate';
