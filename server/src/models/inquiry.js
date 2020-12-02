@@ -14,7 +14,7 @@ export default class Inquiry extends Model {
       timestamps: false,
       sequelize,
     });
-  };
+  }
 
   static associate(db) {
     db.Inquiry.belongsTo(db.Community);
@@ -25,5 +25,5 @@ export default class Inquiry extends Model {
     db.Inquiry.belongsTo(db.Portfolio);
     db.Inquiry.belongsTo(db.Suggest);
     db.Inquiry.belongsTo(db.Notice);
-  };
+  }
 }
