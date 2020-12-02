@@ -2,16 +2,18 @@ const dropdownMenuList = document.querySelectorAll(
   '.header-menu-dropdown__list'
 );
 
-const findMaxHeight = () => () => {
-  let maxHeight = 0;
+const defaultHeight = 48.5;
+
+const findMaximumMenuList = () => {
+  let max = 0;
   dropdownMenuList.forEach((h) => {
-    if (maxHeight < h.offsetHeight) maxHeight = h.offsetHeight;
+    if (max < h.childNodes.length) max = h.childNodes.length;
   });
-  return maxHeight;
+  return max;
 };
 
-let dropdownMenuHeight = findMaxHeight();
+let dropdownMenuMax = findMaximumMenuList();
 
 dropdownMenuList.forEach((h) => {
-  h.style.height = dropdownMenuHeight() + 'px';
+  h.style.height = dropdownMenuMax * defaultHeight + 'px';
 });
