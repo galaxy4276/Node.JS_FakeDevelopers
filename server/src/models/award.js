@@ -12,6 +12,7 @@ export default class AwardPost extends Model {
         type: DataTypes.TEXT,
         allowNull: true,
       },
+      
     }, {
       modelName: 'AwardPost',
       tableName: 'awardposts',
@@ -23,5 +24,7 @@ export default class AwardPost extends Model {
 
   static associate(db) {
     db.Award.belongsTo(db.User);
+    db.Award.hasMany(db.Inquiry);
+    
   }
 }

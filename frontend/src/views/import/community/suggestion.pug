@@ -1,0 +1,46 @@
+extends ../../common/_base.pug
+
+block title
+  title 바라는 점
+block append stylesheet
+  link(rel="stylesheet" href="/css/suggestion.css")
+block append script
+  script(defer src="/es5/suggestion.js")
+
+block content
+  main.sub-main
+  .sub-background
+    span 학교 소개
+  .sub-main__wrap
+
+    // 여기서부터 네비게이션 바 시작
+    .sub-nav
+      .sub-nav__title-wrap
+        h3.sub-nav__title 상위 주제
+      .sub-nav__list-wrap
+        ul.sub-nav__list
+          li.sub-nav__item 
+            a(href="#").sub-nav__link 하위 주제 1
+          li.sub-nav__item
+            a(href="#").sub-nav__link 하위 주제 2
+
+    // 여기서부터 콘텐츠 시작
+    .sub-contents
+      .sub-contents__wrap
+        .sub-contents__header
+          h2.sub-contents__title 선택된 하위 주제
+          .sub-contents__util-wrap
+            ul.sub-contents__util-list
+              li.sub-contents__item
+                a(href="#").sub-contents__item__link HOME
+                +sub-contents__item__icon()
+              li.sub-contents__item
+                a(href="#").sub-contents__item__link 상위 주제
+                +sub-contents__item__icon()
+              li.sub-contents__item
+                a(href="#").sub-contents__item__link 하위 주제
+
+        .sub-contents__content
+          .sub-contents__missing-message
+            strong.sub-contents__txt-1 콘텐츠 작업이 필요한 페이지입니다.
+            p.sub-contents__txt-2 빠르고 편리한 서비스를 위해 최선을 다하겠습니다.

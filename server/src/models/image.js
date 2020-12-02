@@ -22,5 +22,9 @@ export default class Image extends Model {
     db.Image.belongsTo(db.Donate);
     db.Image.belongsTo(db.Portfolio);
     db.Image.belongsTo(db.Suggest);
+    db.Image.belongsTo(db.Announcement);
+    db.Image.belongsTo(db.Community);
+    db.Image.belongsTo(db.Award);
+    db.Image.belongsTo(db.Notice);
   }
 }

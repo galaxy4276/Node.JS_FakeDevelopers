@@ -27,5 +27,6 @@ export default class PortfolioPost extends Model {
 
   static associate(db) {
     db.Portfolio.belongsTo(db.User);
+    db.Portfolio.hasMany(db.Inquiry);
   }
 }

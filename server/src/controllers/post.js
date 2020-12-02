@@ -34,7 +34,11 @@ export const uploads = multer({
   limits: { fileSize: 20 * 1024 * 1024 },
 });
 
-export const acquisitionPost = async (req, res, next) => {
+/*
+  Controllers
+    DB와 로직을 수행하는 함수(Controller)
+*/
+export const acquisitionPost = async (req, res, next) => { // 자격증 취득 게시글 작성 
   try {
     const { title, paragraph } = req.body;
     const { user } = req;
