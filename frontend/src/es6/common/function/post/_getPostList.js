@@ -71,7 +71,7 @@ const getPostList = (parentElem, path, useFakeData = false, limit = 10, page = 1
 
   // test
   const testLog = (postsData) => {
-    console.log(`요청 url => ${url}`);
+    console.log(`요청 API => ${url.match(/(?<!\/)\/(?!\/).*$/)}`);
 
     if (postsData.length !== limit)
       console.warn(
@@ -82,7 +82,7 @@ const getPostList = (parentElem, path, useFakeData = false, limit = 10, page = 1
     return postsData;
   };
 
-  getpostsData(url)
+  return getpostsData(url)
     .then((postsData) => testLog(postsData) /* Just log => data not change */)
     .then((postsData) => processToElems(category, postsData))
     .then((DOMfragment) => parentElem.appendChild(DOMfragment))
