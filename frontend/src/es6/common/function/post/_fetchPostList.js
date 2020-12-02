@@ -15,14 +15,16 @@ let currentPageNumber = 1; // 현재 페이지 - default = page 1
 /* Function */
 const logGlobalVariableError = () => {
   console.error(
-    '⛔ [ _paginate.js ] 모듈이 export하는 paginatePostList() 에서 전역변수가 생성된 후에 이 함수를 호출해야 유효한 동작을 수행합니다.'
+    '⛔ [ _paginate.js ] 모듈이 export하는 fetchPostList() 에서 전역변수가 생성된 후에 이 함수를 호출해야 유효한 동작을 수행합니다.'
   );
 };
 
 const initParentElemHeight = () => {
-  // if (!window[Symbol.for('option')][0]) logGlobalVariableError();
-  // const [parentElem, , , limit] = window[Symbol.for('option')][0]; // 페이지 초기화시 넘겨받아서 전역에 저장했던, request 옵션들.
-  // parentElem.style.height = parentElem.offsetHeight; // TODO: offset 코드가 먹히지 않아 임시로 주석처리
+  if (!window[Symbol.for('option')]) logGlobalVariableError();
+
+  const [parentElem, , ,] = window[Symbol.for('option')][0]; // 페이지 초기화시 넘겨받아서 전역에 저장했던, request 옵션들.
+
+  parentElem.style.height = parentElem.offsetHeight; // TODO: offset 코드가 먹히지 않아 임시로 주석처리
 };
 
 const getLastPageNum = () => {
@@ -169,7 +171,7 @@ const handlePaginationBtnsClick = (e) => {
   toggleDisplayMoveBtns(); // 만약 현재 페이지가 1페이지면 < 버튼, 마지막 페이지면 > 버튼 삭제
 };
 
-const paginatePostList = async (...dataRequestOptions) => {
+const fetchPostList = async (...dataRequestOptions) => {
   ((key, ...value) => (window[Symbol.for(key)] = value))('option', dataRequestOptions); // 서버에 요청할때 쓸 옵션을 인자로 받아 전역변수에 저장
 
   if (firstCall) {
@@ -186,4 +188,4 @@ const paginatePostList = async (...dataRequestOptions) => {
 };
 
 /* export */
-export default paginatePostList;
+export default fetchPostList;
