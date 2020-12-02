@@ -24,7 +24,7 @@ community.get('/board', (req, res) => {
 
 // 후배 양도 ( Donate )
 community.get('/donation/api/create-bulk', (req, res, next) => {
-  createBulkBoard(Donate);
+  createBulkBoard(req, next)(Donate);
   res.redirect('/community/donation');
 });
 community.get('/donation/api', (req, res, next) => {
