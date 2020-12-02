@@ -1,6 +1,6 @@
 const postList = document.querySelector('.post-list');
 const notice = postList.querySelector('.post-list__notice');
-const post = postList.querySelector('.post-list__post');
+const post = postList.querySelector('.post-list__posts');
 
 /* Test Code for set default style in CSS*/
 const setTempText = (items) => {

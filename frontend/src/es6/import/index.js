@@ -5,7 +5,7 @@ const notice = document.querySelector('.index-main__notice');
 const news = document.querySelector('.index-main__department-news');
 
 // 공지사항 데이터 fetch로 가져와 출력하기
-fetch('http://localhost:8001/announcement')
+fetch('http://www.ddccomputer.club/announcement')
   .then((res) => {
     // 데이터 받아오기
     return res.json();
@@ -26,7 +26,7 @@ fetch('http://localhost:8001/announcement')
   });
 
 // 학과 이야기 데이터 fetch로 가져와 출력하기
-fetch('http://localhost:8001/community')
+fetch('http://www.ddccomputer.club/community')
   .then((res) => {
     // 데이터 받아오기
     return res.json();
