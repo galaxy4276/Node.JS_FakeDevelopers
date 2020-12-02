@@ -28,7 +28,7 @@ export default class User extends Model {
       collate: 'utf8mb4_general_ci',
       sequelize,
     });
-  };
+  }
 
   static associate(db) {
     db.User.hasMany(db.Announcement);
@@ -39,5 +39,5 @@ export default class User extends Model {
     db.User.hasMany(db.Portfolio);
     db.User.hasMany(db.Suggest);
     db.User.hasMany(db.Notice);
-  };
-};
+  }
+}
