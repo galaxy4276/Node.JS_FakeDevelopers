@@ -9,7 +9,7 @@ const findMaximumMenuList = () => {
   dropdownMenuList.forEach((h) => {
     if (max < h.children.length) max = h.children.length;
   });
-  return max + 1;
+  return max;
 };
 
 let dropdownMenuMax = findMaximumMenuList();
