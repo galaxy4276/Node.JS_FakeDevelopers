@@ -40,7 +40,7 @@ const sessionStore = new MySQLStore({
 
 app.set('view engine', 'pug'); // 서버 View 엔진을 ejs로 설정
 // app.engine('html', require('ejs').renderFile); // 서버 엔진을 ejs 설정으로
-app.set('port', process.env.PORT); // 포트번호를 환경설정 포트 값으로 설정
+app.set('port', process.env.ENV === 'production' || process.env.PORT || 8001); // 포트번호를 환경설정 포트 값으로 설정
 app.set('views', path.resolve(__dirname, 'public', 'views')); // view 디렉터리 위치 설정
 
 
