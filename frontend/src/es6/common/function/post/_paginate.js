@@ -9,7 +9,7 @@ const TOTAL = 210; // ! ! ! 임시로 설정한 전체 데이터 값. TODO: 서�
 const pagination = document.body.querySelector('.post-list__inner-paging'); // 페이지네이션 버튼들을 자식으로 가진 element
 const pageNumbers = Array.from(pagination.querySelector('.post-list__page-numbers').children); // 페이지네이션의 숫자 버튼들
 
-let isRecall = false; // 모듈이 처음으로 불린건지 검증
+let firstCall = true; // 모듈이 처음으로 불린건지 검증
 let currentPageNumber = 1; // 현재 페이지 - default = page 1
 
 /* Function */
@@ -63,7 +63,7 @@ const putPostsList = (pageNum) => {
     ? pageNum // pageNum가 숫자라면 그대로,
     : pageNum.textContent; // element라면 textContent로 값 삽입)
 
-  getPostList(parentElem, path, useFakeData, limit, currentPageNumber); // 현재 페이지와 전역변수에 저장했던 옵션으로 정보 요청
+  return getPostList(parentElem, path, useFakeData, limit, currentPageNumber); // 현재 페이지와 전역변수에 저장했던 옵션으로 정보 요청
 };
 
 const turnPage = (clickedBtn) => {
@@ -169,15 +169,17 @@ const handlePaginationBtnsClick = (e) => {
   toggleDisplayMoveBtns(); // 만약 현재 페이지가 1페이지면 < 버튼, 마지막 페이지면 > 버튼 삭제
 };
 
-const paginatePostList = (...dataRequestOptions) => {
+const paginatePostList = async (...dataRequestOptions) => {
   ((key, ...value) => (window[Symbol.for(key)] = value))('option', dataRequestOptions); // 서버에 요청할때 쓸 옵션을 인자로 받아 전역변수에 저장
 
-  if (!isRecall) {
+  if (firstCall) {
     toggleDisplayMoveBtns(); // 웹 페이지 최초 접속시에 < , > 버튼 삭제 판별 (1페이지 혹은 마지막 페이지 일때)
     toggleHighlightCurrPageNum(); // 웹 페이지 최초 접속시에 현재 페이지 강조
-    isRecall = true;
+    firstCall = false;
   }
-  putPostsList(currentPageNumber); //첫 데이터 불러오기
+
+  await putPostsList(currentPageNumber); //첫 데이터 불러오기
+
   initParentElemHeight(); // 첫 불러온 데이터 양만큼 최초 높이 설정 (화면 전환시 데이터를 받아오는 도중 내부 요소 삭제 생성에 따른 높이 변화에 의한, 이른바 '깜박임'을 제거하기 위함)
 
   pagination.addEventListener('click', handlePaginationBtnsClick, false); // 페이지네이션의 버튼 클릭시에 그에 맞는 데이터 호출
