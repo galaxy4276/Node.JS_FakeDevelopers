@@ -71,7 +71,7 @@ const getPostList = (parentElem, path, useFakeData = false, limit = 10, page = 1
 
   // test
   const testLog = (postsData) => {
-    console.log(`요청 url => ${url}`);
+    console.log(`요청 API => ${url.match(/(?<!\/)\/(?!\/).*$/)}`);
 
     if (postsData.length !== limit)
       console.warn(
