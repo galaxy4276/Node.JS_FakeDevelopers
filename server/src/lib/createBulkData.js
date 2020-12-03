@@ -1,5 +1,5 @@
 import faker from 'faker';
-import { reqValidAndDefault } from '../controllers/post';
+import { reqValidAndDefault } from '../controllers/index';
 import sequelize from '../models';
 const { Inquiry } = sequelize;
 
