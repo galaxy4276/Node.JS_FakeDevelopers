@@ -19,13 +19,9 @@ const getPostsList = (req, res, next) => async (schema) => { // 스키마를 인
       order: [['id', 'DESC']],
     });
 
-    const allPageIdx = await schema.findAll({
-      attributes: ['id'],
-    });
 
     return res.status(200).json({
-      postsList: posts,
-      total: Math.floor(allPageIdx.length / limit),
+      postsList: posts
     });
   } catch (err) {
     console.log('/board GET Error');
