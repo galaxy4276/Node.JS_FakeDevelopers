@@ -44,6 +44,7 @@ const ENTRY = {
   board: path.resolve(__dirname, 'src', '_entry', 'community', 'board.js'),
   donation: path.resolve(__dirname, 'src', '_entry', 'community', 'donation.js'),
   suggestion: path.resolve(__dirname, 'src', '_entry', 'community', 'suggestion.js'),
+  notice: path.resolve(__dirname, 'src', '_entry', 'community', 'notice.js'),
 
   // footprint/
   acquisition: path.resolve(__dirname, 'src', '_entry', 'footprint', 'acquisition.js'),
