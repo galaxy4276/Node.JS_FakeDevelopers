@@ -8,7 +8,7 @@ const getPostsList = (req, res, next) => async (schema) => { // 스키마를 인
     const limit = reqValidAndDefault(req.query.limit, 15);
     const page = reqValidAndDefault(req.query.page, 1);
     const offset = limit * (page - 1);
-
+    
     const posts = await schema.findAll({
       include: [{
         model: Inquiry,
