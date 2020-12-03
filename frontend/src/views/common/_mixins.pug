@@ -48,7 +48,7 @@ mixin sub-contents__item__icon()
 //- -----------------------------------------------------------------------------------------------------------------
 //- ------------------------------------------- 게시판 관련 mixin ---------------------------------------------------
 //- -----------------------------------------------------------------------------------------------------------------
-//- Bulletn Board Post Write Template
+//- Bulletn Board Post Write Template [ 게시판 글 작성 템플릿 ]
 mixin postForm()
   .sub-contents__content-wrap
     .sub-contents__content
@@ -65,12 +65,12 @@ mixin postForm()
           textarea(rows="5" cols="50" name="paragraph" required)
         input(type="submit" name="submit").sub-contents__submit
 
-//- Bulletn Board Post List Template
+//- Bulletn Board Post List Template [ 게시판 글 목록 템플릿 ]
 mixin postList()
   article.post-list
     |
     |
-    // 게시판 헤더
+    // 게시판 글 목록 헤더
     section.post-list__header
       //- 표시될 게시글의 속성 = ['number', 'title', 'writer', 'hit', 'reg-time'];
       div.post-list__header__prop.post-list__header__number 번호
@@ -97,14 +97,25 @@ mixin postList()
           +icon("chevronForward", '다음 페이지', '#0f0f0f')
     // TODO: 제일 앞으로 가기, 제일 뒤로 가기 부분 구현
 
-//- Bulletn Board Post View Template
-//- mixin postView()
-//-   article.post-view
-//-   |
-//-   |
-//-     section.post-view__header
-//-       //- 헤더에 표시될 게시글의 속성 = ['title', 'reg-time', 'writer', 'hit'];
-//-       div.post-view__header__prop.post-view__header__title 제목
-//-       div.post-view__header__prop.post-view__header__reg-time 등록일
-//-       div.post-view__header__prop.post-view__header__writer 작성자
-//-       div.post-view__header__prop.post-view__header__hit 조회수
+//- Bulletn Board Post View Template [ 게시판 글 상세보기 템플릿 ]
+mixin postView()
+  article.post-view
+    |
+    |
+    // 게시판 글 헤더
+    section.post-view__header
+      //- 헤더에 표시될 게시글의 속성 = ['title', 'reg-time', 'writer', 'hit'];
+      div.post-view__header__prop.post-view__header__title 제목
+      div.post-view__header__prop.post-view__header__reg-time 등록일
+      div.post-view__header__prop.post-view__header__writer 작성자
+      div.post-view__header__prop.post-view__header__hit 조회수
+    // 첨부 파일
+    section.post-view__file
+    // 게시판 글
+    section.post-view__content
+    // 게시판 글 푸터
+    section.post-view__footer
+    // 이전 글
+    section.post-view__next
+    // 다음 글
+    section.post-view__prev
