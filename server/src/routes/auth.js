@@ -71,7 +71,7 @@ auth.post('/forgot_resetPassword', async (req, res, next) => {
   }
 })
 
-auth.get('/logout', (req, res, next) => {
+auth.get('/logout', (req, res) => {
   req.logout();
   return res.redirect('/');
 });
