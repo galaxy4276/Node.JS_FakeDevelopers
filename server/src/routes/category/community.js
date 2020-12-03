@@ -1,7 +1,10 @@
 const community = require('express').Router();
 import sequelize from '../../models';
 import { createBulkBoard } from '../../lib/createBulkData';
-import {getPostsList } from '../../controllers/post';
+import  getPostsList from '../../controllers/pagination/getPostsList';
+import getIdx from '../../controllers/pagination/getPageIdx';
+
+
 const { 
   Community,
   Donate,
@@ -10,6 +13,9 @@ const {
 // Router & Controllers ( 차 후 분리 필요 )
 
 // 학과 이야기 ( Community )
+community.get('/board/api/index', (req, res, next) => {
+  getIdx(req, res, next)(Community);
+});
 community.get('/board/api/create-bulk', (req, res, next) => {
   createBulkBoard(req, next)(Community);
   res.redirect('/community/board');
@@ -23,6 +29,10 @@ community.get('/board', (req, res) => {
 
 
 // 후배 양도 ( Donate )
+community.get('/donation/api/index', (req, res, next) => {
+  getIdx(req, res, next)(Donate);
+  res.redirect('/footprint/acquisition');
+});
 community.get('/donation/api/create-bulk', (req, res, next) => {
   createBulkBoard(req, next)(Donate);
   res.redirect('/community/donation');
