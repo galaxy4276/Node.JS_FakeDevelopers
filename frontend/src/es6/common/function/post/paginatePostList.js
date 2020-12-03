@@ -5,32 +5,34 @@ import getPostList from './_getPostList'; // 현재 페이지의 상품 데이�
 /* Constants */
 const TOTAL = 210; // ! ! ! 임시로 설정한 전체 데이터 값. TODO: 서버에 TOTAL에 대한 API가 추가되면 수정하기
 
-/* Global Variables */
 const pagination = document.body.querySelector('.post-list__inner-paging'); // 페이지네이션 버튼들을 자식으로 가진 element
 const pageNumbers = Array.from(pagination.querySelector('.post-list__page-numbers').children); // 페이지네이션의 숫자 버튼들
 
+/* Global Variables */
 let firstCall = true; // 모듈이 처음으로 불린건지 검증
 let currentPageNumber = 1; // 현재 페이지 - default = page 1
 
 /* Function */
 const logGlobalVariableError = () => {
   console.error(
-    '⛔ [ _paginate.js ] 모듈이 export하는 fetchPostList() 에서 전역변수가 생성된 후에 이 함수를 호출해야 유효한 동작을 수행합니다.'
+    '⛔ [ _paginate.js ] 모듈이 export하는 paginatePostList() 에서 전역변수가 생성된 후에 이 함수를 호출해야 유효한 동작을 수행합니다.'
   );
 };
 
+const getGlobalVariable = (name) => {
+  if (!window[Symbol.for(name)]) logGlobalVariableError();
+
+  return window[Symbol.for(name)][0];
+};
+
 const initParentElemHeight = () => {
-  if (!window[Symbol.for('option')]) logGlobalVariableError();
+  const [parentElem, ,] = getGlobalVariable('option');
 
-  const [parentElem, , ,] = window[Symbol.for('option')][0]; // 페이지 초기화시 넘겨받아서 전역에 저장했던, request 옵션들.
-
-  parentElem.style.height = parentElem.offsetHeight; // TODO: offset 코드가 먹히지 않아 임시로 주석처리
+  parentElem.style.height = parentElem.offsetHeight;
 };
 
 const getLastPageNum = () => {
-  if (!window[Symbol.for('option')][0]) logGlobalVariableError();
-
-  const [, , , limit] = window[Symbol.for('option')][0]; // 페이지 초기화시 넘겨받아서 전역에 저장했던, request 옵션들.
+  const [, , limit] = getGlobalVariable('option');
 
   return Math.ceil(TOTAL / limit); // 마지막 페이지 번호
 };
@@ -55,9 +57,7 @@ const toggleHighlightCurrPageNum = () => {
 };
 
 const putPostsList = (pageNum) => {
-  if (!window[Symbol.for('option')][0]) logGlobalVariableError();
-
-  const [parentElem, path, useFakeData, limit] = window[Symbol.for('option')][0]; // 페이지 초기화시 넘겨받아서 전역에 저장했던, request 옵션들.
+  const [parentElem, boardName, limit] = getGlobalVariable('option');
 
   parentElem.innerHTML = ''; // postList 초기화
 
@@ -65,7 +65,7 @@ const putPostsList = (pageNum) => {
     ? pageNum // pageNum가 숫자라면 그대로,
     : pageNum.textContent; // element라면 textContent로 값 삽입)
 
-  return getPostList(parentElem, path, useFakeData, limit, currentPageNumber); // 현재 페이지와 전역변수에 저장했던 옵션으로 정보 요청
+  return getPostList(parentElem, boardName, limit, currentPageNumber); // 현재 페이지와 전역변수에 저장했던 옵션으로 정보 요청
 };
 
 const turnPage = (clickedBtn) => {
@@ -171,8 +171,8 @@ const handlePaginationBtnsClick = (e) => {
   toggleDisplayMoveBtns(); // 만약 현재 페이지가 1페이지면 < 버튼, 마지막 페이지면 > 버튼 삭제
 };
 
-const fetchPostList = async (...dataRequestOptions) => {
-  ((key, ...value) => (window[Symbol.for(key)] = value))('option', dataRequestOptions); // 서버에 요청할때 쓸 옵션을 인자로 받아 전역변수에 저장
+const paginatePostList = async (reqOptions) => {
+  ((key, ...value) => (window[Symbol.for(key)] = value))('option', reqOptions); // 서버에 요청할때 쓸 옵션을 인자로 받아 전역변수에 저장
 
   if (firstCall) {
     toggleDisplayMoveBtns(); // 웹 페이지 최초 접속시에 < , > 버튼 삭제 판별 (1페이지 혹은 마지막 페이지 일때)
@@ -188,4 +188,4 @@ const fetchPostList = async (...dataRequestOptions) => {
 };
 
 /* export */
-export default fetchPostList;
+export default paginatePostList;

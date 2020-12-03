@@ -16,8 +16,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
+    background-image: url('../../img/ddc.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
   }
 
   .index-main__content {
@@ -27,7 +29,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 3px solid black;
     z-index: 2;
 
     .index-main__first {
@@ -36,7 +37,6 @@
       height: 25em;
       grid-template: 'box1 box2 box3' 1fr;
       grid-template-columns: 33.33% 33.33% 33.33%;
-      border-bottom: 3px solid black;
 
       @media screen and (max-width: 1335px) {
         grid-template:
@@ -95,7 +95,7 @@
         background-color: #ffffff;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
       }
     }
 
@@ -104,8 +104,6 @@
       margin-bottom: 100px;
       display: flex;
       width: 100%;
-      border-top: 3px solid black;
-      border-bottom: 3px solid black;
       background: rgba(0, 0, 0, 0.1);
 
       .index-main__second-title {
