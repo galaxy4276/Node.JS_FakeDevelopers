@@ -40,7 +40,7 @@ const sessionStore = new MySQLStore({
 
 app.set('view engine', 'pug'); // 서버 View 엔진을 ejs로 설정
 // app.engine('html', require('ejs').renderFile); // 서버 엔진을 ejs 설정으로
-app.set('port', process.env.ENV === 'production' || process.env.PORT || 8001); // 포트번호를 환경설정 포트 값으로 설정
+app.set('port', process.env.PORT || 8001); // 포트번호를 환경설정 포트 값으로 설정
 app.set('views', path.resolve(__dirname, 'public', 'views')); // view 디렉터리 위치 설정
 
 
@@ -53,7 +53,7 @@ app.use('/img', express.static(routes.frontImg)); // 프론트 이미지파일 �
 app.use('/font', express.static(routes.frontFont)); // 프론트 폰트 파일 위치
 app.use(express.json()); // json으로 이루어진 Request Body 데이터를 받아오는 미들웨어
 app.use(express.urlencoded({ extended: true })); /* body 데이터를 자동으로 req.body에 추가해주는 미들웨어
-  extended 옵션은 qs모듈을 사용할지 query-string 모듈을 사용할 지 결정한다.
+  extended 옵션은 qs모듈을 사 용할지 query-string 모듈을 사용할 지 결정한다.
   둘의 차이는 nested를 지원하느냐 하지 않느냐
   https://stackoverflow.com/questions/29960764/what-does-extended-mean-in-express-4-0/45690436#45690436
 */

@@ -1,2 +1,1 @@
-SequelizeDatabaseError: (conn=16134, no: 1005, SQLState: HY000) Can't create table `test`.`Certposts` (errno: 121 "Duplicate key on write or update")
-sql: CREATE TABLE IF NOT EXISTS `Certposts` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(30) NOT NULL, `user` VARCHAR(200), `content` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `UserId` VARCHAR(35), PRIMARY KEY (`id`), FOREIGN KEY (`UserId`) REFERENCES `Users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB; - parameters:[]
+SequelizeConnectionError: (conn=-1, no: 45012, SQLState: 08S01) Connection timeout: failed to create socket after 10003ms
