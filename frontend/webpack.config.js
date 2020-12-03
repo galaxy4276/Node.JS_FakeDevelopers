@@ -96,17 +96,16 @@ const webpackConfig = {
     },
   },
 
-  devtool: 'inline-source-map',
+  devtool: process.env.NODE_ENV === 'development' ? 'inline-source-map' : 'hidden-source-map',
   // 콘솔에서 오류 경로를 번들 후 파일이 아닌 번들 전 파일로 명시해줌
   // The side effect of this option is to increase build time
-  // mode development ? ‘inline-source-map" : 'hidden-source-map’
 
   entry: ENTRY,
 
   output: {
     //  entry 에서 분리한 청크별로 다른 번들파일 출력
     path: BUNDLE_POINT === 'frontend' ? FRONT_BUILD_DIR : SERVER_BUILD_DIR,
-    filename: 'es5/[name].js', // 작업예약 200916: 청크해쉬 추가하고 html-webpack-plugin에서 지정하기!!
+    filename: 'es5/[name].js',
     publicPath: BUNDLE_POINT === 'frontend' ? '/' : './',
   },
 
@@ -139,7 +138,8 @@ const webpackConfig = {
               limit: 8192, // (file-size > limit) ? use file-loader
               publicPath: '../',
               context: SRC,
-              name: 'img/[name].[ext]', //  (mode == "production") ? name: "img/[hash].[ext]",
+              name:
+                process.env.NODE_ENV === 'development' ? 'img/[name].[ext]' : 'img/[hash].[ext]',
               useRelativePaths: true,
             },
           },
@@ -154,7 +154,8 @@ const webpackConfig = {
               limit: 100000, // (file-size > limit) ? use file-loader
               publicPath: '../',
               context: SRC,
-              name: 'font/[name].[ext]', //  (mode == "production") ? name: "font/[hash].[ext]",
+              name:
+                process.env.NODE_ENV === 'development' ? 'font/[name].[ext]' : 'font/[hash].[ext]',
               useRelativePaths: true,
             },
           },
