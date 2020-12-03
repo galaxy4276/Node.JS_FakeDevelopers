@@ -1,3 +1,8 @@
+import { reqValidAndDefault } from '../index';
+import sequelize from '../../models';
+const { Inquiry } = sequelize;
+
+
 const getPostsList = (req, res, next) => async (schema) => { // 스키마를 인자로 받아 limit&page 에 해당하는 json 데이터를 반환
   try {
     const limit = reqValidAndDefault(req.query.limit, 15);
