@@ -31,6 +31,7 @@ const fetchIndexPosts = (url, parentElem) => {
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:8001' + url.match(/(?<=\.club).*$/)
       : url;
+
   return fetch(requestUrl, {
     method: 'GET',
     cache: 'no-cache',
