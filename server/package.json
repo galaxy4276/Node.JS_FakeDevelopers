@@ -26,7 +26,7 @@
   },
   "scripts": {
     "start": "nodemon --exec babel-node ./src",
-    "dev:build": "webpack -w"
+    "dev:build": "webpack -w",
     "server": "pm2 start ./src --interpreter ./node_modules/@babel/node/bin/babel-node.js"
   },
   "devDependencies": {
