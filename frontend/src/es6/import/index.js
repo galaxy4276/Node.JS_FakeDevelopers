@@ -27,7 +27,7 @@ const createUl = (res, div) => {
 };
 
 const fetchIndexPosts = (url, parentElem) => {
-  return fetch(process.env.NODE_ENV === 'development' ? url : 'http://localhost:8001', {
+  return fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:8001' : url, {
     method: 'GET',
     cache: 'no-cache',
     mode: process.env.NODE_ENV === 'development' ? 'no-cors' : 'same-origin',
