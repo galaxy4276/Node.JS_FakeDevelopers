@@ -4,58 +4,6 @@ import { getFormatDate } from '../common/function/_getFormatDate';
 const notice = document.querySelector('.index-main__notice');
 const news = document.querySelector('.index-main__department-news');
 
-const fetchOption = {
-  method: 'GET',
-  cache: 'no-cache',
-  mode: process.env.NODE_ENV === 'development' ? 'no-cors' : 'same-origin',
-  credentials: process.env.NODE_ENV === 'development' ? 'same-origin' : 'include', // 조회수 검증을 위한 쿠키 허용
-  headers: {
-    'Content-Type': 'application/json',
-  },
-};
-
-// 공지사항 데이터 fetch로 가져와 출력하기
-fetch('http://www.ddccomputer.club/announcement', fetchOption)
-  .then((res) => {
-    // 데이터 받아오기
-    return res.json();
-  })
-  .then((res) => {
-    // 받아온 데이터를 최신순 5개로 정렬
-    return res.splice(-5).reverse();
-  })
-  .then((res) => {
-    // 정렬된 데이터 다듬어진 객체로 변환
-    return res.map((item) => {
-      return { title: item.title, date: getFormatDate(item.updatedAt) };
-    });
-  })
-  .then((res) => {
-    // 리스트 생성
-    createUl(res, notice);
-  });
-
-// 학과 이야기 데이터 fetch로 가져와 출력하기
-fetch('http://www.ddccomputer.club/community', fetchOption)
-  .then((res) => {
-    // 데이터 받아오기
-    return res.json();
-  })
-  .then((res) => {
-    // 받아온 데이터를 최신순 5개로 정렬
-    return res.splice(-5).reverse();
-  })
-  .then((res) => {
-    // 정렬된 데이터 다듬어진 객체로 변환
-    return res.map((item) => {
-      return { title: item.title, date: getFormatDate(item.updatedAt) };
-    });
-  })
-  .then((res) => {
-    // 리스트 생성
-    createUl(res, news);
-  });
-
 // template
 const createUl = (res, div) => {
   const ul = document.createElement('ul');
@@ -77,5 +25,47 @@ const createUl = (res, div) => {
   }
   div.appendChild(ul);
 };
+
+const fetchIndexPosts = (url, parentElem) => {
+  return fetch(process.env.NODE_ENV === 'development' ? url : 'http://localhost:8001', {
+    method: 'GET',
+    cache: 'no-cache',
+    mode: process.env.NODE_ENV === 'development' ? 'no-cors' : 'same-origin',
+    credentials: process.env.NODE_ENV === 'development' ? 'same-origin' : 'include', // 조회수 검증을 위한 쿠키 허용
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => {
+      // 데이터 받아오기
+      return res.json();
+    })
+    .then((res) => {
+      // 받아온 데이터를 최신순 5개로 정렬
+      return res.splice(-5).reverse();
+    })
+    .then((res) => {
+      // 정렬된 데이터 다듬어진 객체로 변환
+      return res.map((item) => {
+        return { title: item.title, date: getFormatDate(item.updatedAt) };
+      });
+    })
+    .then((res) => {
+      // 리스트 생성
+      createUl(res, parentElem);
+    });
+};
+
+document.addEventListener(
+  'DOMContentLoaded',
+  () => {
+    // 공지사항 데이터 fetch로 가져와 출력하기
+    fetchIndexPosts('https://www.ddccomputer.club/announcement', notice);
+
+    // 학과 이야기 데이터 fetch로 가져와 출력하기
+    fetchIndexPosts('https://www.ddccomputer.club/community', news);
+  },
+  false
+);
 
 // component
