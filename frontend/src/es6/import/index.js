@@ -35,7 +35,7 @@ const fetchIndexPosts = (url, parentElem) => {
   return fetch(requestUrl, {
     method: 'GET',
     cache: 'no-cache',
-    mode: process.env.NODE_ENV === 'development' ? 'no-cors' : 'same-origin',
+    mode: process.env.NODE_ENV === 'development' ? 'cors' : 'same-origin',
     credentials: process.env.NODE_ENV === 'development' ? 'same-origin' : 'include', // 조회수 검증을 위한 쿠키 허용
     headers: {
       'Content-Type': 'application/json',
@@ -58,7 +58,8 @@ const fetchIndexPosts = (url, parentElem) => {
     .then((res) => {
       // 리스트 생성
       createUl(res, parentElem);
-    });
+    })
+    .catch(console.error);
 };
 
 document.addEventListener(
