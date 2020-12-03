@@ -27,7 +27,11 @@ const createUl = (res, div) => {
 };
 
 const fetchIndexPosts = (url, parentElem) => {
-  return fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:8001' : url, {
+  const requestUrl =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:8001' + url.match(/(?<=\.club).*$/)
+      : url;
+  return fetch(requestUrl, {
     method: 'GET',
     cache: 'no-cache',
     mode: process.env.NODE_ENV === 'development' ? 'no-cors' : 'same-origin',
