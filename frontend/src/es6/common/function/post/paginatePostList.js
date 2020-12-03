@@ -19,20 +19,20 @@ const logGlobalVariableError = () => {
   );
 };
 
-const getGlobalVariable = () => {
-  if (!window[Symbol.for('option')]) logGlobalVariableError();
+const getGlobalVariable = (name) => {
+  if (!window[Symbol.for(name)]) logGlobalVariableError();
 
-  return window[Symbol.for('option')][0];
+  return window[Symbol.for(name)][0];
 };
 
 const initParentElemHeight = () => {
-  const [parentElem, ,] = getGlobalVariable();
+  const [parentElem, ,] = getGlobalVariable('option');
 
   parentElem.style.height = parentElem.offsetHeight;
 };
 
 const getLastPageNum = () => {
-  const [, , limit] = getGlobalVariable();
+  const [, , limit] = getGlobalVariable('option');
 
   return Math.ceil(TOTAL / limit); // 마지막 페이지 번호
 };
@@ -57,7 +57,7 @@ const toggleHighlightCurrPageNum = () => {
 };
 
 const putPostsList = (pageNum) => {
-  const [parentElem, boardName, limit] = getGlobalVariable();
+  const [parentElem, boardName, limit] = getGlobalVariable('option');
 
   parentElem.innerHTML = ''; // postList 초기화
 
