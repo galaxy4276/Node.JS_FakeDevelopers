@@ -4,6 +4,7 @@ const getpostsData = (url = '') => {
   return fetch(url, {
     method: 'GET',
     cache: 'no-cache',
+    mode: 'no-cors',
     // mode: process.env.DEV_MODE === 'development' ? 'no-cors' : 'same-origin',
     // credentials: process.env.DEV_MODE === 'development' ? 'same-origin' : 'include', // 조회수 검증을 위한 쿠키 허용
     headers: {
