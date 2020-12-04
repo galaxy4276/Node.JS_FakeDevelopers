@@ -4,10 +4,8 @@ import defaultFetch from './_defaultFetch';
 import processToElems from './_processToElems';
 
 /* Constants */
-const TOTAL = 210; // ! ! ! 임시로 설정한 전체 데이터 값. TODO: 서버에 TOTAL에 대한 API가 추가되면 수정하기
-
 const pagination = document.body.querySelector('.post-list__inner-paging'); // 페이지네이션 버튼들을 자식으로 가진 element
-const pageNumbers = Array.from(pagination.querySelector('.post-list__page-numbers').children); // 페이지네이션의 숫자 버튼들
+const pageNumList = pagination.querySelector('.post-list__page-numbers');
 
 /* Global Variables */
 let firstCall = true; // 모듈이 처음으로 불린건지 검증
@@ -26,20 +24,58 @@ const getGlobalVariable = (name) => {
   return window[Symbol.for(name)][0];
 };
 
+const setGlobalVariable = (key, ...value) => (window[Symbol.for(key)] = value);
+
 const initParentElemHeight = () => {
   const [parentElem, ,] = getGlobalVariable('option');
 
   parentElem.style.height = parentElem.offsetHeight;
 };
 
-const getLastPageNum = () => {
-  const [, , limit] = getGlobalVariable('option');
+const initLastPageNum = async () => {
+  const [, boardName, limit] = getGlobalVariable('option');
 
-  return Math.ceil(TOTAL / limit); // 마지막 페이지 번호
+  const path = `/${boardName}/api/index?limit=${limit}`;
+  requestURL.path = path;
+
+  // API 요청으로 마지막 페이지 번호 가져오기
+  const lastPageNum = await defaultFetch(requestURL.url).then((res) => Math.ceil(res.idx));
+
+  // 가져온 마지막 페이지 번호를 전역변수에 저장
+  setGlobalVariable('LAST_PAGE', lastPageNum);
+};
+
+const initPageNumList = () => {
+  const DOMfragment = document.createDocumentFragment();
+
+  const pageNum = document.createElement('li');
+  pageNum.setAttribute('class', 'post-list__page-numbers__number');
+
+  const addPageNum = (cnt) => {
+    // 주어진 cnt 만큼 페이지 번호 엘리먼트를 추가
+    for (let i = 0; i < cnt; i++) {
+      const childNum = pageNum.cloneNode();
+      childNum.textContent = i + 1;
+      DOMfragment.appendChild(childNum);
+    }
+  };
+
+  const LAST_PAGE = getGlobalVariable('LAST_PAGE');
+
+  switch (LAST_PAGE) {
+    case LAST_PAGE < 10:
+      addPageNum(LAST_PAGE);
+      break;
+
+    default:
+      addPageNum(10);
+  }
+
+  pageNumList.appendChild(DOMfragment);
 };
 
 const toggleDisplayMoveBtns = () => {
-  const LAST_PAGE = getLastPageNum();
+  const LAST_PAGE = getGlobalVariable('LAST_PAGE');
 
   const leftBtn = document.body.querySelector('.post-list__page-btn--left');
   if (currentPageNumber == 1) leftBtn.classList.add('post-list__page-btn--disabled');
@@ -51,6 +87,8 @@ const toggleDisplayMoveBtns = () => {
 };
 
 const toggleHighlightCurrPageNum = () => {
+  const pageNumbers = Array.from(pageNumList.children); // 페이지네이션의 숫자 버튼들
+
   pageNumbers.forEach((pageNum) => {
     if (pageNum.textContent == currentPageNumber)
       pageNum.classList.toggle('post-list__page-numbers__number--highlight'); // css 파일에서 페이지 넘버 강조 스타일이 적용된 클래스 네임
@@ -102,8 +140,9 @@ const turnPage = (clickedBtn) => {
   // 기본적으로는 클릭한 숫자가 가운데로 오게 하며, 아래와 같은 경우는 예외로 한다.
   // 현재 페이지가 1, 2, 3 인 경우엔 1이 페이지네이션을 | < 1 2 3 4 5 > | 로 고정한다. (숫자 클릭시에 음수로 가지 않게 설정한다)
   // 현재 페이지가 25, 24, 23 인 경우엔, | < 21 22 23 24 25 > | 로 고정한다. (숫자 클릭시에 최대 페이지 수를 초과하지 않도록 설정한다)
-  const LAST_PAGE = getLastPageNum();
+  const LAST_PAGE = getGlobalVariable('LAST_PAGE');
 
+  const pageNumbers = Array.from(pageNumList.children); // 페이지네이션의 숫자 버튼들
   const numBtnCnt = pageNumbers.length; // 숫자 버튼의 개수
   const nums = pageNumbers.map((pagenum) => parseInt(pagenum.textContent)); // 숫자 버튼의 숫자 목록
 
@@ -198,11 +237,14 @@ const handlePaginationBtnsClick = (e) => {
 };
 
 const paginatePostList = async (reqOptions) => {
-  ((key, ...value) => (window[Symbol.for(key)] = value))('option', reqOptions); // 서버에 요청할때 쓸 옵션을 인자로 받아 전역변수에 저장
+  setGlobalVariable('option', reqOptions); // 서버에 요청할때 쓸 옵션을 인자로 받아 전역변수에 저장
 
   if (firstCall) {
-    toggleDisplayMoveBtns(); // 웹 페이지 최초 접속시에 < , > 버튼 삭제 판별 (1페이지 혹은 마지막 페이지 일때)
-    toggleHighlightCurrPageNum(); // 웹 페이지 최초 접속시에 현재 페이지 강조
+    // 웹 페이지 최초 접속시에
+    await initLastPageNum(); // 서버에서 마지막 페이지의 번호를 받아와서 전역변수에 저장
+    initPageNumList(); //  페이지 번호 리스트 초기화
+    toggleDisplayMoveBtns(); //  < , > 버튼 삭제 판별 (1페이지 혹은 마지막 페이지 일때)
+    toggleHighlightCurrPageNum(); //  현재 페이지 강조
     firstCall = false;
   }
 
