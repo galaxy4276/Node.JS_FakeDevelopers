@@ -1,3 +1,10 @@
 export const getRenderCreate = (req, res, next) => {
-  res.render('common/post/create');
+  const redirectUrl = req.originalUrl
+    .match(/\/[a-z]+/g);
+
+  const referrer = req.originalUrl
+    .match(/\/[a-z]+/g)
+    .join('');
+
+  res.render(`import${redirectUrl[0]}/create`, { referrer });
 }
