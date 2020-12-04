@@ -1,0 +1,33 @@
+extends ../../common/_base.pug
+
+block title
+  title 학과이야기
+block append stylesheet
+  link(rel="stylesheet" href="/css/board.css")
+block append script
+  script(defer src="/es5/board.js")
+
+block content
+  main.sub-main
+    .sub-background
+      span 학교 소개
+    .sub-main__wrap
+
+      // 여기서부터 네비게이션 바 시작
+      .sub-nav
+        .sub-nav__title-wrap
+          h3.sub-nav__title 커뮤니티
+        .sub-nav__list-wrap
+          ul.sub-nav__list
+            li.sub-nav__item
+              a(href="/community/board").sub-nav__link 학과 이야기
+            li.sub-nav__item
+              a(href="/community/suggestion").sub-nav__link 바라는 점
+            li.sub-nav__item
+              a(href="/community/donation").sub-nav__link 나눔의 공간
+          li.sub-nav__item
+            a(href="/community/notice").sub-nav__link 공지사항
+
+      // 여기서부터 콘텐츠 시작
+      .sub-contents
+        +postWrite()

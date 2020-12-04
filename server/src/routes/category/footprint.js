@@ -29,7 +29,7 @@ footprint.get('/acquisition', (req, res) => {
   res.render('import/footprint/acquisition', {});
 });
 footprint.get('/acquisition/post', (req, res) => {
-  res.render('import/footprint/post.pug');
+  res.render('import/footprint/create.pug');
 });
 footprint.post('/acquisition/post', 
   uploads.array('file'),
