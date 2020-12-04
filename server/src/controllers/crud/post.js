@@ -31,12 +31,13 @@ const postBoard = (req, res, next) => async schema => { // 자격증 취득 게�
   try {
     const { title, paragraph } = req.body;
     const { user } = req;
-    const { files } = req;
-    console.log(files);
+    console.log(req.files);
+    console.log(schema);
 
-    const redirectUrl = req.originalUrl
+    const redirectUrl = '/' + req.originalUrl
         .match(/[a-z]+\/[a-z]+/g)
         .join('');
+
     // if (!user) {
     //   return res.redirect(url.format({
     //     pathname: '/',
@@ -57,23 +58,18 @@ const postBoard = (req, res, next) => async schema => { // 자격증 취득 게�
     });
 
     // FIX: 개발 보류
-    if (req.files) {
+    if (req.files.length > 1) {
       const images = await Promise.all(
-        req.files.map(file => Image.create({src: file.filename}))
+        req.files.map(file => Image.create({ src: file.filename }))
       );
 
-      console.log(images);
-
       await post.addImages(images);
-    }
-
-    if (req.file) {
-      const image = await Image.create({ src: file });
+    } else {
+      const image = await Image.create({ src: req.files[0].filename });
       await post.addImages(image);
     }
 
     return res.redirect(redirectUrl);
-
   } catch(err) {
     console.log('acquisitionPost Error');
     console.error(err);
