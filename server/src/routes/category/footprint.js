@@ -73,5 +73,4 @@ footprint.get('/portfolio/post', (req, res) => {
   res.render('import/footprint/post', {});
 });
 
-
 export default footprint;
