@@ -1,3 +1,3 @@
 export const getRenderCreate = (req, res, next) => {
-  res.render('')
+  res.render('common/post/create');
 }

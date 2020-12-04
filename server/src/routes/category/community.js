@@ -1,3 +1,5 @@
+import {getRenderCreate} from "../../controllers/post";
+
 const community = require('express').Router();
 import sequelize from '../../models';
 import { createBulkBoard } from '../../lib/createBulkData';
@@ -13,7 +15,7 @@ const {
 // Router & Controllers ( 차 후 분리 필요 )
 
 // 학과 이야기 ( Community )
-community.get('/board/create',);
+community.get('/board/create', getRenderCreate);
 community.get('/board/api/index', (req, res, next) => {
   getIdx(req, res, next)(Community);
 });
