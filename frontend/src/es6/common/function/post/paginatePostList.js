@@ -62,13 +62,10 @@ const initPageNumList = () => {
 
   const LAST_PAGE = getGlobalVariable('LAST_PAGE');
 
-  switch (LAST_PAGE) {
-    case LAST_PAGE < 10:
-      addPageNum(LAST_PAGE);
-      break;
-
-    default:
-      addPageNum(10);
+  if (LAST_PAGE < 10) {
+    addPageNum(LAST_PAGE);
+  } else {
+    addPageNum(10);
   }
 
   pageNumList.appendChild(DOMfragment);
