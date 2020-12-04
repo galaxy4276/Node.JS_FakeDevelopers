@@ -64,7 +64,8 @@
 
       .index-main__notice {
         grid-area: box1;
-        background-color: #149ab8;
+        color: white;
+        background-color: $main-color;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -72,7 +73,7 @@
 
       .index-main__department-news {
         grid-area: box2;
-        background-color: #e5e8e9;
+        background-color: $main-color--white;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -104,7 +105,7 @@
       margin-bottom: 100px;
       display: flex;
       width: 100%;
-      background: rgba(0, 0, 0, 0.1);
+      background: $main-color--white;
 
       .index-main__second-title {
         font-size: 45px;

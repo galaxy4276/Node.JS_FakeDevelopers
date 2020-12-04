@@ -1,5 +1,5 @@
 /* -- scss default: mixin, veriables 등-- */
-@import "../../common/default/default.scss";
+@import '../../common/default/default.scss';
 /* --------------- */
 
 .find {
@@ -82,7 +82,7 @@
       }
 
       &:valid ~ &-check::before {
-        content: "✓";
+        content: '✓';
         color: $auth__font-color--before;
       }
 
@@ -104,11 +104,11 @@
       }
 
       &--hash {
-        background-color: $main-color--orange;
+        background-color: $main-color;
       }
 
       &--reset {
-        background-color: $main-color--orange;
+        background-color: $main-color;
       }
     }
 

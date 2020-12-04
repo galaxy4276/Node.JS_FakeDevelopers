@@ -104,7 +104,7 @@
       color: rgba($main-color--white, 0.9);
 
       &--login {
-        @include underline-hover-fill($main-color--orange);
+        @include underline-hover-fill($main-color);
       }
 
       &--join {

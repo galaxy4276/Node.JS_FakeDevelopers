@@ -60,9 +60,18 @@
     }
   }
 
-  &__posts {
-  }
+  &__btns {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 1rem;
 
+    &__write-btn {
+      color: white;
+      background-color: $main-color;
+      @include btn-retangle(1rem, true, true);
+    }
+  }
   /* 페이지 네이션 */
   &__inner-paging {
     position: absolute;
