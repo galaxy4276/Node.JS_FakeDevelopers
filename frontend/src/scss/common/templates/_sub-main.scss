@@ -44,6 +44,9 @@
   @media screen and (max-width: 1340px) {
     width: 100%;
   }
+  @include for-mobile {
+    padding: 3.2rem 0;
+  }
 }
 
 .sub-nav {
@@ -152,6 +155,10 @@
     height: 100%;
     border: 1px solid black;
     margin-top: 30px;
+
+    @include for-mobile {
+      margin-top: 0;
+    }
   }
 
   &__missing-message {
