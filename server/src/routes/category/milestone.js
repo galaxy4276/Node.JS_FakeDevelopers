@@ -9,7 +9,7 @@ milestone.get('/cert', (req, res) => {
   res.render('import/milestone/cert', {});
 });
 
-milestone.get('/cirriculum', (req, res) => {
+milestone.get('/curriculum', (req, res) => {
   res.render('import/milestone/curriculum', {});
 });
 

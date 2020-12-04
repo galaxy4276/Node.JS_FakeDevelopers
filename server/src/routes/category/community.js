@@ -20,6 +20,7 @@ community.get('/board/api/create-bulk', (req, res, next) => {
   createBulkBoard(req, next)(Community);
   res.redirect('/community/board');
 });
+community.post('/board/api/create');
 community.get('/board/api', (req, res, next) => {
   getPostsList(req, res, next)(Community);
 });
@@ -44,9 +45,14 @@ community.get('/donation', (req, res) => {
   res.render('import/community/donation', {});
 });
 
+// 개선 사항 제안 ( Suggest ) 
 community.get('/suggestion', (req, res) => {
   res.render('import/community/suggestion', {});
 });
 
+// 공지 사항 ( Notice )
+community.get('/notice', (req, res) => {
+  res.render('import/community/notice', {});
+});
 
 export default community;

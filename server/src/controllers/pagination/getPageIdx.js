@@ -15,7 +15,7 @@ const getPageIdx = (req, res, next) => async schema => {
     const idx = allPageIdx.length / limit;
     console.log(`idx: ${idx}`);
     
-    return res.status(200).json({ idx: idx });
+    return res.status(200).json({ idx });
   } catch (err) {
     console.log('allPageIdx ERROR');
     console.error(err);
