@@ -25,5 +25,6 @@ export default class CertPost extends Model {
   static associate(db) {
     db.Certpost.belongsTo(db.User);
     db.Certpost.hasMany(db.Inquiry);
+    db.Certpost.hasMany(db.Image);
   }
 }

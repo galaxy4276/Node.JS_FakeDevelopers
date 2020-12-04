@@ -24,5 +24,6 @@ export default class Community extends Model {
   static associate(db) {
     db.Community.belongsTo(db.User);
     db.Community.hasMany(db.Inquiry);
+    db.Community.hasMany(db.Image);
   }
 }
