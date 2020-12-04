@@ -99,6 +99,8 @@ const getPostList = (parentElem, boardName, limit = 15, page = 1) => {
 
   // test
   const testLog = (res) => {
+    if (!process.env.NODE_ENV === 'development') return;
+
     console.log(`요청 API => ${path}`);
 
     if (res.postsList.length !== limit)
