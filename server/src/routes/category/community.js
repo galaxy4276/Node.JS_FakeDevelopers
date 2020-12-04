@@ -1,3 +1,6 @@
+import { getRenderCreate } from "../../controllers/post";
+import postBoard, {uploads} from '../../controllers/crud/post';
+
 const community = require('express').Router();
 import sequelize from '../../models';
 import { createBulkBoard } from '../../lib/createBulkData';
@@ -13,6 +16,10 @@ const {
 // Router & Controllers ( 차 후 분리 필요 )
 
 // 학과 이야기 ( Community )
+community.get('/board/create', getRenderCreate);
+community.post('/board/create', uploads.array('file'), (req, res, next) => {
+  postBoard(req, res, next)(Community);
+});
 community.get('/board/api/index', (req, res, next) => {
   getIdx(req, res, next)(Community);
 });
@@ -20,6 +27,7 @@ community.get('/board/api/create-bulk', (req, res, next) => {
   createBulkBoard(req, next)(Community);
   res.redirect('/community/board');
 });
+community.post('/board/api/create');
 community.get('/board/api', (req, res, next) => {
   getPostsList(req, res, next)(Community);
 });
@@ -29,6 +37,7 @@ community.get('/board', (req, res) => {
 
 
 // 후배 양도 ( Donate )
+community.get('/donation/create', getRenderCreate);
 community.get('/donation/api/index', (req, res, next) => {
   getIdx(req, res, next)(Donate);
   res.redirect('/footprint/acquisition');
@@ -44,9 +53,14 @@ community.get('/donation', (req, res) => {
   res.render('import/community/donation', {});
 });
 
+// 개선 사항 제안 ( Suggest ) 
 community.get('/suggestion', (req, res) => {
   res.render('import/community/suggestion', {});
 });
 
+// 공지 사항 ( Notice )
+community.get('/notice', (req, res) => {
+  res.render('import/community/notice', {});
+});
 
 export default community;
