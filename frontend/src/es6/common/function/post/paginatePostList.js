@@ -1,6 +1,7 @@
 /* Module */
-import getPostList from './_getPostList'; // 현재 페이지의 상품 데이터를 가져올 수 있는 험수 request()
-// const process = require('./_process.js'); // 파싱된 json 데이터를 가공하여 node element로 반환하는 함수 process()
+import requestURL from './_requestURL';
+import defaultFetch from './_defaultFetch';
+import processToElems from './_processToElems';
 
 /* Constants */
 const TOTAL = 210; // ! ! ! 임시로 설정한 전체 데이터 값. TODO: 서버에 TOTAL에 대한 API가 추가되면 수정하기
@@ -54,6 +55,31 @@ const toggleHighlightCurrPageNum = () => {
     if (pageNum.textContent == currentPageNumber)
       pageNum.classList.toggle('post-list__page-numbers__number--highlight'); // css 파일에서 페이지 넘버 강조 스타일이 적용된 클래스 네임
   });
+};
+
+const getPostList = (parentElem, boardName, limit = 15, page = 1) => {
+  const path = `/${boardName}/api?limit=${limit}&page=${page}`;
+
+  requestURL.path = path;
+
+  // test
+  const testLog = (res) => {
+    console.log(`요청 API => ${path}`);
+
+    if (res.postsList.length !== limit)
+      console.warn(
+        ' 쿼리문으로 요청한 데이터 수와 받아온 데이터 수가 다릅니다.\n',
+        ' ▶ 마지막 페이지이거나 서버측 코드가 변경되었습니다.'
+      );
+
+    return res;
+  };
+
+  return defaultFetch(requestURL.url)
+    .then((res) => testLog(res) /* Just log => data not change */)
+    .then((res) => processToElems(res.postsList))
+    .then((DOMfragment) => parentElem.appendChild(DOMfragment))
+    .catch(console.error);
 };
 
 const putPostsList = (pageNum) => {
