@@ -14,11 +14,13 @@ const getpostsData = (url = '') => {
 
 const getPostList = (parentElem, boardName, limit = 15, page = 1) => {
   const requestURL = {
-    protocol: 'http://',
+    protocol: 'https://',
     host: 'www.ddccomputer.club',
 
     get url() {
-      return this.protocol + this.host + this.path;
+      return process.env.NODE_ENV === 'development'
+        ? 'http://localhost:8001' + this.path
+        : this.protocol + this.host + this.path;
     },
 
     set(_path) {
