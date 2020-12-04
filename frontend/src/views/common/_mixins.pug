@@ -56,20 +56,19 @@ mixin sub-contents__item__icon(iconName)
 //- -----------------------------------------------------------------------------------------------------------------
 //- Bulletn Board Post Write Template [ 게시판 글 작성 템플릿 ]
 mixin postWrite()
-  .sub-contents__content-wrap
-    .sub-contents__content
-      h2.sub-contents__form-title board Form
-      form(action="/footprint/acquisition/post" method="post" enctype="multipart/form-data").sub-contents__form
-        .sub-contents__input-wrap.sub-contents__title-wrap
-          h3.sub-contents__text-title.sub-contents__input-title 제목
-          input(type="text" name="title" size="54" required)
-        .sub-contents__input-wrap.sub-contents__file-wrap
-          h3.sub-contents__file-title.sub-contents__input-title 파일
-          input(type="file" name="file")
-        .sub-contents__input-wrap.sub-contents__paragraph-wrap
-          h3.sub-contents__paragraph-title.sub-contents__input-title 내용
-          textarea(rows="5" cols="50" name="paragraph" required)
-        input(type="submit" name="submit").sub-contents__submit
+  article.post-write
+    h2.post-write__form-title board Form
+    form(action="/footprint/acquisition/post" method="post" enctype="multipart/form-data").post-write__form
+      .post-write__input-wrap.post-write__title-wrap
+        h3.post-write__text-title.post-write__input-title 제목
+        input(type="text" name="title" size="54" required)
+      .post-write__input-wrap.post-write__file-wrap
+        h3.post-write__file-title.post-write__input-title 파일
+        input(type="file" name="file")
+      .post-write__input-wrap.post-write__paragraph-wrap
+        h3.post-write__paragraph-title.post-write__input-title 내용
+        textarea(rows="5" cols="50" name="paragraph" required)
+      input(type="submit" name="submit").post-write__submit
 
 //- Bulletn Board Post List Template [ 게시판 글 목록 템플릿 ]
 //- 💥 게시판 글 목록 템플릿은 '빈페이지로 진입하고 프론트에서 API 요청을해서 응답받고 페이지를 채우는 방법' 으로 설계되었습니다.

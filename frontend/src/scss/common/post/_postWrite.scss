@@ -1,0 +1,51 @@
+/* -- scss default: mixin, veriables 등-- */
+@import '../../common/default/default.scss';
+/* --------------- */
+
+/* -- dev -- */
+.post-write {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  &__form-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  &__input-title {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  &__submit {
+    width: fit-content;
+    align-self: center;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+  }
+}
