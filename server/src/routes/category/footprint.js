@@ -1,4 +1,5 @@
-import { acquisitionPost, uploads } from '../../controllers/post';
+import { uploads } from '../../controllers/crud/post';
+import postBoard from '../../controllers/crud/post';
 import { createBulkBoard } from '../../lib/createBulkData';
 import  getPostsList from '../../controllers/pagination/getPostsList';
 import getIdx from '../../controllers/pagination/getPageIdx';
@@ -30,7 +31,12 @@ footprint.get('/acquisition', (req, res) => {
 footprint.get('/acquisition/post', (req, res) => {
   res.render('import/footprint/post.pug');
 });
-footprint.post('/acquisition/post', uploads.single('file'), acquisitionPost);
+footprint.post('/acquisition/post', 
+  uploads.array('file'),
+  (req, res, next) => {
+    postBoard(req, res, next)(Certpost);
+  }
+);
 
 // 수상 내역 ( Award )
 footprint.get('/awards/api/index', (req, res, next) => {
@@ -66,6 +72,5 @@ footprint.get('/portfolio', (req, res) => {
 footprint.get('/portfolio/post', (req, res) => {
   res.render('import/footprint/post', {});
 });
-
 
 export default footprint;

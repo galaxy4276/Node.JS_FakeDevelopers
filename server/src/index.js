@@ -46,7 +46,7 @@ app.set('views', path.resolve(__dirname, 'public', 'views')); // view 디렉터�
 
 app.use(cors()); // Cross Origin 문제 해결 미들웨어
 app.use(helmet()); // 보안 관련 미들웨어
-app.use(morgan('dev')); // 서버 로깅
+app.use(morgan('common')); // 서버 로깅
 app.use('/css', express.static(routes.frontCss)); // 프론트 CSS 파일 위치
 app.use('/es5', express.static(routes.frontEs6)); // 프론트 자바스크립트 파일 위치
 app.use('/img', express.static(routes.frontImg)); // 프론트 이미지파일 위치
@@ -102,6 +102,18 @@ app.use('/community', commRouter);
 app.use('/footprint', footRouter);
 app.use('/intro', introRouter);
 app.use('/milestone', mileRouter);
+
+/* 에러 처리 미들웨어 */
+app.use('/', (req, res, next) => {
+  const err = new Error('Not Found');
+  next(err);
+});
+app.use((err, req, res, next) => {
+  err.status = 404;
+  console.log((err))
+
+  res.render('404', { err });
+});
 /* 앱 실행  */
 app.listen(app.get('port'), () => {
   console.log('실행중 테스트');

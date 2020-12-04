@@ -12,7 +12,7 @@ export default class CertPost extends Model {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      
+          
     }, {
       modelName: 'CertPost',
       tableName: 'certposts',
