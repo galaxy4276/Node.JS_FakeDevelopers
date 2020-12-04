@@ -1,10 +1,10 @@
-import sequelize from '../models';
+import sequelize from '../../models';
 import multer from 'multer';
 import path from 'path';
-import fs from 'fs';
-import url from 'url';
+import fs from 'fs'
+// import url from 'url';
 
-const { Certpost, Image } = sequelize;
+const { Image } = sequelize;
 
 export const uploads = multer({
   storage: multer.diskStorage({
@@ -27,37 +27,42 @@ export const uploads = multer({
   Controllers
     DB와 로직을 수행하는 함수(Controller)
 */
-export const acquisitionPost = async (req, res, next) => { // 자격증 취득 게시글 작성 
+const postBoard = (req, res, next) => async schema => { // 자격증 취득 게시글 작성
   try {
     const { title, paragraph } = req.body;
     const { user } = req;
-    const { file } = req;
+    const { files } = req;
+    console.log(files);
 
-    if (!user) {
-      return res.redirect(url.format({
-        pathname: '/',
-        query: {
-          'error': 'please-login'
-        },
-      }));
-    }
+    const redirectUrl = req.originalUrl.match(/[a-z]+\/[a-z]+/g);
+    // if (!user) {
+    //   return res.redirect(url.format({
+    //     pathname: '/',
+    //     query: {
+    //       'error': 'please-login'
+    //     },
+    //   }));
+    // }
 
     if (!title) {
-      return res.redirect('/footprint/acquisition');
+      return res.redirect(...redirectUrl);
     }
-    if (req.file) {
-      await Image.create({
-        src: file.filename,
-      });
+
+
+    // FIX: 개발 보류
+    if (req.files) {
+      await Promise.all(
+        req.files.map(file => Image.create({ src: file.filename }))
+      );
     }
     
-    await Certpost.create({
+    await schema.create({
       title,
       content: paragraph,
       UserId: user,
     });
 
-    return res.redirect('/footprint/acquisition');
+    return res.redirect(...redirectUrl);
 
   } catch(err) {
     console.log('acquisitionPost Error');
@@ -65,3 +70,6 @@ export const acquisitionPost = async (req, res, next) => { // 자격증 취득 �
     next(err);
   }
 };
+
+
+export default postBoard;
