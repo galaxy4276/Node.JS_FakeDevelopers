@@ -18,7 +18,7 @@ export const uploads = multer({
       const extname = path.extname(file.originalname);
       const basename = path.basename(file.originalname);
       cb(null, basename + '_' + new Date().getTime() + extname);
-    }
+    },
   }),
   limits: { fileSize: 20 * 1024 * 1024 },
 });
@@ -34,7 +34,9 @@ const postBoard = (req, res, next) => async schema => { // 자격증 취득 게�
     const { files } = req;
     console.log(files);
 
-    const redirectUrl = req.originalUrl.match(/[a-z]+\/[a-z]+/g);
+    const redirectUrl = req.originalUrl
+        .match(/[a-z]+\/[a-z]+/g)
+        .join('');
     // if (!user) {
     //   return res.redirect(url.format({
     //     pathname: '/',
@@ -45,24 +47,32 @@ const postBoard = (req, res, next) => async schema => { // 자격증 취득 게�
     // }
 
     if (!title) {
-      return res.redirect(...redirectUrl);
-    }
-
-
-    // FIX: 개발 보류
-    if (req.files) {
-      await Promise.all(
-        req.files.map(file => Image.create({ src: file.filename }))
-      );
+      return res.redirect(redirectUrl);
     }
     
-    await schema.create({
+    const post = await schema.create({
       title,
       content: paragraph,
       UserId: user,
     });
 
-    return res.redirect(...redirectUrl);
+    // FIX: 개발 보류
+    if (req.files) {
+      const images = await Promise.all(
+        req.files.map(file => Image.create({src: file.filename}))
+      );
+
+      console.log(images);
+
+      await post.addImages(images);
+    }
+
+    if (req.file) {
+      const image = await Image.create({ src: file });
+      await post.addImages(image);
+    }
+
+    return res.redirect(redirectUrl);
 
   } catch(err) {
     console.log('acquisitionPost Error');
