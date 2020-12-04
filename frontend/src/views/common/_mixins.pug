@@ -49,11 +49,11 @@ mixin sub-contents__item__icon()
 //- ------------------------------------------- 게시판 관련 mixin ---------------------------------------------------
 //- -----------------------------------------------------------------------------------------------------------------
 //- Bulletn Board Post Write Template [ 게시판 글 작성 템플릿 ]
-mixin postWrite()
+mixin postWrite(url)
   .sub-contents__content-wrap
     .sub-contents__content
       h2.sub-contents__form-title board Form
-      form(action="/footprint/acquisition/post" method="post" enctype="multipart/form-data").sub-contents__form
+      form(action=`${url}` method="post" enctype="multipart/form-data").sub-contents__form
         .sub-contents__input-wrap.sub-contents__title-wrap
           h3.sub-contents__text-title.sub-contents__input-title 제목
           input(type="text" name="title" size="54" required)

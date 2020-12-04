@@ -110,9 +110,8 @@ app.use('/', (req, res, next) => {
 });
 app.use((err, req, res, next) => {
   err.status = 404;
-  console.log((err))
-
-  res.render('404', { err });
+  console.log(err);
+  res.render('common/404', { err });
 });
 /* 앱 실행  */
 app.listen(app.get('port'), () => {

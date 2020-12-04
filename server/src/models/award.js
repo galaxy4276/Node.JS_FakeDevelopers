@@ -25,6 +25,6 @@ export default class AwardPost extends Model {
   static associate(db) {
     db.Award.belongsTo(db.User);
     db.Award.hasMany(db.Inquiry);
-    
+    db.Award.hasMany(db.Image);
   }
 }

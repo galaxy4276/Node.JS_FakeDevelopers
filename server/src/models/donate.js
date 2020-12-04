@@ -24,5 +24,6 @@ export default class DonatePost extends Model {
   static associate(db) {
     db.Donate.belongsTo(db.User);
     db.Donate.hasMany(db.Inquiry);
+    db.Donate.hasMany(db.Image);
   }
 }
