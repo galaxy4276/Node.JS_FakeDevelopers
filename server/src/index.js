@@ -102,6 +102,18 @@ app.use('/community', commRouter);
 app.use('/footprint', footRouter);
 app.use('/intro', introRouter);
 app.use('/milestone', mileRouter);
+
+/* 에러 처리 미들웨어 */
+app.use('/', (req, res, next) => {
+  const err = new Error('Not Found');
+  next(err);
+});
+app.use((err, req, res, next) => {
+  err.status = 404;
+  console.log((err))
+
+  res.render('404', { err });
+});
 /* 앱 실행  */
 app.listen(app.get('port'), () => {
   console.log('실행중 테스트');
