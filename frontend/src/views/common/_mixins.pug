@@ -49,7 +49,7 @@ mixin sub-contents__item__icon()
 //- ------------------------------------------- 게시판 관련 mixin ---------------------------------------------------
 //- -----------------------------------------------------------------------------------------------------------------
 //- Bulletn Board Post Write Template [ 게시판 글 작성 템플릿 ]
-mixin postForm()
+mixin postWrite()
   .sub-contents__content-wrap
     .sub-contents__content
       h2.sub-contents__form-title board Form
@@ -66,7 +66,10 @@ mixin postForm()
         input(type="submit" name="submit").sub-contents__submit
 
 //- Bulletn Board Post List Template [ 게시판 글 목록 템플릿 ]
-mixin postList()
+//- 💥 게시판 글 목록 템플릿은 '빈페이지로 진입하고 프론트에서 API 요청을해서 응답받고 페이지를 채우는 방법' 으로 설계되었습니다.
+//- 즉, 서버사이드에서 게시글 목록의 빈 템플릿만 제공하고, 데이터는 클라이언트 사이드에서 API로 요청됩니다.
+//- 게시글 목록 요청 모듈은 src/es6/common/function/post 에서 확인하실 수 있습니다.
+mixin postList(usePostWrite = false)
   article.post-list
     |
     |
@@ -84,18 +87,26 @@ mixin postList()
     section.post-list__posts
     |
     |
-    // 페이지네이션
-    section.post-list__inner-paging
-        // 페이지 번호 리스트
-        ul.post-list__page-numbers
-        // 버튼들
-        div.post-list__page-btn.post-list__page-btn--left
-          +icon("chevronBackward", '이전 페이지', '#0f0f0f')
-        div.post-list__page-btn.post-list__page-btn--right
-          +icon("chevronForward", '다음 페이지', '#0f0f0f')
-    // TODO: 제일 앞으로 가기, 제일 뒤로 가기 부분 구현
+    // 게시판 글 목록 버튼들
+    section.post-list__btns
+      // 페이지네이션
+      section.post-list__inner-paging
+          // 페이지 번호 리스트
+          ul.post-list__page-numbers
+          // 버튼들
+          div.post-list__page-btn.post-list__page-btn--left
+            +icon("chevronBackward", '이전 페이지', '#0f0f0f')
+          div.post-list__page-btn.post-list__page-btn--right
+            +icon("chevronForward", '다음 페이지', '#0f0f0f')
+      //- 글쓰기 기능이 존재하는 게시판이라면
+      - if(usePostWrite)
+        // 글쓰기 버튼
+        section.post-list__write-btn 글쓰기
+      // TODO: 제일 앞으로 가기, 제일 뒤로 가기 부분 구현
 
 //- Bulletn Board Post View Template [ 게시판 글 상세보기 템플릿 ]
+//- 💥 게시판 글 상세보기 템플릿은 'url 에 존재하는 id 값으로 백엔드에서 정보를 찾아서 템플릿 엔진에 전달해주는 방법' 으로 설계되었습니다.
+//- 즉, 서버 사이드에서 해당하는 페이지의 데이터 렌더링이 모두 끝난 후 제공됩니다. 
 mixin postView()
   article.post-view
     |

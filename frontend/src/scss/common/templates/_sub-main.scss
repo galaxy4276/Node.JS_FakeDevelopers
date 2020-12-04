@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('../../../img/school.jpg') no-repeat top; // TODO: 임시 이미지. 각 카테고리마다 다른 배경 적용
+  background: url('../../../img/ddc_flat.jpg') no-repeat top; // TODO: 임시 이미지. 각 카테고리마다 다른 배경 적용
   // filter: contrast(80%) grayscale(70%); // TODO: 불필요하다 판단시 삭제, filter 퍼포먼스 영향 알아보기
 
   &::before {
@@ -36,7 +36,8 @@
   position: relative;
   display: flex;
   justify-content: center;
-  padding: 50px;
+  padding: 3.2rem;
+  margin-bottom: 2rem;
   overflow: hidden;
 
   @include sub-main-margin--media; // _media_mixin.scss

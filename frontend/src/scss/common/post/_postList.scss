@@ -2,7 +2,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 0.5rem;
 
   & > * {
     padding: 0.02rem 0;
@@ -15,10 +14,18 @@
     font-weight: 700;
     font-size: 1.1rem;
     color: #333;
+    background-color: $main-color--white;
+    border-top: 3px solid $main-color;
+    border-left: 1px solid $main-color--silver;
 
     &__prop {
-      justify-self: center;
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      width: 100%;
+      height: 100%;
       padding: 0.66rem 0.5rem;
+      border-right: 1px solid $main-color--silver;
     }
   }
 
@@ -60,24 +67,35 @@
     }
   }
 
+  /* 이 아래로 페이지네이션 버튼과 그 외 버튼들 */
   &__btns {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    position: relative;
+    display: grid;
+    width: 100%;
+    height: 3rem;
     margin-top: 1rem;
 
-    &__write-btn {
-      color: white;
-      background-color: $main-color;
-      @include btn-retangle(1rem, true, true);
+    @include for-size(mobile-landscape) {
+      flex-direction: column;
+    }
+    @include for-size(mobile-portrait) {
+      flex-direction: column;
     }
   }
-  /* 페이지 네이션 */
+
+  /* 글쓰기 버튼 */
+  &__write-btn {
+    justify-self: end;
+    color: white;
+    width: fit-content;
+    background-color: $main-color;
+    @include btn-retangle(1rem, true, true);
+  }
+
+  /* 페이지 네이션 버튼들 */
   &__inner-paging {
-    position: absolute;
-    bottom: -2.5rem;
-    left: 50%;
-    transform: translate(-50%);
+    position: relative;
+    justify-self: center;
     display: flex;
     align-items: center;
   }
@@ -88,7 +106,7 @@
     &__number {
       display: flex;
       align-items: center;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: #7a7a7a;
       margin: 0.2rem 0.5rem;
       padding: 0.1rem 0.3rem;
@@ -101,7 +119,7 @@
       }
 
       &--highlight {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         font-weight: 700;
         cursor: initial;
       }
@@ -116,8 +134,8 @@
   &__page-btn {
     position: absolute;
     color: #6e6e6e;
-    width: 1rem;
-    height: 1rem;
+    width: 1.1rem;
+    height: 1.1rem;
     border-radius: 0.3rem;
     cursor: pointer;
     transition: transform 0.01s ease-in-out;
