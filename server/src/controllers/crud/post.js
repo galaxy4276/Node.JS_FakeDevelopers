@@ -64,7 +64,9 @@ const postBoard = (req, res, next) => async schema => { // 자격증 취득 게�
       );
 
       await post.addImages(images);
-    } else {
+    }
+
+    if (req.files.length === 1) {
       const image = await Image.create({ src: req.files[0].filename });
       await post.addImages(image);
     }

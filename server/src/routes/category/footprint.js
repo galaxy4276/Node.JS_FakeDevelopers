@@ -31,7 +31,7 @@ footprint.get('/acquisition', (req, res) => {
 footprint.get('/acquisition/post', (req, res) => {
   res.render('import/footprint/create.pug');
 });
-footprint.post('/acquisition/post', 
+footprint.post('/acquisition/post',
   uploads.array('file'),
   (req, res, next) => {
     postBoard(req, res, next)(Certpost);
