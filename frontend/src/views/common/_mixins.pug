@@ -16,6 +16,7 @@ mixin icon(iconName, title, color)
   - const toggle = { close: "close" }
   - const chevron = { chevronForward: "chevronForward", chevronBackward: "chevronBackward", chevronDown: "chevronDown" }
   - const caret = { caretDown: "caretDown" }
+  - const etc = { home: "home" }
   case iconName
     when toggle.close
       svg(xmlns='http://www.w3.org/2000/svg' viewBox='105 105 300 300')
@@ -37,13 +38,18 @@ mixin icon(iconName, title, color)
       svg(xmlns='http://www.w3.org/2000/svg' viewBox='91 91 330 330')
         title= title
         path(fill= color d='M98 190.06l139.78 163.12a24 24 0 0036.44 0L414 190.06c13.34-15.57 2.28-39.62-18.22-39.62h-279.6c-20.5 0-31.56 24.05-18.18 39.62z')
+    when etc.home
+      svg(xmlns='http://www.w3.org/2000/svg' viewBox='25 25 480 480')
+        title= title
+        path(d='M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212' fill='none' stroke= color stroke-linecap='round' stroke-linejoin='round' stroke-width='32')
+        path(d='M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69' fill='none' stroke= color stroke-linecap='round' stroke-linejoin='round' stroke-width='32')
     default
       p(style="color:red;") icon mixin에 존재하지 않는 인자 #{currentIcon}이(가) 전달되었습니다.
       
 //- sub-main 템플릿의 icon 관련 mixin
-mixin sub-contents__item__icon()
+mixin sub-contents__item__icon(iconName)
   div.sub-contents__item__icon
-    +icon("chevronForward", '', '#0f0f0f')
+    +icon(iconName, '', '#0f0f0f')
 
 //- -----------------------------------------------------------------------------------------------------------------
 //- ------------------------------------------- 게시판 관련 mixin ---------------------------------------------------

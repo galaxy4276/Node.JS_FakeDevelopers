@@ -138,6 +138,11 @@
       width: 0.6rem;
       height: 0.6rem;
       margin: 0 0.4rem;
+
+      &:first-child {
+        width: 1rem;
+        height: 1rem;
+      }
     }
   }
 
