@@ -53,8 +53,7 @@ export const postJoin = async ({ body }, res) => {
   try {
     const verifyEmail = isEmail(email);
     const verifyUser = await User.findByPk(id);
-    console.log(`verifyEmail: ${verifyEmail}`);
-  
+
     if (!verifyEmail) {
       res.redirect(error.emailNotFound());
     }

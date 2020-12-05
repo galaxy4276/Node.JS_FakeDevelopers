@@ -12,7 +12,7 @@ import MySQLStore from 'express-mysql-session';
 
 /* --- 개인 라이브러리 관련 모듈 import  --- */
 import connectMaria from './lib/connectMaria';
-import './controllers/passport';
+import passportConfig from './controllers/passport';
 import sharePug from './lib/sharePug';
 
 /* --- 라우트 관련 모듈 import  --- */
@@ -27,6 +27,7 @@ import mileRouter from './routes/category/milestone';
 
 const app = express(); // 서버 객체 생성
 config(); // 환경변수 불러오기
+passportConfig();
 connectMaria(); // DB 검증 및 연결
 const sessionStore = new MySQLStore({
   host: process.env.MARIADB_HOST,
@@ -35,6 +36,10 @@ const sessionStore = new MySQLStore({
   password: process.env.MARIADB_PASSWORD,
   database: process.env.MARIADB_TEST_DATABASE,
 }); // 세션 유지 함수
+<<<<<<< HEAD
+=======
+
+>>>>>>> b077a096b1f72b6597a345d45bed341bc62dbc6b
 
 app.set('view engine', 'pug'); // 서버 View 엔진을 ejs로 설정
 // app.engine('html', require('ejs').renderFile); // 서버 엔진을 ejs 설정으로
@@ -43,7 +48,13 @@ app.set('views', path.resolve(__dirname, 'public', 'views')); // view 디렉터�
 
 app.use(cors()); // Cross Origin 문제 해결 미들웨어
 app.use(helmet()); // 보안 관련 미들웨어
-app.use(morgan('common')); // 서버 로깅
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev')); // 서버 로깅
+} else {
+  app.use(morgan('combined')); // 서버 로깅
+}
+
 app.use('/css', express.static(routes.frontCss)); // 프론트 CSS 파일 위치
 app.use('/es5', express.static(routes.frontEs6)); // 프론트 자바스크립트 파일 위치
 app.use('/img', express.static(routes.frontImg)); // 프론트 이미지파일 위치
@@ -60,13 +71,19 @@ app.use(cookieParser(process.env.secret)); // 쿠키 생성 관련 미들웨어
 app.use(
   session({
     secret: process.env.secret,
+    proxy: true,
     resave: false,
     saveUninitialized: true,
     store: sessionStore,
     cookie: {
       httpOnly: true,
       secure: false,
+<<<<<<< HEAD
       expires: new Date(Date.now() + 1800000),
+=======
+      expires: new Date(Date.now() + 800000),
+      maxAge: 800000,
+>>>>>>> b077a096b1f72b6597a345d45bed341bc62dbc6b
     },
   })
 ); /*
@@ -89,6 +106,8 @@ app.get('/', (req, res, next) => {
   console.table(req.cookies);
   console.log('session');
   console.table(req.session);
+  console.log('req.user');
+  console.log(req.user || '현재 로그인 유저 없음');
   next();
 }); // 일반 테스트용 미들웨어 ( 삭졔 예정 )
 

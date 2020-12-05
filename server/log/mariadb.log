@@ -1,1 +1,1 @@
-SequelizeConnectionError: (conn=-1, no: 45012, SQLState: 08S01) Connection timeout: failed to create socket after 10003ms
+SequelizeConnectionError: (conn=-1, no: 45033, SQLState: 08S01) Unknown IANA timezone 'Asia/Seoul0'.

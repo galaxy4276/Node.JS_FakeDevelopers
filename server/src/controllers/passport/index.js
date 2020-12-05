@@ -4,24 +4,27 @@ import local from './local';
 
 const { User } = sequelize;
 
-/*
-  구성해둔 전략 (함수) 를 실행
-  arguments
-  1: passport Module
-  2: sequelize Schema
-*/
-local(passport, User);
+export default () => {
+  passport.serializeUser((user, done) => {
+    console.log('serializeUser');
+    done(null, user.id);
+  });
 
+  passport.deserializeUser(async (id, done) => {
+    try {
+      console.log('deserializeUser');
+      console.log(id);
+      const user = await User.findOne({
+        where: { id }
+      });
 
-passport.serializeUser(({ id }, done) => {
-  done(null, id);
-});
+      done(null, user);
+    } catch (e) {
+      console.log('auth: deserializeUser error');
+      console.log(e);
+      done(e);
+    }
+  });
 
-passport.deserializeUser(async (id, done) => {
-  await User.findByPk(id)
-    .then(user => done(null, user.id))
-    .catch(err => done(null, false, { message: err }));
-}) ;
-
-
-export default passport;
+  local(passport, User);
+}
