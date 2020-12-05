@@ -17,7 +17,12 @@ const config = env;
 process.env.MARIADB_STATUS = config.database;
 const db = {};
 
-export const sequelize = new Sequelize(config.database, config.username, config.password, config);
+export const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  config,
+  );
 
 db.User = user;
 db.Certpost = certpost;

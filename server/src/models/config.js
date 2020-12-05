@@ -11,8 +11,15 @@ const development = {
   dialect: 'mariadb',
   port: env.MARIADB_PORT,
   dialectOptions: {
-    timezone: 'Etc/GMT0',
+    charset: 'utf8mb4_general_ci',
+    dataString: true,
+    typeCast: true,
+    timezone: '+09:00',
   },
+  define: {
+    timestamps: true,
+    supportBigNumbers: true,
+  }
 };
 
 const production = {
@@ -23,7 +30,7 @@ const production = {
   dialect: 'mariadb',
   port: env.MARIADB_PORT,
   dialectOptions: {
-    timezone: 'Etc/GMT0',
+    timezone: 'Asia/Seoul',
   },
 };
 
@@ -34,10 +41,21 @@ const test = {
   host: env.MARIADB_HOST,
   dialect: 'mariadb',
   port: env.MARIADB_PORT,
-  timezone: "Etc/GMT0",
-  dialectOptions: {
-    timezone: 'Etc/GMT0',
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
   },
+  dialectOptions: {
+    collation: 'utf8mb4_general_ci',
+    dataString: true,
+    typeCast: true,
+    timezone: '+09:00',
+  },
+  define: {
+    supportBigNumbers: true,
+  }
 };
 
 module.exports = test;
