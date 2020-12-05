@@ -16,32 +16,51 @@ block content
       // 여기서부터 네비게이션 바 시작
       .sub-nav
         .sub-nav__title-wrap
-          h3.sub-nav__title 상위 주제
+          h3.sub-nav__title 학과진로
         .sub-nav__list-wrap
           ul.sub-nav__list
             li.sub-nav__item 
-              a(href="#").sub-nav__link 하위 주제 1
+              a(href="/milestone/cert").sub-nav__link 자격증 소개
             li.sub-nav__item
-              a(href="#").sub-nav__link 하위 주제 2
+              a(href="/milestone/carrer").sub-nav__link 진로 설정
 
       // 여기서부터 콘텐츠 시작
       .sub-contents
         .sub-contents__wrap
           .sub-contents__header
-            h2.sub-contents__title 선택된 하위 주제
+            h2.sub-contents__title 교육목표
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
                   +sub-contents__item__icon("home")
-                  a(href="#").sub-contents__item__link HOME
+                  a(href="/").sub-contents__item__link HOME
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="#").sub-contents__item__link 상위 주제
+                  a(href="#").sub-contents__item__link 학과진로
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="#").sub-contents__item__link 하위 주제
+                  a(href="#").sub-contents__item__link 교육목표
 
           .sub-contents__content
-            .sub-contents__missing-message
-              strong.sub-contents__txt-1 콘텐츠 작업이 필요한 페이지입니다.
-              p.sub-contents__txt-2 빠르고 편리한 서비스를 위해 최선을 다하겠습니다.
+            .sub-contents__container-wrap
+              .sub-contents__container-first
+                nav 학과비전
+                .content 미래를 준비하는 성실한 정보기술인 양성학과
+                nav 인재상
+                .content 소프트웨어 개발, 정보보안·해킹, 스마트폰, 컴퓨터네트워크 분아의 실무능력을 보유한 성실한 인재
+                nav 교육목표
+                .content ⋄ 컴퓨터/스마트기기/네트워크/서버/정보보안과 관련한 운영, 관리 및 개발등에 종사하는 현장형 스마트IT 인력 양성을 목표<br/>⋄ 정보보안·해킹인력 : 보안해킹 기술 및 사이버 범죄에 대처하는 지식과 디지털 자산을 보호하는 사이버 정보보호 인력양성<br/>⋄ 스마트폰,네트워크 인력 : 스마트폰 및 탭 PC 등을 포함하는 스마트 기술과 네트워크 구축 운영기술을 보유한 정보기술 인력 양성
+                nav 교육방침
+                .content ⋄ 소통이 가능한 성실한 직업인 양성 <br />⋄ 기초학습을 통한 IT분야의 이해력 향상<br />⋄ 자격증 취득능력 강화<br />⋄ 산업체 현장 적응령 배양
+              .sub-contents__container-second
+                nav.nav-first 교육방향
+                .content-first 기초학습 능력 및 소통능력 강화
+                .content-second 자격증 취득률 향상
+                .content-third 산업현장 적응령 향상
+                nav.nav-second 교육실천과제
+                .content-fourth 전공기초학습 동아리운영
+                .content-fifth 리눅스 마스터 자격증 취득<br />학습 강화
+                .content-sixth 산업체강사 활용
+                .content-seventh 과목별 발표수업 강화
+                .content-eighth 정보처리산업기사자격증 취득<br />학습 강화
+                .content-ninth 포트폴리오/프로젝트 과목 강화

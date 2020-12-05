@@ -1,0 +1,119 @@
+.sub-contents {
+  nav {
+    font-size: 1.25em;
+    background-color: #149ab8;
+    color: #fff;
+  }
+  &__container-first {
+    display: grid;
+    grid-template-columns: 0.25fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+
+    nav {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      border-top: 1px solid #aaa;
+      // border-right: 1px solid #aaa;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav:nth-of-type(1) {
+      border-top: none;
+    }
+
+    .content {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 10px;
+      border-top: 1px solid #aaa;
+      padding: 15px;
+    }
+
+    .content:nth-of-type(1) {
+      border-top: none;
+    }
+  }
+
+  &__container-second {
+    display: grid;
+    grid-template:
+      'nav-first content-first content-second content-third' 1fr
+      'nav-second content-fourth content-fifth content-sixth' 1fr
+      'nav-second content-seventh content-eighth content-ninth' 1fr / 0.75fr 1fr 1fr 1fr;
+
+    div {
+      border-top: 1px solid #aaa;
+      border-right: 1px solid #aaa;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+  }
+
+  .nav-first {
+    grid-area: nav-first;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+  }
+
+  .nav-second {
+    grid-area: nav-second;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid #aaa;
+    // border-top: 1px solid #aaa;
+  }
+
+  .content-first {
+    grid-area: content-first;
+  }
+
+  .content-second {
+    grid-area: content-second;
+  }
+
+  .content-third {
+    grid-area: content-third;
+    border-right: none;
+  }
+
+  .content-fourth {
+    grid-area: content-fourth;
+  }
+
+  .content-fifth {
+    grid-area: content-fifth;
+  }
+
+  .content-sixth {
+    grid-area: content-sixth;
+    border-right: none;
+  }
+
+  .content-seventh {
+    grid-area: content-seventh;
+  }
+  .content-eighth {
+    grid-area: content-eighth;
+  }
+  .content-ninth {
+    grid-area: content-ninth;
+    border-right: none;
+  }
+}
