@@ -17,7 +17,16 @@ const {
 } = sequelize;
 
 // Router & Controllers ( 차 후 분리 필요 )
-// 학과 이야기 ( Community )
+
+
+// 학과 이야기
+
+// <-- <test> -->
+
+// null of code
+
+// <-- </test> -->
+
 community.get('/board', (req, res) => {
   res.render('import/community/board', {});
 });
@@ -35,12 +44,13 @@ community.get('/board/api/create-bulk', (req, res, next) => {
   console.log('get /board/api/create-bulk');
   res.redirect('/community/board');
 });
-community.get('/board/api', (req, res, next) => {
+community.get('/board/:id([0-9]+)', (req, res, next) => {
+  readPost(req, res, next)(Community);
+  console.log('/board/:id([0-9]+) GET');
+});
+community.get('^\/board\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Community);
   console.log('get /board/api');
-});
-community.get('/board/:id', (req, res, next) => {
-  readPost(req, res, next)(Community);
 });
 // DELETE
 community.delete('/board/:id/delete', (req, res, next) => {

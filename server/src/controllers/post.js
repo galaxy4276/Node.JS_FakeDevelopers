@@ -6,5 +6,6 @@ export const getRenderCreate = (req, res, next) => {
     .match(/\/[a-z]+/g)
     .join('');
 
+
   res.render(`import${redirectUrl[0]}/create`, { referrer });
 }
