@@ -1,0 +1,20 @@
+.sub-contents__content {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+}
+
+.sub-content {
+  &-title {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+
+  &__national {
+    margin-bottom: 50px;
+    h1 {
+      margin-top: 50px;
+    }
+  }
+}

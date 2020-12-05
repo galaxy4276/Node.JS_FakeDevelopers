@@ -1,24 +1,11 @@
 extends ../../common/_base.pug
 
-mixin card(title, info, content)
-  // title = 자격증 이름
-  // info = 학생 인적사항 예 ) 201311099 김준재 (2013아님)
-  // content = 취득 내용 후기 등..
-  .card__wrap
-    .card-body
-      a.card-title
-        span.card-content__title= title
-        img(src="#" alt="certification")
-      .card-content
-        p.card-content__info= info
-        p.card-content__text= content
-
 block title
-  title #{title || '섹시은기의 개발 공간'}
+  title 자격증 소개
 block append stylesheet
-  link(rel="stylesheet" href="/css/galaxy.css")
+  link(rel="stylesheet" href="/css/cert.css")
 block append script
-  script(defer src="/es5/galaxy.js")
+  script(defer src="/es5/cert.js")
 
 block content
   main.sub-main
@@ -26,39 +13,37 @@ block content
     .sub-main__wrap
 
       // 여기서부터 네비게이션 바 시작
-      // TODO: 네비게이션 보완
       .sub-nav
         .sub-nav__title-wrap
-          h3.sub-nav__title 학생 자취록
+          h3.sub-nav__title 학과진로
         .sub-nav__list-wrap
           ul.sub-nav__list
             li.sub-nav__item 
-              a(href="/footprint/acquisition").sub-nav__link 자격증 취득
+              a(href="/milestone/curriculumn").sub-nav__link 교육목표
             li.sub-nav__item
-              a(href="/footprint/awards").sub-nav__link 대회 수상
-            li.sub-nav__item
-              a(href="/footprint/portfolio").sub-nav__link 포트폴리오
+              a(href="/milestone/carrer").sub-nav__link 진로 설정
 
       // 여기서부터 콘텐츠 시작
       .sub-contents
         .sub-contents__wrap
           .sub-contents__header
-            h2.sub-contents__title #{title || "선택된 하위 주제"}
+            h2.sub-contents__title 자격증 소개
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
-                  a(href='#').sub-contents__item__link HOME
+                  +sub-contents__item__icon("home")
+                  a(href="/").sub-contents__item__link HOME
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href='#').sub-contents__item__link 상위 주제
+                  a(href="#").sub-contents__item__link 학과진로
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="#").sub-contents__item__link 하위 주제 
+                  a(href="#").sub-contents__item__link 교육목표
 
-          // 카드 게시글 테스트
-          - let count = 0;
-          .sub-contents__content
-            .student-board__wrap
-              while count < 18
-                +card("리눅스마스터 2급", "201911064최은기", "와! 타이어보다 쉽다!")
-                - count++;
+        .sub-contents__content
+          .sub-content__national
+            h1.sub-content-title 국가공인자격
+            p.sub-content__paragraph 정보보안산업기사, 정보처리산업기사, 리눅스마스터
+          .sub-content__international
+            h1.sub-content-title 국제자격
+            p.sub-content__paragraph 시스코,네트워크자격증(CCNA, CCNP 등), 유닉스/리눅스 서버관리 국제자격증(SCSA,SCNA,LPIC 등 )마이크로소프트국제 자격증(MCSE, MCP),보안 및 네트워크 관리 국제 자격증(CompTIA A+, Network, Security+)
