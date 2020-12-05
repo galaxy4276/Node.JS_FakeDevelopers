@@ -145,7 +145,7 @@ const getPostList = (parentElem, boardName, limit = 15, page = 1) => {
 
   return defaultFetch(requestURL.url)
     .then((res) => testLog(res) /* Just log => data not change */)
-    .then((res) => processToElems(res.postsList))
+    .then((res) => processToElems(boardName, res.postsList))
     .then((DOMfragment) => parentElem.appendChild(DOMfragment))
     .catch(console.error);
 };

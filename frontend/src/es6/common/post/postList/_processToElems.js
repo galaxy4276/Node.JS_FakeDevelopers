@@ -20,7 +20,7 @@ const toClassNamesObj = (...lastNames) => {
   );
 };
 
-const processToElems = (dataObj) => {
+const processToElems = (boardName, dataObj) => {
   const itemName = 'item';
   const propNames = ['number', 'title', 'writer', 'hit', 'reg-time'];
   const classes = toClassNamesObj(...propNames);
@@ -31,9 +31,11 @@ const processToElems = (dataObj) => {
     const item = document.createElement('div');
     item.setAttribute('class', `post-list__${itemName}`);
 
+    const postViewLink = `/${boardName}/${post.id}`;
+
     item.innerHTML = `
     <div class=${classes.number}>${post.id || '0000'}</div>
-    <a class=${classes.title} href='#'>${post.title || '[ 빈 제목입니다 ]'}</a>
+    <a class=${classes.title} href=${postViewLink}>${post.title || '[ 빈 제목입니다 ]'}</a>
     <div class=${classes.writer}>${post.UserId || 'Annonymous'}</div>
     <div class=${classes.hit}>${post.Inquiries.count || '0'}</div>
     <div class=${classes['reg-time']}>${setTime(post.createdAt) || '0000-00-00'}</div>
