@@ -36,10 +36,6 @@ const sessionStore = new MySQLStore({
   password: process.env.MARIADB_PASSWORD,
   database: process.env.MARIADB_TEST_DATABASE,
 }); // 세션 유지 함수
-<<<<<<< HEAD
-=======
-
->>>>>>> b077a096b1f72b6597a345d45bed341bc62dbc6b
 
 app.set('view engine', 'pug'); // 서버 View 엔진을 ejs로 설정
 // app.engine('html', require('ejs').renderFile); // 서버 엔진을 ejs 설정으로
