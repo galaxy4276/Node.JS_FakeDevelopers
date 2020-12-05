@@ -41,10 +41,12 @@ const ENTRY = {
   forgot_sendEmail: path.resolve(__dirname, 'src', '_entry', 'auth', 'forgot_sendEmail.js'),
 
   // post
-  // postList: path.resolve(__dirname, 'src', '_entry', 'post', 'postList.js'),
   // postList는 entry가 아니며, 게시판 목록을 사용하는 각 페이지에서 호출됩니다.
   postView: path.resolve(__dirname, 'src', '_entry', 'post', 'postView.js'),
   postWrite: path.resolve(__dirname, 'src', '_entry', 'post', 'postWrite.js'),
+
+  // error
+  404: path.resolve(__dirname, 'src', '_entry', 'error', '404.js'),
 
   // community/
   board: path.resolve(__dirname, 'src', '_entry', 'community', 'board.js'),
