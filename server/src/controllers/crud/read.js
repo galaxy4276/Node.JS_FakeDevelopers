@@ -1,8 +1,10 @@
+import sequelize from '../../models';
+const { Inquiry } = sequelize;
+
 const readPost = (req, res, next) => {
   return async schema => {
     try {
       console.log('readPost');
-
       const { id } = req.params;
 
       const redirectUrl = req.originalUrl
@@ -11,7 +13,6 @@ const readPost = (req, res, next) => {
 
       const post = await schema.findOne({
         where: { id },
-        // need add Comments
       });
 
       // req.originalUrl 로 대체가 가능해 보임

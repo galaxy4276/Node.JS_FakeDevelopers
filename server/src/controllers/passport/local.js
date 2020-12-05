@@ -10,7 +10,7 @@ const local = (passport, User) => {
     try {
       const find = await User.findByPk(userId);
       const { id, password } = find.dataValues;
-      console.table({ value: password});
+      console.table({ value: password });
 
       const verify = await bcrypt.compare(userPw, password);
       console.log(`verify: ${verify}`);

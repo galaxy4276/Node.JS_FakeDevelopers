@@ -12,7 +12,7 @@ import MySQLStore from 'express-mysql-session';
 
 /* --- 개인 라이브러리 관련 모듈 import  --- */
 import connectMaria from './lib/connectMaria';
-import './controllers/passport';
+import passportConfig from './controllers/passport';
 import sharePug from './lib/sharePug';
 
 /* --- 라우트 관련 모듈 import  --- */
@@ -28,6 +28,7 @@ import mileRouter from './routes/category/milestone';
 
 const app = express(); // 서버 객체 생성
 config(); // 환경변수 불러오기
+passportConfig();
 connectMaria(); // DB 검증 및 연결
 const sessionStore = new MySQLStore({
   host: process.env.MARIADB_HOST,
@@ -35,7 +36,7 @@ const sessionStore = new MySQLStore({
   user: process.env.MARIADB_USERNAME,
   password: process.env.MARIADB_PASSWORD,
   database: process.env.MARIADB_TEST_DATABASE,
-}); // 세션 유지 함수 
+}); // 세션 유지 함수
 
 
 app.set('view engine', 'pug'); // 서버 View 엔진을 ejs로 설정
@@ -73,7 +74,7 @@ app.use(
     store: sessionStore,
     cookie: {
       httpOnly: true,
-      secure: true,
+      secure: false,
       expires: new Date(Date.now() + 800000),
       maxAge: 800000,
     },
@@ -98,6 +99,8 @@ app.get('/', (req, res, next) => {
   console.table(req.cookies);
   console.log('session');
   console.table(req.session);
+  console.log('req.user');
+  console.log(req.user || '현재 로그인 유저 없음');
   next();
 }); // 일반 테스트용 미들웨어 ( 삭졔 예정 )
 

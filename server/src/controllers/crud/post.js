@@ -50,11 +50,11 @@ const postBoard = (req, res, next) => async schema => { // 자격증 취득 게�
     if (!title) {
       return res.redirect(redirectUrl);
     }
-    
+
     const post = await schema.create({
       title,
       content: paragraph,
-      UserId: user,
+      UserId: req.user.id,
     });
 
     // FIX: 개발 보류
