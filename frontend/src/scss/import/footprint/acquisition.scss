@@ -1,92 +1,11 @@
-// galaxy := 자격증 취득 classNames
-/* 학생 자취록 카테고리 게시판은 student-board
-   커뮤니티 게시판은 comm-board 네이밍 규칙 어떨까요? ( 제안 )
-*/
-.student-board__wrap {
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: [second] repeat(4, 1fr);
-  grid-template-rows:
-    [first] 5%
-    [second] repeat(5, 1fr)
-    [third] 20px;
+/* -- scss default: mixin, veriables 등-- */
+@import '../../common/default/default.scss';
+/* --------------- */
 
-  .student-board__title {
-    grid-column: 1 / 5;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 5%;
-    padding-right: 5%;
-    background: white;
-    box-shadow: 0px 8px 6px -6px #ccc;
+/*-- post에 관한 스타일 시트 --*/
+@import '../../common/post/postList';
 
-    span {
-      font-weight: 600;
-    }
-
-    button.write-btn {
-      border: none;
-      outline: none;
-      background: #ff893c;
-      color: white;
-      padding: 5px 20px 5px 20px;
-      border-radius: 5px;
-      transition: 0.4s;
-
-      &:hover {
-        transition: 0.5s;
-        background: #fc6806;
-        cursor: pointer;
-      }
-    }
-  }
-
-  .card__wrap {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-
-    .card-body {
-      border: 1px solid rgba(54, 54, 54, 1);
-      display: grid;
-      background: white;
-      grid-template-rows: [first] 60% [second] 40%;
-      border-radius: 3px;
-      width: 150px;
-
-      .card-title {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        border-bottom: 1px solid #ccc;
-        span {
-          position: absolute;
-          color: black;
-          z-index: 300;
-        }
-        &__img {
-          //- !! Comment bear - 이미지는 웹팩 css 로더에 의해 file-loader에 연결되어 빌드되므로 아래처럼 css에서 지정해주어야 합니다.
-          background: url("../../../img/example_cert.jpg") center/cover;
-          position: relative;
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-      .card-content {
-        padding: 5px;
-
-        .card-content__info {
-          font-weight: 600;
-          font-size: 1.05rem;
-          padding-bottom: 5px;
-        }
-        .card-content__text {
-          font-size: 0.9rem;
-        }
-      }
-    }
-  }
+/* initial */
+.sub-contents__content {
+  border: none;
 }

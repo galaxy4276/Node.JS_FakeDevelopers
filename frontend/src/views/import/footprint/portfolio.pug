@@ -15,32 +15,33 @@ block content
       // 여기서부터 네비게이션 바 시작
       .sub-nav
         .sub-nav__title-wrap
-          h3.sub-nav__title 상위 주제
+          h3.sub-nav__title 학생 자취록
         .sub-nav__list-wrap
           ul.sub-nav__list
             li.sub-nav__item 
-              a(href="#").sub-nav__link 하위 주제 1
+              a(href="/community/acquisition").sub-nav__link 자격증 취득
             li.sub-nav__item
-              a(href="#").sub-nav__link 하위 주제 2
+              a(href="/community/awards").sub-nav__link 대회 수상
+            li.sub-nav__item
+              a(href="/community/portfolio").sub-nav__link 포트폴리오
 
       // 여기서부터 콘텐츠 시작
       .sub-contents
         .sub-contents__wrap
           .sub-contents__header
-            h2.sub-contents__title 선택된 하위 주제
+            h2.sub-contents__title 포트폴리오
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
                   +sub-contents__item__icon("home")
-                  a(href="#").sub-contents__item__link HOME
+                  a(href="/").sub-contents__item__link HOME
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="#").sub-contents__item__link 상위 주제
+                  a(href="/community/acquisition").sub-contents__item__link 학생 자취록
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="#").sub-contents__item__link 하위 주제
+                  a(href="/community/portfolio").sub-contents__item__link 포트폴리오
 
           .sub-contents__content
-            .sub-contents__missing-message
-              strong.sub-contents__txt-1 콘텐츠 작업이 필요한 페이지입니다.
-              p.sub-contents__txt-2 빠르고 편리한 서비스를 위해 최선을 다하겠습니다.
+            // 게시판 글 목록
+            +postList(true, 'community/portfolio')

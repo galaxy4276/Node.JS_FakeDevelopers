@@ -2,7 +2,7 @@
 import postList from '../../common/post/postList/postList';
 
 /* Constant */
-const notice = {
+const post = {
   parentElem: document.querySelector('.post-list__posts'),
   path: 'community/notice',
   limit: 15,
@@ -14,7 +14,7 @@ document.addEventListener(
   () => {
     // postList(parentElem, boardName, limit) => 이렇게 호출하면 된다.
 
-    postList(Object.values(notice));
+    postList(Object.values(post));
   },
   false
 );
