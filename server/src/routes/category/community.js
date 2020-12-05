@@ -1,5 +1,8 @@
 import { getRenderCreate } from "../../controllers/post";
-import postBoard, {uploads} from '../../controllers/crud/post';
+import postBoard, { uploads } from '../../controllers/crud/post';
+import deletePost from '../../controllers/crud/delete';
+import updatePost from '../../controllers/crud/update';
+import readPost from '../../controllers/crud/read';
 
 const community = require('express').Router();
 import sequelize from '../../models';
@@ -17,9 +20,9 @@ const {
 
 // 학과 이야기 ( Community )
 community.get('/board/create', getRenderCreate);
-community.post('/board/create', uploads.array('file'), (req, res, next) => {
-  postBoard(req, res, next)(Community);
-});
+community.get('/board/:id', (req, res, next) => {
+  readPost(req, res, next)(Community);
+})
 community.get('/board/api/index', (req, res, next) => {
   getIdx(req, res, next)(Community);
 });
@@ -27,14 +30,27 @@ community.get('/board/api/create-bulk', (req, res, next) => {
   createBulkBoard(req, next)(Community);
   res.redirect('/community/board');
 });
-community.post('/board/api/create');
 community.get('/board/api', (req, res, next) => {
   getPostsList(req, res, next)(Community);
 });
 community.get('/board', (req, res) => {
   res.render('import/community/board', {});
 });
+// POST
+community.post('/board/create', uploads.array('file'), (req, res, next) => {
+  postBoard(req, res, next)(Community);
+});
+community.post('/board/api/create');
 
+// DELETE
+community.delete('/board/:id/delete', (req, res, next) => {
+  deletePost(req, res, next)(Community);
+});
+
+// PATCH
+community.patch('/board/:id/update', (req, res, next) => {
+  updatePost(req, res, next)(Community);
+});
 
 // 후배 양도 ( Donate )
 community.get('/donation/create', getRenderCreate);
