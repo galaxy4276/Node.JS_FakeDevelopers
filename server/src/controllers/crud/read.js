@@ -1,5 +1,5 @@
 import sequelize from '../../models';
-const { Inquiry } = sequelize;
+const { Inquiry, Image } = sequelize;
 
 const readPost = (req, res, next) => {
   return async schema => {
@@ -8,15 +8,23 @@ const readPost = (req, res, next) => {
       const { id } = req.params;
 
       const redirectUrl = req.originalUrl
-        .match(/\/[a-z]+\/[a-z]+/g)
+        .match(/\/[a-z]+/)
+        .join('');
+
+      const referrer = req.originalUrl
+        .match(/\/[a-z]+/g)
         .join('');
 
       const post = await schema.findOne({
         where: { id },
+        include: [{
+          model: Image,
+          attributes: ['src'],
+        }]
       });
 
       // req.originalUrl 로 대체가 가능해 보임
-      res.render(`import${redirectUrl}`, {post});
+      res.render(`import${redirectUrl}/postView`, { post, referrer });
     } catch (err) {
       console.log('acquisitionPost Error');
       console.error(err);
