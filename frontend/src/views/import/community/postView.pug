@@ -1,0 +1,58 @@
+extends ../../common/_base.pug
+
+mixin getBoardProp(prop)
+  - const nameEng = referrer.match(/(?<=\/.*\/).*(?=\/create)/)[0];
+  - const nameEngToKor = {board: '학과 이야기', suggestion: '바라는 점', donation: '나눔의 공간', notice: '공지사항'}
+  - const path = referrer.match(/^.*(?=\/create)/)[0];
+
+  case prop
+    when 'sub-contents__item__link'
+      a(href=`${path}`).sub-contents__item__link= `${nameEngToKor[nameEng]}`
+    when 'title'
+      title= `${nameEngToKor[nameEng]}`
+
+block title
+  +getBoardProp('title')
+block append stylesheet
+  link(rel="stylesheet" href="/css/postView.css")
+block append script
+  script(defer src="/es5/postView.js")
+
+block content
+  main.sub-main
+    .sub-background
+    .sub-main__wrap
+
+      // 여기서부터 네비게이션 바 시작
+      .sub-nav
+        .sub-nav__title-wrap
+          h3.sub-nav__title 커뮤니티
+        .sub-nav__list-wrap
+          ul.sub-nav__list
+            li.sub-nav__item
+              a(href="/community/board").sub-nav__link 학과 이야기
+            li.sub-nav__item
+              a(href="/community/suggestion").sub-nav__link 바라는 점
+            li.sub-nav__item
+              a(href="/community/donation").sub-nav__link 나눔의 공간
+            li.sub-nav__item
+              a(href="/community/notice").sub-nav__link 공지사항
+
+      // 여기서부터 콘텐츠 시작
+      .sub-contents
+        .sub-contents__wrap
+          .sub-contents__header
+            h2.sub-contents__title 게시글 작성
+            .sub-contents__util-wrap
+              ul.sub-contents__util-list
+                li.sub-contents__item
+                  +sub-contents__item__icon("home")
+                  a(href="/").sub-contents__item__link HOME
+                  +sub-contents__item__icon("chevronForward")
+                li.sub-contents__item
+                  a(href="/community/board").sub-contents__item__link 커뮤니티
+                  +sub-contents__item__icon("chevronForward")
+                li.sub-contents__item
+                  +getBoardProp('sub-contents__item__link')
+          .sub-contents__content
+            +postView(post)

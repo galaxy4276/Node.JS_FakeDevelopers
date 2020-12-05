@@ -117,24 +117,27 @@ mixin postList(usePostWrite = false, boardName)
 //- Bulletn Board Post View Template [ 게시판 글 상세보기 템플릿 ]
 //- 💥 게시판 글 상세보기 템플릿은 'url 에 존재하는 id 값으로 백엔드에서 정보를 찾아서 템플릿 엔진에 전달해주는 방법' 으로 설계되었습니다.
 //- 즉, 서버 사이드에서 해당하는 페이지의 데이터 렌더링이 모두 끝난 후 제공됩니다. 
-mixin postView()
+
+//- title, createdAT, writer, hit,
+//- file,
+//- 상세보기전 게시글 주소 (ex - community/board)
+mixin postView(post)
   article.post-view
     |
     |
     // 게시판 글 헤더
     section.post-view__header
-      //- 헤더에 표시될 게시글의 속성 = ['title', 'reg-time', 'writer', 'hit'];
-      div.post-view__header__prop.post-view__header__title 제목
-      div.post-view__header__prop.post-view__header__reg-time 등록일
-      div.post-view__header__prop.post-view__header__writer 작성자
-      div.post-view__header__prop.post-view__header__hit 조회수
+      //- 헤더에 표시될 게시글의 속성 = ['title', 'createdAT', 'writer', 'hit'];
+      div.post-view__header__prop.post-view__header__title= post.title
+      div.post-view__header__prop.post-view__header__createdAT= post.createdAT
+      div.post-view__header__prop.post-view__header__writer= post.writer
+      div.post-view__header__prop.post-view__header__hit= post.hit
     // 첨부 파일
     section.post-view__file
-    // 게시판 글
-    section.post-view__content
+      a.post-view__file__link= post.file
+    // 게시판 글 
+    //- (컨텐츠 어떻게 던져주나 보고 그다음 가공 예정)
+    section.post-view__content= post.content
     // 게시판 글 푸터
-    section.post-view__footer
-    // 이전 글
-    section.post-view__next
-    // 다음 글
-    section.post-view__prev
+    //- (상세보기전 게시글 주소 받아서 postList 삽입 예정)
+    section.post-view__footer= post.boardName

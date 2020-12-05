@@ -56,7 +56,7 @@ header.header
     ul.header-util__list
       if user
         li.header-util__item
-          a(href="auth/logout") 로그아웃
+          a(href="auth/logout").header-util__link.header-util__link--logout 로그아웃
       else
         li.header-util__item
           .header-util__link.header-util__link--login.js-loginOpenBtn 로그인
