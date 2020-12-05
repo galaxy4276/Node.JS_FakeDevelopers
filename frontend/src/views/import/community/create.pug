@@ -1,7 +1,18 @@
 extends ../../common/_base.pug
 
+mixin getBoardProp(prop)
+  - const nameEng = referrer.match(/(?<=\/.*\/).*(?=\/create)/)[0];
+  - const nameEngToKor = {board: '학과 이야기', suggestion: '바라는 점', donation: '나눔의 공간', notice: '공지사항'}
+  - const path = referrer.match(/^.*(?=\/create)/)[0];
+
+  case prop
+    when 'sub-contents__item__link'
+      a(href=`${path}`).sub-contents__item__link= `${nameEngToKor[nameEng]}`
+    when 'title'
+      title= `${nameEngToKor[nameEng]}`
+  
 block title
-  title 게시글 작성
+  +getBoardProp('title')
 block append stylesheet
   link(rel="stylesheet" href="/css/postWrite.css")
 block append script
@@ -42,9 +53,6 @@ block content
                   a(href="/community/board").sub-contents__item__link 커뮤니티
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  - const community = {board: '학과 이야기', suggestion: '바라는 점', donation: '나눔의 공간', notice: '공지사항'}
-                  - const boardPath = referrer.match(/^.*(?=\/create)/)[0];
-                  - const boardNameEng = referrer.match(/(?<=\/.*\/).*(?=\/create)/)[0];
-                  a(href=`${boardPath}`).sub-contents__item__link= `${community[boardNameEng]}`
+                  +getBoardProp('sub-contents__item__link')
           .sub-contents__content
             +postWrite(referrer)
