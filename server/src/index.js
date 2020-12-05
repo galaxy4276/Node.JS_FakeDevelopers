@@ -78,12 +78,8 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false,
-<<<<<<< HEAD
-      expires: new Date(Date.now() + 1800000),
-=======
       expires: new Date(Date.now() + 800000),
       maxAge: 800000,
->>>>>>> b077a096b1f72b6597a345d45bed341bc62dbc6b
     },
   })
 ); /*
