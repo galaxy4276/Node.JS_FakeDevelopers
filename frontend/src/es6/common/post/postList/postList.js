@@ -65,7 +65,9 @@ const getLastPageNum = async () => {
     .then((res) => Math.ceil(res.idx))
     .catch((error) => {
       console.warn(error);
-      console.warn('불러올 데이터가 하나도 없거나 서버측 코드가 변경되었습니다.');
+      console.warn(
+        '데이터베이스에 불러올 데이터가 하나도 없거나 서버측의 코드 변경 혹은 응답 오류입니다.'
+      );
       verifyPostEmpty = true;
       return 1;
     });
