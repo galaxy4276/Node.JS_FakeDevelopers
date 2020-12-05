@@ -16,7 +16,7 @@ mixin icon(iconName, title, color)
   - const toggle = { close: "close" }
   - const chevron = { chevronForward: "chevronForward", chevronBackward: "chevronBackward", chevronDown: "chevronDown" }
   - const caret = { caretDown: "caretDown" }
-  - const etc = { home: "home" }
+  - const etc = { home: "home" , menu: "menu" }
   case iconName
     when toggle.close
       svg(xmlns='http://www.w3.org/2000/svg' viewBox='105 105 300 300')
@@ -43,6 +43,11 @@ mixin icon(iconName, title, color)
         title= title
         path(d='M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212' fill='none' stroke= color stroke-linecap='round' stroke-linejoin='round' stroke-width='32')
         path(d='M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69' fill='none' stroke= color stroke-linecap='round' stroke-linejoin='round' stroke-width='32')
+    when etc.menu
+      svg(xmlns='http://www.w3.org/2000/svg' viewbox='105 105 300 300')
+        title= title
+        path(fill='none' stroke= color stroke-linecap='round' stroke-miterlimit='10' stroke-width='40' d='M80 160h352M80 256h352M80 352h352')
+
     default
       p(style="color:red;") icon mixin에 존재하지 않는 인자 #{currentIcon}이(가) 전달되었습니다.
       
