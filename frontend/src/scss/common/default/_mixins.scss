@@ -81,6 +81,7 @@
 }
 
 @mixin underline-hover-fill($color) {
+  display: block;
   position: relative;
   padding: 1rem;
   cursor: pointer;
@@ -92,7 +93,7 @@
   }
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     z-index: -1;
     top: calc(0.5rem + 2rem); // 현재 padding 값 절반 + 글자높이 2배

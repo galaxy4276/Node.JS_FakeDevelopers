@@ -111,6 +111,10 @@
         @include underline-hover-fill($main-color--silver);
       }
 
+      &--logout {
+        @include underline-hover-fill($main-color--silver);
+      }
+
       @media screen and (max-width: 1024px) {
         display: none;
       }
