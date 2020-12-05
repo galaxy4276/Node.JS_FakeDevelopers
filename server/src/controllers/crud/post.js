@@ -27,56 +27,48 @@ export const uploads = multer({
   Controllers
     DB와 로직을 수행하는 함수(Controller)
 */
-const postBoard = (req, res, next) => async schema => { // 자격증 취득 게시글 작성
-  try {
-    const { title, paragraph } = req.body;
-    const { user } = req;
-    console.log(req.files);
-    console.log(schema);
+const postBoard = (req, res, next) => {
+  return async schema => { // 자격증 취득 게시글 작성
+    try {
+      const { title, paragraph } = req.body;
+      console.log(req.files);
+      console.log(schema);
 
-    const redirectUrl = '/' + req.originalUrl
+      const redirectUrl = '/' + req.originalUrl
         .match(/[a-z]+\/[a-z]+/g)
         .join('');
 
-    // if (!user) {
-    //   return res.redirect(url.format({
-    //     pathname: '/',
-    //     query: {
-    //       'error': 'please-login'
-    //     },
-    //   }));
-    // }
+      if (!title) {
+        return res.redirect(redirectUrl);
+      }
 
-    if (!title) {
+      const post = await schema.create({
+        title,
+        content: paragraph,
+        UserId: req.user.id,
+      });
+
+      // FIX: 개발 보류
+      if (req.files.length > 1) {
+        const images = await Promise.all(
+          req.files.map(file => Image.create({src: file.filename}))
+        );
+
+        await post.addImages(images);
+      }
+
+      if (req.files.length === 1) {
+        const image = await Image.create({src: req.files[0].filename});
+        await post.addImages(image);
+      }
+
       return res.redirect(redirectUrl);
+    } catch (err) {
+      console.log('acquisitionPost Error');
+      console.error(err);
+      next(err);
     }
-
-    const post = await schema.create({
-      title,
-      content: paragraph,
-      UserId: req.user.id,
-    });
-
-    // FIX: 개발 보류
-    if (req.files.length > 1) {
-      const images = await Promise.all(
-        req.files.map(file => Image.create({ src: file.filename }))
-      );
-
-      await post.addImages(images);
-    }
-
-    if (req.files.length === 1) {
-      const image = await Image.create({ src: req.files[0].filename });
-      await post.addImages(image);
-    }
-
-    return res.redirect(redirectUrl);
-  } catch(err) {
-    console.log('acquisitionPost Error');
-    console.error(err);
-    next(err);
-  }
+  };
 };
 
 
