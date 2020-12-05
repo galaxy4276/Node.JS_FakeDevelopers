@@ -11,37 +11,37 @@ import  getPostsList from '../../controllers/pagination/getPostsList';
 import getIdx from '../../controllers/pagination/getPageIdx';
 
 
-const { 
+const {
   Community,
   Donate,
 } = sequelize;
 
 // Router & Controllers ( 차 후 분리 필요 )
-
 // 학과 이야기 ( Community )
+community.get('/board', (req, res) => {
+  res.render('import/community/board', {});
+});
+community.post('/board/create', uploads.array('file'), (req, res, next) => {
+  postBoard(req, res, next)(Community);
+  console.log('create /board/create');
+});
 community.get('/board/create', getRenderCreate);
-community.get('/board/:id', (req, res, next) => {
-  readPost(req, res, next)(Community);
-})
 community.get('/board/api/index', (req, res, next) => {
   getIdx(req, res, next)(Community);
+  console.log('get /board/api/index');
 });
 community.get('/board/api/create-bulk', (req, res, next) => {
   createBulkBoard(req, next)(Community);
+  console.log('get /board/api/create-bulk');
   res.redirect('/community/board');
 });
 community.get('/board/api', (req, res, next) => {
   getPostsList(req, res, next)(Community);
+  console.log('get /board/api');
 });
-community.get('/board', (req, res) => {
-  res.render('import/community/board', {});
+community.get('/board/:id', (req, res, next) => {
+  readPost(req, res, next)(Community);
 });
-// POST
-community.post('/board/create', uploads.array('file'), (req, res, next) => {
-  postBoard(req, res, next)(Community);
-});
-community.post('/board/api/create');
-
 // DELETE
 community.delete('/board/:id/delete', (req, res, next) => {
   deletePost(req, res, next)(Community);
