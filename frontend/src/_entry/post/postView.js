@@ -6,6 +6,6 @@ import '../../views/import/footprint/postView.pug';
 import '../../scss/common/post/_postView.scss';
 
 /* -- javascript -- */
-import '../../es6/common/post/postView/example';
+import '../../es6/common/post/postView/postView';
 
 /* -- font -- */

@@ -6,6 +6,6 @@ import '../../views/import/footprint/create.pug';
 import '../../scss/common/post/_postWrite.scss';
 
 /* -- javascript -- */
-import '../../es6/common/post/postWrite/example';
+import '../../es6/common/post/postWrite/postWrite';
 
 /* -- font -- */
