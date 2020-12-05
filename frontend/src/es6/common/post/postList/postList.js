@@ -10,8 +10,30 @@ const pageNumList = pagination.querySelector('.post-list__page-numbers');
 /* Global Variables */
 let firstCall = true; // 모듈이 처음으로 불린건지 검증
 let currentPageNumber = 1; // 현재 페이지 - default = page 1
+let verifyPostEmpty = false; // 불러올 데이터가 없는지 검증
 
 /* Function */
+const createGuideMsg = () => {
+  const postListBody = document.body.querySelector('.post-list');
+  const posts = postListBody.querySelector('.post-list__posts');
+
+  const msg = document.createElement('section');
+  msg.setAttribute('class', 'post-list__empty-guide-msg');
+
+  msg.innerHTML = `
+<div class="post-list__empty-guide-msg__wrapper">
+  <p class="post-list__empty-guide-msg__title">⚠ 아직 게시글이 존재하지 않습니다.</p>
+  <p class="post-list__empty-guide-msg__txt">첫 게시글의 주인공이 되어주세요!</p>
+</div>
+`.trim();
+
+  const DOMfragement = new DocumentFragment();
+
+  DOMfragement.append(msg);
+
+  postListBody.replaceChild(DOMfragement, posts);
+};
+
 const logGlobalVariableError = () => {
   console.error(
     '⛔ [ _paginate.js ] 모듈이 export하는 paginatePostList() 에서 전역변수가 생성된 후에 이 함수를 호출해야 유효한 동작을 수행합니다.'
@@ -32,14 +54,21 @@ const initParentElemHeight = () => {
   parentElem.style.height = parentElem.offsetHeight;
 };
 
-const initLastPageNum = async () => {
+const getLastPageNum = async () => {
   const [, boardName, limit] = getGlobalVariable('option');
 
   const path = `/${boardName}/api/index?limit=${limit}`;
   requestURL.path = path;
 
   // API 요청으로 마지막 페이지 번호 가져오기
-  const lastPageNum = await defaultFetch(requestURL.url).then((res) => Math.ceil(res.idx));
+  const lastPageNum = await defaultFetch(requestURL.url)
+    .then((res) => Math.ceil(res.idx))
+    .catch((error) => {
+      console.warn(error);
+      console.warn('불러올 데이터가 하나도 없거나 서버측 코드가 변경되었습니다.');
+      verifyPostEmpty = true;
+      return 1;
+    });
 
   // 가져온 마지막 페이지 번호를 전역변수에 저장
   setGlobalVariable('LAST_PAGE', lastPageNum);
@@ -235,15 +264,22 @@ const handlePaginationBtnsClick = (e) => {
   toggleDisplayMoveBtns(); // 만약 현재 페이지가 1페이지면 < 버튼, 마지막 페이지면 > 버튼 삭제
 };
 
-const paginatePostList = async (reqOptions) => {
+const postList = async (reqOptions) => {
   setGlobalVariable('option', reqOptions); // 서버에 요청할때 쓸 옵션을 인자로 받아 전역변수에 저장
 
   if (firstCall) {
     // 웹 페이지 최초 접속시에
-    await initLastPageNum(); // 서버에서 마지막 페이지의 번호를 받아와서 전역변수에 저장
+    await getLastPageNum(); // 서버에서 마지막 페이지의 번호를 받아와서 전역변수에 저장
     initPageNumList(); //  페이지 번호 리스트 초기화
     toggleDisplayMoveBtns(); //  < , > 버튼 삭제 판별 (1페이지 혹은 마지막 페이지 일때)
     toggleHighlightCurrPageNum(); //  현재 페이지 강조
+
+    if (verifyPostEmpty) {
+      // 위의 getLastPageNum() 에서 데이터가 하나도 없다고 나오면,
+      createGuideMsg(); // 안내 메시지를 생성하고
+      return; // 종료
+    }
+
     firstCall = false;
   }
 
@@ -255,4 +291,4 @@ const paginatePostList = async (reqOptions) => {
 };
 
 /* export */
-export default paginatePostList;
+export default postList;
