@@ -1,0 +1,16 @@
+/* -- scss default: mixin, veriables 등-- */
+@import '../../common/default/default.scss';
+/* --------------- */
+
+/*-- post에 관한 스타일 시트 --*/
+@import '../../common/post/postList.scss';
+
+/* initial */
+.sub-contents__content {
+  border: none;
+}
+
+/* for dev */
+// .sub-contents__content {
+//   border: 1px dotted rgba(gray, 0.3);
+// }

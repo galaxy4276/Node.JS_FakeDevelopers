@@ -16,32 +16,35 @@ block content
       // 여기서부터 네비게이션 바 시작
       .sub-nav
         .sub-nav__title-wrap
-          h3.sub-nav__title 상위 주제
+          h3.sub-nav__title 커뮤니티
         .sub-nav__list-wrap
           ul.sub-nav__list
             li.sub-nav__item 
-              a(href="#").sub-nav__link 하위 주제 1
+              a(href="/community/board").sub-nav__link 학과 이야기
             li.sub-nav__item
-              a(href="#").sub-nav__link 하위 주제 2
+              a(href="/community/suggestion").sub-nav__link 바라는 점
+            li.sub-nav__item
+              a(href="/community/donation").sub-nav__link 나눔의 공간
+            li.sub-nav__item
+              a(href="/community/notice").sub-nav__link 공지사항
 
       // 여기서부터 콘텐츠 시작
       .sub-contents
         .sub-contents__wrap
           .sub-contents__header
-            h2.sub-contents__title 선택된 하위 주제
+            h2.sub-contents__title 나눔의 공간
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
                   +sub-contents__item__icon("home")
-                  a(href="#").sub-contents__item__link HOME
+                  a(href="/").sub-contents__item__link HOME
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="#").sub-contents__item__link 상위 주제
+                  a(href="/community/board").sub-contents__item__link 커뮤니티
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="#").sub-contents__item__link 하위 주제
+                  a(href="/community/donation").sub-contents__item__link 나눔의 공간
 
           .sub-contents__content
-            .sub-contents__missing-message
-              strong.sub-contents__txt-1 콘텐츠 작업이 필요한 페이지입니다.
-              p.sub-contents__txt-2 빠르고 편리한 서비스를 위해 최선을 다하겠습니다.
+            // 게시판 글 목록
+            +postList(true, 'community/donation')

@@ -1,5 +1,5 @@
 /* Module */
-import paginatePostList from '../../common/post/postList/paginatePostList';
+import postList from '../../common/post/postList/postList';
 
 /* Constant */
 const notice = {
@@ -12,9 +12,9 @@ const notice = {
 document.addEventListener(
   'DOMContentLoaded',
   () => {
-    // paginatePostList(parentElem, boardName, limit) => 이렇게 호출하면 된다.
+    // postList(parentElem, boardName, limit) => 이렇게 호출하면 된다.
 
-    paginatePostList(Object.values(notice));
+    postList(Object.values(notice));
   },
   false
 );
