@@ -1,0 +1,11 @@
+.sub-contents__content {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+
+  h1 {
+    font-size: 1.5em;
+    margin: 30px 0 15px;
+  }
+}
