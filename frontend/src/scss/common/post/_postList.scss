@@ -201,9 +201,32 @@
       display: none;
     }
   }
-}
 
-/* for dev */
-.post-list {
-  // background-color: rgba(black, 0.1);
+  &__empty-guide-msg {
+    // create from [pageName].js
+    width: 100%;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+
+    &__wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & > * {
+        padding: 1.2rem 0;
+      }
+    }
+    &__title {
+      width: fit-content;
+      font-weight: 700;
+      font-size: 1.5em;
+    }
+    &__txt {
+      width: fit-content;
+    }
+  }
 }

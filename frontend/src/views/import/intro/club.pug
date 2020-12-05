@@ -19,28 +19,31 @@ block content
         .sub-nav__list-wrap
           ul.sub-nav__list
             li.sub-nav__item 
-              a(href="#").sub-nav__link 하위 주제 1
+              a(href="/milestone/info").sub-nav__link 학과소개
             li.sub-nav__item
-              a(href="#").sub-nav__link 하위 주제 2
+              a(href="/milestone/member").sub-nav__link 구성원
+            li.sub-nav__item
+              a(href="/milestone/env").sub-nav__link 교육환경
 
       // 여기서부터 콘텐츠 시작
       .sub-contents
         .sub-contents__wrap
           .sub-contents__header
-            h2.sub-contents__title 선택된 하위 주제
+            h2.sub-contents__title 동아리
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
                   +sub-contents__item__icon("home")
-                  a(href="#").sub-contents__item__link HOME
+                  a(href="/").sub-contents__item__link HOME
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="#").sub-contents__item__link 상위 주제
+                  a(href="#").sub-contents__item__link 학과소개
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="#").sub-contents__item__link 하위 주제
+                  a(href="#").sub-contents__item__link 동아리
 
           .sub-contents__content
-            .sub-contents__missing-message
-              strong.sub-contents__txt-1 콘텐츠 작업이 필요한 페이지입니다.
-              p.sub-contents__txt-2 빠르고 편리한 서비스를 위해 최선을 다하겠습니다.
+            h1.sub-content__title node
+            p.sub-content__paragraph
+            | node는 컴퓨터공학 중 정보보안에 관심과 흥미가 있는 학생들이 운영하는 동아리입니다.
+            | 스터디, 대외 활동, 영문 원서 번역 등의 활동을 하고 있습니다.
