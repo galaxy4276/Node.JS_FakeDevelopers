@@ -1,5 +1,5 @@
 /* Module */
-import paginatePostList from '../../common/function/post/paginatePostList';
+import paginatePostList from '../../common/post/postList/paginatePostList';
 
 /* Constant */
 const post = {

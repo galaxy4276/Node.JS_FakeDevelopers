@@ -1,4 +1,4 @@
-import { getFormatDate } from '../_getFormatDate'; // 'yyyy-mm-dd' 형식의 string을 반환하는 함수
+import { getFormatDate } from '../../function/_getFormatDate'; // 'yyyy-mm-dd' 형식의 string을 반환하는 함수
 
 const setTimeText = (updatedAt) => {
   const today = getFormatDate(new Date());

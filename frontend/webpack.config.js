@@ -40,6 +40,11 @@ const ENTRY = {
   forgot_resetPassword: path.resolve(__dirname, 'src', '_entry', 'auth', 'forgot_resetPassword.js'),
   forgot_sendEmail: path.resolve(__dirname, 'src', '_entry', 'auth', 'forgot_sendEmail.js'),
 
+  // post
+  postList: path.resolve(__dirname, 'src', '_entry', 'post', 'postList.js'),
+  postView: path.resolve(__dirname, 'src', '_entry', 'post', 'postView.js'),
+  postWrite: path.resolve(__dirname, 'src', '_entry', 'post', 'postWrite.js'),
+
   // community/
   board: path.resolve(__dirname, 'src', '_entry', 'community', 'board.js'),
   donation: path.resolve(__dirname, 'src', '_entry', 'community', 'donation.js'),
