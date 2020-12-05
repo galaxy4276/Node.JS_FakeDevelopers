@@ -1,9 +1,9 @@
 extends ../../common/_base.pug
 
 mixin getBoardProp(prop)
-  - const nameEng = referrer.match(/(?<=\/.*\/).*(?=\/create)/)[0];
+  - const nameEng = referrer.match(/(?<=\/.*\/).*(?=\/\d)/)[0];
   - const nameEngToKor = {board: '학과 이야기', suggestion: '바라는 점', donation: '나눔의 공간', notice: '공지사항'}
-  - const path = referrer.match(/^.*(?=\/create)/)[0];
+  - const path = referrer.match(/^.*(?=\/\d)/)[0];
 
   case prop
     when 'sub-contents__item__link'
