@@ -50,7 +50,7 @@ mixin icon(iconName, title, color)
 
     default
       p(style="color:red;") icon mixin에 존재하지 않는 인자 #{currentIcon}이(가) 전달되었습니다.
-      
+
 //- sub-main 템플릿의 icon 관련 mixin
 mixin sub-contents__item__icon(iconName)
   div.sub-contents__item__icon
@@ -104,13 +104,13 @@ mixin postList(usePostWrite = false, boardName)
     section.post-list__btns
       // 페이지네이션
       section.post-list__inner-paging
-          // 페이지 번호 리스트
-          ul.post-list__page-numbers
-          // 버튼들
-          div.post-list__page-btn.post-list__page-btn--left
-            +icon("chevronBackward", '이전 페이지', '#0f0f0f')
-          div.post-list__page-btn.post-list__page-btn--right
-            +icon("chevronForward", '다음 페이지', '#0f0f0f')
+        // 페이지 번호 리스트
+        ul.post-list__page-numbers
+        // 버튼들
+        div.post-list__page-btn.post-list__page-btn--left
+          +icon("chevronBackward", '이전 페이지', '#0f0f0f')
+        div.post-list__page-btn.post-list__page-btn--right
+          +icon("chevronForward", '다음 페이지', '#0f0f0f')
       // TODO: 제일 앞으로 가기, 제일 뒤로 가기 부분 구현
       |
       |
@@ -144,18 +144,18 @@ mixin postView(post, referrer)
       - const createdTime = createdAt.toString().match(/\d*:\d*:\d*(?=\sGMT)/)[0];
 
       if (createdDate === today)
-        div.post-view__header__prop.post-view__header__createdAt= createdTime
+        span.post-view__header__prop.post-view__header__createdAt= createdTime
       else
-        div.post-view__header__prop.post-view__header__createdAt= createdDate
+        span.post-view__header__prop.post-view__header__createdAt= createdDate
     |
     |
     // 게시판 글 헤더
     section.post-view__header
       //- 헤더에 표시될 게시글의 속성 = ['title', 'createdAt', 'writer', 'hit'];
-      div.post-view__header__prop.post-view__header__title= post.title
+      h1.post-view__header__prop.post-view__header__title= post.title
       +setTime(post.createdAt)
-      div.post-view__header__prop.post-view__header__writer= post.UserId
-      div.post-view__header__prop.post-view__header__hit= post.hit || 0
+      span.post-view__header__prop.post-view__header__writer= post.UserId
+      span.post-view__header__prop.post-view__header__hit= post.Inquire.count || 0
     // 게시판 글
     //- (컨텐츠 어떻게 던져주나 보고 그다음 가공 예정)
     section.post-view__content

@@ -51,13 +51,14 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('combined')); // 서버 로깅
 }
 
+app.use('/uploads', express.static(path.join(__dirname, '../', 'uploads')));
 app.use('/css', express.static(routes.frontCss)); // 프론트 CSS 파일 위치
 app.use('/es5', express.static(routes.frontEs6)); // 프론트 자바스크립트 파일 위치
 app.use('/img', express.static(routes.frontImg)); // 프론트 이미지파일 위치
 app.use('/font', express.static(routes.frontFont)); // 프론트 폰트 파일 위치
 app.use(express.json()); // json으로 이루어진 Request Body 데이터를 받아오는 미들웨어
 app.use(
-  express.urlencoded({ extended: true })
+  express.urlencoded({   extended: true })
 ); /* body 데이터를 자동으로 req.body에 추가해주는 미들웨어
   extended 옵션은 qs모듈을 사 용할지 query-string 모듈을 사용할 지 결정한다.
   둘의 차이는 nested를 지원하느냐 하지 않느냐

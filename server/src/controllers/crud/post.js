@@ -28,24 +28,22 @@ export const uploads = multer({
     DB와 로직을 수행하는 함수(Controller)
 */
 const postBoard = (req, res, next) => {
+  const { title, paragraph } = req.body;
+  const UserId = req.user.id || '익명';
+  const redirectUrl = '/' + req.originalUrl
+    .match(/[a-z]+\/[a-z]+/g)
+    .join('');
+  console.log(req.files);
+  if (!title) {
+    return res.redirect(redirectUrl);
+  }
+
   return async schema => { // 자격증 취득 게시글 작성
     try {
-      const { title, paragraph } = req.body;
-      console.log(req.files);
-      console.log(schema);
-
-      const redirectUrl = '/' + req.originalUrl
-        .match(/[a-z]+\/[a-z]+/g)
-        .join('');
-
-      if (!title) {
-        return res.redirect(redirectUrl);
-      }
-
       const post = await schema.create({
         title,
         content: paragraph,
-        UserId: req.user.id,
+        UserId,
       });
 
       const inquiry = await Inquiry.create({});
