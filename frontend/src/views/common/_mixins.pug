@@ -148,12 +148,6 @@ mixin postView(post, referrer)
     section.post-view__header
       //- 헤더에 표시될 게시글의 속성 = ['title', 'createdAt', 'writer', 'hit'];
       div.post-view__header__prop.post-view__header__title= post.title
-      div.post-view__header__prop.post-view__header__createdAT= post.createdAt
-      div.post-view__header__prop.post-view__header__writer= post.UserId
-      div.post-view__header__prop.post-view__header__hit= post.i
-    // 첨부 파일
-    section.post-view__file
-      a.post-view__file__link 
       +setTime(post.createdAt)
       div.post-view__header__prop.post-view__header__writer= post.UserId
       div.post-view__header__prop.post-view__header__hit= post.hit || 0
