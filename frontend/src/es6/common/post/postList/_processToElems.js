@@ -22,7 +22,7 @@ const toClassNamesObj = (...lastNames) => {
 
 const processToElems = (boardName, dataObj) => {
   const itemName = 'item';
-  const propNames = ['number', 'title', 'writer', 'hit', 'createdAT'];
+  const propNames = ['number', 'title', 'writer', 'hit', 'createdAt'];
   const classes = toClassNamesObj(...propNames);
 
   const setTime = setTimeText;
@@ -38,7 +38,7 @@ const processToElems = (boardName, dataObj) => {
     <a class=${classes.title} href=${postViewLink}>${post.title || '[ 빈 제목입니다 ]'}</a>
     <div class=${classes.writer}>${post.UserId || 'Annonymous'}</div>
     <div class=${classes.hit}>${post.Inquiries.count || '0'}</div>
-    <div class=${classes.createdAT}>${setTime(post.createdAt) || '0000-00-00'}</div>
+    <div class=${classes.createdAt}>${setTime(post.createdAt) || '0000-00-00'}</div>
   `.trim();
 
     acc.push(item);

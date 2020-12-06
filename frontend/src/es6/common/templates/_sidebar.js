@@ -1,7 +1,7 @@
-const sidebar = document.querySelector(".sidebar");
-const sideUtilBtn = document.querySelector(".header-util__btn");
-const sideWrap = document.querySelector(".cover");
-const sideList = document.querySelector(".sidebar__list");
+const sidebar = document.querySelector('.sidebar');
+const sideUtilBtn = document.querySelector('.header-util__btn');
+const sideWrap = document.querySelector('.cover');
+const sideList = document.querySelector('.sidebar__list');
 
 function toggleDropdown(e) {
   // ** 드롭다운 이벤트 **
@@ -12,24 +12,32 @@ function toggleDropdown(e) {
   // 4. 각 타이틀 버튼 그 자체 (😀 클릭한 이벤트 타겟 그대로 실행된다)
 
   if (e.target === this) return; // 공백부분이라면 종료
-  if (e.target.tagName === "A") return; // 드롭다운 링크들이라면 종료
+  if (e.target.tagName === 'A') return; // 드롭다운 링크들이라면 종료
 
-  const title = e.target.closest("li");
-  const innerList = title.querySelector(".sidebar__inner-list");
+  const allTitles = Array.from(sideList.children);
 
-  innerList.classList.toggle("sidebar__inner-list--clicked");
-  title.classList.toggle("sidebar__btn--active");
+  allTitles.forEach((title) => {
+    const innerList = title.querySelector('.sidebar__inner-list');
+    title.classList.remove('sidebar__btn--active');
+    innerList.classList.remove('sidebar__inner-list--clicked');
+  });
+
+  const currTitle = e.target.closest('li');
+  const currInnerList = currTitle.querySelector('.sidebar__inner-list');
+
+  currTitle.classList.add('sidebar__btn--active');
+  currInnerList.classList.add('sidebar__inner-list--clicked');
 }
 
 function toggleSideBar() {
-  sidebar.classList.toggle("sidebar--show");
-  sideWrap.classList.toggle("cover--covered");
+  sidebar.classList.toggle('sidebar--show');
+  sideWrap.classList.toggle('cover--covered');
 }
 
 function initSidebar() {
-  sideUtilBtn.addEventListener("click", toggleSideBar, false);
-  sideWrap.addEventListener("click", toggleSideBar, false);
+  sideUtilBtn.addEventListener('click', toggleSideBar, false);
+  sideWrap.addEventListener('click', toggleSideBar, false);
 
-  sideList.addEventListener("click", toggleDropdown, false);
+  sideList.addEventListener('click', toggleDropdown, false);
 }
 initSidebar();
