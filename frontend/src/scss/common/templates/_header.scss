@@ -9,6 +9,7 @@
   height: $header-height;
   z-index: 3;
   background-color: rgba(black, 0.4);
+  color: #fefefe;
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: -1px;
@@ -101,7 +102,6 @@
       border-radius: initial;
       text-align: center;
       width: 6rem; // 딱 텍스트 wrap이 안되는 크기
-      color: rgba($main-color--white, 0.9);
 
       &--login {
         @include underline-hover-fill($main-color);
