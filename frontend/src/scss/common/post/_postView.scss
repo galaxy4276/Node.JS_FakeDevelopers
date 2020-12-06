@@ -1,3 +1,47 @@
 /* -- scss default: mixin, veriables 등-- */
 @import '../../common/default/default.scss';
 /* --------------- */
+
+.post-view {
+  width: 100%;
+  margin: 25px;
+
+  &__header {
+    margin-bottom: 25px;
+    span {
+      padding: 0 10px;
+      border-right: 1px solid #aaa;
+      font-size: 0.75em;
+    }
+
+    &__title {
+      margin-bottom: 25px;
+    }
+
+    &__prop:nth-of-type(1) {
+      padding-left: 0;
+    }
+
+    &__prop:nth-last-child(1) {
+      border-right: none;
+    }
+  }
+
+  &__content {
+    &__images {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__footer {
+    margin-top: 30px;
+    &__board {
+      width: 65px;
+      height: 35px;
+      background-color: #27272f;
+      color: #fff;
+      padding: 10px 12px;
+      font-size: 0.75em;
+    }
+  }
+}
