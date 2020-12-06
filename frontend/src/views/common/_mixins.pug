@@ -144,16 +144,16 @@ mixin postView(post, referrer)
 
       - const displayedTime = createdDate === today ? createdTime : createdDate;
 
-        span.post-view__header__prop.post-view__header__createdAt= displayedTime
+        div.post-view__header__prop.post-view__header__createdAt= displayedTime
     |
     |
     // 게시판 글 헤더
     section.post-view__header
       //- 헤더에 표시될 게시글의 속성 = ['title', 'createdAt', 'writer', 'hit'];
-      h1.post-view__header__prop.post-view__header__title= post.title
+      div.post-view__header__title= post.title
       +setTime(post.createdAt)
-      span.post-view__header__prop.post-view__header__writer= post.UserId
-      span.post-view__header__prop.post-view__header__hit= 0
+      div.post-view__header__prop.post-view__header__writer= post.UserId
+      div.post-view__header__prop.post-view__header__hit= 0
     // 게시판 글
     //- (컨텐츠 어떻게 던져주나 보고 그다음 가공 예정)
     section.post-view__content
@@ -161,10 +161,16 @@ mixin postView(post, referrer)
       section.post-view__content__images
         each image in post.Images
           - const src = `https://www.ddccomputer.club/uploads/${image.src}`
-          img(src= src).post-view__content__image
+          img(src= src style="max-width: 100%;").post-view__content__image
       section.post-view__content__txt= post.content
     // 게시판 글 푸터
     section.post-view__footer
-      -const boardPath = referrer.match(/^.*(?=\/\d)/)[0];
-      a(href= boardPath).post-view__footer__board 목록
+      -const boardPath = referrer.match(/^.*(?=\/\d)/)[0]; // regExp ex) '/community/board/14' => '/community/board'
+      a(href= boardPath).post-view__footer__btn.post-view__footer__btn--board 목록
+      if user
+        -const updatePath = `${referrer}/update`
+        -const deletePath = `${referrer}/delete`
+        form(action="" method="post").post-view__footer__form
+          button(type="submit" name="" formaction= updatePath).post-view__footer__btn.post-view__footer__form--update 수정하기
+          button(type="submit" name="" formaction= deletePath).post-view__footer__btn.post-view__footer__form--delete 삭제하기
     //- (위에서 받은 boardPath로 postList 삽입 예정)

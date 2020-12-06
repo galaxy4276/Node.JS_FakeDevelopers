@@ -3,45 +3,82 @@
 /* --------------- */
 
 .post-view {
+  border-top: 3px solid $main-color;
   width: 100%;
-  margin: 25px;
+  padding: 0.8rem;
 
   &__header {
-    margin-bottom: 25px;
-    span {
-      padding: 0 10px;
-      border-right: 1px solid #aaa;
-      font-size: 0.75em;
-    }
+    font-weight: 500;
+    display: grid;
+    grid-template:
+      'title title title' 2.5rem
+      'createdAt writer hit' 2rem
+      / 6rem 4rem 1fr;
+    gap: 0.6rem;
 
     &__title {
-      margin-bottom: 25px;
+      grid-area: title;
+      font-size: 1.4rem;
+      color: $main-color--black;
     }
 
-    &__prop:nth-of-type(1) {
-      padding-left: 0;
+    &__prop {
+      font-size: 0.9rem;
+      color: #777;
+
+      &::after {
+        content: '　|';
+        color: #ccc;
+      }
     }
 
-    &__prop:nth-last-child(1) {
-      border-right: none;
+    &__writer {
+      grid-area: writer;
+    }
+    &__createdAt {
+      grid-area: createdAt;
+    }
+    &__hit {
+      grid-area: hit;
     }
   }
 
   &__content {
+    padding: 2rem 0.5rem;
     &__images {
-      margin-bottom: 30px;
+      margin-bottom: 2rem;
     }
   }
 
   &__footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     margin-top: 30px;
-    &__board {
-      width: 65px;
-      height: 35px;
-      background-color: #27272f;
-      color: #fff;
-      padding: 10px 12px;
-      font-size: 0.75em;
+    &__btn {
+      @include btn-rectangle(true, true, true);
+      padding: 0.5rem 1rem;
+
+      &--board {
+        width: fit-content;
+        padding: 0.5rem 1rem;
+        color: $main-color--white;
+        background-color: $main-color--dark-silver;
+      }
+    }
+    &__form {
+      display: flex;
+
+      &--update {
+        background-color: $main-color;
+        color: $main-color--white;
+        margin-right: 0.2rem;
+      }
+
+      &--delete {
+        background-color: $main-color--silver;
+        color: white;
+      }
     }
   }
 }
