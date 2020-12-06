@@ -88,12 +88,12 @@ mixin postList(usePostWrite = false, boardName)
     |
     // 게시판 글 목록 헤더
     section.post-list__header
-      //- 표시될 게시글의 속성 = ['number', 'title', 'writer', 'hit', 'createdAT'];
+      //- 표시될 게시글의 속성 = ['number', 'title', 'writer', 'hit', 'createdAt'];
       div.post-list__header__prop.post-list__header__number 번호
       div.post-list__header__prop.post-list__header__title 제목
       div.post-list__header__prop.post-list__header__writer 작성자
       div.post-list__header__prop.post-list__header__hit 조회수
-      div.post-list__header__prop.post-list__header__createdAT 등록일
+      div.post-list__header__prop.post-list__header__createdAt 등록일
     |
     |
     // 게시판 글 목록
@@ -123,7 +123,7 @@ mixin postList(usePostWrite = false, boardName)
 //- 💥 게시판 글 상세보기 템플릿은 'url 에 존재하는 id 값으로 백엔드에서 정보를 찾아서 템플릿 엔진에 전달해주는 방법' 으로 설계되었습니다.
 //- 즉, 서버 사이드에서 해당하는 페이지의 데이터 렌더링이 모두 끝난 후 제공됩니다. 
 
-//- title, createdAT, writer, hit,
+//- title, createdAt, writer, hit,
 //- file,
 //- 상세보기전 게시글 주소 (ex - community/board)
 mixin postView(post, referrer)
@@ -135,20 +135,20 @@ mixin postView(post, referrer)
       - const day = now.getDate() >= 10 ? now.getDate() : '0' + now.getDate();
       - const today = `${year}-${month}-${day}`
 
-      - const createdTime = res.createdAt.match(/^\d*-\d*-\d*(?=T)/)[0];
-      - const createdDate = res.createdAt.match(/(?<=T)\d*:\d*:\d*(?=\.)/)[0];
+      - const createdTime = post.createdAt.match(/^\d*-\d*-\d*(?=T)/)[0];
+      - const createdDate = post.createdAt.match(/(?<=T)\d*:\d*:\d*(?=\.)/)[0];
 
       if (createdDate === today) 
-        div.post-view__header__prop.post-view__header__createdAT= createdTime
+        div.post-view__header__prop.post-view__header__createdAt= createdTime
       else
-        div.post-view__header__prop.post-view__header__createdAT= createdDate
+        div.post-view__header__prop.post-view__header__createdAt= createdDate
     |
     |
     // 게시판 글 헤더
     section.post-view__header
-      //- 헤더에 표시될 게시글의 속성 = ['title', 'createdAT', 'writer', 'hit'];
+      //- 헤더에 표시될 게시글의 속성 = ['title', 'createdAt', 'writer', 'hit'];
       div.post-view__header__prop.post-view__header__title= post.title
-      +setTime(post.createdAT)
+      +setTime(post.createdAt)
       div.post-view__header__prop.post-view__header__writer= post.UserId
       div.post-view__header__prop.post-view__header__hit= post.hit || 0
     // 게시판 글 
