@@ -9,7 +9,10 @@
 .sub-contents__content {
   border: none;
 }
-
+.sub-nav__item:nth-child(4) {
+  background-color: $main-color;
+  color: white;
+}
 /* for dev */
 // .sub-contents__content {
 //   border: 1px dotted rgba(gray, 0.3);

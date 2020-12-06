@@ -1,3 +1,7 @@
+/* -- scss default: mixin, veriables 등-- */
+@import '../../common/default/default.scss';
+/* --------------- */
+
 .sub-contents__content {
   border: none;
   display: flex;
@@ -17,4 +21,9 @@
       margin-top: 50px;
     }
   }
+}
+
+.sub-nav__item:nth-child(2) {
+  background-color: $main-color;
+  color: white;
 }

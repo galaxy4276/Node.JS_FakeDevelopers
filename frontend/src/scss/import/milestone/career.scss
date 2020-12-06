@@ -1,3 +1,7 @@
+/* -- scss default: mixin, veriables 등-- */
+@import '../../common/default/default.scss';
+/* --------------- */
+
 .sub-contents__container {
   height: 800px;
   width: inherit;
@@ -5,4 +9,9 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
+}
+
+.sub-nav__item:nth-child(3) {
+  background-color: $main-color;
+  color: white;
 }

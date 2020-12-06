@@ -19,11 +19,11 @@ block content
         .sub-nav__list-wrap
           ul.sub-nav__list
             li.sub-nav__item 
-              a(href="/community/acquisition").sub-nav__link 자격증 취득
+              a(href="/footprint/acquisition").sub-nav__link 자격증 취득
             li.sub-nav__item
-              a(href="/community/awards").sub-nav__link 대회 수상
+              a(href="/footprint/awards").sub-nav__link 대회 수상
             li.sub-nav__item
-              a(href="/community/portfolio").sub-nav__link 포트폴리오
+              a(href="/footprint/portfolio").sub-nav__link 포트폴리오
 
       // 여기서부터 콘텐츠 시작
       .sub-contents
@@ -37,11 +37,11 @@ block content
                   a(href="/").sub-contents__item__link HOME
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="/community/acquisition").sub-contents__item__link 학생 자취록
+                  a(href="/footprint/acquisition").sub-contents__item__link 학생 자취록
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="/community/acquisition").sub-contents__item__link 자격증 취득
+                  a(href="/footprint/acquisition").sub-contents__item__link 자격증 취득
 
           .sub-contents__content
             // 게시판 글 목록
-            +postList(true, 'community/acquisition')
+            +postList(true, 'footprint/acquisition')
