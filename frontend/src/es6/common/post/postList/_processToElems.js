@@ -1,13 +1,13 @@
 import { getFormatDate } from '../../function/_getFormatDate'; // 'yyyy-mm-dd' 형식의 string을 반환하는 함수
 
-const setTimeText = (updatedAt) => {
+const setTimeText = (createdAt) => {
   const today = getFormatDate(new Date());
-  const regDate = getFormatDate(updatedAt);
+  const regDate = getFormatDate(createdAt);
 
   const timeText =
     today === regDate // 글을 쓴 날짜가 오늘이면
-      ? updatedAt.match(/(?<=T).*(?=\.)/)[0] // 시간을 세팅
-      : regDate; // 아니라면 날짜를 세팅
+      ? createdAt.match(/(?<=T).*(?=\.)/)[0] // 시간을 세팅
+      : regDate.match(/(?<=\d{4}-).*/)[0]; // 아니라면 날짜를 세팅
 
   return timeText;
 };
