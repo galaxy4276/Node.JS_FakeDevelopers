@@ -19,22 +19,28 @@ const processToElems = (boardName, dataObj) => {
   const setTime = setTimeText;
 
   const ul = document.createElement('ul');
-  ul.classList.add('index-main__first__list');
+  ul.classList.add('index-main__first-box__list');
 
   const postitems = dataObj.reduce((acc, post) => {
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    const span = document.createElement('span');
     const titleText = post.title;
     const dateText = setTime(post.createdAt);
     const postViewLink = `/${boardName}/${post.id}`;
+
+    const li = document.createElement('li');
+    li.classList.add('index-main__first-box__item');
+
+    const a = document.createElement('a');
+    a.classList.add('index-main__first-box__link');
     a.href = postViewLink;
     a.textContent = titleText;
-    span.textContent = dateText;
+
     li.appendChild(a);
-    a.classList.add('index-main__first__link');
+
+    const span = document.createElement('span');
+    span.classList.add('index-main__first-box__time-txt');
+    span.textContent = dateText;
+
     li.appendChild(span);
-    li.classList.add('index-main__first__item');
 
     acc.push(li);
 
@@ -74,13 +80,17 @@ document.addEventListener(
   'DOMContentLoaded',
   () => {
     const notice = document.querySelector('.index-main__notice');
-    const news = document.querySelector('.index-main__department-news');
+    const board = document.querySelector('.index-main__board');
+    const donation = document.querySelector('.index-main__donation');
 
     // 공지사항 데이터 fetch로 가져와 출력하기
     getPostList(notice, 'community/notice', 5);
 
     // 학과 이야기 데이터 fetch로 가져와 출력하기
-    getPostList(news, 'community/board', 5);
+    getPostList(board, 'community/board', 5);
+
+    // 학과 이야기 데이터 fetch로 가져와 출력하기
+    getPostList(donation, 'community/donation', 5);
   },
   false
 );
