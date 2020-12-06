@@ -9,7 +9,7 @@ import session from 'express-session';
 import passport from 'passport';
 import cors from 'cors';
 import MySQLStore from 'express-mysql-session';
-
+import methodOverride from 'method-override';
 /* --- 개인 라이브러리 관련 모듈 import  --- */
 import connectMaria from './lib/connectMaria';
 import passportConfig from './controllers/passport';
@@ -44,6 +44,7 @@ app.set('views', path.resolve(__dirname, 'public', 'views')); // view 디렉터�
 
 app.use(cors()); // Cross Origin 문제 해결 미들웨어
 app.use(helmet()); // 보안 관련 미들웨어
+app.use(methodOverride('_method'));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev')); // 서버 로깅
