@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 3rem;
 
   .index-main__background {
     width: 100%;
@@ -161,41 +162,78 @@
       }
     }
 
-    .index-main__second {
-      display: flex;
+    &__divide-line {
       width: 100%;
-      background: $main-color--white;
-      margin-top: 20px;
+      height: 0.1rem;
+      background-color: $main-color--white;
+      margin: 1rem 0;
+    }
+
+    .index-main__second {
+      display: grid;
+      grid-template:
+        'box1 box2' 1fr
+        /1fr 1fr;
+      width: 100%;
 
       @media screen and (max-width: 1024px) {
-        .index-main__second {
-          flex-direction: column;
-        }
+        grid-template:
+          'box1' 1fr
+          'box2' 1fr
+          /1fr;
       }
 
       &-title {
-        font-size: 2rem;
+        position: relative;
+        font-size: 1.6rem;
+        letter-spacing: 0.05rem;
+        border-bottom: 1px solid rgba(#ccc, 0.4);
+
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          height: 0.15rem;
+        }
       }
 
       &-box {
-        padding: 40px 45px;
-        width: 100%;
+        display: grid;
+        width: 99.5%;
+        grid-template-rows: [title]3rem [posts]1fr;
+        padding: 2.4rem;
+        height: 18rem;
       }
 
       &__cell-wrap {
-        padding: 40px 0px;
       }
 
-      &__content-item:nth-of-type(2) {
-        margin: 15px 0;
+      &__content-list {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+      }
+
+      &__content-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+        padding-left: 0.1rem;
       }
 
       .index-main__academic-info {
         grid-area: box1;
+        justify-self: start;
+        background: #e3eef9;
       }
 
       .index-main__student-life {
         grid-area: box2;
+        justify-self: end;
+        background: #fefefe;
+        border: 0.2px solid #ddd;
       }
     }
   }

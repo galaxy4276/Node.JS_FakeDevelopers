@@ -1,20 +1,20 @@
 /* -- base.scss & default.scss -- */
 // base: css reset
-@import "./default/base";
+@import './default/base';
 
 // scss default: mixin, veriables 등
-@import "./default/default.scss";
+@import './default/default.scss';
 /* ---------- */
 
 /* common templates */
-@import "./templates/header";
-@import "./templates/sub-main";
-@import "./templates/footer";
-@import "./templates/sidebar";
+@import './templates/header';
+@import './templates/sub-main';
+@import './templates/footer';
+@import './templates/sidebar';
 
 /* common auth */
-@import "./auth/login";
-@import "./auth/join";
+@import './auth/login';
+@import './auth/join';
 
 /* 개발자 설정 */
 * {
