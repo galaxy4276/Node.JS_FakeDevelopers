@@ -11,20 +11,21 @@ const readPost = (req, res, next) => {
         .match(/\/[a-z]+/)
         .join('');
 
-      const referrer = req.originalUrl
-        .match(/\/[a-z]+/g)
-        .join('');
-
       const post = await schema.findOne({
         where: { id },
         include: [{
           model: Image,
           attributes: ['src'],
-        }]
+        }, {
+          model: Inquiry,
+          attributes: ['count'],
+        }],
       });
 
+      console.log(JSON.stringify(post));
+
       // req.originalUrl 로 대체가 가능해 보임
-      res.render(`import${redirectUrl}/postView`, { post, referrer });
+      res.render(`import${redirectUrl}/postView`, { post, referrer: req.originalUrl });
     } catch (err) {
       console.log('acquisitionPost Error');
       console.error(err);

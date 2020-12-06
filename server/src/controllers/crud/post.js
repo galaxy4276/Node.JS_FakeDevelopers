@@ -4,7 +4,7 @@ import path from 'path';
 import fs from 'fs'
 // import url from 'url';
 
-const { Image } = sequelize;
+const { Image, Inquiry } = sequelize;
 
 export const uploads = multer({
   storage: multer.diskStorage({
@@ -47,6 +47,10 @@ const postBoard = (req, res, next) => {
         content: paragraph,
         UserId: req.user.id,
       });
+
+      const inquiry = await Inquiry.create({});
+
+      await post.addInquiry(inquiry);
 
       // FIX: 개발 보류
       if (req.files.length > 1) {
