@@ -92,7 +92,7 @@
       grid-template:
         'number title title title' 1.5rem
         'number writer hit regTime' 1.5rem
-        / 5rem fit-content(100%) fit-content(100%) fit-content(100%);
+        / 5rem 5rem 3rem 1fr;
       gap: 0.6rem;
 
       &:nth-child(odd) {
@@ -104,8 +104,14 @@
         }
       }
 
+      &__writer,
+      &__hit,
+      &__createdAt {
+        justify-content: flex-start;
+      }
+
       &__title {
-        font-size: 1.2rem;
+        font-size: 1.35rem;
       }
     }
   }
