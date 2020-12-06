@@ -4,6 +4,11 @@ import { createBulkBoard } from '../../lib/createBulkData';
 import  getPostsList from '../../controllers/pagination/getPostsList';
 import getIdx from '../../controllers/pagination/getPageIdx';
 import sequelize from '../../models';
+import deletePost from "../../controllers/crud/delete";
+import updatePost from "../../controllers/crud/update";
+import readPost from "../../controllers/crud/read";
+import { getRenderCreate } from "../../controllers/post";
+
 const { 
   Certpost,
   Award,
@@ -14,63 +19,94 @@ const {
 const footprint = require('express').Router();
 
 // 자격증 취득 ( Certpost )
+footprint.get('/acquisition', (req, res) => {
+  res.render('import/footprint/acquisition', {});
+});
+footprint.post('/acquisition/create', uploads.array('file'),
+  (req, res, next) => {
+    postBoard(req, res, next)(Certpost);
+  });
+footprint.get('/acquisition/create', getRenderCreate);
 footprint.get('/acquisition/api/index', (req, res, next) => {
   getIdx(req, res, next)(Certpost);
-  res.redirect('/footprint/acquisition');
 });
 footprint.get('/acquisition/api/create-bulk', (req, res, next) => {
   createBulkBoard(req, next)(Certpost);
   res.redirect('/footprint/acquisition');
 });
-footprint.get('/acquisition/api', (req, res, next) => {
+footprint.get('\/acquisition\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Certpost);
 });
-footprint.get('/acquisition', (req, res) => {
-  res.render('import/footprint/acquisition', {});
+footprint.delete('/acquisition/:id([0-9]+)/delete', (req, res, next) => {
+  deletePost(req, res, next)(Certpost);
 });
-footprint.get('/acquisition/post', (req, res) => {
-  res.render('import/footprint/create.pug');
+footprint.patch('/acquisition/:id([0-9]+)/update', (req, res, next) => {
+  updatePost(req, res, next)(Certpost);
 });
-footprint.post('/acquisition/post',
-  uploads.array('file'),
-  (req, res, next) => {
-    postBoard(req, res, next)(Certpost);
-  }
-);
+footprint.get('/acquisition/:id([0-9]+)', (req, res, next) => {
+  readPost(req, res, next)(Certpost);
+});
 
 // 수상 내역 ( Award )
+footprint.get('/awards', (req, res) => {
+  res.render('import/footprint/awards', {});
+});
+footprint.post('/awards/create', uploads.array('file'),
+  (req, res, next) => {
+    postBoard(req, res, next)(Award);
+  });
+footprint.get('/awards/create', getRenderCreate);
 footprint.get('/awards/api/index', (req, res, next) => {
   getIdx(req, res, next)(Award);
-  res.redirect('/footprint/acquisition');
 });
 footprint.get('/awards/api/create-bulk', (req, res, next) => {
   createBulkBoard(req, next)(Award);
   res.redirect('/footprint/awards');
 });
-footprint.get('/awards/api', (req, res, next) => {
+footprint.get('\/awards\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Award);
 });
-footprint.get('/awards', (req, res) => {
-  res.render('import/footprint/awards', {});
+footprint.delete('/awards/:id([0-9]+)/delete', (req, res, next) => {
+  deletePost(req, res, next)(Award);
+});
+footprint.patch('/awards/:id([0-9]+)/update', (req, res, next) => {
+  updatePost(req, res, next)(Award);
+});
+footprint.get('/awards/:id([0-9]+)', (req, res, next) => {
+  readPost(req, res, next)(Award);
 });
 
 // 포트폴리오 ( Portfolio )
+footprint.get('/portfolio', (req, res) => {
+  res.render('import/footprint/portfolio', {});
+});
+footprint.post('/portfolio/create', uploads.array('file'),
+  (req, res, next) => {
+    postBoard(req, res, next)(Portfolio);
+  });
+footprint.get('/portfolio/create', getRenderCreate);
 footprint.get('/portfolio/api/index', (req, res, next) => {
   getIdx(req, res, next)(Portfolio);
-  res.redirect('/footprint/acquisition');
 });
 footprint.get('/portfolio/api/create-bulk', (req, res, next) => {
   createBulkBoard(req, next)(Portfolio);
   res.redirect('/footprint/portfolio');
 });
-footprint.get('/portfolio/api', (req, res, next) => {
+footprint.get('\/portfolio\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Portfolio);
-});
-footprint.get('/portfolio', (req, res) => {
-  res.render('import/footprint/portfolio', {});
 });
 footprint.get('/portfolio/post', (req, res) => {
   res.render('import/footprint/post', {});
 });
+footprint.delete('/portfolio/:id([0-9]+)/delete', (req, res, next) => {
+  deletePost(req, res, next)(Portfolio);
+});
+footprint.patch('/portfolio/:id([0-9]+)/update', (req, res, next) => {
+  updatePost(req, res, next)(Portfolio);
+});
+footprint.get('/portfolio/:id([0-9]+)', (req, res, next) => {
+  readPost(req, res, next)(Portfolio);
+});
+
 
 export default footprint;
