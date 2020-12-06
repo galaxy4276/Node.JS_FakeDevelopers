@@ -3,6 +3,10 @@
 /* --------------- */
 
 .sub-contents {
+  &__container-wrap {
+    border: 0.5px solid #ccc;
+  }
+
   nav {
     font-size: 1.25em;
     background-color: #149ab8;
@@ -17,8 +21,8 @@
       display: flex;
       width: 100%;
       height: 100%;
-      border-top: 1px solid #aaa;
-      // border-right: 1px solid #aaa;
+      border-top: 1px solid #ccc;
+      // border-right: 1px solid #ccc;
       justify-content: center;
       align-items: center;
     }
@@ -34,7 +38,7 @@
       justify-content: flex-start;
       align-items: center;
       padding: 10px;
-      border-top: 1px solid #aaa;
+      border-top: 1px solid #ccc;
       padding: 15px;
     }
 
@@ -46,13 +50,14 @@
   &__container-second {
     display: grid;
     grid-template:
-      'nav-first content-first content-second content-third' 1fr
-      'nav-second content-fourth content-fifth content-sixth' 1fr
-      'nav-second content-seventh content-eighth content-ninth' 1fr / 0.75fr 1fr 1fr 1fr;
+      'nav-first content-first content-second content-third' minmax(3rem, 1fr)
+      'nav-second content-fourth content-fifth content-sixth' minmax(3rem, 1fr)
+      'nav-second content-seventh content-eighth content-ninth' minmax(3rem, 1fr)
+      / 0.75fr 1fr 1fr 1fr;
 
     div {
-      border-top: 1px solid #aaa;
-      border-right: 1px solid #aaa;
+      border-top: 1px solid #ccc;
+      border-right: 1px solid #ccc;
       display: flex;
       width: 100%;
       height: 100%;
@@ -69,8 +74,8 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    border-top: 1px solid #aaa;
-    border-right: 1px solid #aaa;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
   }
 
   .nav-second {
@@ -80,8 +85,8 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    border-right: 1px solid #aaa;
-    border-top: 1px solid #aaa;
+    border-right: 1px solid #ccc;
+    border-top: 1px solid #ccc;
   }
 
   .content-first {
