@@ -1,75 +1,86 @@
 // function
+import requestURL from '../common/post/postList/_requestURL';
+import defaultFetch from '../common/post/postList/_defaultFetch';
 import { getFormatDate } from '../common/function/_getFormatDate';
 
-const notice = document.querySelector('.index-main__notice');
-const news = document.querySelector('.index-main__department-news');
+const setTimeText = (createdAt) => {
+  const today = getFormatDate(new Date());
+  const regDate = getFormatDate(createdAt);
 
-// template
-const createUl = (res, div) => {
+  const timeText =
+    today === regDate // 글을 쓴 날짜가 오늘이면
+      ? createdAt.match(/(?<=T).*(?=\.)/)[0] // 시간을 세팅
+      : regDate.match(/(?<=\d{4}-).*/)[0]; // 아니라면 날짜를 세팅
+
+  return timeText;
+};
+
+const processToElems = (boardName, dataObj) => {
+  const setTime = setTimeText;
+
   const ul = document.createElement('ul');
-  for (let i = 0; i < res.length; i++) {
+  ul.classList.add('index-main__first__list');
+
+  const postitems = dataObj.reduce((acc, post) => {
     const li = document.createElement('li');
     const a = document.createElement('a');
     const span = document.createElement('span');
-    const titleText = res[i].title;
-    const dateText = res[i].date;
-    a.href = '#';
+    const titleText = post.title;
+    const dateText = setTime(post.createdAt);
+    const postViewLink = `/${boardName}/${post.id}`;
+    a.href = postViewLink;
     a.textContent = titleText;
     span.textContent = dateText;
     li.appendChild(a);
     a.classList.add('index-main__first__link');
     li.appendChild(span);
     li.classList.add('index-main__first__item');
-    ul.appendChild(li);
-    ul.classList.add('index-main__first__list');
-  }
-  div.appendChild(ul);
+
+    acc.push(li);
+
+    return acc;
+  }, []);
+
+  ul.append(...postitems);
+
+  const DOMfragement = new DocumentFragment();
+  DOMfragement.append(ul);
+
+  return DOMfragement;
 };
 
-const fetchIndexPosts = (url, parentElem) => {
-  const requestUrl =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:8001' + url.match(/(?<=\.club).*$/)
-      : url;
+const getPostList = (parentElem, boardName, limit = 5, page = 1) => {
+  const path = `/${boardName}/api?limit=${limit}&page=${page}`;
 
-  return fetch(requestUrl, {
-    method: 'GET',
-    cache: 'no-cache',
-    mode: process.env.NODE_ENV === 'development' ? 'cors' : 'same-origin',
-    credentials: process.env.NODE_ENV === 'development' ? 'same-origin' : 'include', // 조회수 검증을 위한 쿠키 허용
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((res) => {
-      // 데이터 받아오기
-      return res.json();
-    })
-    .then((res) => {
-      // 받아온 데이터를 최신순 5개로 정렬
-      return res.splice(-5).reverse();
-    })
-    .then((res) => {
-      // 정렬된 데이터 다듬어진 객체로 변환
-      return res.map((item) => {
-        return { title: item.title, date: getFormatDate(item.updatedAt) };
-      });
-    })
-    .then((res) => {
-      // 리스트 생성
-      createUl(res, parentElem);
-    })
+  requestURL.path = path;
+
+  // test
+  const testLog = (res) => {
+    if (process.env.NODE_ENV !== 'development') return;
+
+    console.log(`요청 API => ${path}`);
+
+    return res;
+  };
+
+  return defaultFetch(requestURL.url)
+    .then((res) => testLog(res) /* Just log => data not change */)
+    .then((res) => processToElems(boardName, res.postsList))
+    .then((DOMfragment) => parentElem.appendChild(DOMfragment))
     .catch(console.error);
 };
 
 document.addEventListener(
   'DOMContentLoaded',
   () => {
+    const notice = document.querySelector('.index-main__notice');
+    const news = document.querySelector('.index-main__department-news');
+
     // 공지사항 데이터 fetch로 가져와 출력하기
-    fetchIndexPosts('https://www.ddccomputer.club/announcement', notice);
+    getPostList(notice, 'community/notice', 5);
 
     // 학과 이야기 데이터 fetch로 가져와 출력하기
-    fetchIndexPosts('https://www.ddccomputer.club/community', news);
+    getPostList(news, 'community/board', 5);
   },
   false
 );

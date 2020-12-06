@@ -1,3 +1,7 @@
+/* -- scss default: mixin, veriables 등-- */
+@import '../../common/default/default.scss';
+/* --------------- */
+
 .sub-contents {
   nav {
     font-size: 1.25em;
@@ -116,4 +120,9 @@
     grid-area: content-ninth;
     border-right: none;
   }
+}
+
+.sub-nav__item:nth-child(1) {
+  background-color: $main-color;
+  color: white;
 }

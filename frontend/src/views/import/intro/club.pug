@@ -15,15 +15,17 @@ block content
       // 여기서부터 네비게이션 바 시작
       .sub-nav
         .sub-nav__title-wrap
-          h3.sub-nav__title 상위 주제
+          h3.sub-nav__title 학과소개
         .sub-nav__list-wrap
           ul.sub-nav__list
             li.sub-nav__item 
-              a(href="/milestone/info").sub-nav__link 학과소개
+              a(href="/intro/info").sub-nav__link 학과소개
             li.sub-nav__item
-              a(href="/milestone/member").sub-nav__link 구성원
+              a(href="/intro/member").sub-nav__link 구성원
             li.sub-nav__item
-              a(href="/milestone/env").sub-nav__link 교육환경
+              a(href="/intro/env").sub-nav__link 교육 환경
+            li.sub-nav__item
+              a(href="/intro/club").sub-nav__link 동아리
 
       // 여기서부터 콘텐츠 시작
       .sub-contents
@@ -35,12 +37,12 @@ block content
                 li.sub-contents__item
                   +sub-contents__item__icon("home")
                   a(href="/").sub-contents__item__link HOME
+                  +sub-contents__item__icon("chevronForward") 
+                li.sub-contents__item
+                  a(href="/intro/info").sub-contents__item__link 학과소개
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="#").sub-contents__item__link 학과소개
-                  +sub-contents__item__icon("chevronForward")
-                li.sub-contents__item
-                  a(href="#").sub-contents__item__link 동아리
+                  a(href="/intro/club").sub-contents__item__link 동아리
 
           .sub-contents__content
             h1.sub-content__title node
