@@ -139,14 +139,13 @@ mixin postView(post, referrer)
       - const createdAtYear =  createdAt.getFullYear();
       - const createdAtMonth = createdAt.getMonth() + 1 >= 10 ? createdAt.getMonth() +1 : '0' + (createdAt.getMonth() + 1) ;
       - const createdAtDay = createdAt.getDate() >= 10 ? createdAt.getDate() : '0' + createdAt.getDate();
-      - const createdDate = `${createdAtYear}-${createdAtMonth}-${createdAtDay}`
 
+      - const createdDate = `${createdAtYear}-${createdAtMonth}-${createdAtDay}`
       - const createdTime = createdAt.toString().match(/\d*:\d*:\d*(?=\sGMT)/)[0];
 
-      if (createdDate === today)
-        span.post-view__header__prop.post-view__header__createdAt= createdTime
-      else
-        span.post-view__header__prop.post-view__header__createdAt= createdDate
+      - const displayedTime = createdDate === today ? createdTime : createdDate;
+
+        span.post-view__header__prop.post-view__header__createdAt= displayedTime
     |
     |
     // 게시판 글 헤더
