@@ -43,7 +43,7 @@
   }
 }
 
-@mixin btn-retangle($padding, $istextShadow, $isGrayscale) {
+@mixin btn-rectangle($padding, $istextShadow, $isGrayscale) {
   @if $padding {
     padding: $padding;
   } @else {

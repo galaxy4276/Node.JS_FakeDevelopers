@@ -103,7 +103,7 @@
     }
 
     &__join-btn {
-      @include btn-retangle(1rem 0, true, true);
+      @include btn-rectangle(1rem 0, true, true);
       text-align: center;
       background-color: $main-color--silver;
       margin: 1.6rem 0 0.8rem 0;

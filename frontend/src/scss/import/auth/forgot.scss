@@ -92,7 +92,7 @@
     }
 
     &__btn {
-      @include btn-retangle(1rem 0, true, true);
+      @include btn-rectangle(1rem 0, true, true);
       position: relative;
       top: 1rem;
       width: 100%;

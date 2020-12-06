@@ -103,7 +103,7 @@
     }
 
     &__login-btn {
-      @include btn-retangle(1rem 0, true, true);
+      @include btn-rectangle(1rem 0, true, true);
       cursor: pointer;
       margin: 1.2rem 0 1rem 0;
       background-color: $main-color;
@@ -111,7 +111,7 @@
     }
 
     &__join-open-btn {
-      @include btn-retangle(1rem 0, true, true);
+      @include btn-rectangle(1rem 0, true, true);
       text-align: center;
       background-color: $main-color--silver;
       margin-bottom: 1rem;
