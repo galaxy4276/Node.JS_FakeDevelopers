@@ -1,11 +1,11 @@
 const deletePost = (req, res, next) => {
+  const { id } = req.params;
   const redirectUrl = '/' + req.originalUrl
     .match(/[a-z]+\/[a-z]+/g)
     .join('');
 
   return async schema => {
     try {
-      const { id } = req.params;
       const post = await schema.findOne({
         where: { id },
       });
