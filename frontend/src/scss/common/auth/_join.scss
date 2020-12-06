@@ -74,7 +74,7 @@
       }
 
       &:valid ~ &-check::before {
-        content: "✓";
+        content: '✓';
         color: $auth__font-color--before;
       }
 
