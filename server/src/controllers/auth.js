@@ -104,7 +104,7 @@ export const forgotHash = async (req, res, next) => {
   const { email } = req.body;
   try {
     const user = await User.findOne({ where: { email }});
-    console.log(user);
+
     if (user) {
       const uuid = uuidv4();
       await User.update({ hash: uuid }, { where: { email }});

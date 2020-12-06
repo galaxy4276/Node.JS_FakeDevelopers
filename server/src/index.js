@@ -101,7 +101,7 @@ app.get('/', (req, res, next) => {
   console.log('session');
   console.table(req.session);
   console.log('req.user');
-  console.log(req.user || '현재 로그인 유저 없음');
+  console.log(req.user.id || '현재 로그인 유저 없음');
   next();
 }); // 일반 테스트용 미들웨어 ( 삭졔 예정 )
 
