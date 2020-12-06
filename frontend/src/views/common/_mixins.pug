@@ -126,8 +126,22 @@ mixin postList(usePostWrite = false, boardName)
 //- title, createdAT, writer, hit,
 //- file,
 //- 상세보기전 게시글 주소 (ex - community/board)
-mixin postView(post)
+mixin postView(post, referrer)
   article.post-view
+    mixin setTime(createdAt)
+      - const now = new Date();
+      - const year =  now.getFullYear();
+      - const month = now.getMonth() + 1 >= 10 ? now.getMonth() +1 : '0' + (now.getMonth() + 1) ;
+      - const day = now.getDate() >= 10 ? now.getDate() : '0' + now.getDate();
+      - const today = `${year}-${month}-${day}`
+
+      - const createdTime = res.createdAt.match(/^\d*-\d*-\d*(?=T)/)[0];
+      - const createdDate = res.createdAt.match(/(?<=T)\d*:\d*:\d*(?=\.)/)[0];
+
+      if (createdDate === today) 
+        div.post-view__header__prop.post-view__header__createdAT= createdTime
+      else
+        div.post-view__header__prop.post-view__header__createdAT= createdDate
     |
     |
     // 게시판 글 헤더
@@ -140,9 +154,20 @@ mixin postView(post)
     // 첨부 파일
     section.post-view__file
       a.post-view__file__link 
-    // 게시판 글 
+      +setTime(post.createdAt)
+      div.post-view__header__prop.post-view__header__writer= post.UserId
+      div.post-view__header__prop.post-view__header__hit= post.hit || 0
+    // 게시판 글
     //- (컨텐츠 어떻게 던져주나 보고 그다음 가공 예정)
-    section.post-view__content= post.content
+    section.post-view__content
+      // 첨부 파일
+      section.post-view__content__images
+        each image in post.Images
+          - const src = `https://www.ddccomputer.club/uploads/${image.src}`
+          img(src= src).post-view__content__image
+      section.post-view__content__txt= post.content
     // 게시판 글 푸터
-    //- (상세보기전 게시글 주소 받아서 postList 삽입 예정)
-    section.post-view__footer= post.boardName
+    section.post-view__footer
+      -const boardPath = referrer.match(/^.*(?=\/\d)/)[0];
+      a(href= boardPath).post-view__footer__board 목록
+    //- (위에서 받은 boardPath로 postList 삽입 예정)
