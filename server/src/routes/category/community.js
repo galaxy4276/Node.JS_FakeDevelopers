@@ -14,6 +14,8 @@ import getIdx from '../../controllers/pagination/getPageIdx';
 const {
   Community,
   Donate,
+  Suggest,
+  Notice
 } = sequelize;
 
 // Router & Controllers ( 차 후 분리 필요 )
@@ -26,7 +28,6 @@ const {
 // null of code
 
 // <-- </test> -->
-
 community.get('/board', (req, res) => {
   res.render('import/community/board', {});
 });
@@ -37,56 +38,111 @@ community.post('/board/create', uploads.array('file'), (req, res, next) => {
 community.get('/board/create', getRenderCreate);
 community.get('/board/api/index', (req, res, next) => {
   getIdx(req, res, next)(Community);
-  console.log('get /board/api/index');
 });
 community.get('/board/api/create-bulk', (req, res, next) => {
   createBulkBoard(req, next)(Community);
   console.log('get /board/api/create-bulk');
   res.redirect('/community/board');
 });
-community.get('/board/:id([0-9]+)', (req, res, next) => {
-  readPost(req, res, next)(Community);
-  console.log('/board/:id([0-9]+) GET');
-});
 community.get('^\/board\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Community);
   console.log('get /board/api');
 });
-// DELETE
-community.delete('/board/:id/delete', (req, res, next) => {
+community.delete('/board/:id([0-9]+)/delete', (req, res, next) => {
   deletePost(req, res, next)(Community);
 });
-
-// PATCH
-community.patch('/board/:id/update', (req, res, next) => {
+community.patch('/board/:id([0-9]+)/update', (req, res, next) => {
   updatePost(req, res, next)(Community);
+});
+community.get('/board/:id([0-9]+)', (req, res, next) => {
+  readPost(req, res, next)(Community);
+  console.log('/board/:id([0-9]+) GET');
 });
 
 // 후배 양도 ( Donate )
+community.get('/donation', (req, res) => {
+  res.render('import/community/donation', {});
+});
+community.post('/donation/create', uploads.array('file'), (req, res, next) => {
+  postBoard(req, res, next)(Donate);
+  console.log('create /donation/create');
+});
 community.get('/donation/create', getRenderCreate);
 community.get('/donation/api/index', (req, res, next) => {
   getIdx(req, res, next)(Donate);
-  res.redirect('/footprint/acquisition');
 });
 community.get('/donation/api/create-bulk', (req, res, next) => {
   createBulkBoard(req, next)(Donate);
   res.redirect('/community/donation');
 });
-community.get('/donation/api', (req, res, next) => {
+community.get('\/donation\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Donate);
 });
-community.get('/donation', (req, res) => {
-  res.render('import/community/donation', {});
+community.delete('/donation/:id([0-9]+)/delete', (req, res, next) => {
+  deletePost(req, res, next)(Donate);
 });
+community.patch('/donation/:id([0-9]+)/update', (req, res, next) => {
+  updatePost(req, res, next)(Donate);
+});
+community.get('/donation/:id([0-9]+)', (req, res, next) => {
+  readPost(req, res, next)(Donate);
+});
+
 
 // 개선 사항 제안 ( Suggest ) 
 community.get('/suggestion', (req, res) => {
   res.render('import/community/suggestion', {});
 });
+community.post('/suggestion/create', uploads.array('file'), (req, res, next) => {
+  postBoard(req, res, next)(Suggest);
+});
+community.get('/suggestion/create', getRenderCreate);
+community.get('/suggestion/api/index', (req, res, next) => {
+  getIdx(req, res, next)(Suggest);
+});
+community.get('/suggestion/api/create-bulk', (req, res, next) => {
+  createBulkBoard(req, next)(Suggest);
+  res.redirect('/community/suggestion');
+});
+community.get('\/suggestion\/api$', (req, res, next) => {
+  getPostsList(req, res, next)(Suggest);
+});
+community.delete('/suggestion/:id([0-9]+)/delete', (req, res, next) => {
+  deletePost(req, res, next)(Suggest);
+});
+community.patch('/suggestion/:id([0-9]+)/update', (req, res, next) => {
+  updatePost(req, res, next)(Suggest);
+});
+community.get('/suggestion/:id([0-9]+)', (req, res, next) => {
+  readPost(req, res, next)(Suggest);
+});
 
 // 공지 사항 ( Notice )
 community.get('/notice', (req, res) => {
   res.render('import/community/notice', {});
+});
+community.post('/notice/create', uploads.array('file'), (req, res, next) => {
+  postBoard(req, res, next)(Notice);
+});
+community.get('/notice/create', getRenderCreate);
+community.get('/notice/api/index', (req, res, next) => {
+  getIdx(req, res, next)(Notice);
+});
+community.get('/notice/api/create-bulk', (req, res, next) => {
+  createBulkBoard(req, next)(Notice);
+  res.redirect('/community/notice');
+});
+community.get('\/notice\/api$', (req, res, next) => {
+  getPostsList(req, res, next)(Notice);
+});
+community.delete('/notice/:id([0-9]+)/delete', (req, res, next) => {
+  deletePost(req, res, next)(Notice);
+});
+community.patch('/notice/:id([0-9]+)/update', (req, res, next) => {
+  updatePost(req, res, next)(Notice);
+});
+community.get('/notice/:id([0-9]+)', (req, res, next) => {
+  readPost(req, res, next)(Notice);
 });
 
 export default community;

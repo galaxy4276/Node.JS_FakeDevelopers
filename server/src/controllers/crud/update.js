@@ -1,27 +1,29 @@
-const updatePost = (req, res, next) => async schema => {
-  try {
-    const { id } = req.params;
-    const { title, content } = req.body;
+const updatePost = (req, res, next) => {
+  return async schema => {
+    try {
+      const {id} = req.params;
+      const {title, content} = req.body;
 
-    const redirectUrl = req.originalUrl
-      .match(/[a-z]+\/[a-z]+/g)
-      .join('');
+      const redirectUrl = req.originalUrl
+        .match(/[a-z]+\/[a-z]+/g)
+        .join('');
 
-    const post = await schema.findOne({
-      where: { id },
-      // need add Comments
-    });
+      const post = await schema.findOne({
+        where: {id},
+        // need add Comments
+      });
 
-    post.title = title;
-    post.content = content;
-    await post.save();
+      post.title = title;
+      post.content = content;
+      await post.save();
 
-    res.redirect(redirectUrl);
-  } catch(err) {
-    console.log('acquisitionPost Error');
-    console.error(err);
-    next(err);
-  }
+      res.redirect(redirectUrl);
+    } catch (err) {
+      console.log('acquisitionPost Error');
+      console.error(err);
+      next(err);
+    }
+  };
 }
 
 export default updatePost;
