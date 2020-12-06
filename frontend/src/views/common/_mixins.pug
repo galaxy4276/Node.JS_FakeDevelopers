@@ -163,5 +163,5 @@ mixin postView(post, referrer)
     // 게시판 글 푸터
     section.post-view__footer
       -const boardPath = referrer.match(/^.*(?=\/\d)/)[0];
-      a(href= boardPath).post-view__footer__board
+      a(href= boardPath).post-view__footer__board 목록
     //- (위에서 받은 boardPath로 postList 삽입 예정)
