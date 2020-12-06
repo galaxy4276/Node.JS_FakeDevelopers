@@ -1,6 +1,27 @@
 import sequelize from '../../models';
 const { Inquiry, Image } = sequelize;
 
+const inquiryPost = page => {
+  switch (page) {
+    case 'board':
+      return 'CommunityId'; break;
+    case 'donation':
+      return 'DonatePostId'; break;
+    case 'suggestion':
+      return 'SuggestPostId'; break;
+    case 'notice':
+      return 'NoticeId'; break;
+    case 'acquisition':
+      return 'CertPostId'; break;
+    case 'awards':
+      return 'AwardPostId'; break;
+    case 'portfolio':
+      return 'PortfolioPostId'; break;
+    default:
+      return null;
+  }
+}
+
 const readPost = (req, res, next) => {
   return async schema => {
     const { id } = req.params;
@@ -9,6 +30,11 @@ const readPost = (req, res, next) => {
       .match(/\/[a-z]+/)
       .join('');
 
+    const pageUrl = req.originalUrl
+      .match(/(?<=\/.*\/)[a-z]+/)
+      .join('');
+
+    const inquiryKey = inquiryPost(pageUrl);
     try {
       const post = await schema.findOne({
         where: { id },
@@ -20,15 +46,20 @@ const readPost = (req, res, next) => {
           attributes: ['count'],
         }],
       });
-      post.Inquiries[0].dataValues.count += 1;
+      const inquiry = await Inquiry.findOne({
+        where: { [inquiryKey]: id }
+      });
+      await Inquiry.update({ count: inquiry.dataValues.count + 1}, {
+        where: { [inquiryKey]: id },
+      });
 
-      await post.save();
       console.log('db inquries updated!');
 
       // req.originalUrl 로 대체가 가능해 보임
       res.render(`import${redirectUrl}/postView`, {
         post,
-        referrer: req.originalUrl
+        referrer: req.originalUrl,
+        user: req.user.id || 'Anonymous',
       });
 
     } catch (err) {
