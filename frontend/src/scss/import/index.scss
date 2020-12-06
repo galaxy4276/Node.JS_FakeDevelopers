@@ -21,16 +21,24 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+
+    @media screen and (max-width: 1335px) {
+      height: 65vh;
+    }
   }
 
   .index-main__content {
-    margin-top: 60vh;
     display: flex;
     width: 90%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: $main-color--black;
+    margin-top: 60vh;
+
+    @media screen and (max-width: 1335px) {
+      margin-top: 40vh;
+    }
 
     .index-main__first {
       position: relative;
@@ -159,6 +167,12 @@
       background: $main-color--white;
       margin-top: 20px;
 
+      @media screen and (max-width: 1024px) {
+        .index-main__second {
+          flex-direction: column;
+        }
+      }
+
       &-title {
         font-size: 2rem;
       }
@@ -184,11 +198,5 @@
         grid-area: box2;
       }
     }
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .index-main__second {
-    flex-direction: column;
   }
 }
