@@ -15,18 +15,19 @@ function toggleDropdown(e) {
   if (e.target.tagName === 'A') return; // 드롭다운 링크들이라면 종료
 
   const allTitles = Array.from(sideList.children);
+  const currTitle = e.target.closest('li');
+  const currInnerList = currTitle.querySelector('.sidebar__inner-list');
 
   allTitles.forEach((title) => {
+    // 현재 클릭한 타이틀을 제외한 다른 타이틀의 드롭다운 모두 접기
+    if (title === currTitle) return;
     const innerList = title.querySelector('.sidebar__inner-list');
     title.classList.remove('sidebar__btn--active');
     innerList.classList.remove('sidebar__inner-list--clicked');
   });
 
-  const currTitle = e.target.closest('li');
-  const currInnerList = currTitle.querySelector('.sidebar__inner-list');
-
-  currTitle.classList.add('sidebar__btn--active');
-  currInnerList.classList.add('sidebar__inner-list--clicked');
+  currTitle.classList.toggle('sidebar__btn--active');
+  currInnerList.classList.toggle('sidebar__inner-list--clicked');
 }
 
 function toggleSideBar() {
