@@ -4,7 +4,7 @@ import postList from '../../common/post/postList/postList';
 /* Constant */
 const post = {
   parentElem: document.querySelector('.post-list__posts'),
-  path: 'community/portfolio',
+  path: 'footprint/portfolio',
   limit: 15,
 };
 
