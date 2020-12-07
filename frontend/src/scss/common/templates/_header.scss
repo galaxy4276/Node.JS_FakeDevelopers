@@ -14,6 +14,14 @@
   font-weight: bold;
   letter-spacing: -1px;
 
+  .header-logo__icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    color: white;
+  }
+
   &-logo {
     width: 160px;
     height: 100%;
