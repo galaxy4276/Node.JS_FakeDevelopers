@@ -55,11 +55,12 @@ const readPost = (req, res, next) => {
 
       console.log('db inquries updated!');
 
+      const user = req.user?.id || undefined;
       // req.originalUrl 로 대체가 가능해 보임
       res.render(`import${redirectUrl}/postView`, {
         post,
         referrer: req.originalUrl,
-        user: req.user.id || 'Anonymous',
+        user,
       });
 
     } catch (err) {

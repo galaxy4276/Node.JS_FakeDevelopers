@@ -94,14 +94,12 @@ app.use(passport.initialize()); // 유저 데이터 요청으로부터 serialize
 app.use(passport.session()); // passport가 세션정보에 접근할 수 있도록 하는 미들웨어
 app.use(sharePug);
 
-/* 라우터 미들웨어들 */
+/* 라우터 미들웨어들 */ 
 app.get('/', (req, res, next) => {
   console.log('cookie');
   console.table(req.cookies);
   console.log('session');
   console.table(req.session);
-  console.log('req.user');
-  console.log(req.user.id || '현재 로그인 유저 없음');
   next();
 }); // 일반 테스트용 미들웨어 ( 삭졔 예정 )
 
