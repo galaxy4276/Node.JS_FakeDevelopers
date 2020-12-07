@@ -153,7 +153,7 @@ mixin postView(post, referrer)
       div.post-view__header__title= post.title
       +setTime(post.createdAt)
       div.post-view__header__prop.post-view__header__writer= post.UserId
-      div.post-view__header__prop.post-view__header__hit= 0
+      div.post-view__header__prop.post-view__header__hit= post.Inquiries[0].count
     // 게시판 글
     //- (컨텐츠 어떻게 던져주나 보고 그다음 가공 예정)
     section.post-view__content
