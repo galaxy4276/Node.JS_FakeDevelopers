@@ -16,24 +16,26 @@
 
   &__logo {
     display: flex;
-    flex-direction: column;
     position: absolute;
-    left: 5rem;
+    left: 1.8rem;
     top: 55%;
     transform: translateY(-50%);
     width: fit-content;
     font-size: 1rem;
 
     &__txt {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       letter-spacing: 0.06rem;
       text-shadow: $text-shadow--black;
 
-      &:nth-of-type(1) {
+      & > :nth-of-type(1) {
         color: rgba($main-color--silver, 0.9);
         font-size: 0.8em;
       }
 
-      &:nth-of-type(2) {
+      & > :nth-of-type(2) {
         color: rgba($main-color--white, 0.9);
         font-size: 1.3em;
         line-height: 1.3em;
@@ -41,10 +43,9 @@
     }
 
     &__icon {
-      position: absolute;
-      left: -4.1rem;
-      top: -1.3rem;
-      z-index: -1;
+      position: relative;
+      top: -0.5rem;
+      left: -0.4rem;
       transform: rotateZ(-5deg);
       width: 3.8rem;
       height: 3.8rem;
