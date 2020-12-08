@@ -48,6 +48,15 @@
           stroke-width: 40;
         }
       }
+
+      &:hover,
+      &:focus {
+        svg {
+          path {
+            stroke-width: 60;
+          }
+        }
+      }
     }
 
     &__logo {
