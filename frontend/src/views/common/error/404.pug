@@ -4,6 +4,17 @@ html
     title 404 Error
     link(rel="stylesheet" href="/css/404.css")
   body
+    - const errSentences = err.toString().split(/\s(?=\d*\|)/);
+    - let errorIsNextLine = false;
+    each sentence in errSentences
+      if errorIsNextLine
+        p(style="color:red; font-weight: 700;")= sentence
+        - errorIsNextLine = false;
+      else
+        p(style="color:#333;")= sentence
+      - if (sentence.match(/.$/)[0] == ">") errorIsNextLine = true;
+    |
+    |
     .main
       div
         svg(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 1000 355')
@@ -261,7 +272,8 @@ html
               g#Text
                 text.st8.st10(transform='translate(577.037 210.025)' font-size='40')
                   | 404
-                text.st8.st10(transform='translate(410.5 132.994)' font-size='24.025')= err
+                text.st8.st10(transform='translate(410.5 132.994)' font-size='24.025')
+                  | 404 NOT FOUND
               g#ladders
                 g#ladder-f
                   path#front-ladder.st8(d='M433.8 258.4h17.8v34.8h-17.8z')
