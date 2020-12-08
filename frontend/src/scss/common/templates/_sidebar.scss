@@ -32,6 +32,22 @@
     display: flex;
     justify-content: center;
 
+    &__icon {
+      position: absolute;
+      z-index: 99;
+      top: 0.66rem;
+      right: 0.66rem;
+      width: 1.33rem;
+      height: 1.33rem;
+      cursor: pointer;
+
+      svg {
+        path {
+          stroke-width: 40;
+        }
+      }
+    }
+
     &__logo {
       font-size: 2em;
       text-align: center;
@@ -48,6 +64,21 @@
     position: relative;
     font-size: 1.2em;
     line-height: 150%;
+
+    &__icon {
+      position: absolute;
+      z-index: 99;
+      right: 1rem;
+      top: 1.9rem; // 주의: 유동적이지 못한 수치입니다.
+      width: 0.6rem;
+      height: 0.6rem;
+      cursor: pointer;
+
+      svg {
+        position: absolute !important;
+        transition: transform 0.2s ease-in-out;
+      }
+    }
   }
 
   &__btn {
@@ -58,40 +89,6 @@
     color: $main-color--white;
     background-color: $main-color--dark-silver;
     cursor: pointer;
-
-    &__icon {
-      position: absolute;
-      z-index: 99;
-
-      &--close {
-        top: 0.66rem;
-        right: 0.66rem;
-        width: 1.33rem;
-        height: 1.33rem;
-        cursor: pointer;
-
-        svg {
-          path {
-            stroke-width: 40;
-          }
-        }
-      }
-
-      &--caretDown {
-        right: 1rem;
-        top: 1.9rem; // 주의: 유동적이지 못한 수치입니다.
-        width: 0.6rem;
-        height: 0.6rem;
-
-        svg {
-          position: absolute;
-        }
-      }
-
-      svg {
-        transition: transform 0.2s ease-in-out;
-      }
-    }
 
     &--active {
       & .sidebar__btn {

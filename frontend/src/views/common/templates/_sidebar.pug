@@ -1,19 +1,19 @@
-mixin sidebar__btn__icon--caretDown()
-  div.sidebar__btn__icon.sidebar__btn__icon--caretDown
-    +icon("caretDown", '여닫기', '#f5f5f5')
-
-mixin sidebar__btn__icon--close()
-  div.sidebar__btn__icon.sidebar__btn__icon--close
+mixin sidebar__header__icon()
+  div.sidebar__header__icon
     +icon('close', '닫기', '#0f0f0f')
+
+mixin sidebar__item__icon()
+  div.sidebar__item__icon
+    +icon("caretDown", '여닫기', '#f5f5f5')
     
 .cover
 .sidebar
   section.sidebar__header
     .sidebar__header__logo logo
-    +sidebar__btn__icon--close()
+    +sidebar__header__icon()
   ul.sidebar__list
     li.sidebar__item
-      +sidebar__btn__icon--caretDown()
+      +sidebar__item__icon()
       .sidebar__btn.sidebar__intro 학과소개
       ul.sidebar__inner-list
         li.sidebar__inner-item
@@ -25,7 +25,7 @@ mixin sidebar__btn__icon--close()
         li.sidebar__inner-item
           a(href="/intro/club").sidebar__inner-link 동아리
     li.sidebar__item
-      +sidebar__btn__icon--caretDown()
+      +sidebar__item__icon()
       .sidebar__btn.sidebar__career 학과진로
       ul.sidebar__inner-list
         li.sidebar__inner-item
@@ -35,7 +35,7 @@ mixin sidebar__btn__icon--close()
         li.sidebar__inner-item
           a(href="/milestone/career").sidebar__inner-link 진로 설정
     li.sidebar__item
-      +sidebar__btn__icon--caretDown()
+      +sidebar__item__icon()
       .sidebar__btn.sidebar__community 커뮤니티
       ul.sidebar__inner-list
         li.sidebar__inner-item
@@ -47,7 +47,7 @@ mixin sidebar__btn__icon--close()
         li.sidebar__inner-item
           a(href="/community/notice").sidebar__inner-link 공지사항
     li.sidebar__item
-      +sidebar__btn__icon--caretDown()
+      +sidebar__item__icon()
       .sidebar__btn.sidebar__history 학생 자취록
       ul.sidebar__inner-list
         li.sidebar__inner-item
