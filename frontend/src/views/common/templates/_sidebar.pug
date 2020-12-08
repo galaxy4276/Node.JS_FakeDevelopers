@@ -9,7 +9,11 @@ mixin sidebar__item__icon()
 .cover
 .sidebar
   section.sidebar__header
-    .sidebar__header__logo logo
+    div.sidebar__header__logo
+      .sidebar__header__logo__icon
+      .sidebar__header__logo__txt
+        span 대덕대학교
+        span 컴퓨터정보학과
     +sidebar__header__icon()
   ul.sidebar__list
     li.sidebar__item
