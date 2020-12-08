@@ -14,22 +14,42 @@
   font-weight: bold;
   letter-spacing: -1px;
 
-  .header-logo__icon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    color: white;
-  }
-
-  &-logo {
-    width: 160px;
-    height: 100%;
-    @include flex-center;
+  &__logo {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    top: 0;
-    left: 0;
-    color: rgba($main-color--white, 0.9);
+    left: 5rem;
+    top: 55%;
+    transform: translateY(-50%);
+    width: fit-content;
+    font-size: 1rem;
+
+    &__txt {
+      letter-spacing: 0.06rem;
+      text-shadow: $text-shadow--black;
+
+      &:nth-of-type(1) {
+        color: rgba($main-color--silver, 0.9);
+        font-size: 0.8em;
+      }
+
+      &:nth-of-type(2) {
+        color: rgba($main-color--white, 0.9);
+        font-size: 1.3em;
+        line-height: 1.3em;
+      }
+    }
+
+    &__icon {
+      position: absolute;
+      left: -4.1rem;
+      top: -1.3rem;
+      z-index: -1;
+      transform: rotateZ(-5deg);
+      width: 3.8rem;
+      height: 3.8rem;
+      background: url('../../../img/logo/main_logo.svg') no-repeat center/contain;
+    }
   }
 
   &-menu {
@@ -159,14 +179,15 @@
     &__btn {
       display: none;
       position: absolute;
-      right: 30px;
-      top: 30.5px;
+      right: 2.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.8rem;
+      height: 1.8rem;
       cursor: pointer;
 
       @media screen and (max-width: 1024px) {
         display: block;
-        width: 1.3rem;
-        height: 1.3rem;
       }
     }
   }
