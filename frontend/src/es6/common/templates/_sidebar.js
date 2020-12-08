@@ -1,13 +1,15 @@
-const sidebar = document.querySelector('.sidebar');
-const sideUtilBtn = document.querySelector('.header-util__btn');
 const sideWrap = document.querySelector('.cover');
-const sideList = document.querySelector('.sidebar__list');
+const sideUtilBtn = document.querySelector('.header-util__btn');
+const sidebar = document.querySelector('.sidebar');
 
-function toggleDropdown(e) {
+const sideCloseBtn = sidebar.querySelector('.sidebar__header__icon');
+const sideList = sidebar.querySelector('.sidebar__list');
+
+const toggleDropdown = (e) => {
   // ** 드롭다운 이벤트 **
   // sideList 전체에 이벤트 리스너를 걸었을 때 화면에서 클릭 이벤트가 발생할 수 있는 요소는
 
-  if (e.target === this) return;
+  if (e.target.tagName === 'UL') return;
   // 1. sideList의 공백 부분 (😫 종료시킨다!)
   if (e.target.tagName === 'A') return;
   // 2. 각 타이틀의 드롭다운이 펼쳐졌을때 나오는 각 링크들 (😫 종료시킨다!)
@@ -29,17 +31,19 @@ function toggleDropdown(e) {
 
   currTitle.classList.toggle('sidebar__btn--active');
   currInnerList.classList.toggle('sidebar__inner-list--clicked');
-}
+};
 
-function toggleSideBar() {
+const toggleSideBar = () => {
+  // ** 사이드바 여닫기 **
   sidebar.classList.toggle('sidebar--show');
   sideWrap.classList.toggle('cover--covered');
-}
+};
 
-function initSidebar() {
+const initSidebar = () => {
   sideUtilBtn.addEventListener('click', toggleSideBar, false);
   sideWrap.addEventListener('click', toggleSideBar, false);
-
+  sideCloseBtn.addEventListener('click', toggleSideBar, false);
   sideList.addEventListener('click', toggleDropdown, false);
-}
-initSidebar();
+};
+
+document.addEventListener('DOMContentLoaded', initSidebar, false);
