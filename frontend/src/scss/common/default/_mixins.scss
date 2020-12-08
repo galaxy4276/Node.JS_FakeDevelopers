@@ -12,6 +12,12 @@
   height: 100%;
 }
 
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @mixin position($position, $top, $left) {
   position: $position;
   top: $top;

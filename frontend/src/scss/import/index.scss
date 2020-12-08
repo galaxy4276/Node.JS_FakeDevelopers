@@ -69,6 +69,7 @@
         position: relative;
         display: grid;
         max-width: 100%;
+        min-width: 0;
         grid-template-rows: [title]3rem [posts]1fr;
         padding: 2.4rem;
         height: 25em;
@@ -78,6 +79,7 @@
           font-size: 1.6rem;
           letter-spacing: 0.05rem;
           border-bottom: 1px solid rgba(#ccc, 0.4);
+          @include ellipsis;
 
           &::before {
             content: '';
@@ -104,9 +106,7 @@
         }
 
         &__link {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          @include ellipsis;
           font-size: 1.1rem;
           line-height: 120%;
         }
@@ -184,11 +184,22 @@
           /1fr;
       }
 
+      &-box {
+        display: grid;
+        width: 100%;
+        min-width: 0;
+        grid-template-rows: [title]3rem [posts]1fr;
+        padding: 2.4rem;
+        height: 18rem;
+      }
+
       &-title {
         position: relative;
         font-size: 1.6rem;
         letter-spacing: 0.05rem;
         border-bottom: 1px solid rgba(#ccc, 0.4);
+        min-width: 0;
+        @include ellipsis;
 
         &::before {
           content: '';
@@ -196,14 +207,6 @@
           bottom: 0;
           height: 0.15rem;
         }
-      }
-
-      &-box {
-        display: grid;
-        width: 100%;
-        grid-template-rows: [title]3rem [posts]1fr;
-        padding: 2.4rem;
-        height: 18rem;
       }
 
       &__cell-wrap {
