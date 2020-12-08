@@ -13,13 +13,12 @@ article.login
         //- TODO: 컴포넌트 클릭시에 타이틀 글자 애니메이션 시작, 컴포넌트 밖 클릭시에 애니메이션 중지.
         |
         |
-        //- input의 minlegnth, maxlength 는 백엔드와 상의
         .login__form__input-box
             input(type="text" name="id" minlength="1" maxlength="20" required).login__form__input
             label.login__form__input-label 사용자 이름
             span.login__form__input-check
         .login__form__input-box
-            input(type="password" name="password" minlength="1" maxlength="20" required).login__form__input
+            input(type="password" name="password" minlength="1" maxlength="20" autocomplete="new-password" required).login__form__input
             label.login__form__input-label 비밀번호
             span.login__form__input-check
         |

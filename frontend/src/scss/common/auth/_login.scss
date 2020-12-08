@@ -59,11 +59,14 @@
       line-height: 1.5rem;
       color: $auth__font-color--after;
 
-      &:-webkit-autofill,
-      &:-webkit-autofill:hover,
-      &:-webkit-autofill:focus,
-      &:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px white inset !important;
+      &:-webkit-autofill {
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: $auth__font-color--after !important;
+        }
       }
 
       &:focus,

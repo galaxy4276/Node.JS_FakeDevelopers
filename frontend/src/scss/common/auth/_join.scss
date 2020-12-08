@@ -59,6 +59,16 @@
       line-height: 1.5rem;
       color: $auth__font-color--after;
 
+      &:-webkit-autofill {
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: $auth__font-color--after !important;
+        }
+      }
+
       &:focus,
       &:valid {
         font-size: 1.5rem;
