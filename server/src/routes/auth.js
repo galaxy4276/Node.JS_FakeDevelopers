@@ -4,54 +4,52 @@ import sequelize from '../models';
 import bcrypt from 'bcrypt';
 import url from 'url';
 const { User } = sequelize;
-
+import { isLoggedIn, isNotLoggedIn } from '../controllers/post';
 
 const auth = require('express').Router();
 
-
-
-auth.get('/login', login);
+auth.get('/login', isNotLoggedIn, login);
 auth.post('/login', postLogin);
 
-auth.get('/join', join);
+auth.get('/join', isNotLoggedIn, join);
 auth.post('/join', postJoin);
 
-auth.get('/forgot_sendEmail', (req, res) => {
+auth.get('/forgot_sendEmail', isNotLoggedIn , (req, res) => {
   res.render('import/auth/forgot_sendEmail', {});
 });
 
-auth.post('/forgot_sendEmail', forgotHash, sendMail, (req, res) => {
+auth.post('/forgot_sendEmail',isNotLoggedIn, forgotHash, sendMail, (req, res) => {
   res.redirect('/auth/forgot_check');
 });
 
-auth.get('/forgot_check', (req, res) => {
+auth.get('/forgot_check', isNotLoggedIn, (req, res) => {
   res.render('import/auth/forgot_check');
 });
 
-auth.post('/forgot_check', async (req, res, next) => {
+auth.post('/forgot_check', isNotLoggedIn, async (req, res, next) => {
   const { hash } = req.body;
   try {
     const user = await User.findOne({ where: { hash }});
-     if (user) {
-       res.redirect(url.format({
-         pathname: '/auth/forgot_resetPassword',
-         query: {
-           'hash': user.hash
-         }
-       }));
-     }
+    if (user) {
+      res.redirect(url.format({
+        pathname: '/auth/forgot_resetPassword',
+        query: {
+          'hash': user.hash
+        }
+      }));
+    }
   } catch (err) {
     console.error(err);
     next(err);
   }
 });
 
-auth.get('/forgot_resetPassword', (req, res) => {
+auth.get('/forgot_resetPassword', isNotLoggedIn, (req, res) => {
   console.log(req.query);
   res.render('import/auth/forgot_resetPassword', { hash: req.query.hash });
 });
 
-auth.post('/forgot_resetPassword', async (req, res, next) => {
+auth.post('/forgot_resetPassword', isNotLoggedIn, async (req, res, next) => {
   const { newPw } = req.body;
   try {
     console.log(req.query);
@@ -71,7 +69,7 @@ auth.post('/forgot_resetPassword', async (req, res, next) => {
   }
 })
 
-auth.get('/logout', (req, res) => {
+auth.get('/logout', isLoggedIn, (req, res) => {
   req.logout();
   return res.redirect('/');
 });

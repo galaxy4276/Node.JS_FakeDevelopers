@@ -7,7 +7,7 @@ import sequelize from '../../models';
 import deletePost from "../../controllers/crud/delete";
 import updatePost from "../../controllers/crud/update";
 import readPost from "../../controllers/crud/read";
-import { getRenderCreate } from "../../controllers/post";
+import {getRenderCreate, isLoggedIn} from "../../controllers/post";
 
 const { 
   Certpost,
@@ -26,7 +26,7 @@ footprint.post('/acquisition/create', uploads.array('file'),
   (req, res, next) => {
     postBoard(req, res, next)(Certpost);
   });
-footprint.get('/acquisition/create', getRenderCreate);
+footprint.get('/acquisition/create',  isLoggedIn, getRenderCreate);
 footprint.get('/acquisition/api/index', (req, res, next) => {
   getIdx(req, res, next)(Certpost);
 });
@@ -37,10 +37,10 @@ footprint.get('/acquisition/api/create-bulk', (req, res, next) => {
 footprint.get('\/acquisition\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Certpost);
 });
-footprint.delete('/acquisition/:id([0-9]+)/delete', (req, res, next) => {
+footprint.delete('/acquisition/:id([0-9]+)/delete', isLoggedIn, (req, res, next) => {
   deletePost(req, res, next)(Certpost);
 });
-footprint.patch('/acquisition/:id([0-9]+)/update', (req, res, next) => {
+footprint.patch('/acquisition/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
   updatePost(req, res, next)(Certpost);
 });
 footprint.get('/acquisition/:id([0-9]+)', (req, res, next) => {
@@ -55,7 +55,7 @@ footprint.post('/awards/create', uploads.array('file'),
   (req, res, next) => {
     postBoard(req, res, next)(Award);
   });
-footprint.get('/awards/create', getRenderCreate);
+footprint.get('/awards/create', isLoggedIn, getRenderCreate);
 footprint.get('/awards/api/index', (req, res, next) => {
   getIdx(req, res, next)(Award);
 });
@@ -66,10 +66,10 @@ footprint.get('/awards/api/create-bulk', (req, res, next) => {
 footprint.get('\/awards\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Award);
 });
-footprint.delete('/awards/:id([0-9]+)/delete', (req, res, next) => {
+footprint.delete('/awards/:id([0-9]+)/delete', isLoggedIn,  (req, res, next) => {
   deletePost(req, res, next)(Award);
 });
-footprint.patch('/awards/:id([0-9]+)/update', (req, res, next) => {
+footprint.patch('/awards/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
   updatePost(req, res, next)(Award);
 });
 footprint.get('/awards/:id([0-9]+)', (req, res, next) => {
@@ -80,11 +80,11 @@ footprint.get('/awards/:id([0-9]+)', (req, res, next) => {
 footprint.get('/portfolio', (req, res) => {
   res.render('import/footprint/portfolio', {});
 });
-footprint.post('/portfolio/create', uploads.array('file'),
+footprint.post('/portfolio/create', isLoggedIn, uploads.array('file'),
   (req, res, next) => {
     postBoard(req, res, next)(Portfolio);
   });
-footprint.get('/portfolio/create', getRenderCreate);
+footprint.get('/portfolio/create', isLoggedIn, getRenderCreate);
 footprint.get('/portfolio/api/index', (req, res, next) => {
   getIdx(req, res, next)(Portfolio);
 });
@@ -98,10 +98,10 @@ footprint.get('\/portfolio\/api$', (req, res, next) => {
 footprint.get('/portfolio/post', (req, res) => {
   res.render('import/footprint/post', {});
 });
-footprint.delete('/portfolio/:id([0-9]+)/delete', (req, res, next) => {
+footprint.delete('/portfolio/:id([0-9]+)/delete', isLoggedIn, (req, res, next) => {
   deletePost(req, res, next)(Portfolio);
 });
-footprint.patch('/portfolio/:id([0-9]+)/update', (req, res, next) => {
+footprint.patch('/portfolio/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
   updatePost(req, res, next)(Portfolio);
 });
 footprint.get('/portfolio/:id([0-9]+)', (req, res, next) => {
