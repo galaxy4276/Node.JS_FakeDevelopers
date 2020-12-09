@@ -10,6 +10,8 @@ import passport from 'passport';
 import cors from 'cors';
 import MySQLStore from 'express-mysql-session';
 import methodOverride from 'method-override';
+import favicon from 'serve-favicon';
+
 /* --- 개인 라이브러리 관련 모듈 import  --- */
 import connectMaria from './lib/connectMaria';
 import passportConfig from './controllers/passport';
@@ -42,6 +44,7 @@ app.set('view engine', 'pug'); // 서버 View 엔진을 ejs로 설정
 app.set('port', process.env.PORT || 8001); // 포트번호를 환경설정 포트 값으로 설정
 app.set('views', path.resolve(__dirname, 'public', 'views')); // view 디렉터리 위치 설정
 
+app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(cors()); // Cross Origin 문제 해결 미들웨어
 app.use(helmet()); // 보안 관련 미들웨어
 app.use(methodOverride('_method'));
@@ -66,21 +69,22 @@ app.use(
   https://stackoverflow.com/questions/29960764/what-does-extended-mean-in-express-4-0/45690436#45690436
 */
 app.use(cookieParser(process.env.secret)); // 쿠키 생성 관련 미들웨어
-app.use(
-  session({
-    secret: process.env.secret,
-    proxy: true,
-    resave: false,
-    saveUninitialized: true,
-    store: sessionStore,
-    cookie: {
-      httpOnly: true,
-      secure: false,
-      expires: new Date(Date.now() + 800000),
-      maxAge: 800000,
-    },
-  })
-); /*
+if (process.env.NODE_ENV === 'development') {
+  app.use(
+    session({
+      secret: process.env.secret,
+      proxy: true,
+      resave: false,
+      saveUninitialized: true,
+      store: sessionStore,
+      cookie: {
+        httpOnly: true,
+        secure: false,
+        expires: new Date(Date.now() + 1800000),
+        maxAge: 1800000,
+      },
+    })
+  ); /*
   세션 미들웨어
   secret: 세션의 비밀키
   resave: 요청 시 세션에 수정사항이 생기지 않더라도 세션을 다시 저장할지 여부
@@ -90,6 +94,23 @@ app.use(
   cookie => httpOnly: 웹 서버를 통해서만 cookie 접근을 할 수 있도록 하는 옵션
   cookie => secure: true 설정 시 https 에서만 접근이 가능함.
 */
+} else {
+  app.use(
+    session({
+      secret: process.env.secret,
+      proxy: true,
+      resave: false,
+      saveUninitialized: true,
+      store: sessionStore,
+      cookie: {
+        httpOnly: true,
+        secure: true,
+        expires: new Date(Date.now() + 1800000),
+        maxAge: 1800000,
+      },
+    })
+  );
+}
 app.use(passport.initialize()); // 유저 데이터 요청으로부터 serialize/deserialize 함수를 설정
 app.use(passport.session()); // passport가 세션정보에 접근할 수 있도록 하는 미들웨어
 app.use(sharePug);
