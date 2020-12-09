@@ -5,7 +5,7 @@
 .post-view {
   border-top: 3px solid $main-color;
   width: 100%;
-  padding: 0.8rem;
+  padding: 2.5rem 1.25rem;
 
   &__header {
     font-weight: 500;
@@ -79,6 +79,19 @@
         background-color: $main-color--silver;
         color: white;
       }
+    }
+  }
+
+  @include for-mobile {
+    border-top: 5px solid $main-color;
+    padding: 2rem 1rem;
+    // margin-top: 0.5rem;
+
+    &__header {
+      grid-template:
+        'title title title' fit-content(100%)
+        'createdAt writer hit' 2rem
+        / 6rem 4rem 1fr;
     }
   }
 }
