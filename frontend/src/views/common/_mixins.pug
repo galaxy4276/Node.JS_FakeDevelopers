@@ -63,16 +63,16 @@ mixin sub-contents__item__icon(iconName)
 mixin postWrite(url)
   article.post-write
     form(action=`${url}` method="post" enctype="multipart/form-data").post-write__form
-      .post-write__input-wrap.post-write__title-wrap
-        h3.post-write__text-title.post-write__input-title 제목
-        input(type="text" name="title" size="54" required)
-      .post-write__input-wrap.post-write__file-wrap
-        h3.post-write__file-title.post-write__input-title 파일
-        input(type="file" name="file")
-      .post-write__input-wrap.post-write__paragraph-wrap
-        h3.post-write__paragraph-title.post-write__input-title 내용
-        textarea(rows="5" cols="50" name="paragraph" required)
-      input(type="submit" name="submit" value="작성하기").post-write__submit
+      .post-write__title__wrap
+        label.post-write__title__label 제목
+        input(type="text" name="title" size="54" required).post-write__title__input
+      .post-write__file__wrap
+        label.post-write__file__label 파일
+        input(type="file" name="file").post-write__file__input
+      .post-write__paragraph__wrap
+        label.post-write__paragraph__label 내용
+        textarea(rows="5" cols="50" name="paragraph" required).post-write__paragraph__input
+      button(type="submit" name="submit").post-write__submit 작성하기
 
 //- Bulletn Board Post List Template [ 게시판 글 목록 템플릿 ]
 //- 💥 게시판 글 목록 템플릿은 '빈페이지로 진입하고 프론트에서 API 요청을해서 응답받고 페이지를 채우는 방법' 으로 설계되었습니다.

@@ -5,41 +5,44 @@
 .post-write {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: fit-content;
 
-  &__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.5rem;
+  &__wrap {
+    &--title {
+    }
+    &--file {
+    }
+    &--paragraph {
+    }
   }
 
-  &__form {
-    display: flex;
-    flex-direction: column;
+  &__label {
   }
 
-  &__input-wrap {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
+  &__title {
+    &__label {
+    }
+    &__input {
+    }
   }
 
-  &__input-title {
-    display: inline-block;
-    margin-right: 0.5rem;
+  &__file {
+    &__label {
+    }
+    &__input {
+    }
+  }
+
+  &__paragraph {
+    &__label {
+    }
+    &__input {
+    }
   }
 
   &__submit {
-    width: fit-content;
-    align-self: center;
+    @include btn-rectangle(1rem 0, true, true);
     color: white;
+    font-size: 1.05rem;
     background-color: $main-color;
-    border: none;
-    border-radius: 4px;
-    padding: 4px 8px;
   }
 }
