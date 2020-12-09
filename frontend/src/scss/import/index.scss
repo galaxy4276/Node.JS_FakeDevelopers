@@ -199,7 +199,7 @@
 
       &-box {
         display: grid;
-        width: 99.5%;
+        width: 100%;
         grid-template-rows: [title]3rem [posts]1fr;
         padding: 2.4rem;
         height: 18rem;
@@ -225,13 +225,11 @@
 
       .index-main__academic-info {
         grid-area: box1;
-        justify-self: start;
         background: #e3eef9;
       }
 
       .index-main__student-life {
         grid-area: box2;
-        justify-self: end;
         background: #fefefe;
         border: 0.2px solid #ddd;
       }

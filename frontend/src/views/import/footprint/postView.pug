@@ -1,18 +1,13 @@
 extends ../../common/_base.pug
 
-mixin getBoardProp(prop)
+mixin getBoardProp()
   - const nameEng = referrer.match(/(?<=\/.*\/).*(?=\/create)/)[0];
   - const nameEngToKor = {acquisition: '자격증 취득', awards: '대회 수상', portfolio: '포트폴리오'}
-  - const path = referrer.match(/^.*(?=\/create)/)[0];
 
-  case prop
-    when 'sub-contents__item__link'
-      a(href=`${path}`).sub-contents__item__link= `${nameEngToKor[nameEng]}`
-    when 'title'
-      title= `${nameEngToKor[nameEng]}`
+    title= `${nameEngToKor[nameEng]}`
 
 block title
-  +getBoardProp('title')
+  +getTitle()
 block append stylesheet
   link(rel="stylesheet" href="/css/postView.css")
 block append script

@@ -139,7 +139,7 @@ const webpackConfig = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'resolve-url-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif|svg|ico)$/,
+        test: /\.(png|jpe?g|gif|svg)$/,
         use: [
           {
             loader: 'url-loader',
@@ -149,6 +149,20 @@ const webpackConfig = {
               context: SRC,
               name:
                 process.env.NODE_ENV === 'development' ? 'img/[name].[ext]' : 'img/[hash].[ext]',
+              useRelativePaths: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ico)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              publicPath: '../',
+              context: SRC,
+              name: '[name].[ext]',
               useRelativePaths: true,
             },
           },

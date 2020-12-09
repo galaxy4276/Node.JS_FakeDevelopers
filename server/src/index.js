@@ -48,6 +48,7 @@ app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(cors()); // Cross Origin 문제 해결 미들웨어
 app.use(helmet()); // 보안 관련 미들웨어
 app.use(methodOverride('_method'));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev')); // 서버 로깅

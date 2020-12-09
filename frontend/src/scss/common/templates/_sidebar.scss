@@ -15,12 +15,12 @@
 
 .sidebar {
   position: fixed;
-  width: 250px;
+  width: 20rem;
   height: 100%;
+  right: -20rem;
   top: 0;
-  right: -250px;
-  background-color: #1e1e1e;
-  color: white;
+  background-color: #fefefe;
+  color: $main-color--dark-silver;
   z-index: 6;
   transition: right 0.3s ease-in-out;
 
@@ -28,11 +28,16 @@
     right: 0;
   }
 
-  &__logo {
-    font-size: 2em;
-    text-align: center;
-    height: 50px;
-    @include flex-center;
+  &__header {
+    display: flex;
+    justify-content: center;
+
+    &__logo {
+      font-size: 2em;
+      text-align: center;
+      height: 50px;
+      @include flex-center;
+    }
   }
 
   &__list {
@@ -40,41 +45,72 @@
   }
 
   &__item {
-    font-size: 1.2em;
-    line-height: 50px;
     position: relative;
+    font-size: 1.2em;
+    line-height: 150%;
   }
 
   &__btn {
     position: relative;
     display: flex;
     justify-content: space-between;
-    padding: 0 1rem;
+    padding: 1.33rem 1rem;
+    color: $main-color--white;
+    background-color: $main-color--dark-silver;
     cursor: pointer;
 
     &__icon {
       position: absolute;
-      right: 1rem;
-      width: 0.6rem;
-      height: 0.6rem;
+      z-index: 99;
+
+      &--close {
+        top: 0.66rem;
+        right: 0.66rem;
+        width: 1.33rem;
+        height: 1.33rem;
+        cursor: pointer;
+
+        svg {
+          path {
+            stroke-width: 40;
+          }
+        }
+      }
+
+      &--caretDown {
+        right: 1rem;
+        top: 1.9rem; // 주의: 유동적이지 못한 수치입니다.
+        width: 0.6rem;
+        height: 0.6rem;
+
+        svg {
+          position: absolute;
+        }
+      }
 
       svg {
-        transition: transform 0.2s;
+        transition: transform 0.2s ease-in-out;
       }
     }
 
-    &--active svg {
-      transform: rotate(-180deg);
+    &--active {
+      & .sidebar__btn {
+        background-color: $main-color;
+      }
+
+      svg {
+        transform: rotate(-180deg);
+      }
     }
   }
 
-  &__btn,
   &__inner-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid $main-color--silver;
   }
 
   &__inner-list {
     display: none;
+    height: 100%;
   }
 
   &__inner-list--clicked {
@@ -82,11 +118,10 @@
   }
 
   &__inner-link {
-    text-decoration: none;
     color: inherit;
     display: block;
     width: 100%;
     height: 100%;
-    padding: 0px 0px 0px 40px;
+    padding: 1rem 0 1rem 2.3rem;
   }
 }
