@@ -1,4 +1,4 @@
-import { getRenderCreate } from "../../controllers/post";
+import {getRenderCreate, isLoggedIn, isNotLoggedIn} from "../../controllers/post";
 import postBoard, { uploads } from '../../controllers/crud/post';
 import deletePost from '../../controllers/crud/delete';
 import updatePost from '../../controllers/crud/update';
@@ -31,11 +31,11 @@ const {
 community.get('/board', (req, res) => {
   res.render('import/community/board', {});
 });
-community.post('/board/create', uploads.array('file'), (req, res, next) => {
+community.post('/board/create', isLoggedIn, uploads.array('file'), (req, res, next) => {
   postBoard(req, res, next)(Community);
   console.log('create /board/create');
 });
-community.get('/board/create', getRenderCreate);
+community.get('/board/create', isLoggedIn, getRenderCreate);
 community.get('/board/api/index', (req, res, next) => {
   getIdx(req, res, next)(Community);
 });
@@ -48,10 +48,10 @@ community.get('^\/board\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Community);
   console.log('get /board/api');
 });
-community.delete('/board/:id([0-9]+)/delete', (req, res, next) => {
+community.delete('/board/:id([0-9]+)/delete', isLoggedIn, (req, res, next) => {
   deletePost(req, res, next)(Community);
 });
-community.patch('/board/:id([0-9]+)/update', (req, res, next) => {
+community.patch('/board/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
   updatePost(req, res, next)(Community);
 });
 community.get('/board/:id([0-9]+)', (req, res, next) => {
@@ -63,11 +63,11 @@ community.get('/board/:id([0-9]+)', (req, res, next) => {
 community.get('/donation', (req, res) => {
   res.render('import/community/donation', {});
 });
-community.post('/donation/create', uploads.array('file'), (req, res, next) => {
+community.post('/donation/create', isLoggedIn, uploads.array('file'), (req, res, next) => {
   postBoard(req, res, next)(Donate);
   console.log('create /donation/create');
 });
-community.get('/donation/create', getRenderCreate);
+community.get('/donation/create', isLoggedIn, getRenderCreate);
 community.get('/donation/api/index', (req, res, next) => {
   getIdx(req, res, next)(Donate);
 });
@@ -78,13 +78,13 @@ community.get('/donation/api/create-bulk', (req, res, next) => {
 community.get('\/donation\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Donate);
 });
-community.delete('/donation/:id([0-9]+)/delete', (req, res, next) => {
+community.delete('/donation/:id([0-9]+)/delete', isLoggedIn, (req, res, next) => {
   deletePost(req, res, next)(Donate);
 });
 community.patch('/donation/:id([0-9]+)/update', (req, res, next) => {
   updatePost(req, res, next)(Donate);
 });
-community.get('/donation/:id([0-9]+)', (req, res, next) => {
+community.get('/donation/:id([0-9]+)', isLoggedIn, (req, res, next) => {
   readPost(req, res, next)(Donate);
 });
 
