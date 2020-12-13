@@ -1,4 +1,7 @@
-### This project is updating ...
+### 거의 완성 되어 가는 중..
+* 차후 리드미 문서를 한번에 정리 및 수정할 예정입니다.
+* 접속 경로
+https://www.ddccomputer.club
 
 ===
 
