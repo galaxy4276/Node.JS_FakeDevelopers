@@ -104,7 +104,7 @@ if (process.env.NODE_ENV === 'development') {
       store: sessionStore,
       cookie: {
         httpOnly: true,
-        secure: true,
+        secure: false,
         expires: new Date(Date.now() + 1800000),
         maxAge: 1800000,
       },
