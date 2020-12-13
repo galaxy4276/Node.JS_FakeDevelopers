@@ -14,7 +14,7 @@ const development = {
     charset: 'utf8mb4_general_ci',
     dataString: true,
     typeCast: true,
-    timezone: '+09:00',
+    timezone: '-09:00',
   },
   define: {
     timestamps: true,
@@ -51,7 +51,7 @@ const test = {
     collation: 'utf8mb4_general_ci',
     dataString: true,
     typeCast: true,
-    timezone: '+09:00',
+    timezone: '+03:00',
   },
   define: {
     supportBigNumbers: true,

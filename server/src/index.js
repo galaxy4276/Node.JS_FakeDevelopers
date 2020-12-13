@@ -44,7 +44,6 @@ app.set('view engine', 'pug'); // 서버 View 엔진을 ejs로 설정
 app.set('port', process.env.PORT || 8001); // 포트번호를 환경설정 포트 값으로 설정
 app.set('views', path.resolve(__dirname, 'public', 'views')); // view 디렉터리 위치 설정
 
-app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(cors()); // Cross Origin 문제 해결 미들웨어
 app.use(helmet()); // 보안 관련 미들웨어
 app.use(methodOverride('_method'));

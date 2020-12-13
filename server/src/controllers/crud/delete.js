@@ -10,7 +10,10 @@ const deletePost = (req, res, next) => {
         where: { id },
       });
 
-      await post.destroy();
+      if (req.user.id === post.UserId) {
+        await post.destroy();
+      }
+
 
       res.redirect(redirectUrl);
     } catch (e) {
