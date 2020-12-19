@@ -62,7 +62,7 @@ const getLastPageNum = async () => {
 
   // API 요청으로 마지막 페이지 번호 가져오기
   const lastPageNum = await defaultFetch(requestURL.url)
-    .then((res) => Math.ceil(res.idx))
+    .then((res) => res.idx)
     .catch((error) => {
       console.warn(error);
       console.warn(

@@ -34,12 +34,12 @@ const processToElems = (boardName, dataObj) => {
     const postViewLink = `/${boardName}/${post.id}`;
 
     item.innerHTML = `
-    <div class=${classes.number}>${post.id || '0000'}</div>
-    <a class=${classes.title} href=${postViewLink}>${post.title || '[ 빈 제목입니다 ]'}</a>
-    <div class=${classes.writer}>${post.UserId || 'Annonymous'}</div>
-    <div class=${classes.hit}>${post.Inquiries[0].count || '0'}</div>
-    <div class=${classes.createdAt}>${setTime(post.createdAt) || '0000-00-00'}</div>
-  `.trim();
+<div class=${classes.number}>${post.id || '0000'}</div>
+<a class=${classes.title} href=${postViewLink}>${post.title || '[ 빈 제목입니다 ]'}</a>
+<div class=${classes.writer}>${post.UserId || 'Annonymous'}</div>
+<div class=${classes.hit}>${post.Inquiries[0].count || '0'}</div>
+<div class=${classes.createdAt}>${setTime(post.createdAt) || '0000-00-00'}</div>
+`.trim();
 
     acc.push(item);
 
