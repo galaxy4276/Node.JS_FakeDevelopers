@@ -10,10 +10,10 @@ const pageNumList = pagination.querySelector('.post-list__page-numbers');
 /* Global Variables */
 let firstCall = true; // 모듈이 처음으로 불린건지 검증
 let currentPageNumber = 1; // 현재 페이지 - default = page 1
-let verifyPostEmpty = false; // 불러올 데이터가 없는지 검증
+let isNoPosts = false; // 불러올 데이터가 없는지 검증
 
 /* Function */
-const createGuideMsg = () => {
+const guideNoPosts = () => {
   const postListBody = document.body.querySelector('.post-list');
   const posts = postListBody.querySelector('.post-list__posts');
 
@@ -68,7 +68,7 @@ const getLastPageNum = async () => {
       console.warn(
         '데이터베이스에 불러올 데이터가 하나도 없거나 서버측의 코드 변경 혹은 응답 오류입니다.'
       );
-      verifyPostEmpty = true;
+      isNoPosts = true;
       return 1;
     });
 
@@ -276,9 +276,9 @@ const postList = async (reqOptions) => {
     toggleDisplayMoveBtns(); //  < , > 버튼 삭제 판별 (1페이지 혹은 마지막 페이지 일때)
     toggleHighlightCurrPageNum(); //  현재 페이지 강조
 
-    if (verifyPostEmpty) {
+    if (isNoPosts) {
       // 위의 getLastPageNum() 에서 데이터가 하나도 없다고 나오면,
-      createGuideMsg(); // 안내 메시지를 생성하고
+      guideNoPosts(); // 안내 메시지를 생성하고
       return; // 종료
     }
 
