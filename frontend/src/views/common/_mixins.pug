@@ -125,7 +125,7 @@ mixin postList(usePostWrite = false, boardName)
 //- title, createdAt, writer, hit,
 //- file,
 //- 상세보기전 게시글 주소 (ex - community/board)
-mixin postView(post, referrer)
+mixin postView(post, referrer, user)
   article.post-view
     mixin setTime(createdAt)
       - const now = new Date();
@@ -167,7 +167,7 @@ mixin postView(post, referrer)
     section.post-view__footer
       -const boardPath = referrer.match(/^.*(?=\/\d)/)[0]; // regExp ex) '/community/board/14' => '/community/board'
       a(href= boardPath).post-view__footer__btn.post-view__footer__btn--board 목록
-      if user
+      if user === post.UserId
         -const updatePath = `${referrer}/update?_method=PATCH`
         -const deletePath = `${referrer}/delete?_method=DELETE`
         form(action="" method="post").post-view__footer__form
