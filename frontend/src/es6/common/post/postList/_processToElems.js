@@ -1,23 +1,34 @@
-const setTimeText = (createdAt) => {
-  const now = new Date();
-  const nowYear = now.getFullYear();
-  const nowMonth = now.getMonth() + 1 >= 10 ? now.getMonth() + 1 : '0' + (now.getMonth() + 1);
-  const nowDay = now.getDate() >= 10 ? now.getDate() : '0' + now.getDate();
-  const today = `${nowYear}-${nowMonth}-${nowDay}`;
+const addTime = (dateTime, hours) => {
+  const oldTime = new Date(dateTime);
+  const newTime = new Date();
 
-  const createdInfos = createdAt.match(/(^\d+-\d+-\d+)(?:T)(\d+:\d+:\d+)(?=.000Z$)/);
-  const createdDate = createdInfos[1];
-  const createdTime = createdInfos[2];
+  newTime.setTime(oldTime.getTime() + hours * 60 * 60 * 1000);
 
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`res.createdAt => ${createdAt}`);
-    console.log(`today => ${today}`);
-    console.log(`createdDate => ${createdDate}`);
-    console.log(`createdTime => ${createdTime}`);
+  return newTime;
+};
+
+let firstTestDone = false; // test log
+const processDateTime = (dateTime) => {
+  const yymmdd = (dateObj) => dateObj.toISOString().match(/(^\d+-\d+-\d+)(?=T)/)[0];
+  const hhmmss = (dateObj) => dateObj.toISOString().match(/(?<=T)(\d+:\d+:\d+)(?=.000Z$)/)[0];
+
+  const today = yymmdd(new Date());
+  const date = yymmdd(dateTime);
+  const time = hhmmss(dateTime);
+
+  const timeText = date === today ? time : date;
+
+  const testLog = () => {
+    if (firstTestDone) return; // test log
     console.log(`---------------------------------`);
-  }
+    console.log(`Today => ${today}`);
+    console.log(`First Post Date => ${date}`);
+    console.log(`First Post time => ${time}`);
+    console.log(`---------------------------------`);
+  };
+  if (process.env.NODE_ENV === 'development') testLog();
 
-  const timeText = createdDate === today ? createdTime : createdDate;
+  firstTestDone = true; // test log
 
   return timeText;
 };
@@ -35,7 +46,8 @@ const processToElems = (boardName, dataObj) => {
   const propNames = ['number', 'title', 'writer', 'hit', 'createdAt'];
   const classes = toClassNamesObj(...propNames);
 
-  const setTime = setTimeText;
+  const _addTime = addTime;
+  const _processDateTime = processDateTime;
 
   const postitems = dataObj.reduce((acc, post) => {
     const item = document.createElement('div');
@@ -43,12 +55,15 @@ const processToElems = (boardName, dataObj) => {
 
     const postViewLink = `/${boardName}/${post.id}`;
 
+    const KST = _addTime(post.createdAt, 9); // 🌟 GMT => KST 🌟
+    const timeText = _processDateTime(KST);
+
     item.innerHTML = `
 <div class=${classes.number}>${post.id || '0000'}</div>
 <a class=${classes.title} href=${postViewLink}>${post.title || '[ 빈 제목입니다 ]'}</a>
 <div class=${classes.writer}>${post.UserId || 'Annonymous'}</div>
 <div class=${classes.hit}>${post.Inquiries[0].count || '0'}</div>
-<div class=${classes.createdAt}>${setTime(post.createdAt) || '0000-00-00'}</div>
+<div class=${classes.createdAt}>${timeText}</div>
 `.trim();
 
     acc.push(item);
