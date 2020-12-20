@@ -19,7 +19,7 @@ const development = {
   define: {
     timestamps: true,
     supportBigNumbers: true,
-  }
+  },
 };
 
 const production = {
@@ -48,16 +48,15 @@ const test = {
     idle: 10000,
   },
   dialectOptions: {
-    charset: 'utf8mb4',
     collation: 'utf8mb4_general_ci',
-    // dataString: true,
-    // typeCast: true,
+    dataString: true,
+    typeCast: true,
     useUTC: false,
   },
-  timezone: "-09:00",
+  timezone: 'Asia/Seoul+9',
   define: {
     supportBigNumbers: true,
-  }
+  },
 };
 
 module.exports = test;
