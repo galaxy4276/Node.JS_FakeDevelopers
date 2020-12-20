@@ -1,13 +1,23 @@
-import { getFormatDate } from '../../function/_getFormatDate'; // 'yyyy-mm-dd' 형식의 string을 반환하는 함수
-
 const setTimeText = (createdAt) => {
-  const today = getFormatDate(new Date());
-  const regDate = getFormatDate(createdAt);
+  const now = new Date();
+  const nowYear = now.getFullYear();
+  const nowMonth = now.getMonth() + 1 >= 10 ? now.getMonth() + 1 : '0' + (now.getMonth() + 1);
+  const nowDay = now.getDate() >= 10 ? now.getDate() : '0' + now.getDate();
+  const today = `${nowYear}-${nowMonth}-${nowDay}`;
 
-  const timeText =
-    today === regDate // 글을 쓴 날짜가 오늘이면
-      ? createdAt.match(/(?<=T).*(?=\.)/)[0] // 시간을 세팅
-      : regDate.match(/(?<=\d{4}-).*/)[0]; // 아니라면 날짜를 세팅
+  const createdInfos = createdAt.match(/(^\d+-\d+-\d+)(?:T)(\d+:\d+:\d+)(?=.000Z$)/);
+  const createdDate = createdInfos[1];
+  const createdTime = createdInfos[2];
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`res.createdAt => ${createdAt}`);
+    console.log(`today => ${today}`);
+    console.log(`createdDate => ${createdDate}`);
+    console.log(`createdTime => ${createdTime}`);
+    console.log(`---------------------------------`);
+  }
+
+  const timeText = createdDate === today ? createdTime : createdDate;
 
   return timeText;
 };
