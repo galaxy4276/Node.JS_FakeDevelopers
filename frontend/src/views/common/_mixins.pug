@@ -116,7 +116,10 @@ mixin postList(usePostWrite = false, boardName)
       //- 글쓰기 기능이 존재하는 게시판이라면
       - if(usePostWrite)
         // 글쓰기 버튼
-        a(href= '/' + boardName + '/create').post-list__write-btn 글쓰기
+        if user
+          a(href= '/' + boardName + '/create').post-list__write-btn 글쓰기
+        else
+          p(style="text-align: right; font-weight: 600") 로그인을 해서 글을 작성하세요!
 
 //- Bulletn Board Post View Template [ 게시판 글 상세보기 템플릿 ]
 //- 💥 게시판 글 상세보기 템플릿은 'url 에 존재하는 id 값으로 백엔드에서 정보를 찾아서 템플릿 엔진에 전달해주는 방법' 으로 설계되었습니다.

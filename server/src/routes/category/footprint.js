@@ -20,7 +20,7 @@ const footprint = require('express').Router();
 
 // 자격증 취득 ( Certpost )
 footprint.get('/acquisition', (req, res) => {
-  res.render('import/footprint/acquisition', {});
+  res.render('import/footprint/acquisition', { user: req.user?.id });
 });
 footprint.post('/acquisition/create', uploads.array('file'),
   (req, res, next) => {
@@ -49,7 +49,7 @@ footprint.get('/acquisition/:id([0-9]+)', (req, res, next) => {
 
 // 수상 내역 ( Award )
 footprint.get('/awards', (req, res) => {
-  res.render('import/footprint/awards', {});
+  res.render('import/footprint/awards', { user: req.user?.id });
 });
 footprint.post('/awards/create', uploads.array('file'),
   (req, res, next) => {
@@ -78,7 +78,7 @@ footprint.get('/awards/:id([0-9]+)', (req, res, next) => {
 
 // 포트폴리오 ( Portfolio )
 footprint.get('/portfolio', (req, res) => {
-  res.render('import/footprint/portfolio', {});
+  res.render('import/footprint/portfolio', { user: req.user?.id });
 });
 footprint.post('/portfolio/create', isLoggedIn, uploads.array('file'),
   (req, res, next) => {
