@@ -31,7 +31,7 @@ const {
 community.get('/board', (req, res) => {
   res.render('import/community/board', {});
 });
-community.post('/board/create', isLoggedIn, (req, res, next) => {
+community.post('/board/create', isLoggedIn, uploads.array('file'), (req, res, next) => {
   postBoard(req, res, next)(Community);
   console.log('create /board/create');
 });

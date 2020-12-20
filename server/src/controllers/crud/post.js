@@ -29,17 +29,23 @@ export const uploads = multer({
 */
 const postBoard = (req, res, next) => {
   const { title, paragraph } = req.body;
-  console.log(req.file || req.files);
-  const UserId = req.user.id || '익명';
+
+  const UserId = req.user.id || 'Anonymous';
   const redirectUrl = '/' + req.originalUrl
     .match(/[a-z]+\/[a-z]+/g)
     .join('');
-  console.log(req.files);
+
   if (!title) {
     return res.redirect(redirectUrl);
   }
 
-  return async schema => { // 자격증 취득 게시글 작성
+  req.files.map((image, i) => {
+    if (!image.mimetype.includes('image')) {
+      throw Error('확장자가 이미지가 아닙니다.');
+    }
+  });
+
+  return async schema => {
     try {
       const post = await schema.create({
         title,
@@ -48,9 +54,7 @@ const postBoard = (req, res, next) => {
       });
 
       const inquiry = await Inquiry.create({});
-
       await post.addInquiry(inquiry);
-
       // FIX: 개발 보류
       if (req.files.length > 1) {
         const images = await Promise.all(
