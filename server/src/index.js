@@ -74,7 +74,7 @@ if (process.env.NODE_ENV === 'development') {
     session({
       secret: process.env.secret,
       proxy: true,
-      resave: false,
+      resave: true,
       saveUninitialized: true,
       store: sessionStore,
       cookie: {
@@ -99,7 +99,7 @@ if (process.env.NODE_ENV === 'development') {
     session({
       secret: process.env.secret,
       proxy: true,
-      resave: false,
+      resave: true,
       saveUninitialized: true,
       store: sessionStore,
       cookie: {

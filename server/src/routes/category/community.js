@@ -29,7 +29,7 @@ const {
 
 // <-- </test> -->
 community.get('/board', (req, res) => {
-  res.render('import/community/board', {});
+  res.render('import/community/board', { user: req.user?.id });
 });
 community.post('/board/create', isLoggedIn, uploads.array('file'), (req, res, next) => {
   postBoard(req, res, next)(Community);
@@ -61,7 +61,7 @@ community.get('/board/:id([0-9]+)', (req, res, next) => {
 
 // 후배 양도 ( Donate )
 community.get('/donation', (req, res) => {
-  res.render('import/community/donation', {});
+  res.render('import/community/donation', { user: req.user?.id });
 });
 community.post('/donation/create', isLoggedIn, uploads.array('file'), (req, res, next) => {
   postBoard(req, res, next)(Donate);
@@ -91,7 +91,7 @@ community.get('/donation/:id([0-9]+)', isLoggedIn, (req, res, next) => {
 
 // 개선 사항 제안 ( Suggest ) 
 community.get('/suggestion', (req, res) => {
-  res.render('import/community/suggestion', {});
+  res.render('import/community/suggestion', { user: req.user?.id });
 });
 community.post('/suggestion/create', uploads.array('file'), (req, res, next) => {
   postBoard(req, res, next)(Suggest);
@@ -119,7 +119,7 @@ community.get('/suggestion/:id([0-9]+)', (req, res, next) => {
 
 // 공지 사항 ( Notice )
 community.get('/notice', (req, res) => {
-  res.render('import/community/notice', {});
+  res.render('import/community/notice', { user: req.user?.id });
 });
 community.post('/notice/create', uploads.array('file'), (req, res, next) => {
   postBoard(req, res, next)(Notice);

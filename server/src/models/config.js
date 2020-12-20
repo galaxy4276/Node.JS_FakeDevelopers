@@ -48,11 +48,13 @@ const test = {
     idle: 10000,
   },
   dialectOptions: {
+    charset: 'utf8mb4',
     collation: 'utf8mb4_general_ci',
-    dataString: true,
-    typeCast: true,
-    timezone: '+03:00',
+    // dataString: true,
+    // typeCast: true,
+    useUTC: false,
   },
+  timezone: "-09:00",
   define: {
     supportBigNumbers: true,
   }
