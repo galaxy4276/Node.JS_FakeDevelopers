@@ -15,6 +15,13 @@ mixin sidebar__item__icon()
         span 대덕대학교
         span 컴퓨터정보학과
     +sidebar__header__icon()
+  section.sidebar__auth
+    if user
+      div.sidebar__auth__item
+        a.sidebar__auth__link--logout.js-logoutBtn 로그아웃
+    else
+      div.sidebar__auth__item
+        .sidebar__auth__link--login.js-loginOpenBtn 로그인
   ul.sidebar__list
     li.sidebar__item
       +sidebar__item__icon()
