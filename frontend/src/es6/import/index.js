@@ -1,30 +1,23 @@
 // function
 import requestURL from '../common/post/postList/_requestURL';
 import defaultFetch from '../common/post/postList/_defaultFetch';
-import { getFormatDate } from '../common/function/_getFormatDate';
-
-const setTimeText = (createdAt) => {
-  const today = getFormatDate(new Date());
-  const regDate = getFormatDate(createdAt);
-
-  const timeText =
-    today === regDate // 글을 쓴 날짜가 오늘이면
-      ? createdAt.match(/(?<=T).*(?=\.)/)[0] // 시간을 세팅
-      : regDate.match(/(?<=\d{4}-).*/)[0]; // 아니라면 날짜를 세팅
-
-  return timeText;
-};
+import { addTime, getTimeDiff, processDateTime } from '../common/function/_date-fns';
 
 const processToElems = (boardName, dataObj) => {
-  const setTime = setTimeText;
+  const _addTime = addTime;
+  const _processDateTime = processDateTime;
+  const _getTimeDiff = getTimeDiff;
 
   const ul = document.createElement('ul');
   ul.classList.add('index-main__first-box__list');
 
   const postitems = dataObj.reduce((acc, post) => {
     const titleText = post.title;
-    const dateText = setTime(post.createdAt);
     const postViewLink = `/${boardName}/${post.id}`;
+
+    const KST = _addTime(post.createdAt, 9); // 🌟 GMT => KST 🌟
+    const timeDiff = _getTimeDiff(post.createdAt);
+    const timeText = _processDateTime(KST, timeDiff);
 
     const li = document.createElement('li');
     li.classList.add('index-main__first-box__item');
@@ -38,7 +31,7 @@ const processToElems = (boardName, dataObj) => {
 
     const span = document.createElement('span');
     span.classList.add('index-main__first-box__time-txt');
-    span.textContent = dateText;
+    span.textContent = timeText;
 
     li.appendChild(span);
 
