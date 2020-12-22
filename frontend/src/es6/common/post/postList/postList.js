@@ -61,16 +61,23 @@ const getLastPageNum = async () => {
   requestURL.path = path;
 
   // API 요청으로 마지막 페이지 번호 가져오기
-  const lastPageNum = await defaultFetch(requestURL.url)
-    .then((res) => res.idx)
-    .catch((error) => {
-      console.warn(error);
-      console.warn(
-        '데이터베이스에 불러올 데이터가 하나도 없거나 서버측의 코드 변경 혹은 응답 오류입니다.'
-      );
+  const lastPageNum = await defaultFetch(requestURL.url).then((res) => {
+    // 게시물이 있다면
+    if (res.idx) {
+      return res.idx;
+    }
+    // 게시물이 없다면
+    else {
+      if (process.env.NODE_ENV === 'development') {
+        // 개발모드일땐 경고 안내문 띄우기
+        console.warn(
+          '데이터베이스에 불러올 데이터가 하나도 없거나 서버측의 코드 변경 혹은 응답 오류입니다.'
+        );
+      }
       isNoPosts = true;
       return 1;
-    });
+    }
+  });
 
   // 가져온 마지막 페이지 번호를 전역변수에 저장
   setGlobalVariable('LAST_PAGE', lastPageNum);
