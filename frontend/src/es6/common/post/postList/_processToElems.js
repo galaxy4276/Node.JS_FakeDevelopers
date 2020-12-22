@@ -28,11 +28,11 @@ const processToElems = (boardName, dataObj) => {
     const timeText = _processDateTime(KST, timeDiff);
 
     item.innerHTML = `
-<div class=${classes.number}>${post.id || '0000'}</div>
+<p class=${classes.number}>${post.id || '0000'}</p>
 <a class=${classes.title} href=${postViewLink}>${post.title || '[ 빈 제목입니다 ]'}</a>
-<div class=${classes.writer}>${post.UserId || 'Annonymous'}</div>
-<div class=${classes.hit}>${post.Inquiries[0].count || '0'}</div>
-<div class=${classes.createdAt}>${timeText}</div>
+<p class=${classes.writer}>${post.UserId || 'Annonymous'}</p>
+<p class=${classes.hit}>${post.Inquiries[0].count || '0'}</p>
+<p class=${classes.createdAt}>${timeText}</p>
 `.trim();
 
     acc.push(item);
