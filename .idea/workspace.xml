@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88b59d01-40b0-45dc-be2e-5818affad633" name="Default Changelist" comment="meaningless commit">
-      <change beforePath="$PROJECT_DIR$/frontend/src/es6/common/auth/_auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/es6/common/auth/_auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/es6/common/post/postList/_processToElems.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/es6/common/post/postList/_processToElems.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/es6/common/post/postList/postList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/es6/common/post/postList/postList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/es6/common/templates/_header.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/es6/common/templates/_header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/scss/common/default/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scss/common/default/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/scss/common/templates/_sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scss/common/templates/_sidebar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/common/templates/_header.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/common/templates/_header.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/common/templates/_sidebar.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/common/templates/_sidebar.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Mobile메인.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/img/Mobile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/PC메인.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/img/PC.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +95,7 @@
       <workItem from="1608148376749" duration="6753000" />
       <workItem from="1608409584715" duration="11195000" />
       <workItem from="1608433796875" duration="2029000" />
-      <workItem from="1608599208714" duration="729000" />
+      <workItem from="1608599208714" duration="805000" />
     </task>
     <task id="LOCAL-00001" summary="feat: index.js 에러 미들웨어 추가 ( 에러 처리 페이지 요청 404 )">
       <created>1607107219099</created>

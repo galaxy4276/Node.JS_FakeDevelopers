@@ -12,8 +12,8 @@ https://www.ddccomputer.club
 |김준재|프런트엔드 개발자, 백 엔드 보조, 웹 디자인|
 
 ### 화면
-[!PC](img/PC.png)
-[!Mobile](img/Mobile.png)
+![PC](img/PC.png)
+![Mobile](img/Mobile.png)
 
 ### 기능 
 * Modal 형식의 로그인 / 로그아웃
