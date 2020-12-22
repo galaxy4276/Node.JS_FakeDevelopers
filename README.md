@@ -15,6 +15,14 @@ https://www.ddccomputer.club
 ![PC](img/PC.png)
 ![Mobile](img/Mobile.png)
 
+### 기술 스택
+|이름|역할|
+|:---|:---|
+|Webpack|프런트 개발구조 및 웹 리소스 번들링 수행|
+|Express.js|백엔드, RESTful API 개발|
+|AWS EC2, Route53|외부 배포 및 도메인 연결 수행|
+|NginX|리버스 프록시 서버 구성|
+
 ### 기능 
 * Modal 형식의 로그인 / 로그아웃
 * RESTful API 방식의 게시판 및 페이지네이션
