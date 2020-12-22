@@ -10,6 +10,8 @@ mixin getBoardProp(prop)
       a(href=`${path}`).sub-contents__item__link= `${nameEngToKor[nameEng]}`
     when 'title'
       title= `${nameEngToKor[nameEng]}`
+    when 'content-title'
+      h2.sub-contents__title= `${nameEngToKor[nameEng]}`
 
 block title
   +getBoardProp('title')
@@ -40,7 +42,7 @@ block content
       .sub-contents
         .sub-contents__wrap
           .sub-contents__header
-            h2.sub-contents__title 게시글 작성
+            +getBoardProp('content-title')
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
