@@ -12,14 +12,15 @@ https://www.ddccomputer.club
 |김준재|프런트엔드 개발자, 백 엔드 보조, 웹 디자인|
 
 ### 화면
-[!PC메인](./img/PC메인.PNG)
-[!Mobile메인](./img/Mobile메인.PNG)
+[!PC](img/PC.png)
+[!Mobile](img/Mobile.png)
 
 ### 기능 
 * Modal 형식의 로그인 / 로그아웃
 * RESTful API 방식의 게시판 및 페이지네이션
 * 학과에 대한 정보 페이지
 * 이메일 인증을 통한 비밀번호 변경
+* PC, 모바일 반응형 디자인
 
 ### 보완 예정사항
 - [ ] 어드민 페이지  
