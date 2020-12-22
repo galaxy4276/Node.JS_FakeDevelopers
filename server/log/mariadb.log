@@ -1,1 +1,1 @@
-SequelizeConnectionError: (conn=-1, no: 45033, SQLState: 08S01) Unknown IANA timezone 'Asia/Seoul0'.
+SequelizeConnectionError: (conn=-1, no: 45033, SQLState: 08S01) Unknown IANA timezone '00:00'.

@@ -50,11 +50,11 @@ const test = {
   dialectOptions: {
     charset: 'utf8mb4',
     collation: 'utf8mb4_general_ci',
-    // dataString: true,
-    // typeCast: true,
+    dataString: true,
+    typeCast: true,
     useUTC: false,
   },
-  timezone: "-09:00",
+  timezone: '+09:00',
   define: {
     supportBigNumbers: true,
   }
