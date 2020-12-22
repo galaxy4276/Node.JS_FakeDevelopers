@@ -13,7 +13,7 @@
     grid-template:
       'title title title' 2.5rem
       'createdAt writer hit' 2rem
-      / 6rem 4rem 1fr;
+      / 5rem 4rem 1fr;
     gap: 0.6rem;
 
     &__title {
@@ -91,7 +91,7 @@
       grid-template:
         'title title title' fit-content(100%)
         'createdAt writer hit' 2rem
-        / 6rem 4rem 1fr;
+        / 5rem 4rem 1fr;
     }
   }
 }
