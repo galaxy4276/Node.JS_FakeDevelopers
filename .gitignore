@@ -14,3 +14,5 @@ node_modules
 *.tmp
 *~
 _html
+
+.idea/workspace.xml

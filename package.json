@@ -4,5 +4,9 @@
   "main": "index.js",
   "repository": "https://github.com/galaxy4276/-Team-FakeDevelopers.git",
   "author": "galaxy4276 <galaxyhi4276@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  }
 }
