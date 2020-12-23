@@ -5,8 +5,63 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88b59d01-40b0-45dc-be2e-5818affad633" name="Default Changelist" comment="meaningless commit">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/FakeDeveloper.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/es6/common/function/_date-fns.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/common/icon/_mixin_icons.pug" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/common/post/_mixin_postList.pug" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/common/post/_mixin_postUpdate.pug" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/common/post/_mixin_postView.pug" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/common/post/_mixin_postWrite.pug" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/import/community/update.pug" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/import/footprint/update.pug" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/Mobile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/PC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/es6/common/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/es6/common/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/es6/common/post/postList/_processToElems.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/es6/common/post/postList/_processToElems.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/es6/import/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/es6/import/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/scss/common/post/_postList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scss/common/post/_postList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/scss/common/post/_postView.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scss/common/post/_postView.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/scss/common/post/_postWrite.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scss/common/post/_postWrite.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/scss/common/templates/_sub-main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scss/common/templates/_sub-main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/scss/import/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scss/import/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/common/_base.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/common/base.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/common/_mixins.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/common/_mixins.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/common/auth/_join.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/common/auth/_join.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/common/auth/_login.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/common/auth/_login.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/__dev/bear.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/__dev/bear.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/__dev/galaxy.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/__dev/galaxy.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/__dev/wscrg.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/__dev/wscrg.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/community/board.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/community/board.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/community/create.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/community/create.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/community/donation.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/community/donation.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/community/notice.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/community/notice.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/community/postView.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/community/postView.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/community/suggestion.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/community/suggestion.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/footprint/acquisition.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/footprint/acquisition.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/footprint/awards.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/footprint/awards.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/footprint/create.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/footprint/create.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/footprint/portfolio.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/footprint/portfolio.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/footprint/postView.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/footprint/postView.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/index.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/index.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/intro/club.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/intro/club.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/intro/env.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/intro/env.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/intro/info.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/intro/info.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/intro/member.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/intro/member.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/milestone/career.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/milestone/career.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/milestone/cert.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/milestone/cert.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/import/milestone/curriculum.pug" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/import/milestone/curriculum.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/log/mariadb.log" beforeDir="false" afterPath="$PROJECT_DIR$/server/log/mariadb.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/crud/read.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/crud/read.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/category/community.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/category/community.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +149,7 @@
       <workItem from="1608409584715" duration="11195000" />
       <workItem from="1608433796875" duration="2029000" />
       <workItem from="1608599208714" duration="805000" />
+      <workItem from="1608704930367" duration="633000" />
     </task>
     <task id="LOCAL-00001" summary="feat: index.js 에러 미들웨어 추가 ( 에러 처리 페이지 요청 404 )">
       <created>1607107219099</created>

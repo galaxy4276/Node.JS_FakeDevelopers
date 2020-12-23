@@ -1,16 +1,16 @@
 extends ../../common/base.pug
 
 mixin getBoardProp(prop)
-  - const nameEng = referrer.match(/(?<=\/.*\/).*(?=\/create)/)[0];
-  - const nameEngToKor = {acquisition: '자격증 취득', awards: '대회 수상', portfolio: '포트폴리오'}
-  - const path = referrer.match(/^.*(?=\/create)/)[0];
+  - const nameEng = referrer.match(/(?<=\/.*\/).*(?=\/update)/)[0];
+  - const nameEngToKor = {board: '학과 이야기', suggestion: '바라는 점', donation: '나눔의 공간', notice: '공지사항'}
+  - const path = referrer.match(/^.*(?=\/update)/)[0];
 
   case prop
     when 'sub-contents__item__link'
       a(href=`${path}`).sub-contents__item__link= `${nameEngToKor[nameEng]}`
     when 'title'
       title= `${nameEngToKor[nameEng]}`
-
+  
 block title
   +getBoardProp('title')
 block append stylesheet
@@ -26,15 +26,17 @@ block content
       // 여기서부터 네비게이션 바 시작
       .sub-nav
         .sub-nav__title-wrap
-          h3.sub-nav__title 학생 자취록
+          h3.sub-nav__title 커뮤니티
         .sub-nav__list-wrap
           ul.sub-nav__list
             li.sub-nav__item 
-              a(href="/footprint/acquisition").sub-nav__link 자격증 취득
+              a(href="/community/board").sub-nav__link 학과 이야기
             li.sub-nav__item
-              a(href="/footprint/awards").sub-nav__link 대회 수상
+              a(href="/community/suggestion").sub-nav__link 바라는 점
             li.sub-nav__item
-              a(href="/footprint/portfolio").sub-nav__link 포트폴리오
+              a(href="/community/donation").sub-nav__link 나눔의 공간
+            li.sub-nav__item
+              a(href="/community/notice").sub-nav__link 공지사항
 
       // 여기서부터 콘텐츠 시작
       .sub-contents
@@ -48,10 +50,9 @@ block content
                   a(href="/").sub-contents__item__link HOME
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="/footprint/acquisition").sub-contents__item__link 학생 자취록
+                  a(href="/community/board").sub-contents__item__link 커뮤니티
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
                   +getBoardProp('sub-contents__item__link')
-
           .sub-contents__content
-            +postWrite(referrer)
+            +postUpdate(referrer)

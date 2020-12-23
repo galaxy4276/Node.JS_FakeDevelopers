@@ -1,0 +1,49 @@
+//- 이 파일을 호출하는 ../_mixins.pug 파일은 ../base.pug 파일에서 include 되어있어,
+//-  index와 비밀번호 찾기 페이지를 제외한 모든 페이지에서 따로 include 없이 사용 가능합니다.
+
+//- Bulletn Board Post List Template [ 게시판 글 목록 템플릿 ]
+//- 💥 게시판 글 목록 템플릿은 '빈페이지로 진입하고 프론트에서 API 요청을해서 응답받고 페이지를 채우는 방법' 으로 설계되었습니다.
+//- 즉, 서버사이드에서 게시글 목록의 빈 템플릿만 제공하고, 데이터는 클라이언트 사이드에서 API로 요청됩니다.
+//- 게시글 목록 요청 모듈은 src/es6/common/function/post 에서 확인하실 수 있습니다.
+//- 글쓰기 기능을 사용하는 게시판이라면 인자를 넣어주시고 아니라면 안 넣으심 됩니다
+//- ex) 글쓰기 기능 사용 게시판 >> +postList(true, 'community/board')
+//- ex) 글쓰기 기능 미사용 게시판 >> +postList()
+mixin postList(usePostWrite = false, boardName)
+  article.post-list
+    |
+    |
+    // 게시판 글 목록 헤더
+    section.post-list__header
+      //- 표시될 게시글의 속성 = ['number', 'title', 'writer', 'hit', 'createdAt'];
+      div.post-list__header__prop.post-list__header__number 번호
+      div.post-list__header__prop.post-list__header__title 제목
+      div.post-list__header__prop.post-list__header__writer 작성자
+      div.post-list__header__prop.post-list__header__hit 조회수
+      div.post-list__header__prop.post-list__header__createdAt 등록일
+    |
+    |
+    // 게시판 글 목록
+    section.post-list__posts
+    |
+    |
+    // 게시판 글 목록 버튼들
+    section.post-list__btns
+      // 페이지네이션
+      section.post-list__inner-paging
+        // 페이지 번호 리스트
+        ul.post-list__page-numbers
+        // 버튼들
+        div.post-list__page-btn.post-list__page-btn--left
+          +icon("chevronBackward", '이전 페이지', '#0f0f0f')
+        div.post-list__page-btn.post-list__page-btn--right
+          +icon("chevronForward", '다음 페이지', '#0f0f0f')
+      // TODO: 제일 앞으로 가기, 제일 뒤로 가기 부분 구현
+      |
+      |
+      //- 글쓰기 기능이 존재하는 게시판이라면
+      - if(usePostWrite)
+        // 글쓰기 버튼
+        if user
+          a(href= '/' + boardName + '/create').post-list__write-btn 글쓰기
+        else
+          p(style="text-align: right; font-weight: 600") 로그인을 해서 글을 작성하세요!

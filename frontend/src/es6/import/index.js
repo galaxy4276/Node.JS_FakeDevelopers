@@ -1,48 +1,44 @@
 // function
 import requestURL from '../common/post/postList/_requestURL';
 import defaultFetch from '../common/post/postList/_defaultFetch';
-import { getFormatDate } from '../common/function/_getFormatDate';
+import { addTime, getTimeDiff, processDateTime } from '../common/function/_date-fns';
 
-const setTimeText = (createdAt) => {
-  const today = getFormatDate(new Date());
-  const regDate = getFormatDate(createdAt);
-
-  const timeText =
-    today === regDate // 글을 쓴 날짜가 오늘이면
-      ? createdAt.match(/(?<=T).*(?=\.)/)[0] // 시간을 세팅
-      : regDate.match(/(?<=\d{4}-).*/)[0]; // 아니라면 날짜를 세팅
-
-  return timeText;
+const toClassNamesObj = (...lastNames) => {
+  return lastNames.reduce(
+    (acc, lastName) =>
+      Object.defineProperty(acc, lastName, { value: `index-main__first-box__${lastName}` }),
+    {}
+  );
 };
 
 const processToElems = (boardName, dataObj) => {
-  const setTime = setTimeText;
+  const itemName = 'item';
+  const propNames = ['link', 'time'];
+  const classes = toClassNamesObj(...propNames);
+
+  const _addTime = addTime;
+  const _processDateTime = processDateTime;
+  const _getTimeDiff = getTimeDiff;
 
   const ul = document.createElement('ul');
   ul.classList.add('index-main__first-box__list');
 
   const postitems = dataObj.reduce((acc, post) => {
-    const titleText = post.title;
-    const dateText = setTime(post.createdAt);
+    const item = document.createElement('li');
+    item.setAttribute('class', `index-main__first-box__${itemName}`);
+
     const postViewLink = `/${boardName}/${post.id}`;
 
-    const li = document.createElement('li');
-    li.classList.add('index-main__first-box__item');
+    const KST = _addTime(post.createdAt, 9); // 🌟 GMT => KST 🌟
+    const timeDiff = _getTimeDiff(post.createdAt);
+    const timeText = _processDateTime(KST, timeDiff);
 
-    const a = document.createElement('a');
-    a.classList.add('index-main__first-box__link');
-    a.href = postViewLink;
-    a.textContent = titleText;
+    item.innerHTML = `
+<a class="${classes.link}" href="${postViewLink}">${post.title || '[ 빈 제목입니다 ]'}</a>
+<span class="${classes.time}">${timeText}</span>
+`.trim();
 
-    li.appendChild(a);
-
-    const span = document.createElement('span');
-    span.classList.add('index-main__first-box__time-txt');
-    span.textContent = dateText;
-
-    li.appendChild(span);
-
-    acc.push(li);
+    acc.push(item);
 
     return acc;
   }, []);
@@ -94,5 +90,3 @@ document.addEventListener(
   },
   false
 );
-
-// component

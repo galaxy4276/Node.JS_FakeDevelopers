@@ -13,8 +13,8 @@
     grid-template:
       'title title title' 2.5rem
       'createdAt writer hit' 2rem
-      / 6rem 4rem 1fr;
-    gap: 0.6rem;
+      / fit-content(100%) fit-content(100%) 1fr;
+    gap: 0.6rem 0;
 
     &__title {
       grid-area: title;
@@ -27,8 +27,9 @@
       color: #777;
 
       &::after {
-        content: '　|';
+        content: '|';
         color: #ccc;
+        margin: 0 1rem;
       }
     }
 
@@ -85,13 +86,12 @@
   @include for-mobile {
     border-top: 5px solid $main-color;
     padding: 2rem 1rem;
-    // margin-top: 0.5rem;
 
     &__header {
       grid-template:
         'title title title' fit-content(100%)
         'createdAt writer hit' 2rem
-        / 6rem 4rem 1fr;
+        / fit-content(100%) fit-content(100%) 1fr;
     }
   }
 }

@@ -1,11 +1,22 @@
 extends ../../common/base.pug
 
+mixin getBoardProp(prop)
+  - const nameEng = referrer.match(/(?<=\/.*\/).*(?=\/update)/)[0];
+  - const nameEngToKor = {acquisition: '자격증 취득', awards: '대회 수상', portfolio: '포트폴리오'}
+  - const path = referrer.match(/^.*(?=\/update)/)[0];
+
+  case prop
+    when 'sub-contents__item__link'
+      a(href=`${path}`).sub-contents__item__link= `${nameEngToKor[nameEng]}`
+    when 'title'
+      title= `${nameEngToKor[nameEng]}`
+
 block title
-  title 자격증 취득
+  +getBoardProp('title')
 block append stylesheet
-  link(rel="stylesheet" href="/css/acquisition.css")
+  link(rel="stylesheet" href="/css/postWrite.css")
 block append script
-  script(defer src="/es5/acquisition.js")
+  script(defer src="/es5/postWrite.js")
 
 block content
   main.sub-main
@@ -29,7 +40,7 @@ block content
       .sub-contents
         .sub-contents__wrap
           .sub-contents__header
-            h2.sub-contents__title 자격증 취득
+            h2.sub-contents__title 게시글 작성
             .sub-contents__util-wrap
               ul.sub-contents__util-list
                 li.sub-contents__item
@@ -40,8 +51,7 @@ block content
                   a(href="/footprint/acquisition").sub-contents__item__link 학생 자취록
                   +sub-contents__item__icon("chevronForward")
                 li.sub-contents__item
-                  a(href="/footprint/acquisition").sub-contents__item__link 자격증 취득
+                  +getBoardProp('sub-contents__item__link')
 
           .sub-contents__content
-            // 게시판 글 목록
-            +postList(true, 'footprint/acquisition', user)
+            +postUpdate(referrer)

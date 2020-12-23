@@ -1,0 +1,55 @@
+//- 이 파일을 호출하는 ../_mixins.pug 파일은 ../base.pug 파일에서 include 되어있어,
+//-  index와 비밀번호 찾기 페이지를 제외한 모든 페이지에서 따로 include 없이 사용 가능합니다.
+
+//- Bulletn Board Post View Template [ 게시판 글 상세보기 템플릿 ]
+//- 💥 게시판 글 상세보기 템플릿은 'url 에 존재하는 id 값으로 백엔드에서 정보를 찾아서 템플릿 엔진에 전달해주는 방법' 으로 설계되었습니다.
+//- 즉, 서버 사이드에서 해당하는 페이지의 데이터 렌더링이 모두 끝난 후 제공됩니다. 
+
+//- title, createdAt, writer, hit,
+//- file,
+//- 상세보기전 게시글 주소 (ex - community/board)
+mixin postView(post, referrer, user)
+  article.post-view
+    mixin processDateTime(GMT)
+      - const addTime = (hours, oldDate, newDate = new Date()) => {newDate.setTime(oldDate.getTime() + (hours * 60 * 60 * 1000)); return newDate;}
+      - const yymmdd = (dateObj = new Date()) => dateObj.toISOString().match(/(?<=^\d{2})\d{2}-\d{2}-\d{2}(?=T)/)[0];
+      - const hhmmss = (dateObj = new Date()) => dateObj.toISOString().match(/(?<=T)\d{2}:\d{2}:\d{2}/)[0];
+      
+      - const KST = addTime(9, GMT);
+      - const createdDate = yymmdd(KST);
+      - const createdTime = hhmmss(KST);
+      - const today = yymmdd();
+
+      - const displayedTime = createdDate === today ? createdTime : createdDate;
+
+      div.post-view__header__prop.post-view__header__createdAt= displayedTime
+    |
+    |
+    // 게시판 글 헤더
+    section.post-view__header
+      //- 헤더에 표시될 게시글의 속성 = ['title', 'createdAt', 'writer', 'hit'];
+      div.post-view__header__title= post.title
+      +processDateTime(post.createdAt)
+      div.post-view__header__prop.post-view__header__writer= post.UserId
+      div.post-view__header__prop.post-view__header__hit= post.Inquiries[0].count
+    // 게시판 글
+    //- (컨텐츠 어떻게 던져주나 보고 그다음 가공 예정)
+    section.post-view__content
+      // 첨부 파일
+      section.post-view__content__images
+        each image in post.Images
+          - const src = `https://www.ddccomputer.club/uploads/${image.src}`
+          img(src= src style="max-width: 100%;").post-view__content__image
+      section.post-view__content__txt= post.content
+    // 게시판 글 푸터
+    section.post-view__footer
+      -const boardPath = referrer.match(/^.*(?=\/\d)/)[0]; // regExp ex) '/community/board/14' => '/community/board'
+      a(href= boardPath).post-view__footer__btn.post-view__footer__btn--board 목록
+      if user === post.UserId
+        -const updatePath = `${referrer}/update?_method=PATCH`
+        -const deletePath = `${referrer}/delete?_method=DELETE`
+        form(action="" method="post").post-view__footer__form
+          button(type="submit" name="" formaction= updatePath).post-view__footer__btn.post-view__footer__form--update 수정하기
+          button(type="submit" name="" formaction= deletePath).post-view__footer__btn.post-view__footer__form--delete 삭제하기
+          //- TODO: 수정하기 템플릿 완성되면 사용
+    //- (위에서 받은 boardPath로 postList 삽입 예정)

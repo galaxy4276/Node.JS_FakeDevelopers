@@ -13,14 +13,14 @@ article.join
         |
         |
         .join__form__input-box
-            input(type="text" name="id" minlength="1" maxlength="20" required).join__form__input
-            label.join__form__input-label 사용자 이름
+            input(type="text" name="id" minlength="4" maxlength="12" required).join__form__input
+            label.join__form__input-label 사용자 이름 (4~12)
             span.join__form__input-check
             //- TODO: id 입력창 focus가 풀리면 DB와 연동해서 입력한 아이디가 있는지 검증
             //- TODO: id 입력창 요구조건 (특수문자 미포함 등) 만족 검증
         .join__form__input-box
-            input(type="password" name="password" minlength="1" maxlength="20" autocomplete="new-password" required).join__form__input
-            label.join__form__input-label 비밀번호
+            input(type="password" name="password" minlength="8" maxlength="20" autocomplete="new-password" required).join__form__input
+            label.join__form__input-label 비밀번호 (8~20)
             span.join__form__input-check
         //- TODO: 아래 패스워드 체크에 입력한 값이 위에 입력했던 패스워드와 동일한지 검증
         .join__form__input-box

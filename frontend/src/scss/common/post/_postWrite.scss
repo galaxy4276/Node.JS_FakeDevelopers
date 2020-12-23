@@ -5,44 +5,88 @@
 .post-write {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  font-size: 1rem;
 
-  &__wrap {
-    &--title {
-    }
-    &--file {
-    }
-    &--paragraph {
+  @mixin post-write__wrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.3em;
+  }
+
+  @mixin post-write__label {
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-bottom: 0.33em;
+    letter-spacing: 0.033em;
+  }
+
+  @mixin post-write__input {
+    font: inherit;
+    font-size: 1.1em;
+    line-height: 200%;
+    padding: 0rem 0.33em;
+
+    &:focus {
+      outline-color: $main-color;
+      outline-width: 10px;
     }
   }
 
-  &__label {
+  &__form {
   }
 
   &__title {
+    &__wrap {
+      @include post-write__wrap;
+    }
     &__label {
+      @include post-write__label;
     }
     &__input {
+      @include post-write__input;
+      width: 100%;
     }
   }
 
   &__file {
+    &__wrap {
+      @include post-write__wrap;
+    }
     &__label {
+      @include post-write__label;
     }
     &__input {
+      font-size: 1.1em;
     }
   }
 
   &__paragraph {
+    &__wrap {
+      @include post-write__wrap;
+    }
     &__label {
+      @include post-write__label;
     }
     &__input {
+      @include post-write__input;
+      resize: none;
+      height: 20rem;
     }
   }
 
   &__submit {
-    @include btn-rectangle(1rem 0, true, true);
-    color: white;
-    font-size: 1.05rem;
-    background-color: $main-color;
+    &__wrap {
+      @include post-write__wrap;
+      align-items: flex-end; // direction is 'column'
+    }
+
+    &__btn {
+      @include btn-rectangle(1rem 0.5rem, true, true);
+      color: white;
+      font-size: 1.05rem;
+      background-color: $main-color;
+      width: fit-content;
+    }
   }
 }
