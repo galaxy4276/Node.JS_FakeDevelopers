@@ -17,4 +17,5 @@ mixin postUpdate(url)
         label.post-write__paragraph__label 내용
         textarea(name="paragraph" required).post-write__paragraph__input
       .post-write__submit__wrap
-        button(type="submit" name="submit").post-write__submit__btn 수정하기
+        -const updatePagePath = `${referrer}/update?_method=PATCH`
+        button(type="submit" name="" formaction= updatePagePath).post-write__submit__btn 수정하기
