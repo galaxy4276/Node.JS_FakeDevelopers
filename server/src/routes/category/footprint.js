@@ -8,6 +8,7 @@ import deletePost from "../../controllers/crud/delete";
 import updatePost from "../../controllers/crud/update";
 import readPost from "../../controllers/crud/read";
 import {getRenderCreate, isLoggedIn} from "../../controllers/post";
+import community from "./community";
 
 const { 
   Certpost,
@@ -39,6 +40,9 @@ footprint.get('\/acquisition\/api$', (req, res, next) => {
 });
 footprint.delete('/acquisition/:id([0-9]+)/delete', isLoggedIn, (req, res, next) => {
   deletePost(req, res, next)(Certpost);
+});
+footprint.patch('/acquisition/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
+  res.render('import/footprint/update');
 });
 footprint.patch('/acquisition/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
   updatePost(req, res, next)(Certpost);
