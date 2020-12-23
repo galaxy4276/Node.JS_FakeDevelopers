@@ -48,8 +48,15 @@ community.get('^\/board\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Community);
   console.log('get /board/api');
 });
-community.get('/board/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
-  res.render('import/community/update');
+community.get('/board/:id([0-9]+)/update', isLoggedIn, async (req, res, next) => {
+  const redirectUrl = req.originalUrl
+    .match(/\/[a-z]+/)
+    .join('');
+
+  const postData = await Community.findOne({ where: { id: req.params.id }});
+  console.log(postData);
+
+  res.render('import/community/update', { referrer: redirectUrl, postData });
 });
 community.patch('/board/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
   updatePost(req, res, next)(Community);
