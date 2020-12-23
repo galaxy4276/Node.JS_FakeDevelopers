@@ -48,11 +48,14 @@ community.get('^\/board\/api$', (req, res, next) => {
   getPostsList(req, res, next)(Community);
   console.log('get /board/api');
 });
-community.delete('/board/:id([0-9]+)/delete', isLoggedIn, (req, res, next) => {
-  deletePost(req, res, next)(Community);
+community.get('/board/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
+  res.render('import/community/update');
 });
 community.patch('/board/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
   updatePost(req, res, next)(Community);
+});
+community.delete('/board/:id([0-9]+)/delete', isLoggedIn, (req, res, next) => {
+  deletePost(req, res, next)(Community);
 });
 community.get('/board/:id([0-9]+)', (req, res, next) => {
   readPost(req, res, next)(Community);
@@ -81,7 +84,11 @@ community.get('\/donation\/api$', (req, res, next) => {
 community.delete('/donation/:id([0-9]+)/delete', isLoggedIn, (req, res, next) => {
   deletePost(req, res, next)(Donate);
 });
+community.get('/donation/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
+  res.render('import/community/update');
+});
 community.patch('/donation/:id([0-9]+)/update', (req, res, next) => {
+  console.log('PATCH post');
   updatePost(req, res, next)(Donate);
 });
 community.get('/donation/:id([0-9]+)', isLoggedIn, (req, res, next) => {
@@ -110,6 +117,9 @@ community.get('\/suggestion\/api$', (req, res, next) => {
 community.delete('/suggestion/:id([0-9]+)/delete', (req, res, next) => {
   deletePost(req, res, next)(Suggest);
 });
+community.get('/suggestion/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
+  res.render('import/community/update');
+});
 community.patch('/suggestion/:id([0-9]+)/update', (req, res, next) => {
   updatePost(req, res, next)(Suggest);
 });
@@ -137,6 +147,9 @@ community.get('\/notice\/api$', (req, res, next) => {
 });
 community.delete('/notice/:id([0-9]+)/delete', (req, res, next) => {
   deletePost(req, res, next)(Notice);
+});
+community.get('/notice/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
+  res.render('import/community/update');
 });
 community.patch('/notice/:id([0-9]+)/update', (req, res, next) => {
   updatePost(req, res, next)(Notice);
