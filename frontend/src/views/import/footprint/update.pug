@@ -1,10 +1,9 @@
 extends ../../common/base.pug
 
 mixin getBoardProp(prop)
-  - const nameEng = referrer.match(/(?<=\/.*\/).*(?=\/update)/)[0];
+  - const nameEng = referrer.match(/(?<=\/[a-z]+\/)[a-z]+(?=\/\d+\/update)/)[0];
   - const nameEngToKor = {acquisition: '자격증 취득', awards: '대회 수상', portfolio: '포트폴리오'}
-  - const path = referrer.match(/^.*(?=\/update)/)[0];
-
+  - const path = referrer.match(/^\/[a-z]+\/[a-z]+(?=\/\d+\/update)/)[0];
   case prop
     when 'sub-contents__item__link'
       a(href=`${path}`).sub-contents__item__link= `${nameEngToKor[nameEng]}`
