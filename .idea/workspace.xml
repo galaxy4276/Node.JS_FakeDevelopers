@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="88b59d01-40b0-45dc-be2e-5818affad633" name="Default Changelist" comment="meaningless commit">
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/frontend/package.json" />
+  </component>
+  <component name="ProjectId" id="1lBfjymKQ4syQeQZK3ix9IkskR8" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.15.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.14.10" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/file_server/config" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="A:\project\FakeDeveloper\file_server\config" />
+      <recent name="A:\project\FakeDeveloper\server\src\public\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="A:\project\FakeDeveloper\img" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="88b59d01-40b0-45dc-be2e-5818affad633" name="Default Changelist" comment="" />
+      <created>1607075543901</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607075543901</updated>
+      <workItem from="1607075545880" duration="719000" />
+      <workItem from="1607076311781" duration="537000" />
+      <workItem from="1607076865627" duration="666000" />
+      <workItem from="1607077547151" duration="697000" />
+      <workItem from="1607085620099" duration="195000" />
+      <workItem from="1607085829753" duration="4803000" />
+      <workItem from="1607102710439" duration="519000" />
+      <workItem from="1607103299914" duration="13553000" />
+      <workItem from="1607148450691" duration="722000" />
+      <workItem from="1607149349542" duration="19163000" />
+      <workItem from="1607172774322" duration="6215000" />
+      <workItem from="1607194643190" duration="32061000" />
+      <workItem from="1607243029697" duration="11192000" />
+      <workItem from="1607296459321" duration="293000" />
+      <workItem from="1607297687220" duration="551000" />
+      <workItem from="1607332007242" duration="648000" />
+      <workItem from="1607334141280" duration="62000" />
+      <workItem from="1607334214180" duration="127000" />
+      <workItem from="1607354390848" duration="565000" />
+      <workItem from="1607375172796" duration="64000" />
+      <workItem from="1607382264447" duration="404000" />
+      <workItem from="1607382683067" duration="113000" />
+      <workItem from="1607424988270" duration="3205000" />
+      <workItem from="1607559870063" duration="423000" />
+      <workItem from="1607839955121" duration="1933000" />
+      <workItem from="1608146418959" duration="1416000" />
+      <workItem from="1608148376749" duration="6753000" />
+      <workItem from="1608409584715" duration="11195000" />
+      <workItem from="1608433796875" duration="2029000" />
+      <workItem from="1608599208714" duration="805000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: index.js 에러 미들웨어 추가 ( 에러 처리 페이지 요청 404 )">
+      <created>1607107219099</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607107219099</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: index.js 에러 미들웨어 추가 ( 에러 처리 페이지 요청 404 )">
+      <created>1607107680827</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607107680827</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: CRUD 기능의 update 초안 구현">
+      <created>1607107737958</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607107737958</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: CRUD 기능의 read와 delete 초안 구현">
+      <created>1607107756607</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1607107756607</updated>
+    </task>
+    <task id="LOCAL-00005" summary="meaningless commit">
+      <created>1607107791963</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1607107791963</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: 파일 서버 정의">
+      <created>1608160246481</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1608160246481</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="feat: index.js 에러 미들웨어 추가 ( 에러 처리 페이지 요청 404 )" />
+    <MESSAGE value="feat: CRUD 기능의 update 초안 구현" />
+    <MESSAGE value="feat: CRUD 기능의 read와 delete 초안 구현" />
+    <MESSAGE value="meaningless commit" />
+    <MESSAGE value="feat: 파일 서버 정의" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 파일 서버 정의" />
+  </component>
+</project>
