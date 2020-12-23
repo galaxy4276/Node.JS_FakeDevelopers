@@ -46,10 +46,10 @@ mixin postView(post, referrer, accessUser)
       -const boardPath = referrer.match(/^.*(?=\/\d)/)[0]; // regExp ex) '/community/board/14' => '/community/board'
       a(href= boardPath).post-view__footer__btn.post-view__footer__btn--board 목록
       if accessUser === post.UserId
-        -const updatePagePath = `${referrer}/update?_method=PATCH`
+        -const updatePagePath = `${referrer}/update`
         -const deletePath = `${referrer}/delete?_method=DELETE`
         form(action="" method="post").post-view__footer__form
-          button(type="submit" name="" formaction= updatePagePath).post-view__footer__btn.post-view__footer__form--update 수정하기
+          a(href= updatePagePath).post-view__footer__btn.post-view__footer__form--update 수정하기
           button(type="submit" name="" formaction= deletePath).post-view__footer__btn.post-view__footer__form--delete 삭제하기
           //- TODO: 수정하기 템플릿 완성되면 사용
     //- (위에서 받은 boardPath로 postList 삽입 예정)
