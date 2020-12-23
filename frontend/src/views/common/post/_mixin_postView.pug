@@ -49,7 +49,7 @@ mixin postView(post, referrer, user)
         -const updatePath = `${referrer}/update?_method=PATCH`
         -const deletePath = `${referrer}/delete?_method=DELETE`
         form(action="" method="post").post-view__footer__form
-          //- button(type="submit" name="" formmethod="" formaction= updatePath).post-view__footer__btn.post-view__footer__form--update 수정하기
+          button(type="submit" name="" formaction= updatePath).post-view__footer__btn.post-view__footer__form--update 수정하기
           button(type="submit" name="" formaction= deletePath).post-view__footer__btn.post-view__footer__form--delete 삭제하기
           //- TODO: 수정하기 템플릿 완성되면 사용
     //- (위에서 받은 boardPath로 postList 삽입 예정)
