@@ -50,11 +50,10 @@ community.get('^\/board\/api$', (req, res, next) => {
 });
 community.get('/board/:id([0-9]+)/update', isLoggedIn, async (req, res, next) => {
   const redirectUrl = req.originalUrl
-    .match(/\/[a-z]+/)
+    .match(/\/[a-z]+\/\w+\/\w+/)
     .join('');
 
   const postData = await Community.findOne({ where: { id: req.params.id }});
-  console.log(postData);
 
   res.render('import/community/update', { referrer: redirectUrl, postData });
 });
