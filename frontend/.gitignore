@@ -4,9 +4,18 @@ public
 # .env
 .env
 
-# bear save dir (개인용 저장)
-_save
+# 프로젝트 의존성
+node_modules
 
+# macOS 폴더 속성
+.DS-Store
 
-# 서버 이미지 파일
-../server/uploads
+# 임시 파일
+*.tmp
+*~
+
+# 에디터 전용 파일
+.idea
+
+# log 파일
+*.log
