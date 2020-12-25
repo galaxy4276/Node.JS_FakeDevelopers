@@ -26,5 +26,6 @@ export default class AwardPost extends Model {
     db.Award.belongsTo(db.User);
     db.Award.hasMany(db.Inquiry);
     db.Award.hasMany(db.Image);
+    db.Award.hasMany(db.Comment);
   }
 }

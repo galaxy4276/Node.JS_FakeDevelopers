@@ -57,7 +57,7 @@ community.get('/board/:id([0-9]+)/update', isLoggedIn, async (req, res, next) =>
 
   res.render('import/community/update', { referrer: redirectUrl, postData });
 });
-community.put('/board/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
+community.patch('/board/:id([0-9]+)/update', isLoggedIn, uploads.array ('file'), (req, res, next) => {
   console.log('update (patch) router');
   updatePost(req, res, next)(Community);
 });
