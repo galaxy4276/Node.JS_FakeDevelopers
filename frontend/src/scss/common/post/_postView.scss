@@ -3,6 +3,10 @@
 /* --------------- */
 
 .post-view {
+  h1 {
+    visibility: hidden;
+  }
+
   border-top: 3px solid $main-color;
   width: 100%;
   padding: 2.5rem 1.25rem;
@@ -81,6 +85,28 @@
         color: white;
       }
     }
+
+    &__comment {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: #5d89af;
+
+      &-input {
+        form {
+          textarea {
+            width: 100%;
+            resize: none;
+          }
+
+          button {
+            @include btn-rectangle(true, true, true);
+            padding: 0.5rem 1rem;
+          }
+        }
+      }
+    }
+
   }
 
   @include for-mobile {
