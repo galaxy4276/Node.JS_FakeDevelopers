@@ -3,6 +3,7 @@ import postBoard, { uploads } from '../../controllers/crud/post';
 import deletePost from '../../controllers/crud/delete';
 import updatePost from '../../controllers/crud/update';
 import readPost from '../../controllers/crud/read';
+import addComment from '../../controllers/comment';
 
 const community = require('express').Router();
 import sequelize from '../../models';
@@ -15,7 +16,8 @@ const {
   Community,
   Donate,
   Suggest,
-  Notice
+  Notice,
+  Comment
 } = sequelize;
 
 // Router & Controllers ( 차 후 분리 필요 )
@@ -34,6 +36,9 @@ community.get('/board', (req, res) => {
 community.post('/board/create', isLoggedIn, uploads.array('file'), (req, res, next) => {
   postBoard(req, res, next)(Community);
   console.log('create /board/create');
+});
+community.post('/board/:id([0-9]+)/comment', (req, res, next) => {
+  addComment(req, res, next)(Community);
 });
 community.get('/board/create', isLoggedIn, getRenderCreate);
 community.get('/board/api/index', (req, res, next) => {
