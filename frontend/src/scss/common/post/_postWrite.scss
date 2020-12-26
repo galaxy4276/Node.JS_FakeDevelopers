@@ -103,8 +103,14 @@
     }
 
     &__header {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
       display: grid;
       grid-template-columns: [fileName] 1fr [fileSize] 10rem;
+      font-weight: 700;
+      background-color: #f0f0f0;
+      border-bottom: 0.5px dashed #eee;
 
       & > span {
         display: flex;
