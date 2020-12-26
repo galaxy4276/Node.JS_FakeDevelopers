@@ -1,5 +1,5 @@
 import guideAsPlaceholder from '../../function/_guideAsPlaceholder';
-import { addTime, getTimeDiff, processDateTime } from '../../function/_date-fns';
+import { addTime, yymmdd, hhmm } from '../../function/_date-fns';
 
 const addToCommentList = (commentElem) => {
   const commentList = document.querySelector('.post-view__comment__list');
@@ -22,17 +22,21 @@ const processToElem = (commentInfo) => {
   const propNames = ['info', 'content'];
   const classes = toClassNamesObj(...propNames);
 
-  const commentItem = document.createElement('div');
+  const commentItem = document.createElement('li');
   commentItem.classList.add(`post-view__comment__${itemName}`);
 
   const KST = addTime(commentInfo.createdAt, 9); // 🌟 GMT => KST 🌟
-  const timeDiff = getTimeDiff(commentInfo.createdAt);
-  const timeText = processDateTime(KST, timeDiff);
+  const createdDate = yymmdd(KST);
+  const createdTime = hhmm(KST);
 
-  commentItem.innerHTML = `
+  commentItem.innerHTML =
+    `
 <section class="${classes.info}">
   <span>${commentInfo.UserId}</span>
-  <span>${timeText}</span>
+`.trim() +
+    `
+  <span>${createdDate}</span>
+  <span>${createdTime}</span>
 </section>
 <section class="${classes.content}">${commentInfo.comment}</section>
 `.trim();
@@ -56,7 +60,7 @@ const postNewComment = async () => {
   const contentArea = document.querySelector('.post-view__comment__textarea');
 
   if (contentArea.value === '') {
-    guideAsPlaceholder(contentArea, '빈 텍스트는 제출할 수 없습니다.');
+    guideAsPlaceholder(contentArea, '빈 댓글은 제출할 수 없습니다.');
     return;
   }
 

@@ -14,6 +14,10 @@ const getTimeDiff = (dateTime) => {
   return newTime.getTime() - oldTime.getTime();
 };
 
+const yymmdd = (dateObj) => dateObj.toISOString().match(/^\d{4}-\d{2}-\d{2}(?=T)/)[0];
+
+const hhmm = (dateObj) => dateObj.toISOString().match(/(?<=T)\d{2}:\d{2}(?=:\d{2})/)[0];
+
 const mmdd = (dateObj) => {
   // [Date Object] => String 'mm-dd', example - '12-25'
   // Non-capture Elements
@@ -62,4 +66,4 @@ const processDateTime = (dateTime, diff) => {
   return timeText;
 };
 
-export { addTime, getTimeDiff, processDateTime };
+export { addTime, getTimeDiff, processDateTime, yymmdd, hhmm };
