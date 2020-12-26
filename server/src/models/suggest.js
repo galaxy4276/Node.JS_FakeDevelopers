@@ -25,5 +25,6 @@ export default class SuggestPost extends Model {
     db.Suggest.belongsTo(db.User);
     db.Suggest.hasMany(db.Inquiry);
     db.Suggest.hasMany(db.Image);
+    db.Suggest.hasMany(db.Comment);
   };
 }

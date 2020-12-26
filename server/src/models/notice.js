@@ -26,5 +26,6 @@ export default class Notice extends Model {
     db.Notice.belongsTo(db.User);
     db.Notice.hasMany(db.Inquiry);
     db.Notice.hasMany(db.Image);
+    db.Notice.hasMany(db.Comment);
   }
 }

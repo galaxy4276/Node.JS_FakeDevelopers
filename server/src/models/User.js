@@ -40,5 +40,6 @@ export default class User extends Model {
     db.User.hasMany(db.Portfolio);
     db.User.hasMany(db.Suggest);
     db.User.hasMany(db.Notice);
+    db.User.hasMany(db.Comment);
   }
 }

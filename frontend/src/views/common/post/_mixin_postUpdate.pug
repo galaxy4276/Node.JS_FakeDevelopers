@@ -10,23 +10,23 @@ mixin postUpdate(referrer, postData)
     p(style='color: red;') referrer
     h1= referrer
     //------------------------------------//
-    form(action="" method="post" enctype="multipart/form-data").post-write__form
+    form(action=`${referrer}/update?_method=PATCH` method="POST" enctype="multipart/form-data").post-write__form
       .post-write__title__wrap
         label.post-write__title__label 제목
-        input(type="text" name="title" value= postData.title required).post-write__title__input
-      // 파일 관련 이후 추가 예정
-      // 서버단에서 불러올 수 있는 이미지 url로 던져주면,
-      // 하나의 이미지 컴포넌트로 변경하여 로딩할 수 있도록 할 예정
-      //- .post-write__file__wrap
-      //-   label.post-write__file__label 파일
-      //-   input(type="file" name="file").post-write__file__input
-      .post-write__paragraph__wrap
-        label.post-write__paragraph__label 내용
-        textarea(name="paragraph" required).post-write__paragraph__input= postData.content
+          input(type="text" name="title" value= postData.title required).post-write__title__input
+        // 파일 관련 이후 추가 예정
+        // 서버단에서 불러올 수 있는 이미지 url로 던져주면,
+        // 하나의 이미지 컴포넌트로 변경하여 로딩할 수 있도록 할 예정
+        //- .post-write__file__wrap
+        //-   label.post-write__file__label 파일
+        //-   input(type="file" name="file").post-write__file__input
+        .post-write__paragraph__wrap
+          label.post-write__paragraph__label 내용
+          textarea(name="content" required).post-write__aragraph__input= postData.content
       .post-write__submit__wrap
-        -const updatePagePath = `${referrer}/update?_method=PATCH`
+        -const updatePagePath = `${referrer}/update?_method=PUT`
         //------- updatePagePath test --------//
         p(style='color: red;') PATCH 경로
         h1= updatePagePath
         //------------------------------------//
-        button(type="submit" name="" formaction= updatePagePath).post-write__submit__btn 수정하기
+        button(type="submit").post-write__submit__btn 수정하기

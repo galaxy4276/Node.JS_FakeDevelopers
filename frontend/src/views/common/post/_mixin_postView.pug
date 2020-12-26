@@ -52,4 +52,11 @@ mixin postView(post, referrer, accessUser)
           a(href= updatePagePath).post-view__footer__btn.post-view__footer__form--update 수정하기
           button(type="submit" name="" formaction= deletePath).post-view__footer__btn.post-view__footer__form--delete 삭제하기
           //- TODO: 수정하기 템플릿 완성되면 사용
+    section.post-view__comment
+      div.post-view__comment-input
+        form(action=`` method="POST")
+          textarea(placeholder="댓글을 입력하세요.." minlength="1" maxlength="400" required).post-view__comment-textarea
+          button(type="button").post-view__comment-btn 전송
+        div.post-view__comment__data
+        h1.referrer= referrer
     //- (위에서 받은 boardPath로 postList 삽입 예정)

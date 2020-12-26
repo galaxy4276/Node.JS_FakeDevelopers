@@ -25,5 +25,6 @@ export default class Announcement extends Model {
     db.Announcement.belongsTo(db.User);
     db.Announcement.hasMany(db.Inquiry);
     db.Announcement.hasMany(db.Image);
+    db.Announcement.hasMany(db.Comment);
   }
 }

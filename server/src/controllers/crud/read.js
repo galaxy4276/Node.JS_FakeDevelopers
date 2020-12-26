@@ -1,5 +1,5 @@
 import sequelize from '../../models';
-const { Inquiry, Image } = sequelize;
+const { Inquiry, Image, Comment } = sequelize;
 
 const inquiryPost = page => {
   switch (page) {
@@ -53,7 +53,9 @@ const readPost = (req, res, next) => {
         where: { [inquiryKey]: id },
       });
 
-      console.log('db inquries updated!');
+      const comments = await Comment.findAll({
+        where: { [inquiryKey]: id }
+      });
 
       const accessUser = req.user?.id || 'Anonymous';
       // req.originalUrl 로 대체가 가능해 보임
@@ -61,6 +63,7 @@ const readPost = (req, res, next) => {
         post,
         referrer: req.originalUrl,
         accessUser,
+        comments
       });
 
     } catch (err) {
