@@ -1,6 +1,6 @@
 /* Module */
-import requestURL from './_requestURL';
-import defaultFetch from './_defaultFetch';
+import requestURL from '../../function/_requestURL';
+import defaultFetch from '../../function/_defaultFetch';
 import processToElems from './_processToElems';
 
 /* Constants */

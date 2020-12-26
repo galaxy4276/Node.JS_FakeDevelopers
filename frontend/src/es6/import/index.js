@@ -1,6 +1,6 @@
 // function
-import requestURL from '../common/post/postList/_requestURL';
-import defaultFetch from '../common/post/postList/_defaultFetch';
+import requestURL from '../common/function/_requestURL';
+import defaultFetch from '../common/function/_defaultFetch';
 import { addTime, getTimeDiff, processDateTime } from '../common/function/_date-fns';
 
 const toClassNamesObj = (...lastNames) => {
