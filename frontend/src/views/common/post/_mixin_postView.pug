@@ -33,7 +33,6 @@ mixin postView(post, referrer, accessUser)
       div.post-view__header__prop.post-view__header__writer= post.UserId
       div.post-view__header__prop.post-view__header__hit= post.Inquiries[0].count
     // 게시판 글
-    //- (컨텐츠 어떻게 던져주나 보고 그다음 가공 예정)
     section.post-view__content
       // 첨부 파일
       section.post-view__content__images
@@ -45,18 +44,17 @@ mixin postView(post, referrer, accessUser)
     section.post-view__footer
       -const boardPath = referrer.match(/^.*(?=\/\d)/)[0]; // regExp ex) '/community/board/14' => '/community/board'
       a(href= boardPath).post-view__footer__btn.post-view__footer__btn--board 목록
+      //- 로그인 되어있는 유저와 현재 게시글의 작성자가 일치한다면, 수정하기와 삭제하기 버튼 on
       if accessUser === post.UserId
         -const updatePagePath = `${referrer}/update`
         -const deletePath = `${referrer}/delete?_method=DELETE`
         form(action="" method="post").post-view__footer__form
           a(href= updatePagePath).post-view__footer__btn.post-view__footer__form--update 수정하기
           button(type="submit" name="" formaction= deletePath).post-view__footer__btn.post-view__footer__form--delete 삭제하기
-          //- TODO: 수정하기 템플릿 완성되면 사용
     section.post-view__comment
-      div.post-view__comment-input
-        form(action=`` method="POST")
-          textarea(placeholder="댓글을 입력하세요.." minlength="1" maxlength="400" required).post-view__comment-textarea
-          button(type="button").post-view__comment-btn 전송
-        div.post-view__comment__data
-        h1.referrer= referrer
+      form(action=`` method="post").post-view__comment__form
+        textarea(placeholder="댓글을 입력하세요.." minlength="1" maxlength="400" required).post-view__comment__textarea
+        button(type="button").post-view__comment__btn 전송
+        //- TODO: 버튼 submit으로 만들고 formaction 지정하기 
+      div.post-view__comment__list
     //- (위에서 받은 boardPath로 postList 삽입 예정)

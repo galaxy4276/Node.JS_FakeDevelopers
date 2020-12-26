@@ -3,10 +3,6 @@
 /* --------------- */
 
 .post-view {
-  h1 {
-    visibility: hidden;
-  }
-
   border-top: 3px solid $main-color;
   width: 100%;
   padding: 2.5rem 1.25rem;
@@ -92,21 +88,26 @@
       flex-direction: column;
       background-color: #5d89af;
 
-      &-input {
-        form {
-          textarea {
-            width: 100%;
-            resize: none;
-          }
+      &__form {
+      }
 
-          button {
-            @include btn-rectangle(true, true, true);
-            padding: 0.5rem 1rem;
-          }
-        }
+      &__textarea {
+        width: 100%;
+        resize: none;
+      }
+
+      &__btn {
+        @include btn-rectangle(true, true, true);
+        padding: 0.5rem 1rem;
+      }
+
+      &__list {
+      }
+      &__item {
+        display: flex;
+        flex-direction: column;
       }
     }
-
   }
 
   @include for-mobile {
