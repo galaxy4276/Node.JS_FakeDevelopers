@@ -44,6 +44,7 @@ const ENTRY = {
   // postList는 entry가 아니며, 게시판 목록을 사용하는 각 페이지에서 호출됩니다.
   postView: path.resolve(__dirname, 'src', '_entry', 'post', 'postView.js'),
   postWrite: path.resolve(__dirname, 'src', '_entry', 'post', 'postWrite.js'),
+  postUpdate: path.resolve(__dirname, 'src', '_entry', 'post', 'postUpdate.js'),
 
   // error
   404: path.resolve(__dirname, 'src', '_entry', 'error', '404.js'),

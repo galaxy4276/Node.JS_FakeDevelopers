@@ -40,7 +40,7 @@ const fileTypes = [
 
 const validFileType = (file) => fileTypes.includes(file.type);
 
-const updateImageDisplay = () => {
+const updateFileList = () => {
   const input = postWrite.querySelector('.post-write__file__input');
   const preview = postWrite.querySelector('.post-write__file__preview');
   const btn = postWrite.querySelector('.post-write__file__label');
@@ -94,9 +94,9 @@ const initPostWrite = () => {
   const form = postWrite.querySelector('.post-write__form');
   form.addEventListener('submit', handleSubmit, false);
 
-  // file 업로드시에 fileList 활성화
+  // file 업로드시에 fileList 업데이트
   const input = postWrite.querySelector('.post-write__file__input');
-  input.addEventListener('change', updateImageDisplay, false);
+  input.addEventListener('change', updateFileList, false);
 };
 
 document.addEventListener('DOMContentLoaded', initPostWrite, false);
