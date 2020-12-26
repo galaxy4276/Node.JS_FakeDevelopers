@@ -15,7 +15,7 @@ const AuthComp = (): any => {
 
   const CardCSS = {
     margin: 'auto',
-    marginTop: 300,
+    top: 300,
   };
 
   const changeUserId = useCallback((e) => {
