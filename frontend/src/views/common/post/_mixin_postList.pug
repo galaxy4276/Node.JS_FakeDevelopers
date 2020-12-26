@@ -46,4 +46,4 @@ mixin postList(usePostWrite = false, boardName)
         if user
           a(href= '/' + boardName + '/create').post-list__write-btn 글쓰기
         else
-          p(style="text-align: right; font-weight: 600") 로그인을 해서 글을 작성하세요!
+          p(class='js-recommendLoginMsg' style="margin-top: 1rem; text-align: right; font-weight: 700") 로그인하여 글을 작성해보세요!

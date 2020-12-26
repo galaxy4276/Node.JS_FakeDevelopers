@@ -70,8 +70,11 @@ mixin postView(post, referrer, accessUser, comments)
         each comment in comments
           - const currData = comment.dataValues;
           +commentItem(currData.UserId, currData.createdAt, currData.comment)
-      form(action=`` method="post").post-view__comment__form
-        textarea(placeholder="소중한 댓글 하나하나가 글 작성자에게 큰 힘이 됩니다." minlength="1" maxlength="400" required).post-view__comment__textarea
-        button(type="button").post-view__comment__btn 댓글 등록
-        //- TODO: 버튼 submit으로 만들고 formaction 지정하기 
+      if user
+        form(action=`` method="post").post-view__comment__form
+          textarea(placeholder="소중한 댓글 하나하나가 글 작성자에게 큰 힘이 됩니다." minlength="1" maxlength="400" required).post-view__comment__textarea
+          button(type="button").post-view__comment__btn 댓글 등록
+      else
+        p(class="js-recommendLoginMsg" style="margin-top: 1rem; text-align: right; font-weight: 700") 로그인하여 댓글을 작성해보세요!
+
     //- (위에서 받은 boardPath로 postList 삽입 예정)
