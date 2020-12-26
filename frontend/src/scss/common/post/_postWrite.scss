@@ -55,12 +55,18 @@
       @include post-write__wrap;
       position: relative;
     }
-    &__label {
+
+    &__btn-wrapper {
+      display: flex;
+      align-items: center;
       position: absolute;
-      top: 54%;
-      left: 30%;
-      transform: translateY(-50%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       z-index: 10;
+    }
+
+    &__label {
       width: fit-content;
       border: 1px dotted $main-color--dark-silver;
       border-radius: 0.2rem;
@@ -75,10 +81,18 @@
         color: $main-color--white;
       }
     }
+
+    &__cnt {
+      margin-left: 0.5rem;
+      font-size: 0.9em;
+      color: #777;
+    }
+
     &__input {
       position: absolute;
       top: -200em;
     }
+
     &__preview {
       position: relative;
       width: 100%;

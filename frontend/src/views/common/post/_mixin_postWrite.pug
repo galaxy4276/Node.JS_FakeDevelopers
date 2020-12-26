@@ -9,10 +9,11 @@ mixin postWrite(url)
         label(for="title").post-write__title__label 제목
         input(type="text" name="title" id="title" required).post-write__title__input
       .post-write__file__wrap
-        label(for="file").post-write__file__label 이미지 첨부
+        .post-write__file__btn-wrapper
+          label(for="file").post-write__file__label 이미지 첨부
+          span.post-write__file__cnt 아직 업로드된 이미지가 없습니다.
         input(type="file" name="files[]" id="file" accept=".jpg, .jpeg, .png" multiple).post-write__file__input
         ul.post-write__file__preview
-          span.post-write__file__preview-txt 아직 업로드된 이미지가 없습니다.
       .post-write__paragraph__wrap
         label(for="textarea").post-write__paragraph__label 내용
         textarea(name="paragraph" id="textarea" required).post-write__paragraph__input

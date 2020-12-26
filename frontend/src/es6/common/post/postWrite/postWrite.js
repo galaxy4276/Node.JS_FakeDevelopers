@@ -40,29 +40,56 @@ const fileTypes = [
 
 const validFileType = (file) => fileTypes.includes(file.type);
 
+const btnWrapperPos = {
+  btnWrapper: postWrite.querySelector('.post-write__file__btn-wrapper'),
+  btn: postWrite.querySelector('.post-write__file__label'),
+
+  initial() {
+    this.btn.textContent = '이미지 다시 선택하기';
+    this.btnWrapper.style.position = 'initial';
+    this.btnWrapper.style.top = 'initial';
+    this.btnWrapper.style.left = 'initial';
+    this.btnWrapper.style.transform = 'initial';
+    this.btnWrapper.style.alignItems = 'flex-end';
+  },
+  center() {
+    this.btn.textContent = '이미지 첨부';
+    this.btnWrapper.style.position = 'absolute';
+    this.btnWrapper.style.top = '50%';
+    this.btnWrapper.style.left = '50%';
+    this.btnWrapper.style.transform = 'translate(-50%, -50%)';
+    this.btnWrapper.style.alignItems = 'center';
+  },
+};
+
+const cntFile = {
+  on() {
+    this.cntFile.textContent = '아직 업로드된 이미지가 없습니다.';
+  },
+  off() {
+    this.cntFile.textContent = '';
+  },
+};
+
+const setFileCnt = (num) => {
+  const fileCnt = postWrite.querySelector('.post-write__file__cnt');
+
+  if (num < 0 || !Number.isInteger(num)) return;
+  if (num === 0) fileCnt.textContent = '아직 업로드된 이미지가 없습니다.';
+  if (num > 0) fileCnt.textContent = `현재 업로드된 파일 ${num}개`;
+};
+
 const updateFileList = () => {
-  const input = postWrite.querySelector('.post-write__file__input');
+  const curFiles = postWrite.querySelector('.post-write__file__input').files;
   const preview = postWrite.querySelector('.post-write__file__preview');
-  const btn = postWrite.querySelector('.post-write__file__label');
+
+  console.log(curFiles);
 
   preview.textContent = '';
-  btn.style.display = 'none';
-  // TODO: 업로드한 파일 삭제 기능 추가
-  // TODO: 파일 재업로드 기능 추가
 
-  const curFiles = input.files;
-
-  if (curFiles.length === 0) {
-    const txt = document.createElement('span');
-
-    txt.classList.add('post-write__file__preview-txt');
-    txt.textContent = '아직 업로드된 이미지가 없습니다.';
-
-    preview.appendChild(txt);
-  } else {
-    const list = document.createElement('ol');
-
-    preview.appendChild(list);
+  if (curFiles.length !== 0) {
+    btnWrapperPos.initial();
+    setFileCnt(curFiles.length);
 
     for (const file of curFiles) {
       const listItem = document.createElement('li');
@@ -78,8 +105,11 @@ const updateFileList = () => {
         listItem.append(txt);
       }
 
-      list.append(listItem);
+      preview.append(listItem);
     }
+  } else {
+    btnWrapperPos.center();
+    setFileCnt(0);
   }
 };
 
