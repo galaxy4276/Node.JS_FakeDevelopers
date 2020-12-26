@@ -1,51 +1,66 @@
-const commentList = document.querySelector('.post-view__comment__list');
+import commentFetch from './_commentFetch';
+import { addTime, getTimeDiff, processDateTime } from '../../function/_date-fns';
 
-//TODO: 시간 가공하기
-const getDate = () => {};
-
-const addCommentBrowser = (commentInfo) => {
-  console.log('프론트에 댓글 추가 됨.');
-
+const addToCommentList = (commentElem) => {
+  const commentList = document.querySelector('.post-view__comment__list');
   const DOMfragment = document.createDocumentFragment();
 
-  const commentItem = document.createElement('div');
-  commentItem.classList.add('post-view__comment__item');
-
-  //TODO: 내부 엘리먼트들 클래스 추가하기
-  commentItem.innerHTML = `
-<div>
-  <span>${commentInfo.UserId}</span>
-  <span>${commentInfo.createdAt}</span>
-</div>
-<div>${commentInfo.comment}</div>
-`.trim();
-
-  DOMfragment.append(commentItem);
-
+  DOMfragment.append(commentElem);
   commentList.append(DOMfragment);
 };
 
-const postComment = async () => {
-  const para = document.querySelector('.post-view__comment__textarea').value;
+const toClassNamesObj = (...lastNames) => {
+  return lastNames.reduce(
+    (acc, lastName) =>
+      Object.defineProperty(acc, lastName, { value: `post-view__comment__${lastName}` }),
+    {}
+  );
+};
+
+const processToElem = (commentInfo) => {
+  const itemName = 'item';
+  const propNames = ['info', 'content'];
+  const classes = toClassNamesObj(...propNames);
+
+  const commentItem = document.createElement('div');
+  commentItem.classList.add(`post-view__comment__${itemName}`);
+
+  const KST = addTime(commentInfo.createdAt, 9); // 🌟 GMT => KST 🌟
+  const timeDiff = getTimeDiff(commentInfo.createdAt);
+  const timeText = processDateTime(KST, timeDiff);
+
+  commentItem.innerHTML = `
+<section class="${classes.info}">
+  <span>${commentInfo.UserId}</span>
+  <span>${timeText}</span>
+</section>
+<section class="${classes.content}">${commentInfo.comment}</section>
+`.trim();
+
+  return commentItem;
+};
+
+const postComment = () => {
+  // TODO: 입력값 검증 추가
   const reqUrl = `${document.URL}/comment`;
+  const content = document.querySelector('.post-view__comment__textarea').value;
 
-  console.log(`작성내용 => ${para}`);
-  console.log(`요청 API => ${reqUrl}`);
+  // test
+  const testLog = (res) => {
+    if (process.env.NODE_ENV !== 'development') return res;
 
-  const commentInfo = await fetch(reqUrl, {
-    method: 'POST',
-    mode: 'cors',
-    body: JSON.stringify({ data: para }),
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-    },
-  })
-    .then((res) => res.json())
-    .catch((error) => console.error(error));
+    console.log(`요청 API => ${reqUrl}`);
+    console.log(`작성내용 => ${content}`);
+    console.log(res);
 
-  console.log(commentInfo);
+    return res;
+  };
 
-  addCommentBrowser(commentInfo);
+  commentFetch(reqUrl, content)
+    .then((res) => testLog(res) /* Just log => data not change */)
+    .then((commentInfo) => processToElem(commentInfo))
+    .then((commentElem) => addToCommentList(commentElem))
+    .catch(console.error);
 };
 
 const postViewInit = () => {
