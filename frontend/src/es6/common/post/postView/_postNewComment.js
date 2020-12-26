@@ -1,3 +1,4 @@
+import guideAsPlaceholder from '../../function/_guideAsPlaceholder';
 import { addTime, getTimeDiff, processDateTime } from '../../function/_date-fns';
 
 const addToCommentList = (commentElem) => {
@@ -51,27 +52,35 @@ const commentFetch = (url, content) => {
   }).then((res) => res.json());
 };
 
-const postNewComment = () => {
-  // TODO: 입력값 검증 추가
+const postNewComment = async () => {
+  const contentArea = document.querySelector('.post-view__comment__textarea');
+
+  if (contentArea.value === '') {
+    guideAsPlaceholder(contentArea, '빈 텍스트는 제출할 수 없습니다.');
+    return;
+  }
+
+  const content = contentArea.value;
   const reqUrl = `${document.URL}/comment`;
-  const content = document.querySelector('.post-view__comment__textarea').value;
 
   // test
   const testLog = (res) => {
     if (process.env.NODE_ENV !== 'development') return res;
 
     console.log(`요청 API => ${reqUrl}`);
-    console.log(`작성내용 => ${content}`);
     console.log(res);
 
     return res;
   };
 
-  commentFetch(reqUrl, content)
+  await commentFetch(reqUrl, content)
     .then((res) => testLog(res) /* Just log => data not change */)
     .then((commentInfo) => processToElem(commentInfo))
     .then((commentElem) => addToCommentList(commentElem))
     .catch(console.error);
+
+  contentArea.value = '';
+  contentArea.placeholder = '소중한 댓글 하나하나가 글 작성자에게 큰 힘이 됩니다.';
 };
 
 export default postNewComment;
