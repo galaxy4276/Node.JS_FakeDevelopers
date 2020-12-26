@@ -8,28 +8,33 @@
 //- title, createdAt, writer, hit,
 //- file,
 //- 상세보기전 게시글 주소 (ex - community/board)
-mixin postView(post, referrer, accessUser)
+mixin postView(post, referrer, accessUser, comments)
   article.post-view
-    mixin processDateTime(GMT)
-      - const addTime = (hours, oldDate, newDate = new Date()) => {newDate.setTime(oldDate.getTime() + (hours * 60 * 60 * 1000)); return newDate;}
-      - const yymmdd = (dateObj = new Date()) => dateObj.toISOString().match(/(?<=^\d{2})\d{2}-\d{2}-\d{2}(?=T)/)[0];
-      - const hhmmss = (dateObj = new Date()) => dateObj.toISOString().match(/(?<=T)\d{2}:\d{2}:\d{2}/)[0];
+    mixin processDateTime(GMT, kind)
+      - const now = new Date();
+      - const addTime = (hours, oldDate, newDate = now) => {newDate.setTime(oldDate.getTime() + (hours * 60 * 60 * 1000)); return newDate;}
+      - const yymmdd = (dateObj = addTime(9, now)) => dateObj.toISOString().match(/^\d{4}-\d{2}-\d{2}(?=T)/)[0];
+      - const hhmm = (dateObj = addTime(9, now)) => dateObj.toISOString().match(/(?<=T)\d{2}:\d{2}(?=:\d{2})/)[0];
       
       - const KST = addTime(9, GMT);
       - const createdDate = yymmdd(KST);
-      - const createdTime = hhmmss(KST);
-      - const today = yymmdd();
+      - const createdTime = hhmm(KST);
 
-      - const displayedTime = createdDate === today ? createdTime : createdDate;
-
-      div.post-view__header__prop.post-view__header__createdAt= displayedTime
+      case kind
+        when 'post'
+          div.post-view__header__prop.post-view__header__createdAt
+            span= createdDate
+            span= createdTime
+        when 'comment'
+          span= createdDate
+          span= createdTime
     |
     |
     // 게시판 글 헤더
     section.post-view__header
       //- 헤더에 표시될 게시글의 속성 = ['title', 'createdAt', 'writer', 'hit'];
       div.post-view__header__title= post.title
-      +processDateTime(post.createdAt)
+      +processDateTime(post.createdAt, 'post')
       div.post-view__header__prop.post-view__header__writer= post.UserId
       div.post-view__header__prop.post-view__header__hit= post.Inquiries[0].count
     // 게시판 글
@@ -52,12 +57,19 @@ mixin postView(post, referrer, accessUser)
           a(href= updatePagePath).post-view__footer__btn.post-view__footer__btn--update 수정하기
           button(type="submit" name="" formaction= deletePath).post-view__footer__btn.post-view__footer__btn--delete 삭제하기
     section.post-view__comment
-      - const tempCommentCnt = 0;
-      //- TODO: 서버에서 전체 댓글 수 받기
       div.post-view__comment__cnt
         span 댓글
-        span= tempCommentCnt
-      div.post-view__comment__list
+        span= comments.length
+      ul.post-view__comment__list
+        mixin commentItem(userId, createdAt, comment)
+          li.post-view__comment__item
+            section.post-view__comment__info
+              span= userId
+              +processDateTime(createdAt, 'comment')
+            section.post-view__comment__content= comment
+        each comment in comments
+          - const currData = comment.dataValues;
+          +commentItem(currData.UserId, currData.createdAt, currData.comment)
       form(action=`` method="post").post-view__comment__form
         textarea(placeholder="소중한 댓글 하나하나가 글 작성자에게 큰 힘이 됩니다." minlength="1" maxlength="400" required).post-view__comment__textarea
         button(type="button").post-view__comment__btn 댓글 등록
