@@ -1,11 +1,10 @@
 import React from 'react';
+import AuthComp from './Auth';
 
 const App = (): any => {
   return (
-    <>
-      <div>hello</div>
-    </>
+    <AuthComp />
   );
-};
+}
 
 export default App;
