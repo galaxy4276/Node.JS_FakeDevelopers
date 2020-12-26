@@ -93,21 +93,32 @@
       top: -200em;
     }
 
-    &__preview {
+    &__list {
       position: relative;
       width: 100%;
-      height: 6em;
+      height: 8em;
       border: 1px dashed $main-color--silver;
       margin-top: 0.5em;
       overflow: auto;
+    }
 
-      &-txt {
-        position: absolute;
-        top: 51%;
-        left: 42.3%;
-        transform: translateY(-50%);
-        font-size: 1em;
-        color: $main-color--dark-silver;
+    &__header {
+      display: grid;
+      grid-template-columns: [fileName] 1fr [fileSize] 10rem;
+
+      & > span {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    &__item {
+      display: grid;
+      grid-template-columns: [fileName] 1fr [fileSize] 10rem;
+
+      & > span:nth-child(n + 2) {
+        display: flex;
+        justify-content: center;
       }
     }
   }

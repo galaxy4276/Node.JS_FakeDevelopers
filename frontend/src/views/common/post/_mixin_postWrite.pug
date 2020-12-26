@@ -13,7 +13,7 @@ mixin postWrite(url)
           label(for="file").post-write__file__label 이미지 첨부
           span.post-write__file__cnt 아직 업로드된 이미지가 없습니다.
         input(type="file" name="files[]" id="file" accept=".jpg, .jpeg, .png" multiple).post-write__file__input
-        ul.post-write__file__preview
+        ul.post-write__file__list
       .post-write__paragraph__wrap
         label(for="textarea").post-write__paragraph__label 내용
         textarea(name="paragraph" id="textarea" required).post-write__paragraph__input

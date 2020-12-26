@@ -17,11 +17,11 @@ const postWrite = document.body.querySelector('.post-write');
 
 const returnFileSize = (number) => {
   if (number < 1024) {
-    return number + 'bytes';
+    return number + ' bytes';
   } else if (number >= 1024 && number < 1048576) {
-    return (number / 1024).toFixed(1) + 'KB';
+    return (number / 1024).toFixed(1) + ' KB';
   } else if (number >= 1048576) {
-    return (number / 1048576).toFixed(1) + 'MB';
+    return (number / 1048576).toFixed(1) + ' MB';
   }
 };
 
@@ -62,15 +62,6 @@ const btnWrapperPos = {
   },
 };
 
-const cntFile = {
-  on() {
-    this.cntFile.textContent = '아직 업로드된 이미지가 없습니다.';
-  },
-  off() {
-    this.cntFile.textContent = '';
-  },
-};
-
 const setFileCnt = (num) => {
   const fileCnt = postWrite.querySelector('.post-write__file__cnt');
 
@@ -79,34 +70,59 @@ const setFileCnt = (num) => {
   if (num > 0) fileCnt.textContent = `현재 업로드된 파일 ${num}개`;
 };
 
-const updateFileList = () => {
+const updatefileList = (files, parentListNode) => {
+  if (parentListNode.tagName !== 'OL' && parentListNode.tagName !== 'UL') {
+    console.warn('updatefileList 함수의 인자로 OL 또는 UL 엘리먼트가 와야 합니다.');
+    return;
+  }
+
+  // TODO: 파일 용량 검증하기 (10MB)
+
+  const DOMfragment = document.createDocumentFragment();
+
+  const header = document.createElement('div');
+  header.classList.add('post-write__file__header');
+
+  header.innerHTML = `
+<span>파일 이름</span>
+<span>파일 용량</span>
+`.trim();
+
+  DOMfragment.append(header);
+
+  const _returnFileSize = returnFileSize;
+
+  for (const file of files) {
+    const listItem = document.createElement('li');
+    listItem.classList.add('post-write__file__item');
+
+    listItem.innerHTML = validFileType(file)
+      ? `
+<span>${file.name}</span>
+<span>${_returnFileSize(file.size)}</span>
+`.trim()
+      : `
+<span style="color: tomato;">${file.name}은(는) 허용되지 않는 파일 유형입니다.</span>
+<span style="color: tomato;">Not Vaild</span>
+`.trim();
+
+    DOMfragment.append(listItem);
+  }
+
+  parentListNode.append(DOMfragment);
+};
+
+const handleFileChange = () => {
   const curFiles = postWrite.querySelector('.post-write__file__input').files;
-  const preview = postWrite.querySelector('.post-write__file__preview');
+  const fileList = postWrite.querySelector('.post-write__file__list');
 
-  console.log(curFiles);
-
-  preview.textContent = '';
+  fileList.textContent = '';
 
   if (curFiles.length !== 0) {
     btnWrapperPos.initial();
     setFileCnt(curFiles.length);
 
-    for (const file of curFiles) {
-      const listItem = document.createElement('li');
-      const txt = document.createElement('span');
-
-      if (validFileType(file)) {
-        txt.textContent = `File name ${file.name}, file size ${returnFileSize(file.size)}.`;
-
-        listItem.append(txt);
-      } else {
-        txt.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
-
-        listItem.append(txt);
-      }
-
-      preview.append(listItem);
-    }
+    updatefileList(curFiles, fileList);
   } else {
     btnWrapperPos.center();
     setFileCnt(0);
@@ -126,7 +142,7 @@ const initPostWrite = () => {
 
   // file 업로드시에 fileList 업데이트
   const input = postWrite.querySelector('.post-write__file__input');
-  input.addEventListener('change', updateFileList, false);
+  input.addEventListener('change', handleFileChange, false);
 };
 
 document.addEventListener('DOMContentLoaded', initPostWrite, false);
