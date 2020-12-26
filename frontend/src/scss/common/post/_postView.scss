@@ -5,20 +5,21 @@
 .post-view {
   border-top: 3px solid $main-color;
   width: 100%;
-  padding: 2.5rem 1.25rem;
+  padding: 2.5rem 0;
 
   &__header {
-    font-weight: 500;
     display: grid;
     grid-template:
       'title title title' 2.5rem
       'createdAt writer hit' 2rem
       / fit-content(100%) fit-content(100%) 1fr;
     gap: 0.6rem 0;
+    padding: 0 0.66rem;
 
     &__title {
       grid-area: title;
       font-size: 1.4rem;
+      font-weight: 500;
       color: $main-color--black;
     }
 
@@ -45,7 +46,8 @@
   }
 
   &__content {
-    padding: 2rem 0.5rem;
+    padding: 4rem 0.33rem;
+
     &__images {
       margin-bottom: 2rem;
     }
@@ -56,19 +58,19 @@
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
+
+    &__form {
+      display: flex;
+    }
+
     &__btn {
-      @include btn-rectangle(true, true, true);
-      padding: 0.5rem 1rem;
+      @include btn-rectangle(0.5rem 1.33rem, true, true);
 
       &--board {
         width: fit-content;
-        padding: 0.5rem 1rem;
         color: $main-color--white;
         background-color: $main-color--dark-silver;
       }
-    }
-    &__form {
-      display: flex;
 
       &--update {
         background-color: $main-color;
@@ -81,32 +83,93 @@
         color: white;
       }
     }
+  }
 
-    &__comment {
-      width: 100%;
+  &__comment {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2rem;
+    font-size: 1rem;
+
+    &__cnt {
+      font-weight: 700;
+      font-size: 1.2em;
+      padding: 0.66em 0;
+      border-bottom: 1px solid #eee;
+
+      & > span:nth-child(1) {
+        color: $main-color--dark-silver;
+        margin-right: 0.33em;
+      }
+    }
+
+    &__list {
+    }
+
+    &__item {
       display: flex;
       flex-direction: column;
-      background-color: #5d89af;
+      padding: 2em 0;
+      border-bottom: 1px solid #eee;
+    }
 
-      &__form {
+    &__info {
+      & > span:nth-child(1) {
+        font-weight: 700;
+        color: #555;
+      }
+      & > span:nth-child(n + 2) {
+        font-size: 0.8em;
+        color: #999;
+      }
+      & > span:nth-child(n + 2)::before {
+        content: '';
+        display: inline-block;
+        width: 2px;
+        height: 2px;
+        margin: 0 7px 0 5px;
+        background-color: #e3e3e3;
+        vertical-align: middle;
+      }
+    }
+
+    &__content {
+      color: #777;
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-top: 2em;
+    }
+
+    &__textarea {
+      width: 100%;
+      height: 10em;
+      resize: none;
+      font: inherit; // textarea font 기본 스타일 초기화
+      font-size: 1.1em;
+      line-height: 200%;
+      padding: 0rem 0.33em;
+
+      &::placeholder {
+        font-size: 0.8em;
+        letter-spacing: 120%;
       }
 
-      &__textarea {
-        width: 100%;
-        resize: none;
+      &:focus {
+        outline-color: $main-color;
+        outline-width: 10px;
       }
+    }
 
-      &__btn {
-        @include btn-rectangle(true, true, true);
-        padding: 0.5rem 1rem;
-      }
-
-      &__list {
-      }
-      &__item {
-        display: flex;
-        flex-direction: column;
-      }
+    &__btn {
+      @include btn-rectangle(0.66rem 1.5rem, true, true);
+      background-color: $main-color--dark-silver;
+      color: $main-color--white;
+      margin-top: 0.66rem;
     }
   }
 
@@ -119,6 +182,12 @@
         'title title title' fit-content(100%)
         'createdAt writer hit' 2rem
         / fit-content(100%) fit-content(100%) 1fr;
+    }
+
+    &__comment {
+      &__cnt {
+        border-bottom: none;
+      }
     }
   }
 }

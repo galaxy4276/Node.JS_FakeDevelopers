@@ -49,12 +49,17 @@ mixin postView(post, referrer, accessUser)
         -const updatePagePath = `${referrer}/update`
         -const deletePath = `${referrer}/delete?_method=DELETE`
         form(action="" method="post").post-view__footer__form
-          a(href= updatePagePath).post-view__footer__btn.post-view__footer__form--update 수정하기
-          button(type="submit" name="" formaction= deletePath).post-view__footer__btn.post-view__footer__form--delete 삭제하기
+          a(href= updatePagePath).post-view__footer__btn.post-view__footer__btn--update 수정하기
+          button(type="submit" name="" formaction= deletePath).post-view__footer__btn.post-view__footer__btn--delete 삭제하기
     section.post-view__comment
-      form(action=`` method="post").post-view__comment__form
-        textarea(placeholder="댓글을 입력하세요.." minlength="1" maxlength="400" required).post-view__comment__textarea
-        button(type="button").post-view__comment__btn 전송
-        //- TODO: 버튼 submit으로 만들고 formaction 지정하기 
+      - const tempCommentCnt = 0;
+      //- TODO: 서버에서 전체 댓글 수 받기
+      div.post-view__comment__cnt
+        span 댓글
+        span= tempCommentCnt
       div.post-view__comment__list
+      form(action=`` method="post").post-view__comment__form
+        textarea(placeholder="소중한 댓글 하나하나가 글 작성자에게 큰 힘이 됩니다." minlength="1" maxlength="400" required).post-view__comment__textarea
+        button(type="button").post-view__comment__btn 댓글 등록
+        //- TODO: 버튼 submit으로 만들고 formaction 지정하기 
     //- (위에서 받은 boardPath로 postList 삽입 예정)
