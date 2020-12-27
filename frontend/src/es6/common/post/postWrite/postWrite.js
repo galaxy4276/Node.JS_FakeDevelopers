@@ -96,15 +96,13 @@ const updatefileList = (files, parentListNode) => {
     const listItem = document.createElement('li');
     listItem.classList.add('post-write__file__item');
 
-    const name = file.name.match(/(?<=^\d+ - ).*$/)[0]; // ex) [ 121324 - abc.png ] => [ abc.png ]
-
     listItem.innerHTML = validFileType(file)
       ? `
-<span>${name}</span>
+<span>${file.name}</span>
 <span>${_returnFileSize(file.size)}</span>
 `.trim()
       : `
-<span style="color: tomato;">${name}은(는) 허용되지 않는 파일 유형입니다.</span>
+<span style="color: tomato;">${file.name}은(는) 허용되지 않는 파일 유형입니다.</span>
 <span style="color: tomato;">Not Vaild</span>
 `.trim();
 
