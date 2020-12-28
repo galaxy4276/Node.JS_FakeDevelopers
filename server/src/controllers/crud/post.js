@@ -30,6 +30,8 @@ export const uploads = multer({
 const postBoard = (req, res, next) => {
   const { title, paragraph } = req.body;
 
+  console.log(req.files);
+
   const UserId = req.user.id || 'Anonymous';
   const redirectUrl = '/' + req.originalUrl
     .match(/[a-z]+\/[a-z]+/g)
