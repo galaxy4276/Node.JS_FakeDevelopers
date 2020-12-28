@@ -12,6 +12,7 @@ import community from './community';
 import inquiry from './inquiry';
 import notice from './notice';
 import comment from './comment';
+import admin from './admin';
 
 
 const config = env;
@@ -37,6 +38,7 @@ db.Community = community;
 db.Inquiry = inquiry;
 db.Notice = notice;
 db.Comment = comment;
+db.Admin = admin;
 
 Object.keys(db).forEach(modelName => {
   db[modelName].init(sequelize);
