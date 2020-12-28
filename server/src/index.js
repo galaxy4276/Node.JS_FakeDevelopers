@@ -69,22 +69,21 @@ app.use(
   https://stackoverflow.com/questions/29960764/what-does-extended-mean-in-express-4-0/45690436#45690436
 */
 app.use(cookieParser(process.env.secret)); // 쿠키 생성 관련 미들웨어
-if (process.env.NODE_ENV === 'development') {
-  app.use(
-    session({
-      secret: process.env.secret,
-      proxy: true,
-      resave: true,
-      saveUninitialized: true,
-      store: sessionStore,
-      cookie: {
-        httpOnly: true,
-        secure: false,
-        expires: new Date(Date.now() + 1800000),
-        maxAge: 1800000,
-      },
-    })
-  ); /*
+app.use(
+  session({
+    secret: process.env.secret,
+    proxy: true,
+    resave: true,
+    saveUninitialized: false,
+    store: sessionStore,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      expires: new Date(Date.now() + 1800000),
+      maxAge: 1800000,
+    },
+  })
+); /*
   세션 미들웨어
   secret: 세션의 비밀키
   resave: 요청 시 세션에 수정사항이 생기지 않더라도 세션을 다시 저장할지 여부
@@ -94,23 +93,6 @@ if (process.env.NODE_ENV === 'development') {
   cookie => httpOnly: 웹 서버를 통해서만 cookie 접근을 할 수 있도록 하는 옵션
   cookie => secure: true 설정 시 https 에서만 접근이 가능함.
 */
-} else {
-  app.use(
-    session({
-      secret: process.env.secret,
-      proxy: true,
-      resave: true,
-      saveUninitialized: true,
-      store: sessionStore,
-      cookie: {
-        httpOnly: true,
-        secure: false,
-        expires: new Date(Date.now() + 1800000),
-        maxAge: 1800000,
-      },
-    })
-  );
-}
 app.use(passport.initialize()); // 유저 데이터 요청으로부터 serialize/deserialize 함수를 설정
 app.use(passport.session()); // passport가 세션정보에 접근할 수 있도록 하는 미들웨어
 app.use(sharePug);
