@@ -58,6 +58,7 @@
 
     &__btn-wrapper {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       position: absolute;
       top: 50%;
@@ -93,7 +94,7 @@
     }
 
     &__cnt {
-      margin-left: 0.5rem;
+      margin-left: 0.2rem;
       font-size: 0.9em;
       color: #777;
     }
@@ -127,12 +128,15 @@
     @mixin file-list-grid {
       display: grid;
       grid-template-columns: [fileName] 1fr [fileSize] 10rem;
+      // min-width: 0;
 
       & > span:nth-child(1) {
+        @include ellipsis;
         grid-area: fileName;
       }
 
       & > span:nth-child(2) {
+        @include ellipsis;
         grid-area: fileSize;
       }
     }
@@ -192,6 +196,19 @@
       font-size: 1.05rem;
       background-color: $main-color;
       width: fit-content;
+    }
+  }
+
+  @include for-mobile {
+    &__file {
+      &__btn-wrapper {
+        width: 100%;
+        justify-content: center;
+      }
+
+      &__cnt {
+        vertical-align: bottom;
+      }
     }
   }
 }

@@ -45,7 +45,7 @@ const updatefileList = (files, parentListNode) => {
 <span style="color: tomato;">Not Vaild</span>
 `.trim();
 
-    if (!isPermitedFile) warnMsg.on('Not Vaild');
+    if (!isPermitedFile) warnMsg.on('⛔ 허용되지 않은 파일');
 
     DOMfragment.append(listItem);
   }
