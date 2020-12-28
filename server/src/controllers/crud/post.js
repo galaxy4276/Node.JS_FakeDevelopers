@@ -20,7 +20,7 @@ export const uploads = multer({
       cb(null, basename + '_' + new Date().getTime() + extname);
     },
   }),
-  limits: { fileSize: 20 * 1024 * 1024 },
+  limits: { fileSize: 10 * 1024 * 1024 },
 });
 
 /*
@@ -58,7 +58,7 @@ const postBoard = (req, res, next) => {
       const inquiry = await Inquiry.create({});
       await post.addInquiry(inquiry);
       // FIX: 개발 보류
-      if (req.files.length > 1) {
+      if (Array.isArray(req.files)) {
         const images = await Promise.all(
           req.files.map(file => Image.create({src: file.filename}))
         );
