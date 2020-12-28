@@ -18,6 +18,7 @@ https://www.ddccomputer.club
 ### 기술 스택
 |이름|역할|
 |:---|:---|
+|React, TypeScript| 어드민 어플리케이션 개발 |
 |Webpack|프런트 개발구조 및 웹 리소스 번들링 수행|
 |Express.js|백엔드, RESTful API 개발|
 |AWS EC2, Route53|외부 배포 및 도메인 연결 수행|
@@ -34,3 +35,5 @@ https://www.ddccomputer.club
 - [ ] 어드민 페이지  
 - [ ] 지도 API
 - [ ] 수정 기능
+- [x] 댓글 기능
+- [ ] 어드민 페이지 ( 리액트 )
