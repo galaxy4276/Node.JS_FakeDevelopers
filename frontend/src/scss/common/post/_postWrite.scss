@@ -64,6 +64,16 @@
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 10;
+
+      & > span:nth-child(n + 2):before {
+        content: '';
+        display: inline-block;
+        width: 2px;
+        height: 2px;
+        margin: 0 5px 0 3px;
+        background-color: #e3e3e3;
+        vertical-align: middle;
+      }
     }
 
     &__label {
@@ -88,6 +98,18 @@
       color: #777;
     }
 
+    &__entire-size {
+      display: none; // 파일이 업로드될 때 보여지도록 js에서 설정
+      font-size: 0.8em;
+      color: #999;
+    }
+
+    &__warn-msg {
+      display: none; // 파일이 업로드될 때 보여지도록 js에서 설정
+      font-size: 0.8em;
+      color: tomato;
+    }
+
     &__input {
       position: absolute;
       top: -200em;
@@ -102,12 +124,24 @@
       overflow: auto;
     }
 
+    @mixin file-list-grid {
+      display: grid;
+      grid-template-columns: [fileName] 1fr [fileSize] 10rem;
+
+      & > span:nth-child(1) {
+        grid-area: fileName;
+      }
+
+      & > span:nth-child(2) {
+        grid-area: fileSize;
+      }
+    }
+
     &__header {
+      @include file-list-grid;
       position: -webkit-sticky;
       position: sticky;
       top: 0;
-      display: grid;
-      grid-template-columns: [fileName] 1fr [fileSize] 10rem;
       font-weight: 700;
       background-color: #f0f0f0;
       border-bottom: 0.5px dashed #eee;
@@ -119,14 +153,13 @@
     }
 
     &__item {
-      display: grid;
-      grid-template-columns: [fileName] 1fr [fileSize] 10rem;
+      @include file-list-grid;
 
       & > span:nth-child(1) {
         padding: 0 0.5em;
       }
 
-      & > span:nth-child(n + 2) {
+      & > span:nth-child(2) {
         display: flex;
         justify-content: center;
       }
