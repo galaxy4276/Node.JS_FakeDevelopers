@@ -58,7 +58,7 @@ const postBoard = (req, res, next) => {
       const inquiry = await Inquiry.create({});
       await post.addInquiry(inquiry);
       // FIX: 개발 보류
-      if (Array.isArray(req.files)) {
+      if (Array.isArray(req.files) && req.files.length > 1) {
         const images = await Promise.all(
           req.files.map(file => Image.create({src: file.filename}))
         );
