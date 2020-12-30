@@ -39,8 +39,6 @@ function authToggleEventHandle() {
   joinCloseBtn.addEventListener('click', togglejoinWindow, false);
 }
 
-authToggleEventHandle();
-
 /* --- */
 /* -- 타입이 이메일인 input 요소 클릭시 label 포지션 변경 후 그 자리에 고정시키는 이벤트 --*/
 
@@ -83,6 +81,40 @@ const initLogoutBtnsHref = () => {
   logoutBtns.forEach((logoutBtn) => logoutBtn.setAttribute('href', `${host}/auth/logout`));
 };
 
+/* --- */
+/* -- 로그인 성공, 실패에 따른 이벤트 분기 --*/
+const handleLoginSuccess = () => {
+  // TODO: modal로 바꾸기
+  alert('로그인 성공');
+};
+
+const handleLoginFailure = () => {
+  // TODO: modal로 바꾸기
+  alert('로그인 실패');
+};
+
+const handleLoginResult = () => {
+  // query는 둘 중 하나입니다.
+  // 1. ?success=login_done
+  // 2. ?failure=login_failure
+
+  const resultReg = /(?<=^https?:\/\/.+\/\?)((success|failure)(?==login_(?:done|failure)))?/;
+  const loginResult = resultReg.exec(document.URL); // 'success' | 'failure' | null
+
+  if (!loginResult) return; // 로그인 시도가 아니라면 return
+
+  const result = loginResult[0];
+
+  switch (result) {
+    case 'success':
+      handleLoginSuccess();
+      break;
+    case 'failure':
+      handleLoginFailure();
+      break;
+  }
+};
+
 window.onload = () => {
   const emailInputs = document.querySelectorAll('.js-emailInput');
 
@@ -92,4 +124,6 @@ window.onload = () => {
   });
 
   initLogoutBtnsHref();
+  authToggleEventHandle();
+  handleLoginResult();
 };
