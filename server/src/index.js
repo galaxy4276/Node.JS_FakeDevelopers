@@ -38,6 +38,9 @@ const sessionStore = new MySQLStore({
   password: process.env.MARIADB_PASSWORD,
   database: process.env.MARIADB_TEST_DATABASE,
 }); // 세션 유지 함수
+export const appState = {
+  url: null
+};
 
 app.set('view engine', 'pug'); // 서버 View 엔진을 ejs로 설정
 // app.engine('html', require('ejs').renderFile); // 서버 엔진을 ejs 설정으로
@@ -79,8 +82,6 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false,
-      expires: new Date(Date.now() + 1800000),
-      maxAge: 1800000,
     },
   })
 ); /*
@@ -97,12 +98,14 @@ app.use(passport.initialize()); // 유저 데이터 요청으로부터 serialize
 app.use(passport.session()); // passport가 세션정보에 접근할 수 있도록 하는 미들웨어
 app.use(sharePug);
 
-/* 라우터 미들웨어들 */ 
-app.get('/', (req, res, next) => {
+
+/* 라우터 미들웨어들 */
+app.use((req, res, next) => {
   console.log('cookie');
   console.table(req.cookies);
   console.log('session');
   console.table(req.session);
+  console.log(appState);
   next();
 }); // 일반 테스트용 미들웨어 ( 삭졔 예정 )
 
