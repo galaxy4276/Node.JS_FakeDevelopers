@@ -1,87 +1,80 @@
 const postUpdate = document.body.querySelector('.post-update');
 
-// const verifyFiles = (files) => {
-//   const isImage = (File) => /(?<=^image\/)(jpe?g|png|gif|svg\+xml)/i.test(File.type);
+const refuseSubmitMsgs = {
+  elem: document.body.querySelector('.post-update__submit__refuse-msg-list'),
+  items: document.createDocumentFragment(),
 
-//   if (files.every(isImage)) {
-//     upload(files);
-//   } else {
-//     alert('이미지 파일만 게시 가능합니다.');
-//   }
+  on() {
+    this.elem.append(this.items);
+    this.elem.style.display = 'flex';
+  },
 
-//   //test
-//   files.forEach((file, index) => {
-//     console.log(`... file[${index}].name = ${file.name}`);
-//   });
-// };
+  off() {
+    this.elem.textContent = '';
+    this.elem.style.display = 'none';
+    this.items.textContent = '';
+  },
 
-// const returnFileSize = (number) => {
-//   if (number < 1024) {
-//     return number + 'bytes';
-//   } else if (number >= 1024 && number < 1048576) {
-//     return (number / 1024).toFixed(1) + 'KB';
-//   } else if (number >= 1048576) {
-//     return (number / 1048576).toFixed(1) + 'MB';
-//   }
-// };
+  add(str) {
+    const item = document.createElement('li');
+    item.classList.add('post-update__submit__refuse-msg-item');
+    item.textContent = str;
 
-// const fileTypes = [
-//   'image/apng',
-//   'image/bmp',
-//   'image/gif',
-//   'image/jpeg',
-//   'image/pjpeg',
-//   'image/png',
-//   'image/svg+xml',
-//   'image/tiff',
-//   'image/webp',
-//   'image/x-icon',
-// ];
+    this.items.append(item);
+  },
 
-// const validFileType = (file) => fileTypes.includes(file.type);
+  isEmpty() {
+    return this.elem.textContent === '';
+  },
+};
 
-// const updateFileList = () => {
-//   const input = postUpdate.querySelector('.post-update__file__input');
-//   const preview = postUpdate.querySelector('.post-update__file__preview');
-//   const btn = postUpdate.querySelector('.post-update__file__label');
+const hideRefuseMsgs = (e) => {
+  if (refuseSubmitMsgs.isEmpty()) return;
+  if (e.target.tagName === 'FORM') return;
 
-//   preview.textContent = '';
-//   btn.style.display = 'none';
-//   // TODO: 업로드한 파일 삭제 기능 추가
-//   // TODO: 파일 재업로드 기능 추가
+  refuseSubmitMsgs.off();
+};
 
-//   const curFiles = input.files;
+const verifySubmitContentsEmpty = () => {
+  const isNotBlank = (str) => /\S+/g.test(str);
 
-//   if (curFiles.length === 0) {
-//     const txt = document.createElement('span');
+  const title = document.body.querySelector('.post-update__title__input');
+  const textarea = document.body.querySelector('.post-update__paragraph__input');
+  const isTitle = isNotBlank(title.value);
+  const isMainText = isNotBlank(textarea.value);
 
-//     txt.classList.add('post-update__file__preview-txt');
-//     txt.textContent = '아직 업로드된 이미지가 없습니다.';
+  if (!isTitle) {
+    refuseSubmitMsgs.add('제목을 입력해주세요.');
+  }
 
-//     preview.appendChild(txt);
-//   } else {
-//     const list = document.createElement('ol');
+  if (!isMainText) {
+    refuseSubmitMsgs.add('내용을 입력해주세요.');
+  }
 
-//     preview.appendChild(list);
+  return isTitle && isMainText;
+};
 
-//     for (const file of curFiles) {
-//       const listItem = document.createElement('li');
-//       const txt = document.createElement('span');
+const submitPost = () => {
+  const form = document.body.querySelector('.post-update__form');
 
-//       if (validFileType(file)) {
-//         txt.textContent = `File name ${file.name}, file size ${returnFileSize(file.size)}.`;
+  form.submit();
+};
 
-//         listItem.append(txt);
-//       } else {
-//         txt.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
+const handleSubmitBtnClick = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
 
-//         listItem.append(txt);
-//       }
+  refuseSubmitMsgs.off();
 
-//       list.append(listItem);
-//     }
-//   }
-// };
+  const isNotEmptyContents = verifySubmitContentsEmpty();
+
+  if (!isNotEmptyContents) {
+    refuseSubmitMsgs.on();
+    return;
+  }
+
+  submitPost();
+};
 
 const handleSubmit = (e) => {
   const submit = postUpdate.querySelector('.post-update__submit__btn');
@@ -94,9 +87,14 @@ const initpostUpdate = () => {
   const form = postUpdate.querySelector('.post-update__form');
   form.addEventListener('submit', handleSubmit, false);
 
-  // file 업로드시에 fileList 업데이트
-  //   const input = postUpdate.querySelector('.post-update__submit__btn');
-  //   input.addEventListener('change', updateFileList, false);
+  // 빈 제목, 빈 내용일때 submit 거부
+  // SubmitBtn은 button(type="button") 형식의 엘리먼트로, 그 자체로 submit 이벤트를 가지고 있진 않습니다.
+  // 폼 제출은 별도로 선언되어 있는 submitPost() 에 의해 관리됩니다.
+  const submitBtn = document.body.querySelector('.post-update__submit__btn');
+  submitBtn.addEventListener('click', handleSubmitBtnClick, false);
+
+  // 위에서 submit이 거부되었다면 나타났을 refuse 메세지를, form 클릭시 다시 안보이게 합니다.
+  form.addEventListener('click', hideRefuseMsgs, false);
 };
 
 document.addEventListener('DOMContentLoaded', initpostUpdate, false);
