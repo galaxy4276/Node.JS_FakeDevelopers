@@ -19,5 +19,7 @@ mixin postWrite(url)
       .post-write__paragraph__wrap
         label(for="textarea").post-write__paragraph__label 내용
         textarea(name="paragraph" id="textarea" required).post-write__paragraph__input
+      .post-write__submit-warn__wrap
+        ul.post-write__submit-warn__list
       .post-write__submit__wrap
-        button(type="submit" name="submit").post-write__submit__btn 작성하기
+        submit(name="submit").post-write__submit__btn 작성하기
