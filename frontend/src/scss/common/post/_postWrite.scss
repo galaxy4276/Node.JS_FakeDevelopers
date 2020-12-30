@@ -184,6 +184,16 @@
     }
   }
 
+  &__submit-warn {
+    &__wrap {
+      @include post-write__wrap;
+    }
+    &__list {
+    }
+    &__item {
+    }
+  }
+
   &__submit {
     &__wrap {
       @include post-write__wrap;

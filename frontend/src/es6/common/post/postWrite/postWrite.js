@@ -170,7 +170,6 @@ const verifySubmitFiles = () => {
 const submitPost = () => {
   const form = document.body.querySelector('.post-write__form');
 
-  // console.dir(form);
   form.submit();
 };
 
