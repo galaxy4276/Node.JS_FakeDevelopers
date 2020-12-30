@@ -1,9 +1,11 @@
 import sequelize from '../models';
+import setUrl from "../lib/setUrl";
 const { Notice, Community, Award, Certpost, Portfolio } = sequelize;
 
 const globalRouter = require('express').Router();
 
 globalRouter.get('/', (req, res) => {
+  setUrl(req, true);
   res.render('import/index', { title: 'hello' });
 });
 

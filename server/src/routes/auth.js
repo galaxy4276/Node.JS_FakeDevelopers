@@ -5,11 +5,17 @@ import bcrypt from 'bcrypt';
 import url from 'url';
 const { User } = sequelize;
 import { isLoggedIn, isNotLoggedIn } from '../controllers/post';
+import passport from 'passport';
+import { appState } from '../index';
 
 const auth = require('express').Router();
 
+
 auth.get('/login', isNotLoggedIn, login);
-auth.post('/login', postLogin);
+auth.post('/login', passport.authenticate('local'), (req, res, next) => {
+  console.log(`login pass url: ${appState.url}`);
+  res.redirect(appState.url);
+});
 
 auth.get('/join', isNotLoggedIn, join);
 auth.post('/join', postJoin);
@@ -71,7 +77,7 @@ auth.post('/forgot_resetPassword', isNotLoggedIn, async (req, res, next) => {
 
 auth.get('/logout', isLoggedIn, (req, res) => {
   req.logout();
-  return res.redirect('/');
+  return res.redirect(appState.url);
 });
 
 

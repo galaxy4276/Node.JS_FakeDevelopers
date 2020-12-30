@@ -9,6 +9,7 @@ import updatePost from "../../controllers/crud/update";
 import readPost from "../../controllers/crud/read";
 import {getRenderCreate, isLoggedIn} from "../../controllers/post";
 import community from "./community";
+import setUrl, {setUrlPost} from "../../lib/setUrl";
 
 const { 
   Certpost,
@@ -21,6 +22,7 @@ const footprint = require('express').Router();
 
 // 자격증 취득 ( Certpost )
 footprint.get('/acquisition', (req, res) => {
+  setUrl(req.originalUrl);
   res.render('import/footprint/acquisition', { user: req.user?.id });
 });
 footprint.post('/acquisition/create', uploads.array('file'),
@@ -48,11 +50,13 @@ footprint.patch('/acquisition/:id([0-9]+)/update', isLoggedIn, (req, res, next) 
   updatePost(req, res, next)(Certpost);
 });
 footprint.get('/acquisition/:id([0-9]+)', (req, res, next) => {
+  setUrlPost(req.originalUrl);
   readPost(req, res, next)(Certpost);
 });
 
 // 수상 내역 ( Award )
 footprint.get('/awards', (req, res) => {
+  setUrl(req.originalUrl);
   res.render('import/footprint/awards', { user: req.user?.id });
 });
 footprint.post('/awards/create', uploads.array('file'),
@@ -77,11 +81,13 @@ footprint.patch('/awards/:id([0-9]+)/update', isLoggedIn, (req, res, next) => {
   updatePost(req, res, next)(Award);
 });
 footprint.get('/awards/:id([0-9]+)', (req, res, next) => {
+  setUrlPost(req.originalUrl);
   readPost(req, res, next)(Award);
 });
 
 // 포트폴리오 ( Portfolio )
 footprint.get('/portfolio', (req, res) => {
+  setUrl(req.originalUrl);
   res.render('import/footprint/portfolio', { user: req.user?.id });
 });
 footprint.post('/portfolio/create', isLoggedIn, uploads.array('file'),
@@ -109,6 +115,7 @@ footprint.patch('/portfolio/:id([0-9]+)/update', isLoggedIn, (req, res, next) =>
   updatePost(req, res, next)(Portfolio);
 });
 footprint.get('/portfolio/:id([0-9]+)', (req, res, next) => {
+  setUrlPost(req.originalUrl);
   readPost(req, res, next)(Portfolio);
 });
 
