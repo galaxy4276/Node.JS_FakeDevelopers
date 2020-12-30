@@ -184,20 +184,26 @@
     }
   }
 
-  &__submit-warn {
-    &__wrap {
-      @include post-write__wrap;
-    }
-    &__list {
-    }
-    &__item {
-    }
-  }
-
   &__submit {
     &__wrap {
       @include post-write__wrap;
       align-items: flex-end; // direction is 'column'
+    }
+
+    &__refuse-msg-list {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      margin-bottom: 0.33em;
+    }
+
+    &__refuse-msg-item {
+      color: tomato;
+      line-height: 1.2;
+
+      &::before {
+        content: '▪';
+      }
     }
 
     &__btn {

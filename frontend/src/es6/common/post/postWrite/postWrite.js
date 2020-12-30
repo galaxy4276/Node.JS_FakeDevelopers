@@ -1,5 +1,5 @@
 import isValidFileType from './_vaildFileTypes';
-import { btnWrapper, btn, fileCnt, fileSize, warnMsg } from './_movableNodeStyles';
+import { btnWrapper, btn, fileCnt, fileSize, warnMsg, refuseSubmitMsgs } from './_changeableNodes';
 
 const returnFileSize = (num) => {
   if (num < 1024) {
@@ -127,6 +127,13 @@ const handleFileChange = () => {
   }
 };
 
+const hideRefuseMsgs = (e) => {
+  if (refuseSubmitMsgs.isEmpty()) return;
+  if (e.target.tagName === 'FORM') return;
+
+  refuseSubmitMsgs.off();
+};
+
 const verifySubmitContentsEmpty = () => {
   const isNotBlank = (str) => /\S+/g.test(str);
 
@@ -136,13 +143,11 @@ const verifySubmitContentsEmpty = () => {
   const isMainText = isNotBlank(textarea.value);
 
   if (!isTitle) {
-    alert('제목을 입력해주세요.');
-    return false;
+    refuseSubmitMsgs.add('제목을 입력해주세요.');
   }
 
   if (!isMainText) {
-    alert('내용을 입력해주세요.');
-    return false;
+    refuseSubmitMsgs.add('내용을 입력해주세요.');
   }
 
   return isTitle && isMainText;
@@ -155,13 +160,11 @@ const verifySubmitFiles = () => {
   const isVaildType = Array.from(currFiles).every(isValidFileType);
 
   if (!isValidSize) {
-    alert('파일 용량은 10MB를 넘을 수 없습니다.');
-    return false;
+    refuseSubmitMsgs.add('파일 용량은 10MB를 넘을 수 없습니다.');
   }
 
   if (!isVaildType) {
-    alert('이미지 파일만 첨부 가능합니다.');
-    return false;
+    refuseSubmitMsgs.add('이미지 파일만 첨부 가능합니다.');
   }
 
   return isValidSize && isVaildType;
@@ -177,10 +180,15 @@ const handleSubmitBtnClick = (e) => {
   e.preventDefault();
   e.stopPropagation();
 
+  refuseSubmitMsgs.off();
+
   const isNotEmptyContents = verifySubmitContentsEmpty();
   const isPermitedFiles = verifySubmitFiles();
 
-  if (!isNotEmptyContents || !isPermitedFiles) return;
+  if (!isNotEmptyContents || !isPermitedFiles) {
+    refuseSubmitMsgs.on();
+    return;
+  }
 
   submitPost();
 };
@@ -196,15 +204,18 @@ const initPostWrite = () => {
   const input = document.body.querySelector('.post-write__file__input');
   input.addEventListener('change', handleFileChange, false);
 
-  // 파일 확장자나 파일 크기가 허용되지 않는 크기일때, submit 거부
+  // submit 버튼 여러번 클릭 제한
+  const form = document.body.querySelector('.post-write__form');
+  form.addEventListener('submit', handleSubmit, false);
+
+  // 빈 제목, 빈 내용일때, 파일 확장자나 파일 크기가 허용되지 않는 크기일때 submit 거부
   // SubmitBtn은 button(type="button") 형식의 엘리먼트로, 그 자체로 submit 이벤트를 가지고 있진 않습니다.
   // 폼 제출은 별도로 선언되어 있는 submitPost() 에 의해 관리됩니다.
   const submitBtn = document.body.querySelector('.post-write__submit__btn');
   submitBtn.addEventListener('click', handleSubmitBtnClick, false);
 
-  // submit 버튼 여러번 클릭 제한
-  const form = document.body.querySelector('.post-write__form');
-  form.addEventListener('submit', handleSubmit, false);
+  // 위에서 submit이 거부되었다면 나타났을 refuse 메세지를, form 클릭시 다시 안보이게 합니다.
+  form.addEventListener('click', hideRefuseMsgs, false);
 };
 
 document.addEventListener('DOMContentLoaded', initPostWrite, false);
