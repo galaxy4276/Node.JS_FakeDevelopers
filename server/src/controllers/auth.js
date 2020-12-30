@@ -1,9 +1,9 @@
 import sequelize from '../models';
 import url from 'url';
-import passport from 'passport';
 import bcrypt from 'bcrypt';
 import isEmail from 'validator/lib/isEmail';
 import { v4 as uuidv4 } from 'uuid';
+import passport from 'passport';
 
 
 const { User } = sequelize;
@@ -77,6 +77,7 @@ export const postJoin = async ({ body }, res) => {
   }  
 };
 
+// @Deprecated
 export const postLogin = passport.authenticate('local', {
   successRedirect: url.format({
     pathname: '/',
@@ -92,7 +93,8 @@ export const postLogin = passport.authenticate('local', {
   }),
 });
 
-export const login = (___, res) => {
+export const login = (req, res) => {
+  console.log('login controller');
   res.render('auth/_login', {});
 };
 
