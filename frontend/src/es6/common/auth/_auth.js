@@ -9,8 +9,8 @@ window.onload = () => {
   const emailInputs = document.querySelectorAll('.js-emailInput');
 
   emailInputs.forEach((input) => {
-    input.addEventListener('click', !raised ? raiseLabel : {}, { once: true });
-    input.addEventListener('focus', !raised ? raiseLabel : {}, { once: true });
+    input.addEventListener('click', raiseLabel, { once: true });
+    input.addEventListener('focus', raiseLabel, { once: true });
   });
 
   initLogoutBtnsHref();
