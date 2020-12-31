@@ -1,7 +1,7 @@
 class Overlay {
   constructor() {
     this.overlay = document.createElement('article');
-    this.overlay.classList.add('modal__overlay');
+    this.overlay.classList.add('modal');
 
     return this.overlay;
   }
