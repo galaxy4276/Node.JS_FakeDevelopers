@@ -10,35 +10,33 @@
   }
 
   &__box {
+    $min-height: 150px;
+    $max-height: 250px;
+
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: grid;
-    grid-template:
-      'message-wrapper' fit-content(100%)
-      'btns-wrapper' fit-content(100%)
-      / 100%;
-    row-gap: 1.5rem;
+    grid-template-rows: repeat(2, minmax($min-height / 2, 1fr));
+    grid-template-columns: 100%;
+    row-gap: 0.66rem;
     width: 300px;
-    min-height: 150px;
-    height: fit-content;
     max-width: 95%;
-    max-height: 95%;
+    min-height: $min-height;
+    max-height: $max-height;
     padding: 1rem 1.5rem;
     background-color: #eee;
   }
 
   &__wrapper {
     &:nth-child(1) {
-      grid-area: message-wrapper;
       display: grid;
       justify-items: center;
       align-content: center;
     }
 
     &:nth-child(2) {
-      grid-area: btns-wrapper;
       display: grid;
       justify-items: center;
       align-content: center;
@@ -63,11 +61,11 @@
   &__warn-icon {
     color: tomato;
     font-size: 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.66rem;
   }
 
   &__btn {
-    @include btn-rectangle(0.5rem 1rem, true, true);
+    @include btn-rectangle(0.66rem 1.33rem, true, true);
     display: flex;
     justify-content: center;
     align-items: center;

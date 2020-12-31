@@ -41,10 +41,10 @@ class Message {
           elem.classList.add('modal__warn-icon');
         }
 
-        acc.append(elem);
+        acc.push(elem);
 
         return acc;
-      }, document.createDocumentFragment());
+      }, []);
 
       return para;
     } else {
@@ -52,7 +52,8 @@ class Message {
       sentence.textContent = str;
       sentence.classList.add('modal__msg');
 
-      return sentence;
+      // 전개 연산자로 받기 위해 배열로 반환
+      return [sentence];
     }
   }
 }
@@ -78,7 +79,12 @@ const createElems = (message, btnText = '확인', isSecondBtn = false, secondBtn
     const msg = new Message(message);
     const btn = new Btn(btnText);
 
-    msgWrapper.append(msg);
+    if (msg.length !== 1) {
+      // msg가 여러 줄이라면 메세지와 버튼 사이 틈 더 벌리기
+      box.style.rowGap = '1rem';
+    }
+
+    msgWrapper.append(...msg);
     btnWrapper.append(btn);
 
     if (isSecondBtn) {
