@@ -3,31 +3,31 @@
 //
 // ** example **
 //
-// html {
+// @mixin for-all-size {
 //   @include for-size(desktop) {
-//     font-size: initial; // 'rem' 조정
+//     animation: none;
 //   }
 //   @include for-size(laptop) {
-//     font-size: 14px;
+//     animation: none;
 //   }
 //   @include for-size(tablet-portrait) {
-//     font-size: 12px;
+//     animation: none;
 //   }
 //   @include for-size(tablet-landscape) {
-//     font-size: 12px;
+//     animation: none;
 //   }
 //   @include for-size(mobile-landscape) {
-//     font-size: 10px;
+//     animation: none;
 //   }
 //   @include for-size(mobile-portrait) {
-//     font-size: 10px;
+//     animation: none;
 //   }
-//    @include for-size(mobile-fold-portrait) {
-//      font-size: 14px;
-//    }
-//    @include for-size(mobile-fold-landscape) {
-//      font-size: 14px;
-//    }
+//   @include for-size(mobile-fold-portrait) {
+//     animation: none;
+//   }
+//   @include for-size(mobile-fold-landscape) {
+//     animation: none;
+//   }
 // }
 //
 // ***********************************************************************************
