@@ -12,7 +12,7 @@ const postViewInit = () => {
   // 삭제 버튼 클릭시 모달창 띄우기
   const postDeleteBtn = document.querySelector('.post-view__footer__btn--delete');
 
-  postDeleteBtn.addEventListener('click', ckeckDelete, false);
+  if (postDeleteBtn) postDeleteBtn.addEventListener('click', ckeckDelete, false);
 };
 
 document.addEventListener('DOMContentLoaded', postViewInit, false);
