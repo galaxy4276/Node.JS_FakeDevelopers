@@ -5,5 +5,3 @@ import './auth/_auth.js';
 import './templates/_sidebar';
 import './templates/_header';
 import './templates/_modal';
-
-/* -- common function -- */
