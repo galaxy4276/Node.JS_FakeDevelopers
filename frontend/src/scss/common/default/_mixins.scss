@@ -75,7 +75,6 @@
   }
 }
 
-//TODO: 오버레이 위의 컨텐츠가 중앙을 유지하면서 스크롤 따라다니도록 수정
 @mixin overlay {
   position: absolute;
   top: 0;
@@ -83,7 +82,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.85);
-  z-index: 9999;
+  z-index: 999;
 }
 
 @mixin underline-hover-fill($color) {
@@ -132,7 +131,7 @@
   background-color: rgba(black, 0.45);
   box-shadow: $box-shadow;
   border-radius: 1rem;
-  z-index: 10000;
+  z-index: 1000;
 }
 
 @mixin svg-btn($width) {

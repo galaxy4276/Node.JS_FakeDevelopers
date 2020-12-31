@@ -1,0 +1,93 @@
+.modal {
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+  }
+
+  &__box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template:
+      'message-wrapper' fit-content(100%)
+      'btns-wrapper' fit-content(100%)
+      / 100%;
+    row-gap: 1.5rem;
+    width: 300px;
+    min-height: 150px;
+    height: fit-content;
+    max-width: 95%;
+    max-height: 95%;
+    padding: 1rem 1.5rem;
+    background-color: #eee;
+  }
+
+  &__wrapper {
+    &:nth-child(1) {
+      grid-area: message-wrapper;
+      display: grid;
+      justify-items: center;
+      align-content: center;
+    }
+
+    &:nth-child(2) {
+      grid-area: btns-wrapper;
+      display: grid;
+      justify-items: center;
+      align-content: center;
+      grid-auto-flow: column dense;
+    }
+  }
+
+  &__msg {
+    position: relative;
+    top: 5px;
+    display: flex;
+    justify-content: center;
+    color: #3e3e3e;
+    line-height: 1.2;
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+
+  &__warn-icon {
+    color: tomato;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  &__btn {
+    @include btn-rectangle(0.5rem 1rem, true, true);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+    font-size: 0.85rem;
+
+    &:nth-child(1) {
+      background-color: $main-color;
+      color: $main-color--white;
+    }
+
+    &:nth-child(2) {
+      background-color: $main-color--dark-silver;
+      color: $main-color--white;
+    }
+  }
+
+  @include for-mobile {
+    &__btn {
+      padding: 0.8rem 1.5rem;
+    }
+  }
+}
