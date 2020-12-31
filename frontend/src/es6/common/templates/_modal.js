@@ -68,7 +68,7 @@ class Btn {
   }
 }
 
-const createElems = (message, btnText = '확인', isSecondBtn = false, secondBtnText = '닫기') => {
+const createElems = (message, firstBtnText = '확인', secondBtnText = false) => {
   return new Promise((resolve) => {
     const DOMfragment = document.createDocumentFragment();
 
@@ -77,7 +77,7 @@ const createElems = (message, btnText = '확인', isSecondBtn = false, secondBtn
     const msgWrapper = new Wrapper('js-msgWrapper');
     const btnWrapper = new Wrapper('js-btnWrapper');
     const msg = new Message(message);
-    const btn = new Btn(btnText);
+    const btn = new Btn(firstBtnText);
 
     if (msg.length !== 1) {
       // msg가 여러 줄이라면 메세지와 버튼 사이 틈 더 벌리기
@@ -87,7 +87,7 @@ const createElems = (message, btnText = '확인', isSecondBtn = false, secondBtn
     msgWrapper.append(...msg);
     btnWrapper.append(btn);
 
-    if (isSecondBtn) {
+    if (secondBtnText) {
       const secondBtn = new Btn(secondBtnText);
       btnWrapper.append(secondBtn);
     }
@@ -109,13 +109,13 @@ const closeModal = () => {
 };
 
 const createModal = async (callbackFn, ...createOptions) => {
-  // 받는 인자는 (callbackFn, message, btnText = '확인', isSecondBtn = false, secondBtnText = '거부') 입니다.
+  // 받는 인자는 (callbackFn, message, btnText = '확인', secondBtnText = '닫기') 입니다.
   await createElems(...createOptions);
 
-  const useSecondBtn = createOptions[2];
+  const isSecondBtn = Boolean(createOptions[2]);
   const btnWrapper = document.body.querySelector('.js-btnWrapper');
 
-  if (useSecondBtn) {
+  if (isSecondBtn) {
     btnWrapper.firstChild.addEventListener('click', callbackFn, false);
     btnWrapper.lastChild.addEventListener('click', closeModal, false);
   } else {

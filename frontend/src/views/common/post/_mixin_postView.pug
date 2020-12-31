@@ -53,9 +53,10 @@ mixin postView(post, referrer, accessUser, comments)
       if accessUser === post.UserId
         -const updatePagePath = `${referrer}/update`
         -const deletePath = `${referrer}/delete?_method=DELETE`
-        form(action="" method="post").post-view__footer__form
+        section.post-view__footer__writer-btns
           a(href= updatePagePath).post-view__footer__btn.post-view__footer__btn--update 수정
-          button(type="submit" name="" formaction= deletePath).post-view__footer__btn.post-view__footer__btn--delete 삭제
+          form(action= deletePath method="post").post-view__footer__delete-form
+            submit(name="").post-view__footer__btn.post-view__footer__btn--delete 삭제
     section.post-view__comment
       div.post-view__comment__cnt
         span 댓글
