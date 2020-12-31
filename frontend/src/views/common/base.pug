@@ -30,6 +30,7 @@ html(lang="ko")
         |
         |
         |
-        // default >> hide
-        include auth/_login.pug
-        include auth/_join.pug
+        if !user
+            // default >> hide
+            include auth/_login.pug
+            include auth/_join.pug
