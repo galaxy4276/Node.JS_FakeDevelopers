@@ -1,4 +1,4 @@
-import createModal from '../../templates/_modal';
+import modal from '../../components/_modal';
 
 const ckeckDelete = (e) => {
   e.preventDefault();
@@ -9,7 +9,7 @@ const ckeckDelete = (e) => {
     deleteForm.submit();
   };
 
-  createModal(deletePost, '게시글을 삭제하시겠습니까?', '확인', '닫기');
+  modal(deletePost, '게시글을 삭제하시겠습니까?', '확인', '닫기');
 };
 
 export default ckeckDelete;

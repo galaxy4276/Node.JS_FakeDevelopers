@@ -11,7 +11,10 @@
 @import './templates/sub-main';
 @import './templates/footer';
 @import './templates/sidebar';
-@import './templates/modal.scss';
+
+/* common components */
+@import './components/modal';
+@import './components/loading';
 
 /* common auth */
 @import './auth/login';

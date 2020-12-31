@@ -1,4 +1,4 @@
-import createModal from '../templates/_modal';
+import modal from '../components/_modal';
 import { toggleloginWindow } from './_authToggleEventHandle';
 /* --- */
 /* -- 로그인 성공, 실패에 따른 이벤트 분기 --*/
@@ -7,7 +7,7 @@ import { toggleloginWindow } from './_authToggleEventHandle';
 
 const handleLoginFailure = () => {
   toggleloginWindow();
-  createModal(null, '⚠\n가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.', '확인');
+  modal(null, '⚠\n가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.', '확인');
 };
 
 const handleLoginResult = () => {

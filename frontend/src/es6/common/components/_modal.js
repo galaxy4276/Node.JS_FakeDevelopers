@@ -108,7 +108,7 @@ const closeModal = () => {
   document.body.removeChild(modal);
 };
 
-const createModal = async (callbackFn = null, ...createOptions) => {
+const modal = async (callbackFn = null, ...createOptions) => {
   // 받는 인자는 (callbackFn, message, btnText = '확인', secondBtnText = '닫기') 입니다.
   await createElems(...createOptions);
 
@@ -126,4 +126,4 @@ const createModal = async (callbackFn = null, ...createOptions) => {
   }
 };
 
-export default createModal;
+export default modal;
