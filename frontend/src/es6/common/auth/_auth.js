@@ -9,7 +9,7 @@ window.onload = () => {
   const joinForm = document.querySelector('.join__form');
 
   onFormLabelsRaiseUp(joinForm);
-  initLogoutBtnsHref();
   authToggleEventHandle();
+  initLogoutBtnsHref();
   handleLoginResultQuery();
 };

@@ -29,6 +29,8 @@ const handleLabelRaiseUp = (e) => {
 };
 
 const onFormLabelsRaiseUpEvent = (form) => {
+  if (!form) return;
+
   form.addEventListener('click', handleLabelRaiseUp, false);
   form.addEventListener('focus', handleLabelRaiseUp, false);
 };

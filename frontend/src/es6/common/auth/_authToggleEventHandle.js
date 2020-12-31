@@ -29,6 +29,8 @@ const handleLoginClose = () => {
 };
 
 const authToggleEventHandle = () => {
+  if (!document.querySelector('.js-loginOpenBtn')) return;
+
   const loginOpenBtns = document.querySelectorAll('.js-loginOpenBtn'); // 로그인 열기 버튼
   const loginCloseBtn = document.querySelector('.login__form__close-btn'); // 로그인 닫기 버튼
 
