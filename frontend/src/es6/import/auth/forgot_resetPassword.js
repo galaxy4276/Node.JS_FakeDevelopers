@@ -1,10 +1,7 @@
-import raiseLabel from '../../common/function/_raiseLabel.js';
+import onFormLabelsRaiseUp from '../../common/function/_onFormLabelsRaiseUp';
 
 window.onload = () => {
-  const emailInputs = document.querySelectorAll('.js-emailInput');
+  const findForm = document.querySelector('.find__form');
 
-  emailInputs.forEach((input) => {
-    input.addEventListener('click', !raised ? raiseLabel : {}, { once: true });
-    input.addEventListener('focus', !raised ? raiseLabel : {}, { once: true });
-  });
+  onFormLabelsRaiseUp(findForm);
 };
