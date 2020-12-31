@@ -48,4 +48,4 @@ const authToggleEventHandle = () => {
   joinCloseBtn.addEventListener('click', togglejoinWindow, false);
 };
 
-export default authToggleEventHandle;
+export { toggleloginWindow, authToggleEventHandle };

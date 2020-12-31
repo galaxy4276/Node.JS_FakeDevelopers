@@ -108,7 +108,7 @@ const closeModal = () => {
   document.body.removeChild(modal);
 };
 
-const createModal = async (callbackFn, ...createOptions) => {
+const createModal = async (callbackFn = null, ...createOptions) => {
   // 받는 인자는 (callbackFn, message, btnText = '확인', secondBtnText = '닫기') 입니다.
   await createElems(...createOptions);
 
@@ -116,6 +116,9 @@ const createModal = async (callbackFn, ...createOptions) => {
   const btnWrapper = document.body.querySelector('.js-btnWrapper');
 
   if (isSecondBtn) {
+    if (!callbackFn) {
+      throw new Error('버튼 두개 사용 시에 첫번째인자로 콜백함수가 필요합니다.');
+    }
     btnWrapper.firstChild.addEventListener('click', callbackFn, false);
     btnWrapper.lastChild.addEventListener('click', closeModal, false);
   } else {
