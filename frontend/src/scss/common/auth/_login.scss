@@ -83,11 +83,6 @@
         color: $main-color;
       }
 
-      &:valid ~ &-check::before {
-        content: '✓';
-        color: $auth__font-color--before;
-      }
-
       @include for-size(mobile-fold-landscape) {
         padding: 0.05rem 0;
       }
@@ -100,16 +95,6 @@
       pointer-events: none;
       transition: all 700ms cubic-bezier(0.23, 1, 0.32, 1); /* easeOutQuint */
       will-change: contents;
-    }
-
-    &__input-check {
-      position: relative;
-
-      &::before {
-        position: absolute;
-        right: 5px;
-        top: 0.1rem;
-      }
     }
 
     &__login-btn {
