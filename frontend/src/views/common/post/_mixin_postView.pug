@@ -38,12 +38,15 @@ mixin postView(post, referrer, accessUser, comments)
       div.post-view__header__prop.post-view__header__writer= post.UserId
       div.post-view__header__prop.post-view__header__hit= post.Inquiries[0].count
     // 게시판 글
-    section.post-view__content
-      // 첨부 파일
-      section.post-view__content__images
-        each image in post.Images
-          - const src = `https://www.ddccomputer.club/uploads/${image.src}`
-          img(src= src style="max-width: 100%;").post-view__content__image
+    section.post-view__content    
+      - const isImage = Images in post;
+      if isImage
+        // 게시글 이미지
+        section.post-view__content__images
+          each image in post.Images
+            - const src = `https://www.ddccomputer.club/uploads/${image.src}`
+            img(src= src style="max-width: 100%;").post-view__content__image
+      // 게시글 내용
       section.post-view__content__txt-wrap
         pre.post-view__content__txt= post.content
     // 게시판 글 푸터
