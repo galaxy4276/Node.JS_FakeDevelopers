@@ -11,6 +11,18 @@ block title
 
 block content
   main.index-main
+    |
+    |
+    //- loginResult, joinResult is 'success' or 'failure'
+    //-
+    //- afterLogin?
+    if loginResult
+      output(style="display: none" data-login-result= loginResult).login-result
+    //- afterJoin?
+    if joinResult
+      output(style="display: none" data-join-result= joinResult).join-result
+    |
+    |
     .index-main__background
     .index-main__content
       .index-main__first
@@ -45,4 +57,4 @@ block content
               li.index-main__second__content-item
                 a(href="/footprint/awards") 대회 수상
               li.index-main__second__content-item
-                a(href="/footprint/portfolio") 포트폴리오
+                a(href="/footprint/portfolio") 포트폴리오  

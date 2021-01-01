@@ -4,19 +4,21 @@ const clearAuthInputs = () => {
   inputs.forEach((input) => (input.value = ''));
 };
 
-const toggleloginWindow = () => {
+const toggleLoginWindow = () => {
   const loginWindow = document.querySelector('.login'); // 로그인 창
 
   loginWindow.classList.toggle('login--show');
 };
 
-const togglejoinWindow = (e) => {
+const toggleJoinWindow = (e) => {
   clearAuthInputs();
 
-  let currentBtn = e.target;
-  let isBtnInLoginWindow = currentBtn.classList.contains('login__form__join-open-btn');
+  if (e) {
+    let currentBtn = e.target;
+    let isBtnInLoginWindow = currentBtn.classList.contains('login__form__join-open-btn');
 
-  if (isBtnInLoginWindow) toggleloginWindow(); // join 버튼이 로그인 창 안에 있는 버튼이라면 로그인 창 닫기
+    if (isBtnInLoginWindow) toggleLoginWindow(); // join 버튼이 로그인 창 안에 있는 버튼이라면 로그인 창 닫기
+  }
 
   const joinWindow = document.querySelector('.join'); // 회원가입 창
 
@@ -25,7 +27,7 @@ const togglejoinWindow = (e) => {
 
 const handleLoginClose = () => {
   clearAuthInputs();
-  toggleloginWindow();
+  toggleLoginWindow();
 };
 
 const authToggleEventHandle = () => {
@@ -43,9 +45,9 @@ const authToggleEventHandle = () => {
   const joinCloseBtn = document.querySelector('.join__form__close-btn'); // 회원가입 닫기 버튼
 
   joinOpenBtns.forEach((joinOpenBtn) => {
-    joinOpenBtn.addEventListener('click', togglejoinWindow, false);
+    joinOpenBtn.addEventListener('click', toggleJoinWindow, false);
   });
-  joinCloseBtn.addEventListener('click', togglejoinWindow, false);
+  joinCloseBtn.addEventListener('click', toggleJoinWindow, false);
 };
 
-export { toggleloginWindow, authToggleEventHandle };
+export { toggleLoginWindow, toggleJoinWindow, authToggleEventHandle };

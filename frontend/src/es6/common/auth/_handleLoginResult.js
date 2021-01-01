@@ -1,13 +1,19 @@
 import modal from '../components/_modal';
-import { toggleloginWindow } from './_authToggleEventHandle';
+import { toggleLoginWindow } from './_authToggleEventHandle';
+import emojiListForLogin from './_emojiListForLogin';
+
 /* --- */
 /* -- 로그인 성공, 실패에 따른 이벤트 분기 --*/
-// const handleLoginSuccess = () => {
-// };
+const handleLoginSuccess = () => {
+  const randomNum = Math.ceil(Math.random() * emojiListForLogin.length);
+  const randomEmoji = emojiListForLogin[randomNum];
+
+  modal(null, `${randomEmoji}\nprintf("안녕하세요 !");`);
+};
 
 const handleLoginFailure = () => {
-  toggleloginWindow();
-  modal(null, '⚠\n가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.', '확인');
+  toggleLoginWindow();
+  modal(null, '⚠\n가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.');
 };
 
 const handleLoginResult = () => {
@@ -15,10 +21,11 @@ const handleLoginResult = () => {
 
   if (!loginResult) return; // 로그인 시도를 하지 않았다면 return
 
-  // result is 'loginSuccess' or 'loginFailure'
-  const result = loginResult.dataset.dataLoginResult;
+  // result is 'success' or 'failure'
+  const result = loginResult.dataset.loginResult;
 
-  if (result === 'loginFailure') handleLoginFailure();
+  if (result === 'success') handleLoginSuccess();
+  else if (result === 'failure') handleLoginFailure();
 };
 
 export default handleLoginResult;
