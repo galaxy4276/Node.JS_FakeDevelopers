@@ -32,21 +32,23 @@ class Message {
     if (String(str).includes('\n')) {
       const sentences = str.match(/(^.*(?=\n)|(?<=\n).*$)/gm);
 
-      const para = sentences.reduce((acc, sentence) => {
+      const paras = sentences.reduce((acc, sentence) => {
         const elem = document.createElement('p');
         elem.textContent = sentence;
         elem.classList.add('modal__msg');
-
-        if (sentence === '⚠') {
-          elem.classList.add('modal__warn-icon');
-        }
 
         acc.push(elem);
 
         return acc;
       }, []);
 
-      return para;
+      const firstPara = paras[0];
+
+      if (firstPara.textContent.length === 1) {
+        firstPara.classList.add('modal__warn-icon');
+      }
+
+      return paras;
     } else {
       const sentence = document.createElement('p');
       sentence.textContent = str;
@@ -78,11 +80,6 @@ const createElems = (message, firstBtnText = '확인', secondBtnText = false) =>
     const btnWrapper = new Wrapper('js-btnWrapper');
     const msg = new Message(message);
     const btn = new Btn(firstBtnText);
-
-    if (msg.length !== 1) {
-      // msg가 여러 줄이라면 메세지와 버튼 사이 틈 더 벌리기
-      box.style.rowGap = '1rem';
-    }
 
     msgWrapper.append(...msg);
     btnWrapper.append(btn);

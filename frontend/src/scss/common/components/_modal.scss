@@ -9,7 +9,7 @@
 
   &__box {
     $min-height: 150px;
-    $max-height: 250px;
+    $max-height: 240px;
 
     position: fixed;
     top: 50%;
@@ -32,6 +32,8 @@
       display: grid;
       justify-items: center;
       align-content: center;
+      padding-top: 1rem;
+      text-align: center;
     }
 
     &:nth-child(2) {
@@ -57,7 +59,6 @@
   }
 
   &__warn-icon {
-    color: tomato;
     font-size: 3rem;
     margin-bottom: 0.66rem;
   }
