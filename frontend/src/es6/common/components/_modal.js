@@ -43,9 +43,9 @@ class Message {
       }, []);
 
       const firstPara = paras[0];
-
-      if (firstPara.textContent.length === 1) {
-        firstPara.classList.add('modal__warn-icon');
+      // 첫 para 엘리먼트가 3글자 미만이라면 아이콘으로 취급
+      if (firstPara.textContent.length < 3) {
+        firstPara.classList.add('modal__icon');
       }
 
       return paras;

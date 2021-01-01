@@ -9,7 +9,7 @@
 
   &__box {
     $min-height: 150px;
-    $max-height: 240px;
+    $max-height: 230px;
 
     position: fixed;
     top: 50%;
@@ -23,7 +23,7 @@
     max-width: 95%;
     min-height: $min-height;
     max-height: $max-height;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.5rem 0.33rem 1.5rem;
     background-color: #eee;
   }
 
@@ -58,9 +58,9 @@
     word-break: break-all;
   }
 
-  &__warn-icon {
+  &__icon {
     font-size: 3rem;
-    margin-bottom: 0.66rem;
+    margin-bottom: 1.5rem;
   }
 
   &__btn {
