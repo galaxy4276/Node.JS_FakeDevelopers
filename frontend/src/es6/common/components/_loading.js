@@ -20,8 +20,14 @@ class Svg {
   }
 }
 
+const timeSet = (s) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, s * 1000);
+  });
+};
+
 const loading = {
-  on() {
+  on: async function () {
     const DOMfragment = document.createDocumentFragment();
 
     const overlay = new Overlay();
@@ -29,6 +35,8 @@ const loading = {
 
     overlay.append(svg);
     DOMfragment.append(overlay);
+
+    await timeSet(0.3);
 
     document.body.append(DOMfragment);
   },
