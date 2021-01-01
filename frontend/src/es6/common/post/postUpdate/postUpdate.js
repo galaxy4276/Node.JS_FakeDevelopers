@@ -1,4 +1,7 @@
-const postUpdate = document.body.querySelector('.post-update');
+const ckeckBeforePageLoad = (e) => {
+  e.preventDefault();
+  e.returnValue = '';
+};
 
 const refuseSubmitMsgs = {
   elem: document.body.querySelector('.post-update__submit__refuse-msg-list'),
@@ -77,14 +80,14 @@ const handleSubmitBtnClick = (e) => {
 };
 
 const handleSubmit = (e) => {
-  const submit = postUpdate.querySelector('.post-update__submit__btn');
+  const submit = document.querySelector('.post-update__submit__btn');
 
   submit.disabled = true; // 한 번 제출하면 버튼 비활성화
 };
 
 const initpostUpdate = () => {
   // submit 버튼 여러번 클릭 제한
-  const form = postUpdate.querySelector('.post-update__form');
+  const form = document.querySelector('.post-update__form');
   form.addEventListener('submit', handleSubmit, false);
 
   // 빈 제목, 빈 내용일때 submit 거부
@@ -95,6 +98,9 @@ const initpostUpdate = () => {
 
   // 위에서 submit이 거부되었다면 나타났을 refuse 메세지를, form 클릭시 다시 안보이게 합니다.
   form.addEventListener('click', hideRefuseMsgs, false);
+
+  // 다른 페이지로 이동하려 할때 다시 한 번 확인하기
+  window.addEventListener('beforeunload', ckeckBeforePageLoad, false);
 };
 
 document.addEventListener('DOMContentLoaded', initpostUpdate, false);
