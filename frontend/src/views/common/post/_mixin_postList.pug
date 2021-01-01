@@ -41,7 +41,7 @@ mixin postList(usePostWrite = false, boardName)
       |
       |
       //- 글쓰기 기능이 존재하는 게시판이라면
-      - if(usePostWrite)
+      if usePostWrite
         // 글쓰기 버튼
         if user
           a(href= '/' + boardName + '/create').post-list__write-btn 글쓰기
