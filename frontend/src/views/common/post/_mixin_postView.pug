@@ -71,7 +71,8 @@ mixin postView(post, referrer, accessUser, comments)
             section.post-view__comment__info
               span= userId
               +processDateTime(createdAt, 'comment')
-            section.post-view__comment__content= comment
+            section.post-view__comment__content-wrap
+              pre.post-view__comment__content= comment
         each comment in comments
           - const currData = comment.dataValues;
           +commentItem(currData.UserId, currData.createdAt, currData.comment)
