@@ -44,7 +44,8 @@ mixin postView(post, referrer, accessUser, comments)
         each image in post.Images
           - const src = `https://www.ddccomputer.club/uploads/${image.src}`
           img(src= src style="max-width: 100%;").post-view__content__image
-      section.post-view__content__txt= post.content
+      section.post-view__content__txt-wrap
+        pre.post-view__content__txt= post.content
     // 게시판 글 푸터
     section.post-view__footer
       -const boardPath = referrer.match(/^.*(?=\/\d)/)[0]; // regExp ex) '/community/board/14' => '/community/board'

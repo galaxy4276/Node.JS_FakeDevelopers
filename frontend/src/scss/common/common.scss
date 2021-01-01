@@ -63,7 +63,8 @@ body {
   min-height: 100%; // 웹 전체 기본 높이
   position: relative;
   padding: 0 2.5vw $footer-height 2.5vw; // 웹 전체 기본 padding
-  font-family: Roboto, Noto Sans KR, sans-serif, Apple SD Gothic Neo; // 웹 전체 기본 폰트
+  font-family: $font-family; // 웹 전체 기본 폰트
+  font-weight: 400;
 }
 
 main {
