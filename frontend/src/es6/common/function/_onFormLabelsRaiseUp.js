@@ -11,6 +11,7 @@ const raiseLabel = (input) => {
 
   let label = next(input); // input 뒤에 오는 label
 
+  if (!label) return;
   if (label.style.color === '#bebebe') return;
 
   input.style.fontSize = '1.5rem';
