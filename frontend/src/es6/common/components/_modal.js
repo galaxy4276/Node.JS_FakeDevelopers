@@ -103,9 +103,9 @@ const createElems = (message, firstBtnText = '확인', secondBtnText = false) =>
 };
 
 const closeModal = () => {
-  const modal = document.body.querySelector('.modal__overlay');
+  const modalElem = document.body.querySelector('.modal');
 
-  document.body.removeChild(modal);
+  modalElem.remove();
 };
 
 const modal = async (callbackFn = null, ...createOptions) => {
