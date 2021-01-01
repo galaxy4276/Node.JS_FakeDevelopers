@@ -105,7 +105,7 @@ const createElems = (message, firstBtnText = '확인', secondBtnText = false) =>
 const closeModal = () => {
   const modalElem = document.body.querySelector('.modal');
 
-  modalElem.remove();
+  if (modalElem) modalElem.remove();
 };
 
 const modal = async (callbackFn = null, ...createOptions) => {
