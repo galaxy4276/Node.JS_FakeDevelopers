@@ -1,3 +1,5 @@
+import inputVerification from './_inputVerification';
+
 const clearAuthInputs = () => {
   const inputs = document.querySelectorAll('.js-authInput');
 

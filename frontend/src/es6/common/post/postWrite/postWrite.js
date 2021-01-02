@@ -193,10 +193,14 @@ const handleSubmitBtnClick = (e) => {
   submitPost();
 };
 
-const handleSubmit = () => {
+const onDisabled = (elem) => {
+  elem.disabled = false;
+};
+
+const handleSubmit = (e) => {
   const submit = document.body.querySelector('.post-write__submit__btn');
 
-  submit.disabled = true;
+  onDisabled(submit);
 };
 
 const initPostWrite = () => {

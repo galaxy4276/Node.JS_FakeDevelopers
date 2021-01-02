@@ -1,3 +1,5 @@
+// 이 파일은 ../common.js 에서 호출됩니다.
+
 import initLogoutBtnsHref from './_initLogoutBtnsHref';
 import { authToggleEventHandle } from './_authToggleEventHandle';
 import handleLoginResult from './_handleLoginResult';
