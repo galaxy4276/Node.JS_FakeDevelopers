@@ -98,7 +98,6 @@
   &__copyright {
     grid-area: copyright;
     display: flex;
-    justify-content: center;
     color: #777;
 
     & > *:nth-child(n + 2) {
