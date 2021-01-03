@@ -39,16 +39,13 @@ mixin postView(post, referrer, accessUser, comments)
       div.post-view__header__prop.post-view__header__hit= post.Inquiries[0].count
     // 게시판 글
     section.post-view__content
-      //- 개발 환경을 위한 이미지 유무 검증 ( 게시글에 이미지 데이터가 있는지만 검사 )
-      - const isImageForDev = Boolean(post.Images[0]);
-      output(data-is-image-for-localhost= `${isImageForDev}`)
-      //- 배포 환경에서의 이미지 유무 검증 ( 게시글에 이미지 데이터가 실제로 불러와질 수 있는지 검사 )
-      - const isImageForProd = Images in post;
-      if isImageForProd
-        section.post-view__content__images
-          each image in post.Images
-            - const src = `https://www.ddccomputer.club/uploads/${image.src}`
-            img(src= src).post-view__content__image
+      section.post-view__content__images
+        each image in post.Images
+          - const src = `https://www.ddccomputer.club/uploads/${image.src}`
+          img(src= src).post-view__content__image
+      //- 개발 환경 이미지 로드 불가 안내를 위한 이미지 유무 검증
+      - const isImage = Boolean(post.Images[0]);
+      output(data-is-image-for-localhost= `${isImage}`)
       // 게시글 내용
       section.post-view__content__txt-wrap
         pre.post-view__content__txt= post.content
