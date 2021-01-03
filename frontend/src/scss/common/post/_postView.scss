@@ -68,12 +68,12 @@
       max-width: 100%;
       width: fit-content;
 
-      &:first-child {
-        margin-top: 2rem;
-      }
-
       &:not(:last-child) {
         margin-bottom: 1rem;
+      }
+
+      &:last-child {
+        margin-bottom: 2rem;
       }
     }
 
