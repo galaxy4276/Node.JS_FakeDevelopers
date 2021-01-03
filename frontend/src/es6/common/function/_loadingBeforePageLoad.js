@@ -3,22 +3,18 @@ import loading from '../components/_loading';
 const verifyLoading = (elem) => {
   if (!elem) return;
 
-  const loadingVaildElem = ['SUBMIT', 'BUTTON', 'A'];
-  const loadingVaildClassWord = ['auth', 'index', 'post'];
+  const vaildElem = ['SUBMIT', 'BUTTON', 'A'];
+  const vaildClassWord = ['auth', 'index', 'post'];
 
   const tagName = elem.tagName;
 
-  if (!loadingVaildElem.includes(tagName)) return false;
+  if (!vaildElem.includes(tagName)) return false;
 
   const className = elem.className;
 
   if (!className) return false;
 
-  let isVaildClass = false;
-
-  loadingVaildClassWord.forEach((word) => {
-    isVaildClass = className.includes(word);
-  });
+  const isVaildClass = vaildClassWord.find((word) => className.includes(word));
 
   if (!isVaildClass) return false;
 
