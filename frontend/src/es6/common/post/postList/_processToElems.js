@@ -18,10 +18,9 @@ const processToElems = (boardName, dataObj) => {
   const _getTimeDiff = getTimeDiff;
 
   const postitems = dataObj.reduce((acc, post) => {
-    const item = document.createElement('div');
+    const item = document.createElement('a');
     item.setAttribute('class', `post-list__${itemName}`);
-
-    const postViewLink = `/${boardName}/${post.id}`;
+    item.setAttribute('href', `/${boardName}/${post.id}`);
 
     const KST = _addTime(post.createdAt, 9); // 🌟 GMT => KST 🌟
     const timeDiff = _getTimeDiff(post.createdAt);
@@ -29,7 +28,7 @@ const processToElems = (boardName, dataObj) => {
 
     item.innerHTML = `
 <p class=${classes.number}>${post.id || '0000'}</p>
-<a class=${classes.title} href=${postViewLink}>${post.title || '[ 빈 제목입니다 ]'}</a>
+<p class=${classes.title}>${post.title || '[ 빈 제목입니다 ]'}</p>
 <p class=${classes.writer}>${post.UserId || 'Annonymous'}</p>
 <p class=${classes.hit}>${post.Inquiries[0].count || '0'}</p>
 <p class=${classes.createdAt}>${timeText}</p>

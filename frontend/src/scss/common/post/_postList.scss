@@ -63,12 +63,6 @@
       justify-content: flex-start !important;
       color: #111 !important;
       font-size: 1.05em;
-
-      &:hover,
-      &:focus {
-        cursor: pointer;
-        font-weight: 700;
-      }
     }
 
     &__writer {
@@ -86,6 +80,10 @@
     &:hover,
     &:focus {
       background-color: rgba(black, 0.02);
+
+      & > .post-list__item__title {
+        font-weight: 700;
+      }
     }
 
     @include for-mobile {
