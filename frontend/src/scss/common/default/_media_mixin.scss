@@ -68,6 +68,15 @@
   }
 }
 
+@mixin for-tablet {
+  @include for-size(tablet-portrait) {
+    @content;
+  }
+  @include for-size(tablet-landscape) {
+    @content;
+  }
+}
+
 @mixin for-mobile {
   @include for-size(mobile-landscape) {
     @content;

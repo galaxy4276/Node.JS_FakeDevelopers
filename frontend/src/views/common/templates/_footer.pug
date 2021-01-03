@@ -1,14 +1,21 @@
 footer.footer
+  a(href='/').footer__logo
+    .footer__logo__icon
+    .footer__logo__txt
+      span 대덕대학교
+      span 컴퓨터정보학과
   .footer__wrap
-    .footer__logo-zone
-    .footer__info
-      .footer__privacy-policy
-        span 개인정보처리방침
-        span 찾아오시는 길
-        span 이메일무단수집거부
-        span 정보공개
-        span 대학정보공시
-        span 입학안내
-        span 발전기금
-      .footer__college-location
-        span 대전광역시 유성구 가정북로 68 정곡관 6층
+    section.footer__privacy-policy
+      a(href='http://www.ddu.ac.kr/msi/cntntsService.do?menuId=MNU_0000000000000317') 개인정보처리방침
+    section.footer__location
+      span 305-715 대전광역시 유성구 가정북로 68 대덕대학교(장동 48번지) 정곡관 6층
+    section.footer__number
+      span Tel. 042-866-0307
+      span Fax. 042-866-0371
+    section.footer__copyright
+      span Github
+      div.footer__copyright__icon
+        +icon('github', '', '#999')
+      a(href='https://github.com/galaxy4276') galaxy4276
+      a(href='https://github.com/wscrg') wscrg
+      a(href='https://github.com/bear-bear-bear') bear-bear-bear
