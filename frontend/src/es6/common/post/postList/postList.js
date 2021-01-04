@@ -2,6 +2,7 @@
 import requestURL from '../../function/_requestURL';
 import defaultFetch from '../../function/_defaultFetch';
 import processToElems from './_processToElems';
+import loading from '../../components/_loading';
 
 /* Constants */
 const pagination = document.body.querySelector('.post-list__inner-paging'); // 페이지네이션 버튼들을 자식으로 가진 element
@@ -47,12 +48,6 @@ const getGlobalVariable = (name) => {
 };
 
 const setGlobalVariable = (key, ...value) => (window[Symbol.for(key)] = value);
-
-const initParentElemHeight = () => {
-  const [parentElem, ,] = getGlobalVariable('option');
-
-  parentElem.style.height = parentElem.offsetHeight;
-};
 
 const getLastPageNum = async () => {
   const [, boardName, limit] = getGlobalVariable('option');
@@ -259,32 +254,38 @@ const turnPage = (clickedBtn) => {
   }
 };
 
-const handlePaginationBtnsClick = (e) => {
+const handlePaginationBtnsClick = async (e) => {
   let clickedBtn = e.target;
 
   if (clickedBtn.tagName === 'UL') return; // 클릭된 것이 버튼이 아닌 여백 공간이라면 종료
   if (clickedBtn.tagName === 'LI' && clickedBtn.textContent == currentPageNumber) return; // 클릭된 것이 현재 페이지 번호일땐 종료
   if (clickedBtn.tagName === 'path') clickedBtn = e.target.closest('svg'); // 클릭된 것이 svg의 path라면 svg로 이벤트 타겟 변경
 
+  loading.on();
   toggleHighlightCurrPageNum(); // 이전 페이지 번호 강조 off
   turnPage(clickedBtn); // 페이지 넘기기 (currentPageNumber 변경)
-  putPostsList(currentPageNumber); // 변경한 currentPageNumber로 그에 맞는 데이터 불러오기
+  await putPostsList(currentPageNumber); // 변경한 currentPageNumber로 그에 맞는 데이터 불러오기
   toggleHighlightCurrPageNum(); // 현재 페이지 번호 강조 on
   toggleDisplayMoveBtns(); // 만약 현재 페이지가 1페이지면 < 버튼, 마지막 페이지면 > 버튼 삭제
+  loading.off();
 };
 
 const postList = async (reqOptions) => {
   setGlobalVariable('option', reqOptions); // 서버에 요청할때 쓸 옵션을 인자로 받아 전역변수에 저장
 
+  loading.on();
+
   if (firstCall) {
     // 웹 페이지 최초 접속시에
     await getLastPageNum(); // 서버에서 마지막 페이지의 번호를 받아와서 전역변수에 저장
+
     initPageNumList(); //  페이지 번호 리스트 초기화
     toggleDisplayMoveBtns(); //  < , > 버튼 삭제 판별 (1페이지 혹은 마지막 페이지 일때)
     toggleHighlightCurrPageNum(); //  현재 페이지 강조
 
     if (isNoPosts) {
       // 위의 getLastPageNum() 에서 데이터가 하나도 없다고 나오면,
+      loading.off();
       guideNoPosts(); // 안내 메시지를 생성하고
       return; // 종료
     }
@@ -294,7 +295,7 @@ const postList = async (reqOptions) => {
 
   await putPostsList(currentPageNumber); //첫 데이터 불러오기
 
-  initParentElemHeight(); // 첫 불러온 데이터 양만큼 최초 높이 설정 (화면 전환시 데이터를 받아오는 도중 내부 요소 삭제 생성에 따른 높이 변화에 의한, 이른바 '깜박임'을 제거하기 위함)
+  loading.off();
 
   pagination.addEventListener('click', handlePaginationBtnsClick, false); // 페이지네이션의 버튼 클릭시에 그에 맞는 데이터 호출
 };
