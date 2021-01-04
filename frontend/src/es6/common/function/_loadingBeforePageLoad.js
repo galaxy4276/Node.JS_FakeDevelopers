@@ -22,7 +22,7 @@ const isLoadingElem = (elem) => {
 const handleBeforePageLoad = (e) => {
   if (!isLoadingElem(e.target)) return;
 
-  window.addEventListener('beforeunload', loading.on, false);
+  window.addEventListener('beforeunload', () => loading.on(0.3), false);
 };
 
 document.addEventListener('click', handleBeforePageLoad, false);
