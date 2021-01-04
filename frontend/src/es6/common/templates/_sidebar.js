@@ -1,6 +1,6 @@
+const sidebar = document.querySelector('.sidebar');
 const sideWrap = document.querySelector('.cover');
 const sideUtilBtn = document.querySelector('.header-util__btn');
-const sidebar = document.querySelector('.sidebar');
 
 const sideCloseBtn = sidebar.querySelector('.sidebar__header__icon');
 const sideList = sidebar.querySelector('.sidebar__list');
@@ -33,17 +33,26 @@ const toggleDropdown = (e) => {
   currInnerList.classList.toggle('sidebar__inner-list--clicked');
 };
 
-const toggleSideBar = () => {
-  // ** 사이드바 여닫기 **
-  sidebar.classList.toggle('sidebar--show');
-  sideWrap.classList.toggle('cover--covered');
+const openSideBar = () => {
+  sidebar.classList.add('sidebar--show');
+  sideWrap.classList.add('cover--covered');
+  sideUtilBtn.removeEventListener('click', openSideBar, false);
+  sideWrap.addEventListener('click', closeSideBar, false);
+  sideCloseBtn.addEventListener('click', closeSideBar, false);
+  sideList.addEventListener('click', toggleDropdown, false);
+};
+
+const closeSideBar = () => {
+  sidebar.classList.remove('sidebar--show');
+  sideWrap.classList.remove('cover--covered');
+  sideUtilBtn.addEventListener('click', openSideBar, false);
+  sideWrap.removeEventListener('click', closeSideBar, false);
+  sideCloseBtn.removeEventListener('click', closeSideBar, false);
+  sideList.removeEventListener('click', toggleDropdown, false);
 };
 
 const initSidebar = () => {
-  sideUtilBtn.addEventListener('click', toggleSideBar, false);
-  sideWrap.addEventListener('click', toggleSideBar, false);
-  sideCloseBtn.addEventListener('click', toggleSideBar, false);
-  sideList.addEventListener('click', toggleDropdown, false);
+  sideUtilBtn.addEventListener('click', openSideBar, false);
 };
 
 document.addEventListener('DOMContentLoaded', initSidebar, false);
