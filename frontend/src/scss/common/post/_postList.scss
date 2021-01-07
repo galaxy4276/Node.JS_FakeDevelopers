@@ -78,10 +78,7 @@
     &:hover,
     &:focus {
       background-color: rgba(black, 0.02);
-
-      & > .post-list__item__title {
-        font-weight: 700;
-      }
+      font-weight: 700;
     }
 
     @include for-mobile {
