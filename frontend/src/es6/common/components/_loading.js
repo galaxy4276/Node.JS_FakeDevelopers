@@ -29,9 +29,9 @@ const timeSet = (s) => {
 const loading = {
   minWaitTime: 0.3,
   maxWaitTime: 3,
-  waitTimeCnt: 0,
 
   on: async function (waitTime = null) {
+    // 입력한 초만큼 기다린 후 로딩 실행
     if (!!waitTime) {
       if (waitTime > this.maxWaitTime || typeof waitTime !== 'number') {
         throw new Error('loading.on 함수의 인자가 숫자가 아니거나 최대값을 초과했습니다.');
@@ -57,22 +57,30 @@ const loading = {
 
       if (!!loadingElem) {
         loadingElem.remove();
+
+        return true;
+      } //
+      else {
+        return false;
       }
     };
 
     const timer = (s = this.minWaitTime) => {
       setTimeout(() => {
-        // 재귀적 setTimeout으로 입력한 초 간격으로 삭제 판별 함수 반복 호출
-        deleteLoading();
+        const deleteDone = deleteLoading();
 
-        return this.off();
+        if (deleteDone) {
+          this.waitTimeCnt = 0;
+
+          return;
+        } //
+        else {
+          return this.off();
+        }
       }, s * 1000);
     };
 
-    this.waitTimeCnt += 0.3;
-    if (this.waitTimeCnt > this.maxWaitTime) return;
-
-    timer(0.3);
+    timer(0.25); // 입력한 초 간격으로 로딩 끄는 함수 호출
   },
 };
 

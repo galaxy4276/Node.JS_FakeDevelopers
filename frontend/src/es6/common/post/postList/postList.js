@@ -262,11 +262,15 @@ const handlePaginationBtnsClick = async (e) => {
   if (clickedBtn.tagName === 'path') clickedBtn = e.target.closest('svg'); // 클릭된 것이 svg의 path라면 svg로 이벤트 타겟 변경
 
   loading.on();
+
   toggleHighlightCurrPageNum(); // 이전 페이지 번호 강조 off
   turnPage(clickedBtn); // 페이지 넘기기 (currentPageNumber 변경)
+
   await putPostsList(currentPageNumber); // 변경한 currentPageNumber로 그에 맞는 데이터 불러오기
+
   toggleHighlightCurrPageNum(); // 현재 페이지 번호 강조 on
   toggleDisplayMoveBtns(); // 만약 현재 페이지가 1페이지면 < 버튼, 마지막 페이지면 > 버튼 삭제
+
   loading.off();
 };
 
