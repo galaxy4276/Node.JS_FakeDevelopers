@@ -29,6 +29,7 @@ const timeSet = (s) => {
 const loading = {
   minWaitTime: 0.3,
   maxWaitTime: 3,
+  waitTimeCnt: 0,
 
   on: async function (waitTime = null) {
     if (!!waitTime) {
@@ -38,7 +39,7 @@ const loading = {
 
       await timeSet(waitTime);
     }
-    // await timeSet(10) //-- test;
+
     const DOMfragment = document.createDocumentFragment();
 
     const overlay = new Overlay();
@@ -51,9 +52,7 @@ const loading = {
   },
 
   off() {
-    // TODO: 클로저로 변경하여 timer가 this.maxWaitTime 에 닿으면 종료시키기 (무한실행 방지)
     const deleteLoading = () => {
-      // console.log('삭제시도'); //-- test
       const loadingElem = document.querySelector('.loading');
 
       if (!!loadingElem) {
@@ -69,6 +68,9 @@ const loading = {
         return this.off();
       }, s * 1000);
     };
+
+    this.waitTimeCnt += 0.3;
+    if (this.waitTimeCnt > this.maxWaitTime) return;
 
     timer(0.3);
   },
