@@ -8,7 +8,8 @@ const warnEmpty = (name) => {
 
 const isEmpty = (elem, className = '') => {
   if (!!elem === false) {
-    warnEmpty(className);
+    if (process.env.NODE_ENV === 'development') warnEmpty(className);
+
     return true;
   } //
   else return false;
