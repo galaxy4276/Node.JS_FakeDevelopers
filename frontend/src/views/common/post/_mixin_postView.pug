@@ -10,6 +10,7 @@
 //- 상세보기전 게시글 주소 (ex - community/board)
 mixin postView(post, referrer, accessUser, comments)
   article.post-view
+    // 시간 가공 함수
     mixin processDateTime(GMT, kind)
       - const now = new Date();
       - const addTime = (hours, oldDate, newDate = now) => {newDate.setTime(oldDate.getTime() + (hours * 60 * 60 * 1000)); return newDate;}
@@ -30,14 +31,16 @@ mixin postView(post, referrer, accessUser, comments)
           span= createdTime
     |
     |
-    // 게시판 글 헤더
+    // 게시글 헤더
     section.post-view__header
       //- 헤더에 표시될 게시글의 속성 = ['title', 'createdAt', 'writer', 'hit'];
       div.post-view__header__title= post.title
       +processDateTime(post.createdAt, 'post')
       div.post-view__header__prop.post-view__header__writer= post.UserId
       div.post-view__header__prop.post-view__header__hit= post.Inquiries[0].count
-    // 게시판 글
+    |
+    |
+    // 게시글 내용
     section.post-view__content
       section.post-view__content__images
         each image in post.Images
@@ -46,10 +49,13 @@ mixin postView(post, referrer, accessUser, comments)
       //- 개발 환경 이미지 로드 불가 안내를 위한 이미지 유무 검증
       - const isImage = Boolean(post.Images[0]);
       output(data-is-image-for-localhost= `${isImage}`)
-      // 게시글 내용
+      |
+      |
       section.post-view__content__txt-wrap
         pre.post-view__content__txt= post.content
-    // 게시판 글 푸터
+    |
+    |
+    // 게시글 푸터 (버튼 등)
     section.post-view__footer
       -const boardPath = referrer.match(/^.*(?=\/\d)/)[0]; // regExp ex) '/community/board/14' => '/community/board'
       a(href= boardPath).post-view__footer__btn.post-view__footer__btn--board 목록
@@ -61,6 +67,9 @@ mixin postView(post, referrer, accessUser, comments)
           a(href= updatePagePath).post-view__footer__btn.post-view__footer__btn--update 수정
           form(action= deletePath method="post").post-view__footer__delete-form
             submit(name="").post-view__footer__btn.post-view__footer__btn--delete 삭제
+    |
+    |
+    // 게시글 댓글
     section.post-view__comment
       div.post-view__comment__cnt
         span 댓글
