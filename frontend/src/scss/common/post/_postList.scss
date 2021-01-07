@@ -149,7 +149,7 @@
     color: white;
     width: fit-content;
     background-color: $main-color;
-    @include btn-rectangle(1rem, true, true);
+    @include btn-rectangle(0.66rem 0.9rem, true, true);
   }
 
   /* 페이지 네이션 버튼들 */

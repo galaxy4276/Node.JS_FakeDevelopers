@@ -87,7 +87,7 @@
     }
 
     &__btn {
-      @include btn-rectangle(1rem 0.5rem, true, true);
+      @include btn-rectangle(0.66rem, true, true);
       color: white;
       font-size: 1.05rem;
       background-color: $main-color;
