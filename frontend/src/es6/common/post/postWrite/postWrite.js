@@ -1,5 +1,6 @@
 import isValidFileType from './_vaildFileTypes';
 import { btnWrapper, btn, fileCnt, fileSize, warnMsg, refuseSubmitMsgs } from './_changeableNodes';
+import ckeckBeforePageLoad from '../../function/_ckeckBeforePageLoad';
 
 const returnFileSize = (num) => {
   if (num < 1024) {
@@ -220,6 +221,9 @@ const initPostWrite = () => {
 
   // 위에서 submit이 거부되었다면 나타났을 refuse 메세지를, form 클릭시 다시 안보이게 합니다.
   form.addEventListener('click', hideRefuseMsgs, false);
+
+  // 다른 페이지로 이동하려 할때 다시 한 번 확인하기
+  window.addEventListener('beforeunload', ckeckBeforePageLoad, false);
 };
 
 document.addEventListener('DOMContentLoaded', initPostWrite, false);

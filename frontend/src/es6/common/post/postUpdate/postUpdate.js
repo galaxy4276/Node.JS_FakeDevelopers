@@ -1,4 +1,4 @@
-import ckeckBeforePageLoad from './_ckeckBeforePageLoad';
+import ckeckBeforePageLoad from '../../function/_ckeckBeforePageLoad';
 import refuseSubmitMsgs from './_refuseSubmitMsgs';
 
 const hideRefuseMsgs = (e) => {
@@ -36,6 +36,7 @@ const submitPost = () => {
 const handleSubmitBtnClick = (e) => {
   e.preventDefault();
   e.stopPropagation();
+  window.removeEventListener('beforeunload', ckeckBeforePageLoad, false);
 
   refuseSubmitMsgs.off();
 
