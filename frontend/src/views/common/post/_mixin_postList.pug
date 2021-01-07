@@ -31,12 +31,12 @@ mixin postList(usePostWrite = false, boardName)
       // 페이지네이션
       section.post-list__inner-paging
         // 페이지 번호 리스트
-        ul.post-list__page-numbers
+        ul.post-list__paging-numbers
         // 버튼들
-        div.post-list__page-btn.post-list__page-btn--left
-          +icon("chevronBackward", '이전 페이지', '#0f0f0f')
-        div.post-list__page-btn.post-list__page-btn--right
-          +icon("chevronForward", '다음 페이지', '#0f0f0f')
+        div.post-list__paging-chevron.post-list__paging-chevron--left
+          +icon("chevronBackward", '이전 페이지', '#6e6e6e')
+        div.post-list__paging-chevron.post-list__paging-chevron--right
+          +icon("chevronForward", '다음 페이지', '#6e6e6e')
       // TODO: 제일 앞으로 가기, 제일 뒤로 가기 부분 구현
       |
       |

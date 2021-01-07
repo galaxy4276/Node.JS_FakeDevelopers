@@ -6,7 +6,7 @@ import loading from '../../components/_loading';
 
 /* Constants */
 const pagination = document.body.querySelector('.post-list__inner-paging'); // 페이지네이션 버튼들을 자식으로 가진 element
-const pageNumList = pagination.querySelector('.post-list__page-numbers');
+const pageNumList = pagination.querySelector('.post-list__paging-numbers');
 
 /* Global Variables */
 let firstCall = true; // 모듈이 처음으로 불린건지 검증
@@ -82,7 +82,7 @@ const initPageNumList = () => {
   const DOMfragment = document.createDocumentFragment();
 
   const pageNum = document.createElement('li');
-  pageNum.setAttribute('class', 'post-list__page-numbers__number');
+  pageNum.setAttribute('class', 'post-list__paging-numbers__number');
 
   const addPageNum = (cnt) => {
     // 주어진 cnt 만큼 페이지 번호 엘리먼트를 추가
@@ -107,13 +107,13 @@ const initPageNumList = () => {
 const toggleDisplayMoveBtns = () => {
   const LAST_PAGE = getGlobalVariable('LAST_PAGE');
 
-  const leftBtn = document.body.querySelector('.post-list__page-btn--left');
-  if (currentPageNumber == 1) leftBtn.classList.add('post-list__page-btn--disabled');
-  else leftBtn.classList.remove('post-list__page-btn--disabled');
+  const leftBtn = document.body.querySelector('.post-list__paging-chevron--left');
+  if (currentPageNumber == 1) leftBtn.classList.add('post-list__paging-chevron--disabled');
+  else leftBtn.classList.remove('post-list__paging-chevron--disabled');
 
-  const rightBtn = document.body.querySelector('.post-list__page-btn--right');
-  if (currentPageNumber == LAST_PAGE) rightBtn.classList.add('post-list__page-btn--disabled');
-  else rightBtn.classList.remove('post-list__page-btn--disabled');
+  const rightBtn = document.body.querySelector('.post-list__paging-chevron--right');
+  if (currentPageNumber == LAST_PAGE) rightBtn.classList.add('post-list__paging-chevron--disabled');
+  else rightBtn.classList.remove('post-list__paging-chevron--disabled');
 };
 
 const toggleHighlightCurrPageNum = () => {
@@ -121,7 +121,7 @@ const toggleHighlightCurrPageNum = () => {
 
   pageNumbers.forEach((pageNum) => {
     if (pageNum.textContent == currentPageNumber)
-      pageNum.classList.toggle('post-list__page-numbers__number--highlight'); // css 파일에서 페이지 넘버 강조 스타일이 적용된 클래스 네임
+      pageNum.classList.toggle('post-list__paging-numbers__number--highlight'); // css 파일에서 페이지 넘버 강조 스타일이 적용된 클래스 네임
   });
 };
 
