@@ -180,6 +180,7 @@ const submitPost = () => {
 const handleSubmitBtnClick = (e) => {
   e.preventDefault();
   e.stopPropagation();
+  window.removeEventListener('beforeunload', ckeckBeforePageLoad, false);
 
   refuseSubmitMsgs.off();
 
