@@ -32,10 +32,6 @@
       background-color: rgba($main-color--black, 0.4);
     }
 
-    @media screen and (max-width: 1335px) {
-      height: 65vh;
-    }
-
     &__text {
       position: absolute;
       top: 45%;
@@ -44,9 +40,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
       color: #fff;
       font-weight: bold;
       text-shadow: 1px 1px 10px #000;
+      letter-spacing: 150%;
+      word-break: keep-all;
+      text-align: center;
 
       & > h1 {
         margin-bottom: 1.33rem;
@@ -58,7 +58,8 @@
 
       & > p {
         font-size: 1.5rem;
-        margin-bottom: 0.33rem;
+        line-height: 130%;
+        max-width: 27em;
       }
     }
   }
@@ -71,10 +72,6 @@
     align-items: center;
     color: $main-color--black;
     margin-top: 55vh;
-
-    @media screen and (max-width: 1335px) {
-      margin-top: 40vh;
-    }
   }
 
   &__first {
@@ -84,21 +81,6 @@
     grid-template:
       'box1 box2 box3' 1fr
       /1fr 1fr 1fr;
-
-    @media screen and (max-width: 1335px) {
-      grid-template:
-        'box1 box1' 1fr
-        'box2 box3' 1fr
-        /50% 50%;
-    }
-
-    @media screen and(max-width: 1024px) {
-      grid-template:
-        'box1' 1fr
-        'box2' 1fr
-        'box3' 1fr
-        /1fr;
-    }
   }
 
   &__first-box {
@@ -203,13 +185,6 @@
       /1fr 1fr;
     width: 100%;
 
-    @media screen and (max-width: 1024px) {
-      grid-template:
-        'box1' 1fr
-        'box2' 1fr
-        /1fr;
-    }
-
     &-box {
       display: grid;
       width: 100%;
@@ -262,6 +237,55 @@
       grid-area: box2;
       background: #fefefe;
       border: 0.2px solid #ddd;
+    }
+  }
+
+  @include for-laptop {
+    &__background {
+      height: 65vh; // (1335)
+
+      &__text {
+        & > h1 {
+          font-size: 2.8rem;
+
+          &::before {
+          }
+        }
+
+        & > p {
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    &__content {
+      margin-top: 40vh;
+    }
+
+    &__first {
+      // (1335)
+      grid-template:
+        'box1 box1' 1fr
+        'box2 box3' 1fr
+        /50% 50%;
+    }
+  }
+
+  @include for-mobile {
+    &__first {
+      // (1024)
+      grid-template:
+        'box1' 1fr
+        'box2' 1fr
+        'box3' 1fr
+        /1fr;
+    }
+
+    &__second {
+      grid-template:
+        'box1' 1fr
+        'box2' 1fr
+        /1fr;
     }
   }
 }
