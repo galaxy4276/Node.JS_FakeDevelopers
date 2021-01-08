@@ -1,3 +1,5 @@
+import loading from '../../common/components/_loading';
+
 const defaultFetch = (url = '') => {
   return fetch(url, {
     method: 'GET',
@@ -7,7 +9,12 @@ const defaultFetch = (url = '') => {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error(err);
+      loading.off();
+    });
 };
 
 export default defaultFetch;
