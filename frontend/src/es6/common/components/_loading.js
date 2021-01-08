@@ -65,7 +65,7 @@ const loading = {
       }
     };
 
-    const timer = (s = this.minWaitTime) => {
+    const recursiveTimer = (s = this.minWaitTime) => {
       setTimeout(() => {
         const deleteDone = deleteLoading();
 
@@ -80,7 +80,7 @@ const loading = {
       }, s * 1000);
     };
 
-    timer(0.25); // 입력한 초 간격으로 로딩 끄는 함수 호출
+    recursiveTimer(0.25); // 입력한 초 간격으로 로딩 끄는 함수 호출
   },
 };
 
