@@ -52,7 +52,7 @@
       // position: relative;
       font-size: 3rem;
       margin-bottom: 0.33em;
-      animation: catchphrase-main 2.5s 1;
+      animation: catchphrase-main 2s 1;
 
       @keyframes catchphrase-main {
         0% {
@@ -99,7 +99,7 @@
       font-size: 1.3rem;
       line-height: 130%;
       max-width: 27em;
-      animation: catchphrase-sub 3s 1;
+      animation: catchphrase-sub 2.3s 1;
 
       @keyframes catchphrase-sub {
         0% {
@@ -124,7 +124,14 @@
     justify-content: center;
     align-items: center;
     color: $main-color--black;
-    margin-top: 2.5rem;
+    margin-top: 4rem;
+
+    &__divide-line {
+      width: 100%;
+      height: 0.1rem;
+      background-color: $main-color--white;
+      margin: 1rem 0;
+    }
   }
 
   &__first {
@@ -223,13 +230,6 @@
       width: 8.5rem;
       background-color: #333;
     }
-  }
-
-  &__divide-line {
-    width: 100%;
-    height: 0.1rem;
-    background-color: $main-color--white;
-    margin: 1rem 0;
   }
 
   &__second {
