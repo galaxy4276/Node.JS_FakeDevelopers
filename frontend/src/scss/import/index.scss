@@ -31,36 +31,50 @@
       height: 100%;
       background-color: rgba($main-color--black, 0.4);
     }
+  }
 
-    &__text {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      color: #fff;
-      font-weight: bold;
-      text-shadow: 1px 1px 10px #000;
-      letter-spacing: 150%;
-      word-break: keep-all;
-      text-align: center;
+  &__catchphrase {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 15rem;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 10px #000;
+    letter-spacing: 0.1rem;
+    word-break: keep-all;
+    text-align: center;
 
-      & > h1 {
-        margin-bottom: 1.33rem;
-        font-size: 3.4rem;
+    & > h1 {
+      margin-bottom: 1.33rem;
+      font-size: 3rem;
 
-        &::before {
-        }
+      &::before {
+        content: 'DAEDUK UNIVERSITY';
+        position: absolute;
+        top: -1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: fit-content;
+        color: rgba(0, 0, 0, 0);
+        font-size: 1.2em;
+        font-weight: bold;
+        text-shadow: none;
+        -webkit-text-stroke: 0.5px rgba(#fff, 0.2);
+        text-stroke: 0.5px rgba(#fff, 0.2);
+        letter-spacing: 0.3rem;
+        word-break: keep-all;
+        text-align: center;
+        z-index: -1;
       }
+    }
 
-      & > p {
-        font-size: 1.5rem;
-        line-height: 130%;
-        max-width: 27em;
-      }
+    & > p {
+      font-size: 1.3rem;
+      line-height: 130%;
+      max-width: 27em;
     }
   }
 
@@ -71,7 +85,7 @@
     justify-content: center;
     align-items: center;
     color: $main-color--black;
-    margin-top: 55vh;
+    margin-top: 6rem;
   }
 
   &__first {
@@ -192,6 +206,7 @@
       grid-template-rows: [title]3rem [posts]1fr;
       padding: 2.4rem;
       height: 18rem;
+      background-color: #fff;
     }
 
     &-title {
@@ -242,28 +257,29 @@
 
   @include for-laptop {
     &__background {
-      height: 65vh; // (1335)
+      height: 65vh;
+    }
 
-      &__text {
-        & > h1 {
-          font-size: 2.8rem;
+    &__catchphrase {
+      margin-top: 10rem;
 
-          &::before {
-          }
+      & > h1 {
+        font-size: 2.8rem;
+
+        &::before {
         }
+      }
 
-        & > p {
-          font-size: 1.3rem;
-        }
+      & > p {
+        font-size: 1.2rem;
       }
     }
 
     &__content {
-      margin-top: 40vh;
+      margin-top: 5rem;
     }
 
     &__first {
-      // (1335)
       grid-template:
         'box1 box1' 1fr
         'box2 box3' 1fr
@@ -272,8 +288,20 @@
   }
 
   @include for-mobile {
+    &__catchphrase {
+      & > h1 {
+        font-size: 2rem;
+
+        &::before {
+        }
+      }
+
+      & > p {
+        font-size: 1.1rem;
+      }
+    }
+
     &__first {
-      // (1024)
       grid-template:
         'box1' 1fr
         'box2' 1fr
