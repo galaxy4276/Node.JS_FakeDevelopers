@@ -39,6 +39,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    height: 10rem; // 텍스트 애니메이션을 위한 여유 공간
     margin-top: 15rem;
     color: #fff;
     font-weight: bold;
@@ -48,8 +49,31 @@
     text-align: center;
 
     & > h1 {
-      margin-bottom: 1.33rem;
+      // position: relative;
       font-size: 3rem;
+      margin-bottom: 0.33em;
+      animation: catchphrase-main 2.5s 1;
+
+      @keyframes catchphrase-main {
+        0% {
+          opacity: 0;
+          margin-bottom: -3rem;
+        }
+        20% {
+          letter-spacing: 0.4rem;
+          margin-bottom: -3rem;
+        }
+        65% {
+          letter-spacing: 0.1rem;
+          margin-bottom: -3rem;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          margin-bottom: 0.33em;
+        }
+      }
 
       &::before {
         content: 'DAEDUK UNIVERSITY';
@@ -75,6 +99,21 @@
       font-size: 1.3rem;
       line-height: 130%;
       max-width: 27em;
+      animation: catchphrase-sub 3s 1;
+
+      @keyframes catchphrase-sub {
+        0% {
+          opacity: 0;
+        }
+
+        70% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
     }
   }
 
@@ -85,7 +124,7 @@
     justify-content: center;
     align-items: center;
     color: $main-color--black;
-    margin-top: 6rem;
+    margin-top: 2.5rem;
   }
 
   &__first {
@@ -153,13 +192,14 @@
     grid-area: box1;
     color: #fefefe !important;
     background-color: $main-color;
-  }
-  &__first-box__title {
-    border-bottom: 1px solid rgba(#ccc, 0.3);
 
-    &::before {
-      width: 6.5rem;
-      background-color: #fefefe;
+    .index-main__first-box__title {
+      border-bottom: 1px solid rgba(#ccc, 0.3);
+
+      &::before {
+        width: 6.5rem;
+        background-color: #fefefe;
+      }
     }
   }
 
@@ -174,7 +214,7 @@
 
   &__donation {
     grid-area: box3;
-    background-color: #ffffff;
+    background-color: #fff;
     border: 0.2px solid #ddd;
   }
 
@@ -265,9 +305,6 @@
 
       & > h1 {
         font-size: 2.8rem;
-
-        &::before {
-        }
       }
 
       & > p {
@@ -276,7 +313,7 @@
     }
 
     &__content {
-      margin-top: 5rem;
+      margin-top: 0;
     }
 
     &__first {
@@ -290,14 +327,14 @@
   @include for-mobile {
     &__catchphrase {
       & > h1 {
-        font-size: 2rem;
+        font-size: 1.6rem;
 
         &::before {
         }
       }
 
       & > p {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
     }
 
@@ -307,6 +344,15 @@
         'box2' 1fr
         'box3' 1fr
         /1fr;
+
+      &-box {
+        &__title {
+          font-size: 1.2rem;
+        }
+
+        grid-template-rows: [title]2rem [posts]1fr;
+        height: 20em;
+      }
     }
 
     &__second {
@@ -314,6 +360,25 @@
         'box1' 1fr
         'box2' 1fr
         /1fr;
+
+      &-box {
+        padding: 2.4rem 1.2rem;
+      }
+
+      &-title {
+        font-size: 1.2rem;
+
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          height: 0.15rem;
+        }
+      }
+
+      &__content-item {
+        font-size: 1.1rem;
+      }
     }
   }
 }
