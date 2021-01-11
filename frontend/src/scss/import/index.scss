@@ -11,7 +11,7 @@
 
   &__background {
     width: 100%;
-    height: 80vh; //TODO: 임시 높이. 후에 이미지 추가
+    height: 85vh;
     position: absolute;
     z-index: -1;
     top: 80;
@@ -98,7 +98,7 @@
     & > p {
       font-size: 1.3rem;
       line-height: 130%;
-      max-width: 27em;
+      max-width: 29em;
       animation: catchphrase-sub 2.3s 1;
 
       @keyframes catchphrase-sub {
