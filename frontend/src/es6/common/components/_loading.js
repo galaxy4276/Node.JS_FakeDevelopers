@@ -29,6 +29,7 @@ const timeSet = (s) => {
 const loading = {
   minWaitTime: 0.3,
   maxWaitTime: 3,
+  isExcuting: false,
 
   on: async function (waitTime = null) {
     // 입력한 초만큼 기다린 후 로딩 실행
@@ -40,6 +41,8 @@ const loading = {
       await timeSet(waitTime);
     }
 
+    this.isExcuting = true;
+
     const DOMfragment = document.createDocumentFragment();
 
     const overlay = new Overlay();
@@ -49,29 +52,22 @@ const loading = {
     DOMfragment.append(overlay);
 
     document.body.append(DOMfragment);
+
+    // 최대 대기시간 후에도 로딩이 꺼지지 않았다면 => 즉, off() 실행으로 isExcuting이 false가 되지 않았다면 로딩 삭제 자동 실행
+    await timeSet(this.maxWaitTime);
+
+    if (this.isExcuting === true) {
+      console.warn('loading.off 가 호출되지 않아 로딩 컴포넌트가 자동 삭제처리 되었습니다.');
+      this.deleteLoading();
+    }
   },
 
   off() {
-    const deleteLoading = () => {
-      const loadingElem = document.querySelector('.loading');
-
-      if (!!loadingElem) {
-        loadingElem.remove();
-
-        return true;
-      } //
-      else {
-        return false;
-      }
-    };
-
     const recursiveTimer = (s = this.minWaitTime) => {
       setTimeout(() => {
-        const deleteDone = deleteLoading();
-
+        const deleteDone = this.deleteLoading();
         if (deleteDone) {
           this.waitTimeCnt = 0;
-
           return;
         } //
         else {
@@ -81,6 +77,20 @@ const loading = {
     };
 
     recursiveTimer(0.25); // 입력한 초 간격으로 로딩 끄는 함수 호출
+  },
+
+  deleteLoading() {
+    const loadingElem = document.querySelector('.loading');
+
+    if (!!loadingElem) {
+      loadingElem.remove();
+      this.isExcuting = false;
+
+      return true;
+    } //
+    else {
+      return false;
+    }
   },
 };
 
