@@ -26,6 +26,7 @@ const handleLabelRaiseUp = (e) => {
   if (e.target.tagName !== 'INPUT') return;
 
   const input = e.target;
+
   raiseLabel(input);
 };
 
@@ -33,7 +34,7 @@ const onFormLabelsRaiseUpEvent = (form) => {
   if (!form) return;
 
   form.addEventListener('click', handleLabelRaiseUp, false);
-  form.addEventListener('focus', handleLabelRaiseUp, false);
+  form.addEventListener('focusin', handleLabelRaiseUp, false);
 };
 
 export default onFormLabelsRaiseUpEvent;
