@@ -1,10 +1,12 @@
-import inputVerification from './_inputVerification';
+import joinValueVerification from './_joinValueVerification';
 
 const clearAuthInputs = () => {
   const inputs = document.querySelectorAll('.js-authInput');
 
   inputs.forEach((input) => (input.value = ''));
 };
+
+//TODO: toggleJoin, toggleLogin 을 open, close로 분기시키기
 
 const toggleLoginWindow = () => {
   const loginWindow = document.querySelector('.login'); // 로그인 창

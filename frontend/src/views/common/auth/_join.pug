@@ -22,14 +22,15 @@ article.join
                 pattern="[a-zA-Z]{4,10}"
                 required
                 ).join__form__input.js-authInput
-            label.join__form__input-label 사용자 이름 (영문)
+            label.join__form__input-label 사용자 이름 (영문 4자 이상 10자 이하)
             span.join__form__input-check
         .join__form__input-box
+            //- TODO: 패스워드 정규식 작동 오류. 수정하기
             input(
                 type="password"
                 name="password"
                 minlength="8"
-                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
+                pattern="^(?=.*\d{1,50})(?=.*[!#$%&*+,-./:;<=>?@＼^_`(){|}~\"\'\[\]\\]{1,50})(?=.*[a-zA-Z]{1,50}).{8,50}$"
                 autocomplete="new-password"
                 required
                 ).join__form__input.js-authInput
