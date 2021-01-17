@@ -14,41 +14,23 @@ article.join
         |
         .join__form__input-box
             //- TODO: 정규식 모두 js로 옮기기
-            input(
-                type="text"
-                name="id"
-                minlength="4"
-                maxlength="10"
-                pattern="[a-zA-Z]{4,10}"
-                required
-                ).join__form__input.js-authInput
+            input(type="text" name="id" minlength="4" maxlength="10" required).join__form__input.js-authInput
             label.join__form__input-label 사용자 이름 (영문 4자 이상 10자 이하)
             span.join__form__input-check
         .join__form__input-box
             //- TODO: 패스워드 정규식 작동 오류. 수정하기
-            input(
-                type="password"
-                name="password"
-                minlength="8"
-                pattern="^(?=.*\d{1,50})(?=.*[!#$%&*+,-./:;<=>?@＼^_`(){|}~\"\'\[\]\\]{1,50})(?=.*[a-zA-Z]{1,50}).{8,50}$"
-                autocomplete="new-password"
-                required
-                ).join__form__input.js-authInput
+            //- TODO: 패스워드 임시 type: text 설정 - 검증 관련 개발 완료 후 원래대로 바꾸기
+            input(type="text" name="password" minlength="8" maxlength="50" autocomplete="new-password" required ).join__form__input.js-authInput
             label.join__form__input-label 비밀번호 (영문, 숫자, 기호를 조합하여 8자 이상)
             span.join__form__input-check
         //- TODO: 아래 패스워드 체크에 입력한 값이 위에 입력했던 패스워드와 동일한지 검증
         .join__form__input-box
-            input(type="password" name="pwcheck" minlength="1" maxlength="20" autocomplete="new-password" required).join__form__input.js-authInput
+            input(type="text" name="pwcheck" minlength="1" maxlength="20" autocomplete="new-password" required).join__form__input.js-authInput
             label.join__form__input-label 비밀번호 확인
             span.join__form__input-check
         //- TODO: 자동입력 방지 테스트 추가
         .join__form__input-box
-            input(
-                type="email"
-                name="email"
-                pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-                required
-                ).join__form__input.js-authInput
+            input(type="email" name="email" required ).join__form__input.js-authInput
             label.join__form__input-label 이메일
             span.join__form__input-check
              //- TODO: 비밀번호를 찾는데 사용됩니다 주의 문구 추가
