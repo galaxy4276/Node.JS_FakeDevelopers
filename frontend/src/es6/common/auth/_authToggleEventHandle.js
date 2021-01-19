@@ -1,4 +1,4 @@
-import joinValueVerification from './_joinValueVerification';
+import FormVerification from './_FormVerification';
 
 const clearAuthInputs = () => {
   const inputs = document.querySelectorAll('.js-authInput');
@@ -29,7 +29,9 @@ const joinWindow = {
     }
 
     this.elem.classList.add('join--show');
-    joinValueVerification.on();
+
+    this.createVerification();
+    this.verification.on();
   },
 
   off(e = false) {
@@ -40,7 +42,8 @@ const joinWindow = {
     }
 
     this.elem.classList.remove('join--show');
-    joinValueVerification.off();
+
+    this.verification.off();
   },
 
   removeLoginWidnow(e) {
@@ -48,6 +51,13 @@ const joinWindow = {
     let isBtnInLoginWindow = currentBtn.classList.contains('login__form__join-open-btn');
 
     if (isBtnInLoginWindow) loginWindow.off(); // join 버튼이 로그인 창 안에 있는 버튼이라면 로그인 창 닫기
+  },
+
+  createVerification() {
+    if (Boolean(this.verification)) return;
+
+    const form = this.elem.querySelector('form');
+    this.verification = new FormVerification(form);
   },
 };
 

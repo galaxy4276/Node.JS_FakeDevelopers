@@ -1,28 +1,30 @@
-const form = document.querySelector('.join__form');
+class FormVerification {
+  constructor(form) {
+    this.form = form;
 
-const joinValueVerification = {
-  regExps: {
-    // input 태그에 부여된 name으로 구분합니다.
+    this.regExps = {
+      // input 태그에 부여된 name으로 구분합니다.
 
-    // id: 영문 4자 이상 10자 이하
-    id: /[a-zA-Z]{4,10}/,
+      // id: 영문 4자 이상 10자 이하
+      id: /[a-zA-Z]{4,10}/,
 
-    // password: 영문, 숫자, 기호를 조합하여 8자 이상
-    password: /^(?=.*\d{1,50})(?=.*[!#$%&*+,-./:;<=>?@＼^_`(){|}~\"\'\[\]\\]{1,50})(?=.*[a-zA-Z]{1,50}).{8,50}$/,
+      // password: 영문, 숫자, 기호를 조합하여 8자 이상
+      password: /^(?=.*\d{1,50})(?=.*[!#$%&*+,-./:;<=>?@＼^_`(){|}~\"\'\[\]\\]{1,50})(?=.*[a-zA-Z]{1,50}).{8,50}$/,
 
-    // email: ____ @ ____ . ____  형식
-    email: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
-  },
+      // email: ____ @ ____ . ____  형식
+      email: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+    };
+  }
 
   on() {
-    form.addEventListener('keyup', this.handleKeyUp.bind(this), false);
-    form.addEventListener('submit', this.handleSubmit.bind(this), false);
-  },
+    this.form.addEventListener('keyup', this.handleKeyUp.bind(this), false);
+    this.form.addEventListener('submit', this.handleSubmit.bind(this), false);
+  }
 
   off() {
-    form.removeEventListener('keyup', this.handleKeyUp.bind(this), false);
-    form.removeEventListener('submit', this.handleSubmit.bind(this), false);
-  },
+    this.form.removeEventListener('keyup', this.handleKeyUp.bind(this), false);
+    this.form.removeEventListener('submit', this.handleSubmit.bind(this), false);
+  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -30,8 +32,8 @@ const joinValueVerification = {
 
     const isAllPass = this.hardCkeckAllPass();
 
-    if (isAllPass) form.submit();
-  },
+    if (isAllPass) this.form.submit();
+  }
 
   handleKeyUp(e) {
     const target = e.target;
@@ -48,7 +50,7 @@ const joinValueVerification = {
     this.ckeckValue(target);
 
     const isAllPass = this.simpleCkeckAllPass();
-    const submit = form.querySelector('input[type=submit]');
+    const submit = this.form.querySelector('input[type=submit]');
 
     if (isAllPass) {
       submit.style.backgroundColor = '#149ab8';
@@ -59,22 +61,22 @@ const joinValueVerification = {
       submit.style.textShadow = '';
       submit.disabled = true;
     }
-  },
+  }
 
   simpleCkeckAllPass() {
     // 저비용 하이리스크 검사
-    const ckeckIconWraps = Array.from(form.querySelectorAll('.join__form__input-check'));
+    const ckeckIconWraps = Array.from(this.form.querySelectorAll('.join__form__input-check'));
     const ckeckIcons = ckeckIconWraps.map((elem) => elem.textContent);
 
     return ckeckIcons.every((icon) => icon === '✓');
-  },
+  }
 
   hardCkeckAllPass() {
     // 고비용 로우리스크 검사
-    const inputs = Array.from(form.querySelectorAll('.join__form__input'));
+    const inputs = Array.from(this.form.querySelectorAll('.join__form__input'));
 
     return inputs.every(this.ckeckValue, this) && this.simpleCkeckAllPass();
-  },
+  }
 
   changeCkeckIcon(inputElem, type) {
     const ckeckIcon = inputElem.parentNode.querySelector('span');
@@ -101,11 +103,11 @@ const joinValueVerification = {
         console.warn('명시된 인자만을 사용해주세요');
         break;
     }
-  },
+  }
 
   pwCkeck() {
-    const pw = form.querySelector('input[name=password]');
-    const pwckeck = form.querySelector('input[name=pwcheck]');
+    const pw = this.form.querySelector('input[name=password]');
+    const pwckeck = this.form.querySelector('input[name=pwcheck]');
 
     if (pwckeck.value === '') {
       this.changeCkeckIcon(pwckeck, null);
@@ -118,7 +120,7 @@ const joinValueVerification = {
     } else {
       this.changeCkeckIcon(pwckeck, false);
     }
-  },
+  }
 
   ckeckValue(input) {
     const reg = this.regExps[input.name];
@@ -148,7 +150,7 @@ const joinValueVerification = {
 
       return false;
     }
-  },
-};
+  }
+}
 
-export default joinValueVerification;
+export default FormVerification;
