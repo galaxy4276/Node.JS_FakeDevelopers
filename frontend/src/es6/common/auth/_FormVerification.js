@@ -1,18 +1,19 @@
-class FormVerification {
+export default class FormVerification {
   constructor(form) {
     this.form = form;
-
+    this.inputs = Array.from(form.querySelectorAll('input'));
+    this.checkIcons = Array.from(form.querySelectorAll('span.js-inputCheck'));
     this.regExps = {
       // input 태그에 부여된 name으로 구분합니다.
-
       // id: 영문 4자 이상 10자 이하
       id: /[a-zA-Z]{4,10}/,
-
       // password: 영문, 숫자, 기호를 조합하여 8자 이상
       password: /^(?=.*\d{1,50})(?=.*[!#$%&*+,-./:;<=>?@＼^_`(){|}~\"\'\[\]\\]{1,50})(?=.*[a-zA-Z]{1,50}).{8,50}$/,
-
+      newPw: /^(?=.*\d{1,50})(?=.*[!#$%&*+,-./:;<=>?@＼^_`(){|}~\"\'\[\]\\]{1,50})(?=.*[a-zA-Z]{1,50}).{8,50}$/,
       // email: ____ @ ____ . ____  형식
       email: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+      // hash: ____-____-____-____-____ 형식
+      hash: /([a-z\d]+-){4}[a-z\d]+/,
     };
   }
 
@@ -41,12 +42,14 @@ class FormVerification {
     // input 엘리먼트가 아니라면 종료
     if (target.tagName !== 'INPUT') return;
 
-    // 비밀번호 체크용 input이라면 관련 함수 실행
-    if (target.name === 'password' || target.name === 'pwcheck') {
+    // 비밀번호 관련 input이라면
+    const isJoinPw = target.name === 'password' || target.name === 'pwcheck';
+    const isResetPw = target.name === 'newPw' || target.name === 'newPwCheck';
+    // this.pwCkeck 실행
+    if (isJoinPw || isResetPw) {
       this.pwCkeck();
     }
 
-    console.log(this);
     this.ckeckValue(target);
 
     const isAllPass = this.simpleCkeckAllPass();
@@ -65,17 +68,14 @@ class FormVerification {
 
   simpleCkeckAllPass() {
     // 저비용 하이리스크 검사
-    const ckeckIconWraps = Array.from(this.form.querySelectorAll('.join__form__input-check'));
-    const ckeckIcons = ckeckIconWraps.map((elem) => elem.textContent);
+    const ckeckIcons = this.checkIcons.map((elem) => elem.textContent);
 
     return ckeckIcons.every((icon) => icon === '✓');
   }
 
   hardCkeckAllPass() {
     // 고비용 로우리스크 검사
-    const inputs = Array.from(this.form.querySelectorAll('.join__form__input'));
-
-    return inputs.every(this.ckeckValue, this) && this.simpleCkeckAllPass();
+    return this.inputs.every(this.ckeckValue, this) && this.simpleCkeckAllPass();
   }
 
   changeCkeckIcon(inputElem, type) {
@@ -106,19 +106,23 @@ class FormVerification {
   }
 
   pwCkeck() {
-    const pw = this.form.querySelector('input[name=password]');
-    const pwckeck = this.form.querySelector('input[name=pwcheck]');
+    const pw =
+      this.form.querySelector('input[name=password]') ||
+      this.form.querySelector('input[name=newPw]');
+    const pwCkeck =
+      this.form.querySelector('input[name=pwcheck]') ||
+      this.form.querySelector('input[name=newPwCheck]');
 
-    if (pwckeck.value === '') {
-      this.changeCkeckIcon(pwckeck, null);
+    if (pwCkeck.value === '') {
+      this.changeCkeckIcon(pwCkeck, null);
 
       return;
     }
 
-    if (pw.value === pwckeck.value) {
-      this.changeCkeckIcon(pwckeck, true);
+    if (pw.value === pwCkeck.value) {
+      this.changeCkeckIcon(pwCkeck, true);
     } else {
-      this.changeCkeckIcon(pwckeck, false);
+      this.changeCkeckIcon(pwCkeck, false);
     }
   }
 
@@ -152,5 +156,3 @@ class FormVerification {
     }
   }
 }
-
-export default FormVerification;

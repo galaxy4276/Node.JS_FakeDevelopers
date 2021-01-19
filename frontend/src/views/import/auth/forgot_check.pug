@@ -16,7 +16,7 @@ html(lang="ko")
             .find__overlay
             |
             |
-            form(action="/auth/forgot_check" method="post" autocomplete="off").find__form
+            form(action="/auth/forgot_check" method="post" autocomplete="off").find__form.find__form--hash
                 |
                 |
                 //- TODO: 뒤로가기버튼(로그인 창으로 돌아가기) 추가하기
@@ -35,4 +35,5 @@ html(lang="ko")
                     .find__form__input-box
                         input(type="text" name="hash" id="hash" minlength="1" required).find__form__input
                         label(for="hash").find__form__input-label 입력하신 이메일로 보내드린 값을 입력해주세요
+                        span.find__form__input-check.js-inputCheck
                     input(type="submit" value="확인").find__form__btn.find__form__btn--hash

@@ -257,12 +257,36 @@
   @include for-size(desktop) {
     width: 29rem;
     padding: 2.3rem;
-    min-height: 25rem;
+
+    &--send-email {
+      min-height: 25rem;
+    }
+
+    &--hash {
+      min-height: 27rem;
+      min-width: 520px;
+    }
+
+    &--reset {
+      min-height: 30rem;
+    }
   }
   @include for-size(laptop) {
     width: 26rem;
     padding: 2.2rem;
-    min-height: 25rem;
+
+    &--send-email {
+      min-height: 25rem;
+    }
+
+    &--hash {
+      min-height: 26rem;
+      min-width: 500px;
+    }
+
+    &--reset {
+      min-height: 28rem;
+    }
   }
   @include for-size(tablet-portrait) {
     @include auth__form--mobile;

@@ -16,7 +16,7 @@ html(lang="ko")
             .find__overlay
             |
             |
-            form(action="/auth/forgot_sendEmail" method="post" autocomplete="off").find__form
+            form(action="/auth/forgot_sendEmail" method="post" autocomplete="off").find__form.find__form--send-email
                 |
                 |
                 //- TODO: 뒤로가기버튼(로그인 창으로 돌아가기) 추가하기
@@ -32,8 +32,8 @@ html(lang="ko")
                             name="email"
                             id="email"
                             minlength="1"
-                            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
                             required
                             ).find__form__input
                         label(for="email").find__form__input-label 가입 시 등록했던 이메일을 입력해주세요
+                        span.find__form__input-check.js-inputCheck
                     input(type="submit" value="이메일 보내기").find__form__btn.find__form__btn--send-email
