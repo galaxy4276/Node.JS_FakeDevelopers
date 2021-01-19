@@ -122,9 +122,11 @@ const handleKeyUp = (e) => {
   if (isAllPass) {
     submit.style.backgroundColor = '#149ab8';
     submit.style.textShadow = '0.02em 0.04em 0.2em rgba(0, 0, 0, 0.5)';
+    submit.disabled = false;
   } else {
     submit.style.backgroundColor = '';
     submit.style.textShadow = '';
+    submit.disabled = true;
   }
 };
 
