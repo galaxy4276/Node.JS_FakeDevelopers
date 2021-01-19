@@ -1,5 +1,5 @@
 import modal from '../components/_modal';
-import { toggleJoinWindow } from './_authToggleEventHandle';
+import { openJoinWindow } from './_authToggleEventHandle';
 /* --- */
 /* -- 회원가입 성공, 실패에 따른 이벤트 분기 --*/
 const handleJoinSuccess = () => {
@@ -7,7 +7,7 @@ const handleJoinSuccess = () => {
 };
 
 const handleJoinFailure = () => {
-  toggleJoinWindow();
+  openJoinWindow();
   modal(null, '⚠\n이미 존재하는 회원입니다.');
 };
 
