@@ -12,6 +12,7 @@
   &__background {
     width: 100%;
     height: 85vh;
+    min-height: 27rem;
     position: absolute;
     z-index: -1;
     top: 80;
@@ -49,7 +50,6 @@
     text-align: center;
 
     & > h1 {
-      // position: relative;
       font-size: 3rem;
       margin-bottom: 0.33em;
       animation: catchphrase-main 2s 1;
@@ -147,16 +147,14 @@
     position: relative;
     display: grid;
     max-width: 100%;
-    grid-template-rows: [title]3rem [posts]1fr;
+    grid-template-rows: [board-infos]2.8rem [posts]1fr;
     padding: 2.4rem;
     height: 25em;
 
-    &__board-name {
-      @include ellipsis;
-
+    &__board-infos {
       position: relative;
-      font-size: 1.6rem;
-      letter-spacing: 0.05rem;
+      display: flex;
+      justify-content: space-between;
       border-bottom: 1px solid rgba(#ccc, 0.4);
 
       &::before {
@@ -166,6 +164,41 @@
         width: 8.5rem;
         height: 0.15rem;
         background-color: #333;
+      }
+    }
+
+    &__board-name {
+      @include ellipsis;
+
+      font-size: 1.6rem;
+      letter-spacing: 0.05rem;
+    }
+
+    &__board-link {
+      position: relative;
+      top: 35%;
+      transform: translateY(-50%);
+      width: 1.33rem;
+      height: 1.33rem;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 0.05rem;
+        background-color: #ccc;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0.05rem;
+        height: 100%;
+        background-color: #ccc;
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
 
@@ -202,14 +235,14 @@
       font-size: 0.9rem;
       min-width: 0;
     }
-  }
 
-  &__notice {
-    grid-area: box1;
-    color: #fefefe !important;
-    background-color: $main-color;
+    &--notice {
+      grid-area: box1;
+      color: #fefefe !important;
+      background-color: $main-color;
+    }
 
-    .index-main__first-box__board-name {
+    &--notice > &__board-infos {
       border-bottom: 1px solid rgba(#ccc, 0.3) !important;
 
       &::before {
@@ -217,21 +250,21 @@
         background-color: #fefefe !important;
       }
     }
+
+    &--board {
+      grid-area: box2;
+      background-color: $main-color--white;
+    }
+
+    &--donation {
+      grid-area: box3;
+      background-color: #fff;
+      border: 0.2px solid #ddd;
+    }
   }
 
   &__first-box__item {
     border-bottom: 1px solid rgba(#ccc, 0.3);
-  }
-
-  &__board {
-    grid-area: box2;
-    background-color: $main-color--white;
-  }
-
-  &__donation {
-    grid-area: box3;
-    background-color: #fff;
-    border: 0.2px solid #ddd;
   }
 
   &__second {
@@ -347,14 +380,33 @@
         'box2' 1fr
         'box3' 1fr
         /1fr;
+    }
 
-      &-box {
-        &__title {
-          font-size: 1.2rem;
+    &__first-box {
+      grid-template-rows: [title]2.1rem [posts]1fr;
+      height: 20em;
+
+      &__board-infos {
+        &::before {
+          width: 7rem;
         }
+      }
 
-        grid-template-rows: [title]2rem [posts]1fr;
-        height: 20em;
+      &__board-name {
+        font-size: 1.2rem;
+      }
+
+      &__board-link {
+        top: 40%;
+        transform: translateY(-50%);
+        width: 1rem;
+        height: 1rem;
+      }
+
+      &--notice > &__board-infos {
+        &::before {
+          width: 5.5rem !important;
+        }
       }
     }
 

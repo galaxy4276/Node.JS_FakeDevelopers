@@ -77,9 +77,9 @@ const getPostList = (parentElem, boardName, limit = 5, page = 1) => {
 document.addEventListener(
   'DOMContentLoaded',
   () => {
-    const notice = document.querySelector('.index-main__notice');
-    const board = document.querySelector('.index-main__board');
-    const donation = document.querySelector('.index-main__donation');
+    const notice = document.querySelector('.index-main__first-box--notice');
+    const board = document.querySelector('.index-main__first-box--board');
+    const donation = document.querySelector('.index-main__first-box--donation');
 
     // 공지사항 데이터 fetch로 가져와 출력하기
     getPostList(notice, 'community/notice', 5);
