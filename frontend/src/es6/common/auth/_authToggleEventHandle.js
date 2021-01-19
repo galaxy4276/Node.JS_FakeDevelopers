@@ -58,17 +58,17 @@ const authToggleEventHandle = () => {
   const loginCloseBtn = document.querySelector('.login__form__close-btn'); // 로그인 닫기 버튼
 
   loginOpenBtns.forEach((loginOpenBtn) => {
-    loginOpenBtn.addEventListener('click', (e) => loginWindow.on(e), false);
+    loginOpenBtn.addEventListener('click', loginWindow.on.bind(loginWindow), false);
   });
-  loginCloseBtn.addEventListener('click', (e) => loginWindow.off(e), false);
+  loginCloseBtn.addEventListener('click', loginWindow.off.bind(loginWindow), false);
 
   const joinOpenBtns = document.querySelectorAll('.js-joinOpenBtn'); // 회원가입 열기 버튼
   const joinCloseBtn = document.querySelector('.join__form__close-btn'); // 회원가입 닫기 버튼
 
   joinOpenBtns.forEach((joinOpenBtn) => {
-    joinOpenBtn.addEventListener('click', (e) => joinWindow.on(e), false);
+    joinOpenBtn.addEventListener('click', joinWindow.on.bind(joinWindow), false);
   });
-  joinCloseBtn.addEventListener('click', (e) => joinWindow.off(e), false);
+  joinCloseBtn.addEventListener('click', joinWindow.off.bind(joinWindow), false);
 };
 
 export { loginWindow, joinWindow, authToggleEventHandle };
