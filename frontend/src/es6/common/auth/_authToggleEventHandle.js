@@ -29,6 +29,7 @@ const joinWindow = {
     }
 
     this.elem.classList.add('join--show');
+    joinValueVerification.on();
   },
 
   off(e = false) {
@@ -39,6 +40,7 @@ const joinWindow = {
     }
 
     this.elem.classList.remove('join--show');
+    joinValueVerification.off();
   },
 
   removeLoginWidnow(e) {
