@@ -1,5 +1,5 @@
 import modal from '../components/_modal';
-import { openLoginWindow } from './_authToggleEventHandle';
+import { loginWindow } from './_authToggleEventHandle';
 import emojiListForLogin from './_emojiListForLogin';
 
 /* --- */
@@ -12,7 +12,7 @@ const handleLoginSuccess = () => {
 };
 
 const handleLoginFailure = () => {
-  openLoginWindow();
+  loginWindow.on();
   modal(null, '⚠\n가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.');
 };
 
