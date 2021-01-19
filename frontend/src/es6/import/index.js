@@ -13,7 +13,7 @@ const toClassNamesObj = (...lastNames) => {
 
 const processToElems = (boardName, dataObj) => {
   const itemName = 'item';
-  const propNames = ['link', 'time'];
+  const propNames = ['link', 'title', 'time'];
   const classes = toClassNamesObj(...propNames);
 
   const _addTime = addTime;
@@ -34,8 +34,10 @@ const processToElems = (boardName, dataObj) => {
     const timeText = _processDateTime(KST, timeDiff);
 
     item.innerHTML = `
-<a class="${classes.link}" href="${postViewLink}">${post.title || '[ 빈 제목입니다 ]'}</a>
-<span class="${classes.time}">${timeText}</span>
+<a class="${classes.link}" href="${postViewLink}">
+  <span class="${classes.title}">${post.title || '[ 빈 제목입니다 ]'}</span>
+  <span class="${classes.time}">${timeText}</span>
+</a>
 `.trim();
 
     acc.push(item);
@@ -45,7 +47,7 @@ const processToElems = (boardName, dataObj) => {
 
   ul.append(...postitems);
 
-  const DOMfragement = new DocumentFragment();
+  const DOMfragement = document.createDocumentFragment();
   DOMfragement.append(ul);
 
   return DOMfragement;
