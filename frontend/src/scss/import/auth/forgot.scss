@@ -19,6 +19,7 @@
     min-width: 420px;
 
     &__return-btn {
+      display: none; // 뒤로가기 기능 미구현. 임시 삭제
       position: absolute;
       top: 1rem;
       left: 1rem;
