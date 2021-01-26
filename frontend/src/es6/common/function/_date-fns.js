@@ -57,11 +57,12 @@ const formatDistance = (ms) => {
 };
 
 const processDateTime = (dateTime, diff) => {
-  const today = mmdd(new Date());
-  const date = mmdd(dateTime);
-  const timeDistance = formatDistance(diff);
+  const todayKR = addTime(new Date(), 9); // 아래 mmdd 함수는 ISOString 기준(GMT)으로 시간을 가공하기 때문에, 한국 시간을 구하려면 +9
 
-  const timeText = date === today ? timeDistance : date;
+  const todayMMDD = mmdd(todayKR);
+  const MMDD = mmdd(dateTime);
+
+  const timeText = MMDD === todayMMDD ? formatDistance(diff) : MMDD;
 
   return timeText;
 };
