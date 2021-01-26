@@ -8,3 +8,4 @@ import './templates/_subMain';
 
 /* -- loading before pageLoad -- */
 import './function/_loadingBeforePageLoad';
+import './function/fontOptimization';

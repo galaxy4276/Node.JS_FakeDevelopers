@@ -1,5 +1,16 @@
 // @mixin
 // 미디어 쿼리 관련 mixin 은 './media_mixin.scss'
+@mixin body-font-not-loaded {
+  font-family: $font-family-not-loaded-hanguel;
+  letter-spacing: -0.08rem;
+  // word-spacing: 0.2rem;
+}
+
+@mixin body-font-loaded {
+  font-family: $font-family;
+  letter-spacing: initial;
+  // word-spacing: initial;
+}
 
 @mixin flex-center {
   display: flex;

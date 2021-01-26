@@ -64,13 +64,14 @@ html {
 }
 
 body {
+  @include body-font-not-loaded;
+  font-weight: 400;
+
   width: 100%; // 웹 전체 기본 너비
   height: fit-content;
   min-height: 100%; // 웹 전체 기본 높이
   position: relative;
   padding: 0 2.5vw $footer-height 2.5vw; // 웹 전체 기본 padding
-  font-family: $font-family; // 웹 전체 기본 폰트
-  font-weight: 400;
 
   &::-webkit-scrollbar {
     width: 0.7rem;
@@ -79,6 +80,11 @@ body {
   &::-webkit-scrollbar-thumb {
     background-color: $main-color--silver;
   }
+}
+
+body.fonts-loaded {
+  // 한글 로딩 후 (이 클래스는 es6/common/function/fontOptimization.js 에서 추가됩니다.)
+  @include body-font-loaded;
 }
 
 main {
