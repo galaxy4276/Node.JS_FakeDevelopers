@@ -1,30 +1,5 @@
 /* ---------------------------------------------------------------------------------------- */
 /* Noto Sans KR */
-// 큰 글씨 (title 등) 전용 폰트 - 작은 글씨에 사용 x
-// 사용법: 적용하고자 하는 요소에 'font-hanna' 클래스 추가
-// font-weight: 400 only
-/* ---------------------------------------------------------------------------------------- */
-
-@font-face {
-  font-family: 'hanna';
-  font-style: normal;
-  font-weight: 400;
-  font-display: fallback;
-  src: url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot);
-  src: url(../../../font/hanna/BMHANNA_11yrs_ttf.ttf) format('truetype'),
-    url(../../../font/hanna/BMHANNA_11yrs_otf.otf) format('opentype'),
-    url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot?#iefix) format('embedded-opentype'),
-    url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff2) format('woff2'),
-    url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff) format('woff'),
-    url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.ttf) format('truetype');
-  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3, U+D7B0-D7FF;
-}
-.font-hanna {
-  font-family: hanna, Noto Sans KR, Roboto, sans-serif, Apple SD Gothic Neo !important;
-}
-
-/* ---------------------------------------------------------------------------------------- */
-/* Noto Sans KR */
 // 한글 기본 폰트 ( body에 적용 )
 // font-weight: 100 300 400 500 700 900
 /* ---------------------------------------------------------------------------------------- */
