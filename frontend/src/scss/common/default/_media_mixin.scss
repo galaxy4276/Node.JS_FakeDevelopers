@@ -249,7 +249,8 @@
 // auth/ 컴포넌트들의 너비 높이 관련 media query
 @mixin auth__form--mobile {
   @include full;
-  min-width: 279px; // galaxy fold width
+  min-width: 279px; // galaxy fold width'
+  min-height: initial;
   border-radius: initial;
 }
 
@@ -258,34 +259,16 @@
     width: 29rem;
     padding: 2.3rem;
 
-    &--send-email {
-      min-height: 25rem;
-    }
-
     &--hash {
-      min-height: 27rem;
       min-width: 520px;
-    }
-
-    &--reset {
-      min-height: 30rem;
     }
   }
   @include for-size(laptop) {
     width: 26rem;
     padding: 2.2rem;
 
-    &--send-email {
-      min-height: 25rem;
-    }
-
     &--hash {
-      min-height: 26rem;
       min-width: 500px;
-    }
-
-    &--reset {
-      min-height: 28rem;
     }
   }
   @include for-size(tablet-portrait) {
@@ -302,7 +285,7 @@
   }
   @include for-size(mobile-portrait) {
     @include auth__form--mobile;
-    padding: 40px;
+    padding: 10px;
   }
   @include for-size(mobile-fold-portrait) {
     @include auth__form--mobile;
@@ -310,7 +293,7 @@
   }
   @include for-size(mobile-fold-landscape) {
     @include auth__form--mobile;
-    padding: 20px 60px 0 60px;
+    padding-top: 6rem;
   }
 }
 
