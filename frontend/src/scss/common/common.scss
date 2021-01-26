@@ -20,9 +20,15 @@
 @import './auth/login';
 @import './auth/join';
 
-/* 개발자 설정 */
+/* 그 외 전체 페이지 공통 설정 */
 * {
   box-sizing: border-box;
+}
+
+*::selection {
+  color: $main-color--white;
+  background-color: $main-color--dark-silver;
+  text-shadow: none;
 }
 
 html {
