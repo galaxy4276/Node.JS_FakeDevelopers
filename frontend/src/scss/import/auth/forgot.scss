@@ -17,7 +17,18 @@
     @include auth-form;
     background-color: rgba(black, 0.8) !important;
     min-width: 420px;
-    min-height: 450px;
+
+    &--send-email {
+      min-height: 450px;
+    }
+
+    &--hash {
+      min-height: 420px;
+    }
+
+    &--reset {
+      min-height: 450px;
+    }
 
     &__return-btn {
       display: none; // 뒤로가기 기능 미구현. 임시 삭제
