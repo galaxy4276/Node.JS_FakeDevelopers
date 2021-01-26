@@ -9,7 +9,7 @@ mixin postUpdate(referrer, postData)
     form(action=`${referrer}/update?_method=PATCH` method="post" enctype="multipart/form-data").post-update__form
       .post-update__title__wrap
         label.post-update__title__label 제목
-          input(type="text" name="title" value= postData.title required).post-update__title__input
+          input(type="text" name="title" maxlength="30" value= postData.title required).post-update__title__input
       .post-update__paragraph__wrap
         label.post-update__paragraph__label 내용
         textarea(name="content" required).post-update__paragraph__input= postData.content

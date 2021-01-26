@@ -7,7 +7,7 @@ mixin postWrite(url)
     form(action=`${url}` method="post" enctype="multipart/form-data").post-write__form
       .post-write__title__wrap
         label(for="title").post-write__title__label 제목
-        input(type="text" name="title" id="title" required).post-write__title__input
+        input(type="text" name="title" maxlength="30" id="title" required).post-write__title__input
       .post-write__file__wrap
         .post-write__file__btn-wrapper
           label(for="file").post-write__file__label 이미지 첨부
