@@ -53,7 +53,6 @@ const test = {
     typeCast: true,
     useUTC: false,
   },
-  timezone: 'Asia/Seoul+9',
   define: {
     supportBigNumbers: true,
   },

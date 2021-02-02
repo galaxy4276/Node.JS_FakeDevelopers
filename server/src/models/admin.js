@@ -1,5 +1,4 @@
 import { Model, DataTypes } from 'sequelize';
-import moment from 'moment';
 
 export default class Admin extends Model {
   static init(sequelize) {
@@ -12,10 +11,6 @@ export default class Admin extends Model {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      last_login: {
-        type: DataTypes.DATE,
-        defaultValue: moment().format('llll'),
-      }
     }, {
       timestamps: true,
       paranoid: true,

@@ -38,9 +38,7 @@ const sessionStore = new MySQLStore({
   password: process.env.MARIADB_PASSWORD,
   database: process.env.MARIADB_TEST_DATABASE,
 }); // 세션 유지 함수
-export const appState = {
-  url: null
-};
+
 
 app.set('view engine', 'pug'); // 서버 View 엔진을 ejs로 설정
 // app.engine('html', require('ejs').renderFile); // 서버 엔진을 ejs 설정으로
@@ -105,7 +103,6 @@ app.use((req, res, next) => {
   console.table(req.cookies);
   console.log('session');
   console.table(req.session);
-  console.log(appState);
   next();
 }); // 일반 테스트용 미들웨어 ( 삭졔 예정 )
 

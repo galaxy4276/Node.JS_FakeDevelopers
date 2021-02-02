@@ -13,8 +13,7 @@ const auth = require('express').Router();
 
 auth.get('/login', isNotLoggedIn, login);
 auth.post('/login', passport.authenticate('local'), (req, res, next) => {
-  console.log(`login pass url: ${appState.url}`);
-  res.redirect(appState.url);
+  res.redirect('/');
 });
 
 auth.get('/join', isNotLoggedIn, join);
@@ -77,7 +76,7 @@ auth.post('/forgot_resetPassword', isNotLoggedIn, async (req, res, next) => {
 
 auth.get('/logout', isLoggedIn, (req, res) => {
   req.logout();
-  return res.redirect(appState.url);
+  return res.redirect('/');
 });
 
 

@@ -10,7 +10,6 @@ import sequelize from '../../models';
 import { createBulkBoard } from '../../lib/createBulkData';
 import  getPostsList from '../../controllers/pagination/getPostsList';
 import getIdx from '../../controllers/pagination/getPageIdx';
-import setUrl, {setUrlPost} from "../../lib/setUrl";
 
 
 const {
@@ -32,7 +31,6 @@ const {
 
 // <-- </test> -->
 community.get('/board', (req, res) => {
-  setUrl(req.originalUrl);
   res.render('import/community/board', { user: req.user?.id });
 });
 community.post('/board/create', isLoggedIn, uploads.array('file'), (req, res, next) => {
@@ -72,14 +70,12 @@ community.delete('/board/:id([0-9]+)/delete', isLoggedIn, (req, res, next) => {
   deletePost(req, res, next)(Community);
 });
 community.get('/board/:id([0-9]+)', (req, res, next) => {
-  setUrlPost(req.originalUrl);
   readPost(req, res, next)(Community);
   console.log('/board/:id([0-9]+) GET');
 });
 
 // 후배 양도 ( Donate )
 community.get('/donation', (req, res) => {
-  setUrl(req.originalUrl);
   res.render('import/community/donation', { user: req.user?.id });
 });
 community.post('/donation/create', isLoggedIn, uploads.array('file'), (req, res, next) => {
@@ -108,14 +104,12 @@ community.patch('/donation/:id([0-9]+)/update', (req, res, next) => {
   updatePost(req, res, next)(Donate);
 });
 community.get('/donation/:id([0-9]+)', isLoggedIn, (req, res, next) => {
-  setUrlPost(req.originalUrl);
   readPost(req, res, next)(Donate);
 });
 
 
 // 개선 사항 제안 ( Suggest ) 
 community.get('/suggestion', (req, res) => {
-  setUrl(req.originalUrl);
   res.render('import/community/suggestion', { user: req.user?.id });
 });
 community.post('/suggestion/create', uploads.array('file'), (req, res, next) => {
@@ -142,13 +136,11 @@ community.patch('/suggestion/:id([0-9]+)/update', (req, res, next) => {
   updatePost(req, res, next)(Suggest);
 });
 community.get('/suggestion/:id([0-9]+)', (req, res, next) => {
-  setUrlPost(req.originalUrl);
   readPost(req, res, next)(Suggest);
 });
 
 // 공지 사항 ( Notice )
 community.get('/notice', (req, res) => {
-  setUrl(req.originalUrl);
   res.render('import/community/notice', { user: req.user?.id });
 });
 community.post('/notice/create', uploads.array('file'), (req, res, next) => {
@@ -175,7 +167,6 @@ community.patch('/notice/:id([0-9]+)/update', (req, res, next) => {
   updatePost(req, res, next)(Notice);
 });
 community.get('/notice/:id([0-9]+)', (req, res, next) => {
-  setUrlPost(req.originalUrl);
   readPost(req, res, next)(Notice);
 });
 
