@@ -8,6 +8,7 @@ import deletePost from "../../controllers/crud/delete";
 import updatePost from "../../controllers/crud/update";
 import readPost from "../../controllers/crud/read";
 import {getRenderCreate, isLoggedIn} from "../../controllers/post";
+import addComment from "../../controllers/comment";
 import community from "./community";
 
 const { 
@@ -27,6 +28,9 @@ footprint.post('/acquisition/create', uploads.array('file'),
   (req, res, next) => {
     postBoard(req, res, next)(Certpost);
   });
+footprint.post('/acquisition/:id([0-9]+)/comment', (req, res, next) => {
+  addComment(req, res, next)(Certpost);
+});
 footprint.get('/acquisition/create',  isLoggedIn, getRenderCreate);
 footprint.get('/acquisition/api/index', (req, res, next) => {
   getIdx(req, res, next)(Certpost);
@@ -59,6 +63,9 @@ footprint.post('/awards/create', uploads.array('file'),
   (req, res, next) => {
     postBoard(req, res, next)(Award);
   });
+footprint.post('/awards/:id([0-9]+)/comment', (req, res, next) => {
+  addComment(req, res, next)(Award);
+});
 footprint.get('/awards/create', isLoggedIn, getRenderCreate);
 footprint.get('/awards/api/index', (req, res, next) => {
   getIdx(req, res, next)(Award);
@@ -88,6 +95,9 @@ footprint.post('/portfolio/create', isLoggedIn, uploads.array('file'),
   (req, res, next) => {
     postBoard(req, res, next)(Portfolio);
   });
+footprint.post('/portfolio/:id([0-9]+)/comment', (req, res, next) => {
+  addComment(req, res, next)(Portfolio);
+});
 footprint.get('/portfolio/create', isLoggedIn, getRenderCreate);
 footprint.get('/portfolio/api/index', (req, res, next) => {
   getIdx(req, res, next)(Portfolio);

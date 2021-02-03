@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88b59d01-40b0-45dc-be2e-5818affad633" name="Default Changelist" comment="meaningless commit">
-      <change afterPath="$PROJECT_DIR$/admin/.eslintcache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/.eslintrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/.prettierrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/public/logo192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/public/logo512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/src/components/App.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/src/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/log/mariadb.log" beforeDir="false" afterPath="$PROJECT_DIR$/server/log/mariadb.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/category/community.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/category/community.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/category/footprint.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/category/footprint.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +19,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/frontend/package.json" />
@@ -49,9 +45,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="14.15.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="14.14.10" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/file_server/config" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.15.4" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.14.22" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -114,6 +110,11 @@
       <workItem from="1608760394350" duration="1024000" />
       <workItem from="1608774883085" duration="463000" />
       <workItem from="1608805701877" duration="5911000" />
+      <workItem from="1612169838362" duration="932000" />
+      <workItem from="1612180224237" duration="2000" />
+      <workItem from="1612226541567" duration="1619000" />
+      <workItem from="1612268358150" duration="3675000" />
+      <workItem from="1612315075986" duration="2397000" />
     </task>
     <task id="LOCAL-00001" summary="feat: index.js 에러 미들웨어 추가 ( 에러 처리 페이지 요청 404 )">
       <created>1607107219099</created>

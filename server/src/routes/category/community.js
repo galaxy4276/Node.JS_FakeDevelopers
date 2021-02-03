@@ -82,6 +82,9 @@ community.post('/donation/create', isLoggedIn, uploads.array('file'), (req, res,
   postBoard(req, res, next)(Donate);
   console.log('create /donation/create');
 });
+community.post('/donation/:id([0-9]+)/comment', (req, res, next) => {
+  addComment(req, res, next)(Donate);
+});
 community.get('/donation/create', isLoggedIn, getRenderCreate);
 community.get('/donation/api/index', (req, res, next) => {
   getIdx(req, res, next)(Donate);
@@ -115,6 +118,9 @@ community.get('/suggestion', (req, res) => {
 community.post('/suggestion/create', uploads.array('file'), (req, res, next) => {
   postBoard(req, res, next)(Suggest);
 });
+community.post('/suggestion/:id([0-9]+)/comment', (req, res, next) => {
+  addComment(req, res, next)(Suggest);
+});
 community.get('/suggestion/create', getRenderCreate);
 community.get('/suggestion/api/index', (req, res, next) => {
   getIdx(req, res, next)(Suggest);
@@ -142,6 +148,9 @@ community.get('/suggestion/:id([0-9]+)', (req, res, next) => {
 // 공지 사항 ( Notice )
 community.get('/notice', (req, res) => {
   res.render('import/community/notice', { user: req.user?.id });
+});
+community.post('/notice/:id([0-9]+)/comment', (req, res, next) => {
+  addComment(req, res, next)(Notice);
 });
 community.post('/notice/create', uploads.array('file'), (req, res, next) => {
   postBoard(req, res, next)(Notice);

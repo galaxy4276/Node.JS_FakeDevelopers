@@ -1,1 +1,1 @@
-SequelizeConnectionError: (conn=-1, no: 45033, SQLState: 08S01) Unknown IANA timezone '00:00'.
+SequelizeAccessDeniedError: (conn=9, no: 1045, SQLState: 28000) Access denied for user 'root'@'localhost' (using password: YES)

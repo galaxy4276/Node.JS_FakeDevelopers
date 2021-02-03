@@ -12,9 +12,20 @@ const auth = require('express').Router();
 
 
 auth.get('/login', isNotLoggedIn, login);
-auth.post('/login', passport.authenticate('local'), (req, res, next) => {
-  res.redirect('/');
-});
+auth.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) {
+        console.log(err);
+        return res.redirect('/?error=login_failed');
+      }
+      if (user)
+        req.login(user, err => {
+          if (err) return next(err);
+        });
+      return res.redirect('/');
+    })(req, res, next)
+  }
+);
 
 auth.get('/join', isNotLoggedIn, join);
 auth.post('/join', postJoin);
@@ -72,7 +83,7 @@ auth.post('/forgot_resetPassword', isNotLoggedIn, async (req, res, next) => {
     console.error(err);
     next(err);
   }
-})
+});
 
 auth.get('/logout', isLoggedIn, (req, res) => {
   req.logout();
