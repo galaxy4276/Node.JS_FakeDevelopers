@@ -1,5 +1,5 @@
 import {createAction, handleActions} from "redux-actions";
-import { takeLatest, call, put } from 'redux-saga/effects';
+import {takeLatest, call, put, all, fork} from 'redux-saga/effects';
 import * as userAPI from '../api/user';
 
 
@@ -14,7 +14,6 @@ export const loginUser = (user) => ({ type: LOGIN_USER, user });
 export const logoutUser = createAction(LOGOUT_USER);
 
 // 리덕스 사가
-
 function* loginUserSaga(action) {
   try {
     const user = yield call(userAPI.postUserLogin, action.user);
@@ -31,9 +30,16 @@ function* loginUserSaga(action) {
   }
 }
 
-export function* userSaga() {
-  yield takeLatest(loginUserSaga());
+function* watchLoginUserSaga() {
+  yield takeLatest(LOGIN_USER, loginUserSaga);
 }
+
+export function* userSaga() {
+  yield all([
+    fork(watchLoginUserSaga),
+  ]);
+}
+
 
 // 초기 상태
 const INITIAL_STATE = {
