@@ -21,7 +21,6 @@
 ### 기술 스택
 |이름|역할|
 |:---|:---|
-|React, TypeScript| 어드민 어플리케이션 개발 |
 |Webpack|프런트 개발구조 및 웹 리소스 번들링 수행|
 |Express.js|백엔드, RESTful API 개발|
 |AWS EC2, Route53|외부 배포 및 도메인 연결 수행|
