@@ -1,5 +1,5 @@
-## 컴퓨터정보학과 웹 서비스
-[>> 접속 경로 <<](https://www.ddccomputer.club)     
+# [컴퓨터정보학과 웹 서비스](https://www.ddccomputer.club)   
+  
 --- 
 ![웹사이트모습](preview/full_pc.PNG)
 
